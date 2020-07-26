@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms'
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
 //import { MatFormField } from '@angular/material/form-field';
 
@@ -19,6 +19,9 @@ import { ProcessHTTPMsgServiceService } from './services/process-httpmsg-service
 import { AuthInterceptor, UnauthorizedInterceptor } from './services/auth.interceptor';
 
 import {HTTP_INTERCEPTORS} from '@angular/common/http';
+import { SignupComponent } from './signup/signup.component';
+import { CreatePostComponent } from './create-post/create-post.component';
+import { CreatePostService } from './services/create-post.service';
 
 
 
@@ -27,19 +30,23 @@ import {HTTP_INTERCEPTORS} from '@angular/common/http';
     AppComponent,
     LoginComponent,
     IndexComponent,
-    SinglePostComponent
+    SinglePostComponent,
+    SignupComponent,
+    CreatePostComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FlexLayoutModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule
   ],
   providers: [
     LoginService,
     PostService,
     CommentService,
+    CreatePostService,
     ProcessHTTPMsgServiceService,
     {
       provide: HTTP_INTERCEPTORS,

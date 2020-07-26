@@ -76,8 +76,8 @@
         <p class="lead">{{post.Description}}</p>
 
 
-        {{likes}} Likes
-        <div class="btn btn-primary" (click)="like()">Like</div>
+        {{likeCount}} Likes
+        <div class="btn btn-primary"   (click)="like()">{{liked?Unlike:Like}}</div>
         <hr>
 
         <!-- Comments Form -->

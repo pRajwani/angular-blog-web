@@ -1,0 +1,18 @@
+<div fxflex fxLayout="row" fxLayoutAlign="center center">
+    <form (ngSubmit)="OnSubmit()">
+        <div class="form-group">
+          <input [(ngModel)]="SignupData.name" type="text" name="first" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Firstname">
+          <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+        </div>
+        <div class="form-group">
+            <input [(ngModel)]="SignupData.username" type="email" name="last" class="form-control" id="exampleInputPassword1" placeholder="Enter Email id">
+            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+        </div>
+        <div class="form-group">
+            <input [(ngModel)]="SignupData.password" type="password" name="first" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Password">
+            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+          </div>
+        <button type="submit" class="btn btn-primary">Sign Up</button>
+        Already have one! <a routerLink = '/login'>Login</a>
+      </form>
+</div>

@@ -1,0 +1,36 @@
+<div class="card md-form input-group input-group-sm mb-3">
+    <h5 class="card-header info-color white-text text-center py-4">
+        <strong>Enter post details</strong>
+      </h5>
+    <div class="card-body px-lg-5 pt-0">
+    <form class="text-center" style="color: #757575;" novalidate [formGroup]="postForm" #pform="ngForm" (ngSubmit)="OnSubmit()">
+        <div class="md-form">
+        <input class="form-control" type="text" formControlName="Title" name="Title" placeholder="Enter the Title" required>
+        <small *ngIf="formErrors.Title">{{formErrors.Title}}</small>
+        </div>
+        
+        <div class="md-form">
+        <input class="form-control" type="textarea" name="Description" formControlName="Description" placeholder="Enter the Description"required>
+        <small *ngIf="formErrors.Description">{{formErrors.Description}}</small>
+        </div>
+
+        <div class="md-form">
+        <input class="form-control" type="text" name="Category" formControlName="Category" placeholder="Enter Post's Category" required>
+        <small *ngIf="formErrors.Category">{{formErrors.Category}}</small>
+        </div>  
+ 
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
+            </div>
+            <div class="custom-file">
+              <input type="file" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
+              <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+            </div>
+          </div>
+
+        <button [disabled]="postForm.invalid" type="submit" >Create Post</button>
+        
+    </form>
+    </div>
+</div>

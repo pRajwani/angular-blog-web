@@ -1,15 +1,18 @@
-<div fxflex fxLayout="row" fxLayoutAlign="center center">
-    <form (ngSubmit)="OnSubmit()">
-        <div class="form-group">
-          <label for="exampleInputEmail1">Username</label>
-          <input [(ngModel)]="loginData.username" type="text" name="first" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Username">
-          <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-        </div>
-        <div class="form-group">
-          <label for="exampleInputPassword1">Password</label>
-          <input [(ngModel)]="loginData.password" type="password" name="last" class="form-control" id="exampleInputPassword1" placeholder="Password">
-        </div>
-        
-        <button type="submit" class="btn btn-primary">Submit</button>
-      </form>
+
+<div style="background-color: #37474F;" fxflex fxLayout="row" fxLayoutAlign="center center" class="vh-100">
+  <div  fxLayout="row" style="background-color: #263238;" fxLayoutAlign="center center" class=" shadow h-50 w-50">
+  
+    <form (ngSubmit)="OnSubmit()" class="w-50 align-center">
+      <h2 class="text-light">Login</h2>
+      <div class="form-group">
+        <input [(ngModel)]="loginData.username" type="text" name="first" class="form-control shadow-none border-top-0  border-right-0 border-left-0" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Username">
+      </div>
+      <div class="form-group">
+        <input [(ngModel)]="loginData.password" type="password" name="last" class="form-control shadow-none border-top-0 border-right-0 border-left-0" id="exampleInputPassword1" placeholder="Password">
+      </div>
+      
+      <button type="submit" class="btn btn-primary bg-dark border-0">Submit</button>
+     <span class="text-light"> Don't have an account!.</span> <a routerLink = '/signup'> Create One</a>
+    </form>
+  </div>
 </div>
