@@ -4,6 +4,9 @@ import { ActivatedRoute } from '@angular/router'
 import { CommentService } from '../services/comment.service';
 import { LikeService } from '../services/like.service';
 import { LoginService } from '../services/login.service';
+import { baseImageUrl } from '../shared/baseUrl';
+import { TimeoutService } from '../services/timeout.service';
+
 
 @Component({
   selector: 'app-single-post',
@@ -12,72 +15,91 @@ import { LoginService } from '../services/login.service';
 })
 export class SinglePostComponent implements OnInit {
 post;
-Like="Like";
-Unlike="Unlike";
 Comments;
 comment;
 likeCount;
 liked:Boolean=false;
-username = JSON.parse(localStorage.getItem('JWT')).username;
-likesLocal:any;
+username;
+baseImageUrl=baseImageUrl;
+likesLocal:any=[];
+
+emptyLikesLocal = [{
+  username: '',
+  name: '',
+  admin: false
+}];
+
 flag=false;
+
   constructor(private postService:PostService, 
     private route:ActivatedRoute, 
     private commentService:CommentService,
     private likeService: LikeService,
-    private loginService: LoginService) { }
+    private loginService: LoginService,
+    private timeoutService:TimeoutService) { }
 
   ngOnInit(): void {
-    this.postService.getPost(this.route.snapshot.paramMap.get('postId')).subscribe((post)=> {
+    if(localStorage.getItem('JWT')){
+      this.username=JSON.parse(localStorage.getItem('JWT')).username;
+    }
+    this.postService.getPost(this.route.snapshot.paramMap.get('postId'))
+    .subscribe((post)=> {
       this.post=post;
-      console.log(post.likes.length);
       this.Comments=post.Comments;
       this.likeCount=post.likes.length;
-      console.log(post);
-      this.likesLocal=post.likes;
-      for(let like=0;like<this.likesLocal.length;like++){
-        console.log(this.likesLocal[like].username)
-      if(this.likesLocal[like].username==this.username)
-        this.liked=true;
+      if(this.likeCount == 0) 
+        this.likesLocal = this.emptyLikesLocal;
+      else 
+        this.likesLocal=post.likes;
+      for(let like=0;like<this.likesLocal.length;like++) {
+        if(this.likesLocal[like].username==this.username) {
+          this.liked=true;
+          break;
+        }
       }
     })
   }
   postComment(){
-    this.commentService.postComment(this.route.snapshot.paramMap.get('postId'),{Comment:this.comment}).subscribe((Comment)=>{
+    this.commentService.postComment(this.route.snapshot.paramMap.get('postId'),{Comment:this.comment})
+    .subscribe((Comment)=>{
       this.Comments=Comment;
     })
   }
   like(){
-      this.likeService.postlike(this.route.snapshot.paramMap.get('postId')).subscribe((likes)=>{
-      this.likesLocal=likes;
-      this.likeCount=likes.length;
-    });
-      console.log("After like event"+ this.likesLocal);
-      
+      this.likeService.postlike(this.route.snapshot.paramMap.get('postId'))
+      .subscribe((post)=>{
+      if(post.likes.length == 0) 
+        this.likesLocal = this.emptyLikesLocal;
+      else 
+        this.likesLocal=post.likes;
+      if(this.likesLocal[0].username == '') 
+        this.likeCount = 0;
+      else 
+        this.likeCount=this.likesLocal.length;
       for(let like=0;like<this.likesLocal.length;like++){
         if(this.likesLocal[like].username==this.username){
-          console.log('in if cond')
           this.liked=true; 
-          console.log(this.liked);
           this.flag=true;
           return;
         }
         else if(this.likesLocal[like].username!=this.username){
-          console.log("in else if cond");
           this.flag=false;
           continue;
-        }
-        
-         
-        
+        }      
+      }
+      if(this.flag==false){
+        this.liked=false;
+      }
+    });
+  }
+  isEditable(username){
+    if(username==this.username){
+      return true;
     }
-
-    if(this.flag==false){
-      console.log('in else cond')
-      this.liked=false;
-      console.log(this.liked);
-    }
-    
+  }
+  deleteComment(commentId){
+    this.commentService.deleteComment(this.route.snapshot.paramMap.get('postId'),commentId).subscribe();
+    this.Comments=this.Comments.filter(o=>{return o._id!=commentId})
   }
 
 }

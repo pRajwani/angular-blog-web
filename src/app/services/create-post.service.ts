@@ -12,6 +12,7 @@ export class CreatePostService {
   constructor(private http:HttpClient,private processHTTPMsgService:ProcessHTTPMsgServiceService) { }
 
   createPost(postData):Observable<any>{
-    return this.http.post(baseUrl+'post',postData)
-    .pipe(catchError(error => this.processHTTPMsgService.handleError(error)));  }
+    return this.http.post('post',postData)
+    .pipe(catchError(error => this.processHTTPMsgService.handleError(error)));  
+  }
 }

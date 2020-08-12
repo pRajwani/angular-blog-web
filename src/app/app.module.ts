@@ -2,7 +2,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
-//import { MatFormField } from '@angular/material/form-field';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -22,6 +21,11 @@ import {HTTP_INTERCEPTORS} from '@angular/common/http';
 import { SignupComponent } from './signup/signup.component';
 import { CreatePostComponent } from './create-post/create-post.component';
 import { CreatePostService } from './services/create-post.service';
+import { ProfileComponent } from './profile/profile.component';
+import { UpdatePostComponent } from './update-post/update-post.component';
+import { HeaderComponent } from './header/header.component';
+import { FooterComponent } from './footer/footer.component';
+import { CategoriesComponent } from './categories/categories.component';
 
 
 
@@ -32,7 +36,12 @@ import { CreatePostService } from './services/create-post.service';
     IndexComponent,
     SinglePostComponent,
     SignupComponent,
-    CreatePostComponent
+    CreatePostComponent,
+    ProfileComponent,
+    UpdatePostComponent,
+    HeaderComponent,
+    FooterComponent,
+    CategoriesComponent
   ],
   imports: [
     BrowserModule,

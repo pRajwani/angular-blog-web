@@ -13,7 +13,10 @@ export class SignupService {
   constructor(private http: HttpClient,private processHTTPMsgService:ProcessHTTPMsgServiceService) { }
 
   onSubmit(SubmitData):Observable<any>{
-    return this.http.post(baseUrl+'users/register',SubmitData)
-    .pipe(catchError(error => this.processHTTPMsgService.handleError(error)));
+    return this.http.post('users/register',SubmitData)
+    .pipe(catchError(error => {this.processHTTPMsgService.handleError(error);
+      alert('Username already exists')
+      return error;
+    }));
   }
 }

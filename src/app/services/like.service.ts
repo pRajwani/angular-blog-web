@@ -13,7 +13,7 @@ export class LikeService {
   constructor(private http: HttpClient, private processHTTPMsgService:ProcessHTTPMsgServiceService ) { }
   
   postlike(postId): Observable<any> {
-    return this.http.post(baseUrl+'post/'+postId+'/like', postId)
+    return this.http.post('post/'+postId+'/like', postId)
     .pipe(catchError(error => this.processHTTPMsgService.handleError(error)));
   }
 

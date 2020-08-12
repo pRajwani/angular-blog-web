@@ -1,18 +1,45 @@
+<app-header></app-header>
 
-<div style="background-color: #37474F;" fxflex fxLayout="row" fxLayoutAlign="center center" class="vh-100">
-  <div  fxLayout="row" style="background-color: #263238;" fxLayoutAlign="center center" class=" shadow h-50 w-50">
+  <br>
   
-    <form (ngSubmit)="OnSubmit()" class="w-50 align-center">
-      <h2 class="text-light">Login</h2>
-      <div class="form-group">
-        <input [(ngModel)]="loginData.username" type="text" name="first" class="form-control shadow-none border-top-0  border-right-0 border-left-0" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Username">
+  <!-- Main Content -->
+  <div class="container-fluid">
+    <div class="row main-content bg-success text-center">
+      <div class="col-md-4 text-center company__info">
+       
       </div>
-      <div class="form-group">
-        <input [(ngModel)]="loginData.password" type="password" name="last" class="form-control shadow-none border-top-0 border-right-0 border-left-0" id="exampleInputPassword1" placeholder="Password">
+      <div class="col-md-8 col-xs-12 col-sm-12 login_form ">
+        <div class="container-fluid">
+          <div class="row justify-content-center">
+            <h2>Log In</h2>
+          </div>
+          <div *ngIf='loginError' class="alert alert-danger" role="alert">
+            <h4>Login Unsuccessfull</h4>
+            {{loginError}}
+          </div>
+          <div class="row">
+            <form (ngSubmit)="OnSubmit()"  class="form-group justify-content-center">
+              <div class="row">
+                <input [(ngModel)]="loginData.username" type="text" name="first" id="username" class="form__input" placeholder="Username">
+              </div>
+              <div class="row">
+                <!-- <span class="fa fa-lock"></span> -->
+                <input type="password" name="password" id="password" [(ngModel)]="loginData.password" class="form__input" placeholder="Password">
+              </div>
+              
+              <div class="row">
+                <input type="submit" value="Submit" class="btn">
+              </div>
+            </form>
+          </div>
+          <div class="row">
+            <p>Don't have an account? <a routerLink = '/signup'>Register Here</a></p>
+          </div>
+        </div>
       </div>
-      
-      <button type="submit" class="btn btn-primary bg-dark border-0">Submit</button>
-     <span class="text-light"> Don't have an account!.</span> <a routerLink = '/signup'> Create One</a>
-    </form>
+    </div>
   </div>
-</div>
+
+<app-footer></app-footer>
+
+

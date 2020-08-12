@@ -20,12 +20,14 @@ interface JWTResponse {
 @Injectable({
   providedIn: 'root'
 })
+
 export class LoginService {
 
   tokenKey = 'JWT';
   isAuthenticated: Boolean = false;
   username: Subject<string> = new Subject<string>();
   authToken: string = undefined;
+  localErr: any;
 
   constructor(private http: HttpClient, private processHTTPMsgService: ProcessHTTPMsgServiceService) { }
 
@@ -79,25 +81,32 @@ export class LoginService {
     localStorage.removeItem(this.tokenKey);
   }
 
-  signUp() {
-
-  }
+  signUp() { }
 
   login(loginData): Observable<any>{
-    return this.http.post<any>('http://localhost:3000/users/login',loginData)
+    return this.http.post<any>('users/login',loginData)
     .pipe(map(res=>{
+      if(res.success==true){
       this.storeUserCredentials({username:loginData.username,token:res.token});
       return {'success':true,'username':loginData.username};
-    }),
-    catchError(error=>this.processHTTPMsgService.handleError(error))
-   )}
+    }
+    else {
+      return {'success':false, 'err':res.err}
+    }
 
+    }),
+    catchError((error)=>this.processHTTPMsgService.handleError(error))
+   )
+  }
+  
    logOut() {
     this.destroyUserCredentials();
   }
 
   isLoggedIn(): Boolean {
-    return this.isAuthenticated;
+    if(JSON.parse(localStorage.getItem(this.tokenKey)))
+    return true;
+    else false;
   }
 
   getUsername(): Observable<string> {
@@ -105,6 +114,10 @@ export class LoginService {
   }
 
   getToken(): string {
-    return this.authToken = JSON.parse(localStorage.getItem(this.tokenKey)).token;
+    if(JSON.parse(localStorage.getItem(this.tokenKey))){
+      return this.authToken = JSON.parse(localStorage.getItem(this.tokenKey)).token;
+    }
+    else
+      return this.authToken=undefined;
   }
 }

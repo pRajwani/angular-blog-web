@@ -1,0 +1,51 @@
+<app-header></app-header>
+<div class="container contact-form">
+  <form enctype="multipart/form-data" novalidate [formGroup]="updateForm" #uform="ngForm" (ngSubmit)="updatePost()">
+      <h2>Update Your Post</h2>
+        <div class="row">
+          <div class="col-md-6">
+              <div hidden class="form-group">
+                  <input type="text"  class="form-control" formControlName="Category" id="Title" name="Title" placeholder="Enter the Title" required />
+                  <small *ngIf="formErrors.Title">{{formErrors.Title}}</small>
+              </div>
+              <div class="form-group">
+                <input type="text"  class="form-control" formControlName="Title" id="Title" name="Title" placeholder="Enter the Title" required />
+                <small *ngIf="formErrors.Title">{{formErrors.Title}}</small>
+            </div>
+
+                    <div class="form-group"> 
+                      <select formControlName="Category"  class="form-control show-tick" id="Category" name="Category" required>
+                        <option class="form-control" value='' disabled selected hidden >{{post.Category}}</option>
+                        <option class="form-control"  value="Sports">Sports</option>
+                        <option class="form-control" value="Education">Education</option>
+                        <option class="form-control" value="Fashion">Fashion</option>
+                      </select>
+                    <small *ngIf="formErrors.Category">{{formErrors.Category}}</small>
+                    </div>
+              
+              <div class="form-group">
+                <label for="fileupload" class="form-control  file-upload btn btn-primary"><span>
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M7 20.981a6.5 6.5 0 0 1-2.936-12 8.001 8.001 0 0 1 15.872 0 6.5 6.5 0 0 1-2.936 12V21H7v-.019zM13 13h3l-4-5-4 5h3v4h2v-4z" fill="rgba(255,255,255,1)"/></svg>
+                  &nbsp;Change Post's Image</span>
+                  <input type="file" name="image" id="fileupload" (change)="onFileChange($event)"
+                  formControlName="image"  />
+                </label>
+              </div>
+              
+              <div class="form-group buttons">
+                  <input type="submit" name="btnSubmit" class="btn btn-primary btnContact" [disabled]="updateForm.invalid" value="Post" />&nbsp;
+                  <input type="submit" name="btncancel" class="btn btn-primary btnContact" routerLink='/profile'  value="Cancel" />
+                </div>
+          </div>
+          <div class="col-md-6">
+              <div class="form-group">
+                  <textarea class="form-control" name="Description" formControlName="Description" placeholder="Enter the Description"required style="width: 100%; height: 150px;"></textarea>
+                  <small *ngIf="formErrors.Description">{{formErrors.Description}}</small>
+              </div>
+          </div>
+      </div>
+  </form>
+  
+</div>
+
+<app-footer ></app-footer>

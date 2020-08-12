@@ -1,0 +1,37 @@
+#image {
+	position: relative;
+	display: inline-block;
+}
+
+
+#image:hover .edit {
+	display: block;
+}
+
+.edit {
+	padding-top: 4px;	
+	padding-right: 4px;
+	position: absolute;
+	right: -4px;
+	top: -4px;
+	display: none;
+}
+.edit a {
+	color: #000;
+}
+
+.adjust{
+	width: 100% !important;
+}
+
+.empty{
+	height: 75%;
+	width: 100%;
+	justify-content: center;
+}
+
+.foot{
+	position: relative;
+    bottom: 0 !important;
+    width: 100%;
+}

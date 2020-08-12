@@ -1,18 +1,49 @@
-<div fxflex fxLayout="row" fxLayoutAlign="center center">
-    <form (ngSubmit)="OnSubmit()">
-        <div class="form-group">
-          <input [(ngModel)]="SignupData.name" type="text" name="first" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Firstname">
-          <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-        </div>
-        <div class="form-group">
-            <input [(ngModel)]="SignupData.username" type="email" name="last" class="form-control" id="exampleInputPassword1" placeholder="Enter Email id">
-            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-        </div>
-        <div class="form-group">
-            <input [(ngModel)]="SignupData.password" type="password" name="first" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Password">
-            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+<app-header></app-header>
+
+  <br>
+  
+  <!-- Main Content -->
+  <div class="container-fluid">
+    <div class="row main-content bg-success text-center">
+      <div class="col-md-4 text-center company__info">
+       
+      </div>
+      <div class="col-md-8 col-xs-12 col-sm-12 login_form ">
+        <div class="container-fluid">
+          <div class="row justify-content-center">
+            <h2>Join the Blog-World</h2>
           </div>
-        <button type="submit" class="btn btn-primary">Sign Up</button>
-        Already have one! <a routerLink = '/login'>Login</a>
-      </form>
-</div>
+          <div class="row">
+            <form novalidate [formGroup]="signupForm" #pform="ngForm" (ngSubmit)="OnSubmit()"  class="form-group justify-content-center">
+              <div class="row">
+                <input formControlName="username" type="text" name="username" id="username" class="form__input" placeholder="Username">
+                <small class="text-danger" *ngIf="formErrors.username">{{formErrors.username}}</small>
+              </div>
+              <div class="row">
+                <input formControlName="name" type="text" name="name" id="name" class="form__input" placeholder="Name">
+                <small class="text-danger" *ngIf="formErrors.name">{{formErrors.name}}</small>
+              </div>
+              <div class="row">
+                <!-- <span class="fa fa-lock"></span> -->
+                <input type="password" name="password" id="password" formControlName="password" class="form__input" placeholder="Password">
+                <small class="text-danger" *ngIf="formErrors.password">{{formErrors.password}}</small>
+              </div>
+              
+              <div class="row">
+                <input type="submit" value="Submit" class="btn">
+              </div>
+            </form>
+          </div>
+          <div class="row">
+            <p>Already have an account! <a routerLink = '/login'>Login</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+<app-footer></app-footer>
+
+

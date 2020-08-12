@@ -2,6 +2,8 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder,FormGroup,Validators, NgForm } from "@angular/forms";
 import { CreatePostService } from '../services/create-post.service';
 import { Router } from "@angular/router";
+import { ImageUploadService } from '../services/image-upload.service';
+import { TimeoutService } from '../services/timeout.service';
 
 @Component({
   selector: 'app-create-post',
@@ -12,6 +14,8 @@ export class CreatePostComponent implements OnInit {
   @ViewChild("pform") postFormDirective:NgForm;
   postForm:FormGroup;
   post;
+  imageName;
+  selectedFile:File;
 
   formErrors={
     Title:"",
@@ -23,7 +27,7 @@ export class CreatePostComponent implements OnInit {
     Title:{
       required:"Title is required",
       minlength:"Title must be atleast 2 characters long",
-      maxlength:"Title can't be of more than 50 characters"
+      maxlength:"Title can't be of more than 100 characters"
     },
     Category:{
       required:"Category is required"
@@ -34,17 +38,20 @@ export class CreatePostComponent implements OnInit {
     }
   };
 
-  constructor(private fb:FormBuilder, private createPostService:CreatePostService, private router:Router) { }
+  constructor(private fb:FormBuilder, private createPostService:CreatePostService, private router:Router,private imageUploadService:ImageUploadService,private timeoutService:TimeoutService) { }
 
   ngOnInit(): void {
-    this.createForm();
+    if(localStorage.getItem('JWT')){
+      this.createForm();
+    } 
   }
 
   createForm(){
     this.postForm=this.fb.group({
-      Title:['',[Validators.required,Validators.minLength(2),Validators.maxLength(50)]],
+      Title:['',[Validators.required,Validators.minLength(2),Validators.maxLength(100)]],
       Description:['',[Validators.required,Validators.minLength(10)]],
       Category:['',[Validators.required]],
+      image:[]
     });
     this.postForm.valueChanges
     .subscribe((data)=>{
@@ -55,7 +62,7 @@ export class CreatePostComponent implements OnInit {
 
     onValueChanges(Data?:any){
       if(!this.postForm)
-      return
+        return
       const form =this.postForm;
       for(const field in this.formErrors){
         if(this.formErrors.hasOwnProperty(field)){
@@ -73,9 +80,17 @@ export class CreatePostComponent implements OnInit {
       }
     }
 
+    onFileChange(event){
+      this.selectedFile=event.target.files[0];
+    }
+
     OnSubmit(){
       this.post=this.postForm.value;
+      this.post.image=this.selectedFile.name;
+      const uploadData = new FormData();
+      uploadData.append('imageFile', this.selectedFile, this.selectedFile.name);
       this.createPostService.createPost(this.post).subscribe(()=>{
+        this.imageUploadService.uploadImage(uploadData).subscribe();
         this.router.navigate(['home'])
       });
       console.log(this.post);

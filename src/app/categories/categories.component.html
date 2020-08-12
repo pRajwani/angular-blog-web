@@ -1,0 +1,22 @@
+<app-header></app-header>
+<br><br>
+<br>
+<br>
+<hr style="border-top: 3px double #8c8b8b;">
+<h1 class="align-items-center">{{this.category}}</h1>
+<hr style="border-top: 3px double #8c8b8b;">
+<div class="row text-center margin container">
+  <div class="col-lg-3 col-md-6 mb-4" *ngFor='let post of categoryPosts'>
+    <div class="card h-100">
+      <img height="300" width="200" class="card-img-top"  src={{baseImageUrl+post.image}}  alt="">
+      <div class="card-body">
+        <h4 class="card-title">{{post.Title}}</h4>
+      <p style="height: 70px; overflow: hidden;" class="card-text">{{post.Description}}</p>
+      </div>
+      <div class="card-footer">
+        <a [routerLink]="['/post', post._id]" class="btn btn-primary">Find Out More!</a>
+      </div>
+    </div>
+  </div>
+</div>
+<app-footer></app-footer>

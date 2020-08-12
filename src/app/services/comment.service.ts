@@ -12,11 +12,15 @@ export class CommentService {
 
   constructor(private http: HttpClient, private processHTTPMsgService: ProcessHTTPMsgServiceService) { }
   getComment(postId):Observable<any> {
-    return this.http.get(baseUrl+'post/'+postId+'/comment')
+    return this.http.get('post/'+postId+'/comment')
     .pipe(catchError(error => this.processHTTPMsgService.handleError(error)));
   }
   postComment(postId,comment): Observable<any> {
-    return this.http.post(baseUrl+'post/'+postId+'/comment',comment)
+    return this.http.post('post/'+postId+'/comment',comment)
+    .pipe(catchError(error => this.processHTTPMsgService.handleError(error)));
+  }
+  deleteComment(postId,commentId):Observable<any> {
+    return this.http.delete('post/'+postId+'/comment/'+commentId)
     .pipe(catchError(error => this.processHTTPMsgService.handleError(error)));
   }
 }
