@@ -60,38 +60,47 @@ flag=false;
     })
   }
   postComment(){
-    this.commentService.postComment(this.route.snapshot.paramMap.get('postId'),{Comment:this.comment})
-    .subscribe((Comment)=>{
-      this.Comments=Comment;
-    })
+    if(localStorage.getItem('JWT')){
+      this.commentService.postComment(this.route.snapshot.paramMap.get('postId'),{Comment:this.comment})
+      .subscribe((Comment)=>{
+        this.Comments=Comment;
+      })
+    }
+    else
+      alert('Please Login to Comment');
   }
   like(){
+    if(localStorage.getItem('JWT')){
       this.likeService.postlike(this.route.snapshot.paramMap.get('postId'))
       .subscribe((post)=>{
-      if(post.likes.length == 0) 
-        this.likesLocal = this.emptyLikesLocal;
-      else 
-        this.likesLocal=post.likes;
-      if(this.likesLocal[0].username == '') 
-        this.likeCount = 0;
-      else 
-        this.likeCount=this.likesLocal.length;
-      for(let like=0;like<this.likesLocal.length;like++){
-        if(this.likesLocal[like].username==this.username){
-          this.liked=true; 
-          this.flag=true;
-          return;
+        if(post.likes.length == 0) 
+          this.likesLocal = this.emptyLikesLocal;
+        else 
+          this.likesLocal=post.likes;
+        if(this.likesLocal[0].username == '') 
+          this.likeCount = 0;
+        else 
+          this.likeCount=this.likesLocal.length;
+        for(let like=0;like<this.likesLocal.length;like++){
+          if(this.likesLocal[like].username==this.username){
+            this.liked=true; 
+            this.flag=true;
+            return;
+          }
+          else if(this.likesLocal[like].username!=this.username){
+            this.flag=false;
+            continue;
+          }      
         }
-        else if(this.likesLocal[like].username!=this.username){
-          this.flag=false;
-          continue;
-        }      
-      }
-      if(this.flag==false){
-        this.liked=false;
-      }
-    });
-  }
+        if(this.flag==false){
+          this.liked=false;
+        }
+      });
+    }
+    else{
+      alert('Login First to Like')
+    }
+}
   isEditable(username){
     if(username==this.username){
       return true;

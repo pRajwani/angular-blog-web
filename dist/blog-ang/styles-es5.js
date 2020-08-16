@@ -23,7 +23,7 @@
         "names": [],
         "mappings": "AAAA,8EAAA",
         "file": "styles.scss",
-        "sourcesContent": ["/* You can add global styles to this file, and also import other style files */\n"]
+        "sourcesContent": ["/* You can add global styles to this file, and also import other style files */\r\n"]
       }]); // Exports
 
       module.exports = exports;

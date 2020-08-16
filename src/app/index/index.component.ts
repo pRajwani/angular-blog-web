@@ -24,7 +24,7 @@ export class IndexComponent implements OnInit {
       this.name=JSON.parse(localStorage.getItem('JWT')).username;   
     }
     this.postService.getPosts().subscribe((posts)=>{
-      this.posts=posts;
+      this.posts=posts.sort((a,b)=>{return a.Views-b.View});
       this.featuredPosts=posts.filter((o)=>{return o.featured==true})
     })   
   }
