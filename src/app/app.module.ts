@@ -26,9 +26,10 @@ import { UpdatePostComponent } from './update-post/update-post.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { CategoriesComponent } from './categories/categories.component';
+import { LocationStrategy, PathLocationStrategy, HashLocationStrategy } from '@angular/common';
 
 
-
+//Comment for fun
 @NgModule({
   declarations: [
     AppComponent,
@@ -66,6 +67,8 @@ import { CategoriesComponent } from './categories/categories.component';
       provide: HTTP_INTERCEPTORS,
       useClass: UnauthorizedInterceptor,
       multi: true
+    },{
+      provide: LocationStrategy,useClass:HashLocationStrategy
     }
   ],
   bootstrap: [AppComponent]

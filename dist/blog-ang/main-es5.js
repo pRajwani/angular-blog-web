@@ -443,7 +443,8 @@
 
       var _categories_categories_component__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(
       /*! ./categories/categories.component */
-      "./src/app/categories/categories.component.ts");
+      "./src/app/categories/categories.component.ts"); //Comment for fun
+
 
       var AppModule = function AppModule() {
         _classCallCheck(this, AppModule);
