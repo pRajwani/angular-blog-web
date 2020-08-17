@@ -70,7 +70,7 @@ import { LocationStrategy, PathLocationStrategy, HashLocationStrategy } from '@a
     },{
       provide: LocationStrategy,useClass:HashLocationStrategy
     }
-  ],
+  ], 
   bootstrap: [AppComponent]
 })
 export class AppModule { }

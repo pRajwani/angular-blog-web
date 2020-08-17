@@ -168,7 +168,9 @@
         factory: function AppRoutingModule_Factory(t) {
           return new (t || AppRoutingModule)();
         },
-        imports: [[_angular_router__WEBPACK_IMPORTED_MODULE_1__["RouterModule"].forRoot(routes)], _angular_router__WEBPACK_IMPORTED_MODULE_1__["RouterModule"]]
+        imports: [[_angular_router__WEBPACK_IMPORTED_MODULE_1__["RouterModule"].forRoot(routes, {
+          scrollPositionRestoration: "top"
+        })], _angular_router__WEBPACK_IMPORTED_MODULE_1__["RouterModule"]]
       });
 
       (function () {
@@ -184,7 +186,9 @@
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](AppRoutingModule, [{
           type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["NgModule"],
           args: [{
-            imports: [_angular_router__WEBPACK_IMPORTED_MODULE_1__["RouterModule"].forRoot(routes)],
+            imports: [_angular_router__WEBPACK_IMPORTED_MODULE_1__["RouterModule"].forRoot(routes, {
+              scrollPositionRestoration: "top"
+            })],
             exports: [_angular_router__WEBPACK_IMPORTED_MODULE_1__["RouterModule"]]
           }]
         }], null, null);
@@ -443,8 +447,18 @@
 
       var _categories_categories_component__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(
       /*! ./categories/categories.component */
+<<<<<<< HEAD
       "./src/app/categories/categories.component.ts"); //Comment for fun
 
+=======
+      "./src/app/categories/categories.component.ts");
+      /* harmony import */
+
+
+      var _angular_common__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(
+      /*! @angular/common */
+      "./node_modules/@angular/common/fesm2015/common.js");
+>>>>>>> master
 
       var AppModule = function AppModule() {
         _classCallCheck(this, AppModule);
@@ -466,6 +480,9 @@
           provide: _angular_common_http__WEBPACK_IMPORTED_MODULE_7__["HTTP_INTERCEPTORS"],
           useClass: _services_auth_interceptor__WEBPACK_IMPORTED_MODULE_14__["UnauthorizedInterceptor"],
           multi: true
+        }, {
+          provide: _angular_common__WEBPACK_IMPORTED_MODULE_23__["LocationStrategy"],
+          useClass: _angular_common__WEBPACK_IMPORTED_MODULE_23__["HashLocationStrategy"]
         }],
         imports: [[_angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__["BrowserModule"], _app_routing_module__WEBPACK_IMPORTED_MODULE_4__["AppRoutingModule"], _angular_flex_layout__WEBPACK_IMPORTED_MODULE_3__["FlexLayoutModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormsModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_2__["ReactiveFormsModule"], _angular_common_http__WEBPACK_IMPORTED_MODULE_7__["HttpClientModule"]]]
       });
@@ -493,6 +510,9 @@
               provide: _angular_common_http__WEBPACK_IMPORTED_MODULE_7__["HTTP_INTERCEPTORS"],
               useClass: _services_auth_interceptor__WEBPACK_IMPORTED_MODULE_14__["UnauthorizedInterceptor"],
               multi: true
+            }, {
+              provide: _angular_common__WEBPACK_IMPORTED_MODULE_23__["LocationStrategy"],
+              useClass: _angular_common__WEBPACK_IMPORTED_MODULE_23__["HashLocationStrategy"]
             }],
             bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_5__["AppComponent"]]
           }]
