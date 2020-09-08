@@ -36,7 +36,7 @@ baseImageUrl=baseImageUrl;
     this.postService.deletePost(post_id).subscribe();
     this.myPosts=this.myPosts.filter(o=>{return o._id!=post_id});
     if(this.myPosts.length == 0) 
-      window.location.href = 'http://localhost:4200/profile';
+      window.location.reload();
   }
 
 }

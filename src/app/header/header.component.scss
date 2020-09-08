@@ -1,3 +1,26 @@
 .is-right{
     right:0 !important
 }
+
+.color{
+    background: #FF4E50;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right,  #FF4E50, #F9D423);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right,  #FF4E50,#F9D423); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+}
+
+.button {
+    background: transparent;
+    border: none;
+    color: white;
+}
+
+.button:focus{
+    background: transparent;
+    border: 0;
+    color: white;
+    border-color: linear-gradient(to right,  #493b3c,#F9D423); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */;
+    outline: none;
+}
+
+

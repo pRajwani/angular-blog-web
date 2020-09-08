@@ -5,6 +5,7 @@ import  {map, catchError} from 'rxjs/operators';
 import { baseUrl } from '../shared/baseUrl';
 import { ProcessHTTPMsgServiceService} from './process-httpmsg-service.service';
 
+
 interface AuthResponse {
   status: string;
   success: string;
@@ -66,6 +67,7 @@ export class LoginService {
     console.log('storeUserCredentials ', credentials);
     localStorage.setItem(this.tokenKey, JSON.stringify(credentials));
     this.useCredentials(credentials);
+    
   }
 
   useCredentials(credentials: any) {
@@ -79,6 +81,9 @@ export class LoginService {
     this.clearUsername();
     this.isAuthenticated = false;
     localStorage.removeItem(this.tokenKey);
+    document.cookie="jwt=fceveo;max-age=0"
+    console.log(document.cookie);
+    window.location.href= '/'
   }
 
   signUp() { }

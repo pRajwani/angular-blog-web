@@ -1,9 +1,9 @@
   <!-- Navigation -->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+  <nav class="navbar navbar-expand-lg navbar-dark color fixed-top">
     
 
       <!--Heading-->
-      <a class="navbar-brand " href="#"><h1>Blog-Web</h1></a>
+      <a class="navbar-brand " href="#"><h1>bLog-gAng</h1></a>
       <small class="text-light">Welcome to the Blog World</small>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -20,18 +20,21 @@
 
           <!-- Category-->
           <li class="nav-item active">
-            <div class="nav-link" >
-              <div  class="dropdown ">
-              <a  id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Category &nbsp;
-              <span class="sr-only">(current)</span>
-              </a>
-              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+            <a class="nav-link" >
+              <a  class="dropdown ">
+              <button class="button"  id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Category &nbsp;
+              
+              </button>
+              <a class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
                 <a class="dropdown-item" routerLink='/category/Education'> Education</a>
                 <a class="dropdown-item" routerLink='/category/Sports'> Sports</a>
                 <a class="dropdown-item" routerLink='/category/Fashion'> Fashion</a>
-              </div>
-              </div>
-              </div>
+                <a class="dropdown-item" routerLink='/category/Technology'> Technology</a>
+                <a class="dropdown-item" routerLink='/category/Food'> Food</a>
+                <a class="dropdown-item" routerLink='/category/LifeStyle'> LifeStyle</a>
+              </a>
+              </a>
+            </a>
           </li>
 
           <!--Login in Nav-->
@@ -53,7 +56,7 @@
               <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
                 <span class="dropdown-item">Hi, {{username}}</span>
                 <a class="dropdown-item" routerLink='/profile'> Profile</a>
-                <a class="dropdown-item" (click)="loggingOut()" href="#"> LogOut</a>
+                <a class="dropdown-item" (click)="loggingOut()" > LogOut</a>
               </div>
             </div>
 

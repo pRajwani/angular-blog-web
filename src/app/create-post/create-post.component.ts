@@ -16,7 +16,7 @@ export class CreatePostComponent implements OnInit {
   post;
   imageName;
   selectedFile:File;
-
+  
   formErrors={
     Title:"",
     Description:"",

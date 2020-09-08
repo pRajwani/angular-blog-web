@@ -4,5 +4,9 @@ body{
 
 .hover :hover ,
 .hover :active .bi-heart-fill{
-    fill:darkred !important;
+    fill:orangered !important;
+}
+
+.btn-color{
+    background-color: orange;
 }

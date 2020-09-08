@@ -16,22 +16,22 @@
       </ol>
       <div class="carousel-inner">
         <div class="carousel-item active">
-          <img height="320" src="{{baseImageUrl+featuredPosts[0].image}}" class=" w-100 " alt="{{featuredPosts[0].image}}">
+          <img height="320" src="{{baseImageUrl}}spidey.jpg" class=" w-100 " alt="{{featuredPosts[0].image}}">
           <div class="carousel-caption d-none d-md-block">
-            <h5>{{featuredPosts[0].Title}}</h5>
+            <h5>Spider-Man is a fictional superhero created by writer-editor Stan Lee and writer-artist Steve Ditko.</h5> 
         
           </div>
         </div>
         <div class="carousel-item">
-          <img height="320" src="{{baseImageUrl+featuredPosts[1].image}}" class=" w-100" alt="...">
+          <img height="320" src="{{baseImageUrl}}pubg.png" class=" w-100" alt="...">
           <div class="carousel-caption d-none d-md-block">
-            <h5>{{featuredPosts[1].Title}}</h5>
+            <h5>PlayerUnknown's Battlegrounds (PUBG) is an online multiplayer battle royale game developed and published by PUBG Corporation.</h5>
           </div>
         </div>
         <div class="carousel-item">
-          <img height="320" src="{{baseImageUrl+featuredPosts[2].image}}" class=" w-100 " alt="...">
+          <img height="320" src="{{baseImageUrl}}ballon.jpg" class=" w-100 " alt="...">
           <div class="carousel-caption d-none d-md-block">
-            <h5>{{featuredPosts[2].Title}}</h5>
+            <h5>A hot air balloon is a lighter-than-air aircraft consisting of a bag, called an envelope, which contains heated air.</h5>
           </div>
         </div>
       </div>
@@ -46,9 +46,11 @@
     </div>
   </div>
   </div>
-
+  <div class="row text-justify justify-content-center mt-2 mb-2">
+    <p class="text-center display-4"><i>"Blogging is not rocket science. It’s about being yourself and putting what you have into it."</i></p>
+  </div>
   <div class="row justify-content-center mt-2">
-  <div *ngIf="name" routerLink="/newpost" class="border-3 rounded mb-2"><strong>Create New Post </strong> <svg width="2em" height="2em" viewBox="0 0 16 16" class="hover bi bi-plus-circle-fill" fill="blue" xmlns="http://www.w3.org/2000/svg">
+  <div *ngIf="name" routerLink="/newpost" class="border-3 rounded mb-2"><strong>Create New Post </strong> <svg width="2em" height="2em" viewBox="0 0 16 16" class="hover bi bi-plus-circle-fill" fill="orange" xmlns="http://www.w3.org/2000/svg">
     <path fill-rule="evenodd" d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4a.5.5 0 0 0-1 0v3.5H4a.5.5 0 0 0 0 1h3.5V12a.5.5 0 0 0 1 0V8.5H12a.5.5 0 0 0 0-1H8.5V4z"/>
   </svg></div>
 </div>
@@ -57,14 +59,14 @@
     <div class="row text-center">
 
       <div class="col-lg-3 col-md-6 mb-4" *ngFor='let post of posts'>
-        <div class="card h-100">
+        <div [routerLink]="['/post', post._id]" class="card h-100">
           <img height="300" width="200" class="card-img-top" src={{baseImageUrl+post.image}} alt={{post.image}}>
           <div class="card-body">
             <h4 class="card-title">{{post.Title}}</h4>
           <p style="height: 70px; overflow: hidden;" class="card-text">{{post.Description}}</p>
           </div>
           <div class="card-footer">
-            <a [routerLink]="['/post', post._id]" class="btn btn-primary">Find Out More!</a>
+            <a [routerLink]="['/post', post._id]" class="btn btn-color">Find Out More!</a>
           </div>
         </div>
       </div>

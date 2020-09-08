@@ -5,7 +5,7 @@
         <div class="row">
           <div class="col-md-6">
               <div hidden class="form-group">
-                  <input type="text"  class="form-control" formControlName="Category" id="Title" name="Title" placeholder="Enter the Title" required />
+                  <input type="text"  class="form-control" formControlName="Title" id="Title" name="Title" placeholder="Enter the Title" required />
                   <small *ngIf="formErrors.Title">{{formErrors.Title}}</small>
               </div>
               <div class="form-group">
@@ -19,16 +19,18 @@
                         <option class="form-control"  value="Sports">Sports</option>
                         <option class="form-control" value="Education">Education</option>
                         <option class="form-control" value="Fashion">Fashion</option>
+                        <option class="form-control" value="Technology">Technology</option>
+                        <option class="form-control" value="Food">Food</option>
+                        <option class="form-control" value="LifeStyle">LifeStyle</option>
                       </select>
                     <small *ngIf="formErrors.Category">{{formErrors.Category}}</small>
                     </div>
               
               <div class="form-group">
-                <label for="fileupload" class="form-control  file-upload btn btn-primary"><span>
+                <label for="fileupload" class="form-control file-upload btn btn-primary"><span>
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M7 20.981a6.5 6.5 0 0 1-2.936-12 8.001 8.001 0 0 1 15.872 0 6.5 6.5 0 0 1-2.936 12V21H7v-.019zM13 13h3l-4-5-4 5h3v4h2v-4z" fill="rgba(255,255,255,1)"/></svg>
                   &nbsp;Change Post's Image</span>
-                  <input type="file" name="image" id="fileupload" (change)="onFileChange($event)"
-                  formControlName="image"  />
+                  <input type="file" name="image" id="fileupload" (change)="onFileChange($event)"/>
                 </label>
               </div>
               

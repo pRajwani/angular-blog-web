@@ -22,7 +22,7 @@
 <hr>
 <div class="row text-center ml-2" *ngIf='myPosts; else noPosts'>
   <div class="col-lg-3 col-md-6 mb-4" *ngFor='let post of myPosts'>
-      <div class="card h-100">
+      <div [routerLink]="['/post', post._id]" class="card h-100">
           <div id="image">
             <img  class=" image card-img-top" width="200" height="300" src={{baseImageUrl+post.image}} alt={{post.image}}>
             <div class="edit">
@@ -36,17 +36,18 @@
               style=" fill:#000000;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,172v-172h172v172z" fill="none"></path><g><path d="M121.83333,39.41667l-21.5,-21.5h-28.66667l-21.5,21.5h-10.75v100.33333c0,7.88333 6.45,14.33333 14.33333,14.33333h64.5c7.88333,0 14.33333,-6.45 14.33333,-14.33333v-100.33333z" fill="#e30000"></path><path d="M39.41667,25.08333h93.16667c3.94167,0 7.16667,3.225 7.16667,7.16667v7.16667h-107.5v-7.16667c0,-3.94167 3.225,-7.16667 7.16667,-7.16667z" fill="#fd5858"></path><path d="M59.4334,113.18215l43.00036,-43.00186l10.13537,10.13502l-43.00036,43.00186z" fill="#fafafa"></path><path d="M59.43283,80.31878l10.13502,-10.13537l43.00186,43.00036l-10.13502,10.13537z" fill="#fafafa"></path></g></g></svg></a>
               </div>
     
-            <div class="card-body">
+            <div  class="card-body">
               <h4 class="card-title">{{post.Title}}</h4>
               <p style="height: 70px; overflow: hidden;" class="card-text">{{post.Description}}</p>
             </div>
           </div>
           <div class="card-footer">
-            <a [routerLink]="['/post', post._id]" class="btn btn-primary">Find Out More!</a>
+            <a [routerLink]="['/post', post._id]" class="btn btn-color">Find Out More!</a>
           </div>
       </div>
   </div>
 </div>
-  <ng-template class="empty"  #noPosts><div style='height: 49vh;'><h2>You have not posted anything yet</h2></div></ng-template>
+  <ng-template class="empty"  #noPosts><div style='height: 49vh;'><h2>You have not posted anything yet. 
+    <a routerlink = '/newpost'>Create one now</a></h2></div></ng-template>
 </div>
 <app-footer></app-footer>

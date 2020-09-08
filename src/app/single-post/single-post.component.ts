@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { PostService } from '../services/post.service';
 import { ActivatedRoute } from '@angular/router'
 import { CommentService } from '../services/comment.service';
@@ -6,6 +6,7 @@ import { LikeService } from '../services/like.service';
 import { LoginService } from '../services/login.service';
 import { baseImageUrl } from '../shared/baseUrl';
 import { TimeoutService } from '../services/timeout.service';
+import { FormBuilder, FormGroup, NgForm } from '@angular/forms';
 
 
 @Component({
@@ -14,6 +15,8 @@ import { TimeoutService } from '../services/timeout.service';
   styleUrls: ['./single-post.component.scss']
 })
 export class SinglePostComponent implements OnInit {
+  @ViewChild('commentForm') commentFormDirective:NgForm;
+commentForm:FormGroup;
 post;
 Comments;
 comment;
@@ -36,7 +39,7 @@ flag=false;
     private commentService:CommentService,
     private likeService: LikeService,
     private loginService: LoginService,
-    private timeoutService:TimeoutService) { }
+    private timeoutService:TimeoutService,private fb:FormBuilder) { }
 
   ngOnInit(): void {
     if(localStorage.getItem('JWT')){
@@ -68,6 +71,7 @@ flag=false;
     }
     else
       alert('Please Login to Comment');
+    this.commentFormDirective.resetForm();
   }
   like(){
     if(localStorage.getItem('JWT')){

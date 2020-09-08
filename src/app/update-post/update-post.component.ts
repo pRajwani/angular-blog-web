@@ -36,7 +36,7 @@ export class UpdatePostComponent implements OnInit {
       minlength:"Description must be atleast 10 characters long",
     }
   };
-  selectedFile: any;
+  selectedFile = {name:''};
 
   constructor(private router:Router,private fb:FormBuilder,private route:ActivatedRoute,private postService:PostService,private imageUploadService:ImageUploadService,private timeoutService:TimeoutService) { }
 
@@ -44,6 +44,7 @@ export class UpdatePostComponent implements OnInit {
     if(localStorage.getItem('JWT')) { 
       this.postService.getPost(this.route.snapshot.paramMap.get('postId')).subscribe((post)=>{
         this.post=post;
+        //this.selectedFile.name=this.post.image;
         this.createForm();
       })
     } 
@@ -53,6 +54,7 @@ export class UpdatePostComponent implements OnInit {
         Title:[this.post.Title,[Validators.required,Validators.minLength(2),Validators.maxLength(100)]],
         Description:[this.post.Description,[Validators.required,Validators.minLength(10)]],
         Category:[this.post.Category,[Validators.required]],
+        image:[this.post.image]
       });
       this.updateForm.valueChanges
       .subscribe((data)=> {
@@ -85,13 +87,20 @@ export class UpdatePostComponent implements OnInit {
       }
       
     updatePost(){
+      console.log(this.selectedFile);
+      var uploadData=null;
       this.updatedPost=this.updateForm.value;
-      this.post.image=this.selectedFile.name;
-      const uploadData = new FormData();
-      uploadData.append('imageFile', this.selectedFile, this.selectedFile.name);
+      
+      if(this.selectedFile.name!==''){
+        this.updatedPost.image=this.selectedFile.name
+        this.post.image=this.selectedFile.name;
+        uploadData = new FormData();
+        uploadData.append('imageFile', this.selectedFile, this.selectedFile.name);
+      }
       let post_id=this.route.snapshot.paramMap.get('postId');
       if(this.updatedPost!=this.post){
         this.postService.updatePost(post_id,this.updatedPost).subscribe((post)=>{
+          if(uploadData!==null)
           this.imageUploadService.uploadImage(uploadData).subscribe();
           this.router.navigate(['profile']);
       });

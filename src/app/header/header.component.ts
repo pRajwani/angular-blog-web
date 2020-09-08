@@ -21,6 +21,7 @@ export class HeaderComponent implements OnInit {
   }
 
   loggingOut(){
+    window.location.href = "6vd"
     this.loginService.logOut();
   }
 } 

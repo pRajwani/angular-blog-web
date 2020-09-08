@@ -9,7 +9,27 @@
 
   function _construct(Parent, args, Class) { if (_isNativeReflectConstruct()) { _construct = Reflect.construct; } else { _construct = function _construct(Parent, args, Class) { var a = [null]; a.push.apply(a, args); var Constructor = Function.bind.apply(Parent, a); var instance = new Constructor(); if (Class) _setPrototypeOf(instance, Class.prototype); return instance; }; } return _construct.apply(null, arguments); }
 
+  function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+  function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+  function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter); }
+
+  function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
   function _createForOfIteratorHelper(o, allowArrayLike) { var it; if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e2) { throw _e2; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e3) { didErr = true; err = _e3; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
+
+  function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+  function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+  function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+  function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+  function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+  function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
   function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
@@ -25,26 +45,6 @@
 
   function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
-  function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
-
-  function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-  function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-
-  function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
-  function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
-
-  function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-  function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-  function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter); }
-
-  function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
-
-  function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
   function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
   function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
@@ -53,15 +53,15 @@
 
   (window["webpackJsonp"] = window["webpackJsonp"] || []).push([["vendor"], {
     /***/
-    "./node_modules/@angular/cdk/fesm2015/bidi.js":
-    /*!****************************************************!*\
-      !*** ./node_modules/@angular/cdk/fesm2015/bidi.js ***!
-      \****************************************************/
+    "./node_modules/@angular/cdk/__ivy_ngcc__/fesm2015/bidi.js":
+    /*!*****************************************************************!*\
+      !*** ./node_modules/@angular/cdk/__ivy_ngcc__/fesm2015/bidi.js ***!
+      \*****************************************************************/
 
     /*! exports provided: BidiModule, DIR_DOCUMENT, Dir, Directionality, ɵangular_material_src_cdk_bidi_bidi_a */
 
     /***/
-    function node_modulesAngularCdkFesm2015BidiJs(module, __webpack_exports__, __webpack_require__) {
+    function node_modulesAngularCdk__ivy_ngcc__Fesm2015BidiJs(module, __webpack_exports__, __webpack_require__) {
       "use strict";
 
       __webpack_require__.r(__webpack_exports__);
@@ -100,13 +100,13 @@
 
       var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
       /*! @angular/core */
-      "./node_modules/@angular/core/fesm2015/core.js");
+      "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
       /* harmony import */
 
 
       var _angular_common__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
       /*! @angular/common */
-      "./node_modules/@angular/common/fesm2015/common.js");
+      "./node_modules/@angular/common/__ivy_ngcc__/fesm2015/common.js");
       /**
        * @license
        * Copyright Google LLC All Rights Reserved.
@@ -475,7 +475,7 @@
 
       var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
       /*! @angular/core */
-      "./node_modules/@angular/core/fesm2015/core.js");
+      "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
       /**
        * @license
        * Copyright Google LLC All Rights Reserved.
@@ -584,3210 +584,15 @@
     },
 
     /***/
-    "./node_modules/@angular/common/__ivy_ngcc__/fesm2015/http.js":
-    /*!********************************************************************!*\
-      !*** ./node_modules/@angular/common/__ivy_ngcc__/fesm2015/http.js ***!
-      \********************************************************************/
-
-    /*! exports provided: HTTP_INTERCEPTORS, HttpBackend, HttpClient, HttpClientJsonpModule, HttpClientModule, HttpClientXsrfModule, HttpErrorResponse, HttpEventType, HttpHandler, HttpHeaderResponse, HttpHeaders, HttpParams, HttpRequest, HttpResponse, HttpResponseBase, HttpUrlEncodingCodec, HttpXhrBackend, HttpXsrfTokenExtractor, JsonpClientBackend, JsonpInterceptor, XhrFactory, ɵHttpInterceptingHandler, ɵangular_packages_common_http_http_a, ɵangular_packages_common_http_http_b, ɵangular_packages_common_http_http_c, ɵangular_packages_common_http_http_d, ɵangular_packages_common_http_http_e, ɵangular_packages_common_http_http_f, ɵangular_packages_common_http_http_g, ɵangular_packages_common_http_http_h */
-
-    /***/
-    function node_modulesAngularCommon__ivy_ngcc__Fesm2015HttpJs(module, __webpack_exports__, __webpack_require__) {
-      "use strict";
-
-      __webpack_require__.r(__webpack_exports__);
-      /* harmony export (binding) */
-
-
-      __webpack_require__.d(__webpack_exports__, "HTTP_INTERCEPTORS", function () {
-        return HTTP_INTERCEPTORS;
-      });
-      /* harmony export (binding) */
-
-
-      __webpack_require__.d(__webpack_exports__, "HttpBackend", function () {
-        return HttpBackend;
-      });
-      /* harmony export (binding) */
-
-
-      __webpack_require__.d(__webpack_exports__, "HttpClient", function () {
-        return HttpClient;
-      });
-      /* harmony export (binding) */
-
-
-      __webpack_require__.d(__webpack_exports__, "HttpClientJsonpModule", function () {
-        return HttpClientJsonpModule;
-      });
-      /* harmony export (binding) */
-
-
-      __webpack_require__.d(__webpack_exports__, "HttpClientModule", function () {
-        return HttpClientModule;
-      });
-      /* harmony export (binding) */
-
-
-      __webpack_require__.d(__webpack_exports__, "HttpClientXsrfModule", function () {
-        return HttpClientXsrfModule;
-      });
-      /* harmony export (binding) */
-
-
-      __webpack_require__.d(__webpack_exports__, "HttpErrorResponse", function () {
-        return HttpErrorResponse;
-      });
-      /* harmony export (binding) */
-
-
-      __webpack_require__.d(__webpack_exports__, "HttpEventType", function () {
-        return HttpEventType;
-      });
-      /* harmony export (binding) */
-
-
-      __webpack_require__.d(__webpack_exports__, "HttpHandler", function () {
-        return HttpHandler;
-      });
-      /* harmony export (binding) */
-
-
-      __webpack_require__.d(__webpack_exports__, "HttpHeaderResponse", function () {
-        return HttpHeaderResponse;
-      });
-      /* harmony export (binding) */
-
-
-      __webpack_require__.d(__webpack_exports__, "HttpHeaders", function () {
-        return HttpHeaders;
-      });
-      /* harmony export (binding) */
-
-
-      __webpack_require__.d(__webpack_exports__, "HttpParams", function () {
-        return HttpParams;
-      });
-      /* harmony export (binding) */
-
-
-      __webpack_require__.d(__webpack_exports__, "HttpRequest", function () {
-        return HttpRequest;
-      });
-      /* harmony export (binding) */
-
-
-      __webpack_require__.d(__webpack_exports__, "HttpResponse", function () {
-        return HttpResponse;
-      });
-      /* harmony export (binding) */
-
-
-      __webpack_require__.d(__webpack_exports__, "HttpResponseBase", function () {
-        return HttpResponseBase;
-      });
-      /* harmony export (binding) */
-
-
-      __webpack_require__.d(__webpack_exports__, "HttpUrlEncodingCodec", function () {
-        return HttpUrlEncodingCodec;
-      });
-      /* harmony export (binding) */
-
-
-      __webpack_require__.d(__webpack_exports__, "HttpXhrBackend", function () {
-        return HttpXhrBackend;
-      });
-      /* harmony export (binding) */
-
-
-      __webpack_require__.d(__webpack_exports__, "HttpXsrfTokenExtractor", function () {
-        return HttpXsrfTokenExtractor;
-      });
-      /* harmony export (binding) */
-
-
-      __webpack_require__.d(__webpack_exports__, "JsonpClientBackend", function () {
-        return JsonpClientBackend;
-      });
-      /* harmony export (binding) */
-
-
-      __webpack_require__.d(__webpack_exports__, "JsonpInterceptor", function () {
-        return JsonpInterceptor;
-      });
-      /* harmony export (binding) */
-
-
-      __webpack_require__.d(__webpack_exports__, "XhrFactory", function () {
-        return XhrFactory;
-      });
-      /* harmony export (binding) */
-
-
-      __webpack_require__.d(__webpack_exports__, "ɵHttpInterceptingHandler", function () {
-        return HttpInterceptingHandler;
-      });
-      /* harmony export (binding) */
-
-
-      __webpack_require__.d(__webpack_exports__, "ɵangular_packages_common_http_http_a", function () {
-        return NoopInterceptor;
-      });
-      /* harmony export (binding) */
-
-
-      __webpack_require__.d(__webpack_exports__, "ɵangular_packages_common_http_http_b", function () {
-        return JsonpCallbackContext;
-      });
-      /* harmony export (binding) */
-
-
-      __webpack_require__.d(__webpack_exports__, "ɵangular_packages_common_http_http_c", function () {
-        return jsonpCallbackContext;
-      });
-      /* harmony export (binding) */
-
-
-      __webpack_require__.d(__webpack_exports__, "ɵangular_packages_common_http_http_d", function () {
-        return BrowserXhr;
-      });
-      /* harmony export (binding) */
-
-
-      __webpack_require__.d(__webpack_exports__, "ɵangular_packages_common_http_http_e", function () {
-        return XSRF_COOKIE_NAME;
-      });
-      /* harmony export (binding) */
-
-
-      __webpack_require__.d(__webpack_exports__, "ɵangular_packages_common_http_http_f", function () {
-        return XSRF_HEADER_NAME;
-      });
-      /* harmony export (binding) */
-
-
-      __webpack_require__.d(__webpack_exports__, "ɵangular_packages_common_http_http_g", function () {
-        return HttpXsrfCookieExtractor;
-      });
-      /* harmony export (binding) */
-
-
-      __webpack_require__.d(__webpack_exports__, "ɵangular_packages_common_http_http_h", function () {
-        return HttpXsrfInterceptor;
-      });
-      /* harmony import */
-
-
-      var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
-      /*! @angular/core */
-      "./node_modules/@angular/core/fesm2015/core.js");
-      /* harmony import */
-
-
-      var rxjs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
-      /*! rxjs */
-      "./node_modules/rxjs/_esm2015/index.js");
-      /* harmony import */
-
-
-      var rxjs_operators__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
-      /*! rxjs/operators */
-      "./node_modules/rxjs/_esm2015/operators/index.js");
-      /* harmony import */
-
-
-      var _angular_common__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
-      /*! @angular/common */
-      "./node_modules/@angular/common/fesm2015/common.js");
-      /**
-       * @license Angular v10.0.4
-       * (c) 2010-2020 Google LLC. https://angular.io/
-       * License: MIT
-       */
-
-      /**
-       * @license
-       * Copyright Google LLC All Rights Reserved.
-       *
-       * Use of this source code is governed by an MIT-style license that can be
-       * found in the LICENSE file at https://angular.io/license
-       */
-
-      /**
-       * Transforms an `HttpRequest` into a stream of `HttpEvent`s, one of which will likely be a
-       * `HttpResponse`.
-       *
-       * `HttpHandler` is injectable. When injected, the handler instance dispatches requests to the
-       * first interceptor in the chain, which dispatches to the second, etc, eventually reaching the
-       * `HttpBackend`.
-       *
-       * In an `HttpInterceptor`, the `HttpHandler` parameter is the next interceptor in the chain.
-       *
-       * @publicApi
-       */
-
-
-      var HttpHandler = function HttpHandler() {
-        _classCallCheck(this, HttpHandler);
-      };
-      /**
-       * A final `HttpHandler` which will dispatch the request via browser HTTP APIs to a backend.
-       *
-       * Interceptors sit between the `HttpClient` interface and the `HttpBackend`.
-       *
-       * When injected, `HttpBackend` dispatches requests directly to the backend, without going
-       * through the interceptor chain.
-       *
-       * @publicApi
-       */
-
-
-      var HttpBackend = function HttpBackend() {
-        _classCallCheck(this, HttpBackend);
-      };
-      /**
-       * @license
-       * Copyright Google LLC All Rights Reserved.
-       *
-       * Use of this source code is governed by an MIT-style license that can be
-       * found in the LICENSE file at https://angular.io/license
-       */
-
-      /**
-       * Represents the header configuration options for an HTTP request.
-       * Instances are immutable. Modifying methods return a cloned
-       * instance with the change. The original object is never changed.
-       *
-       * @publicApi
-       */
-
-
-      var HttpHeaders = /*#__PURE__*/function () {
-        /**  Constructs a new HTTP header object with the given values.*/
-        function HttpHeaders(headers) {
-          var _this = this;
-
-          _classCallCheck(this, HttpHeaders);
-
-          /**
-           * Internal map of lowercased header names to the normalized
-           * form of the name (the form seen first).
-           */
-          this.normalizedNames = new Map();
-          /**
-           * Queued updates to be materialized the next initialization.
-           */
-
-          this.lazyUpdate = null;
-
-          if (!headers) {
-            this.headers = new Map();
-          } else if (typeof headers === 'string') {
-            this.lazyInit = function () {
-              _this.headers = new Map();
-              headers.split('\n').forEach(function (line) {
-                var index = line.indexOf(':');
-
-                if (index > 0) {
-                  var name = line.slice(0, index);
-                  var key = name.toLowerCase();
-                  var value = line.slice(index + 1).trim();
-
-                  _this.maybeSetNormalizedName(name, key);
-
-                  if (_this.headers.has(key)) {
-                    _this.headers.get(key).push(value);
-                  } else {
-                    _this.headers.set(key, [value]);
-                  }
-                }
-              });
-            };
-          } else {
-            this.lazyInit = function () {
-              _this.headers = new Map();
-              Object.keys(headers).forEach(function (name) {
-                var values = headers[name];
-                var key = name.toLowerCase();
-
-                if (typeof values === 'string') {
-                  values = [values];
-                }
-
-                if (values.length > 0) {
-                  _this.headers.set(key, values);
-
-                  _this.maybeSetNormalizedName(name, key);
-                }
-              });
-            };
-          }
-        }
-        /**
-         * Checks for existence of a given header.
-         *
-         * @param name The header name to check for existence.
-         *
-         * @returns True if the header exists, false otherwise.
-         */
-
-
-        _createClass2(HttpHeaders, [{
-          key: "has",
-          value: function has(name) {
-            this.init();
-            return this.headers.has(name.toLowerCase());
-          }
-          /**
-           * Retrieves the first value of a given header.
-           *
-           * @param name The header name.
-           *
-           * @returns The value string if the header exists, null otherwise
-           */
-
-        }, {
-          key: "get",
-          value: function get(name) {
-            this.init();
-            var values = this.headers.get(name.toLowerCase());
-            return values && values.length > 0 ? values[0] : null;
-          }
-          /**
-           * Retrieves the names of the headers.
-           *
-           * @returns A list of header names.
-           */
-
-        }, {
-          key: "keys",
-          value: function keys() {
-            this.init();
-            return Array.from(this.normalizedNames.values());
-          }
-          /**
-           * Retrieves a list of values for a given header.
-           *
-           * @param name The header name from which to retrieve values.
-           *
-           * @returns A string of values if the header exists, null otherwise.
-           */
-
-        }, {
-          key: "getAll",
-          value: function getAll(name) {
-            this.init();
-            return this.headers.get(name.toLowerCase()) || null;
-          }
-          /**
-           * Appends a new value to the existing set of values for a header
-           * and returns them in a clone of the original instance.
-           *
-           * @param name The header name for which to append the values.
-           * @param value The value to append.
-           *
-           * @returns A clone of the HTTP headers object with the value appended to the given header.
-           */
-
-        }, {
-          key: "append",
-          value: function append(name, value) {
-            return this.clone({
-              name: name,
-              value: value,
-              op: 'a'
-            });
-          }
-          /**
-           * Sets or modifies a value for a given header in a clone of the original instance.
-           * If the header already exists, its value is replaced with the given value
-           * in the returned object.
-           *
-           * @param name The header name.
-           * @param value The value or values to set or overide for the given header.
-           *
-           * @returns A clone of the HTTP headers object with the newly set header value.
-           */
-
-        }, {
-          key: "set",
-          value: function set(name, value) {
-            return this.clone({
-              name: name,
-              value: value,
-              op: 's'
-            });
-          }
-          /**
-           * Deletes values for a given header in a clone of the original instance.
-           *
-           * @param name The header name.
-           * @param value The value or values to delete for the given header.
-           *
-           * @returns A clone of the HTTP headers object with the given value deleted.
-           */
-
-        }, {
-          key: "delete",
-          value: function _delete(name, value) {
-            return this.clone({
-              name: name,
-              value: value,
-              op: 'd'
-            });
-          }
-        }, {
-          key: "maybeSetNormalizedName",
-          value: function maybeSetNormalizedName(name, lcName) {
-            if (!this.normalizedNames.has(lcName)) {
-              this.normalizedNames.set(lcName, name);
-            }
-          }
-        }, {
-          key: "init",
-          value: function init() {
-            var _this2 = this;
-
-            if (!!this.lazyInit) {
-              if (this.lazyInit instanceof HttpHeaders) {
-                this.copyFrom(this.lazyInit);
-              } else {
-                this.lazyInit();
-              }
-
-              this.lazyInit = null;
-
-              if (!!this.lazyUpdate) {
-                this.lazyUpdate.forEach(function (update) {
-                  return _this2.applyUpdate(update);
-                });
-                this.lazyUpdate = null;
-              }
-            }
-          }
-        }, {
-          key: "copyFrom",
-          value: function copyFrom(other) {
-            var _this3 = this;
-
-            other.init();
-            Array.from(other.headers.keys()).forEach(function (key) {
-              _this3.headers.set(key, other.headers.get(key));
-
-              _this3.normalizedNames.set(key, other.normalizedNames.get(key));
-            });
-          }
-        }, {
-          key: "clone",
-          value: function clone(update) {
-            var clone = new HttpHeaders();
-            clone.lazyInit = !!this.lazyInit && this.lazyInit instanceof HttpHeaders ? this.lazyInit : this;
-            clone.lazyUpdate = (this.lazyUpdate || []).concat([update]);
-            return clone;
-          }
-        }, {
-          key: "applyUpdate",
-          value: function applyUpdate(update) {
-            var key = update.name.toLowerCase();
-
-            switch (update.op) {
-              case 'a':
-              case 's':
-                var value = update.value;
-
-                if (typeof value === 'string') {
-                  value = [value];
-                }
-
-                if (value.length === 0) {
-                  return;
-                }
-
-                this.maybeSetNormalizedName(update.name, key);
-                var base = (update.op === 'a' ? this.headers.get(key) : undefined) || [];
-                base.push.apply(base, _toConsumableArray(value));
-                this.headers.set(key, base);
-                break;
-
-              case 'd':
-                var toDelete = update.value;
-
-                if (!toDelete) {
-                  this.headers["delete"](key);
-                  this.normalizedNames["delete"](key);
-                } else {
-                  var existing = this.headers.get(key);
-
-                  if (!existing) {
-                    return;
-                  }
-
-                  existing = existing.filter(function (value) {
-                    return toDelete.indexOf(value) === -1;
-                  });
-
-                  if (existing.length === 0) {
-                    this.headers["delete"](key);
-                    this.normalizedNames["delete"](key);
-                  } else {
-                    this.headers.set(key, existing);
-                  }
-                }
-
-                break;
-            }
-          }
-          /**
-           * @internal
-           */
-
-        }, {
-          key: "forEach",
-          value: function forEach(fn) {
-            var _this4 = this;
-
-            this.init();
-            Array.from(this.normalizedNames.keys()).forEach(function (key) {
-              return fn(_this4.normalizedNames.get(key), _this4.headers.get(key));
-            });
-          }
-        }]);
-
-        return HttpHeaders;
-      }();
-      /**
-       * @license
-       * Copyright Google LLC All Rights Reserved.
-       *
-       * Use of this source code is governed by an MIT-style license that can be
-       * found in the LICENSE file at https://angular.io/license
-       */
-
-      /**
-       * Provides encoding and decoding of URL parameter and query-string values.
-       *
-       * Serializes and parses URL parameter keys and values to encode and decode them.
-       * If you pass URL query parameters without encoding,
-       * the query parameters can be misinterpreted at the receiving end.
-       *
-       *
-       * @publicApi
-       */
-
-
-      var HttpUrlEncodingCodec = /*#__PURE__*/function () {
-        function HttpUrlEncodingCodec() {
-          _classCallCheck(this, HttpUrlEncodingCodec);
-        }
-
-        _createClass2(HttpUrlEncodingCodec, [{
-          key: "encodeKey",
-
-          /**
-           * Encodes a key name for a URL parameter or query-string.
-           * @param key The key name.
-           * @returns The encoded key name.
-           */
-          value: function encodeKey(key) {
-            return standardEncoding(key);
-          }
-          /**
-           * Encodes the value of a URL parameter or query-string.
-           * @param value The value.
-           * @returns The encoded value.
-           */
-
-        }, {
-          key: "encodeValue",
-          value: function encodeValue(value) {
-            return standardEncoding(value);
-          }
-          /**
-           * Decodes an encoded URL parameter or query-string key.
-           * @param key The encoded key name.
-           * @returns The decoded key name.
-           */
-
-        }, {
-          key: "decodeKey",
-          value: function decodeKey(key) {
-            return decodeURIComponent(key);
-          }
-          /**
-           * Decodes an encoded URL parameter or query-string value.
-           * @param value The encoded value.
-           * @returns The decoded value.
-           */
-
-        }, {
-          key: "decodeValue",
-          value: function decodeValue(value) {
-            return decodeURIComponent(value);
-          }
-        }]);
-
-        return HttpUrlEncodingCodec;
-      }();
-
-      function paramParser(rawParams, codec) {
-        var map = new Map();
-
-        if (rawParams.length > 0) {
-          var params = rawParams.split('&');
-          params.forEach(function (param) {
-            var eqIdx = param.indexOf('=');
-
-            var _ref2 = eqIdx == -1 ? [codec.decodeKey(param), ''] : [codec.decodeKey(param.slice(0, eqIdx)), codec.decodeValue(param.slice(eqIdx + 1))],
-                _ref3 = _slicedToArray(_ref2, 2),
-                key = _ref3[0],
-                val = _ref3[1];
-
-            var list = map.get(key) || [];
-            list.push(val);
-            map.set(key, list);
-          });
-        }
-
-        return map;
-      }
-
-      function standardEncoding(v) {
-        return encodeURIComponent(v).replace(/%40/gi, '@').replace(/%3A/gi, ':').replace(/%24/gi, '$').replace(/%2C/gi, ',').replace(/%3B/gi, ';').replace(/%2B/gi, '+').replace(/%3D/gi, '=').replace(/%3F/gi, '?').replace(/%2F/gi, '/');
-      }
-      /**
-       * An HTTP request/response body that represents serialized parameters,
-       * per the MIME type `application/x-www-form-urlencoded`.
-       *
-       * This class is immutable; all mutation operations return a new instance.
-       *
-       * @publicApi
-       */
-
-
-      var HttpParams = /*#__PURE__*/function () {
-        function HttpParams() {
-          var _this5 = this;
-
-          var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-
-          _classCallCheck(this, HttpParams);
-
-          this.updates = null;
-          this.cloneFrom = null;
-          this.encoder = options.encoder || new HttpUrlEncodingCodec();
-
-          if (!!options.fromString) {
-            if (!!options.fromObject) {
-              throw new Error("Cannot specify both fromString and fromObject.");
-            }
-
-            this.map = paramParser(options.fromString, this.encoder);
-          } else if (!!options.fromObject) {
-            this.map = new Map();
-            Object.keys(options.fromObject).forEach(function (key) {
-              var value = options.fromObject[key];
-
-              _this5.map.set(key, Array.isArray(value) ? value : [value]);
-            });
-          } else {
-            this.map = null;
-          }
-        }
-        /**
-         * Reports whether the body includes one or more values for a given parameter.
-         * @param param The parameter name.
-         * @returns True if the parameter has one or more values,
-         * false if it has no value or is not present.
-         */
-
-
-        _createClass2(HttpParams, [{
-          key: "has",
-          value: function has(param) {
-            this.init();
-            return this.map.has(param);
-          }
-          /**
-           * Retrieves the first value for a parameter.
-           * @param param The parameter name.
-           * @returns The first value of the given parameter,
-           * or `null` if the parameter is not present.
-           */
-
-        }, {
-          key: "get",
-          value: function get(param) {
-            this.init();
-            var res = this.map.get(param);
-            return !!res ? res[0] : null;
-          }
-          /**
-           * Retrieves all values for a  parameter.
-           * @param param The parameter name.
-           * @returns All values in a string array,
-           * or `null` if the parameter not present.
-           */
-
-        }, {
-          key: "getAll",
-          value: function getAll(param) {
-            this.init();
-            return this.map.get(param) || null;
-          }
-          /**
-           * Retrieves all the parameters for this body.
-           * @returns The parameter names in a string array.
-           */
-
-        }, {
-          key: "keys",
-          value: function keys() {
-            this.init();
-            return Array.from(this.map.keys());
-          }
-          /**
-           * Appends a new value to existing values for a parameter.
-           * @param param The parameter name.
-           * @param value The new value to add.
-           * @return A new body with the appended value.
-           */
-
-        }, {
-          key: "append",
-          value: function append(param, value) {
-            return this.clone({
-              param: param,
-              value: value,
-              op: 'a'
-            });
-          }
-          /**
-           * Replaces the value for a parameter.
-           * @param param The parameter name.
-           * @param value The new value.
-           * @return A new body with the new value.
-           */
-
-        }, {
-          key: "set",
-          value: function set(param, value) {
-            return this.clone({
-              param: param,
-              value: value,
-              op: 's'
-            });
-          }
-          /**
-           * Removes a given value or all values from a parameter.
-           * @param param The parameter name.
-           * @param value The value to remove, if provided.
-           * @return A new body with the given value removed, or with all values
-           * removed if no value is specified.
-           */
-
-        }, {
-          key: "delete",
-          value: function _delete(param, value) {
-            return this.clone({
-              param: param,
-              value: value,
-              op: 'd'
-            });
-          }
-          /**
-           * Serializes the body to an encoded string, where key-value pairs (separated by `=`) are
-           * separated by `&`s.
-           */
-
-        }, {
-          key: "toString",
-          value: function toString() {
-            var _this6 = this;
-
-            this.init();
-            return this.keys().map(function (key) {
-              var eKey = _this6.encoder.encodeKey(key); // `a: ['1']` produces `'a=1'`
-              // `b: []` produces `''`
-              // `c: ['1', '2']` produces `'c=1&c=2'`
-
-
-              return _this6.map.get(key).map(function (value) {
-                return eKey + '=' + _this6.encoder.encodeValue(value);
-              }).join('&');
-            }) // filter out empty values because `b: []` produces `''`
-            // which results in `a=1&&c=1&c=2` instead of `a=1&c=1&c=2` if we don't
-            .filter(function (param) {
-              return param !== '';
-            }).join('&');
-          }
-        }, {
-          key: "clone",
-          value: function clone(update) {
-            var clone = new HttpParams({
-              encoder: this.encoder
-            });
-            clone.cloneFrom = this.cloneFrom || this;
-            clone.updates = (this.updates || []).concat([update]);
-            return clone;
-          }
-        }, {
-          key: "init",
-          value: function init() {
-            var _this7 = this;
-
-            if (this.map === null) {
-              this.map = new Map();
-            }
-
-            if (this.cloneFrom !== null) {
-              this.cloneFrom.init();
-              this.cloneFrom.keys().forEach(function (key) {
-                return _this7.map.set(key, _this7.cloneFrom.map.get(key));
-              });
-              this.updates.forEach(function (update) {
-                switch (update.op) {
-                  case 'a':
-                  case 's':
-                    var base = (update.op === 'a' ? _this7.map.get(update.param) : undefined) || [];
-                    base.push(update.value);
-
-                    _this7.map.set(update.param, base);
-
-                    break;
-
-                  case 'd':
-                    if (update.value !== undefined) {
-                      var _base = _this7.map.get(update.param) || [];
-
-                      var idx = _base.indexOf(update.value);
-
-                      if (idx !== -1) {
-                        _base.splice(idx, 1);
-                      }
-
-                      if (_base.length > 0) {
-                        _this7.map.set(update.param, _base);
-                      } else {
-                        _this7.map["delete"](update.param);
-                      }
-                    } else {
-                      _this7.map["delete"](update.param);
-
-                      break;
-                    }
-
-                }
-              });
-              this.cloneFrom = this.updates = null;
-            }
-          }
-        }]);
-
-        return HttpParams;
-      }();
-      /**
-       * @license
-       * Copyright Google LLC All Rights Reserved.
-       *
-       * Use of this source code is governed by an MIT-style license that can be
-       * found in the LICENSE file at https://angular.io/license
-       */
-
-      /**
-       * Determine whether the given HTTP method may include a body.
-       */
-
-
-      function mightHaveBody(method) {
-        switch (method) {
-          case 'DELETE':
-          case 'GET':
-          case 'HEAD':
-          case 'OPTIONS':
-          case 'JSONP':
-            return false;
-
-          default:
-            return true;
-        }
-      }
-      /**
-       * Safely assert whether the given value is an ArrayBuffer.
-       *
-       * In some execution environments ArrayBuffer is not defined.
-       */
-
-
-      function isArrayBuffer(value) {
-        return typeof ArrayBuffer !== 'undefined' && value instanceof ArrayBuffer;
-      }
-      /**
-       * Safely assert whether the given value is a Blob.
-       *
-       * In some execution environments Blob is not defined.
-       */
-
-
-      function isBlob(value) {
-        return typeof Blob !== 'undefined' && value instanceof Blob;
-      }
-      /**
-       * Safely assert whether the given value is a FormData instance.
-       *
-       * In some execution environments FormData is not defined.
-       */
-
-
-      function isFormData(value) {
-        return typeof FormData !== 'undefined' && value instanceof FormData;
-      }
-      /**
-       * An outgoing HTTP request with an optional typed body.
-       *
-       * `HttpRequest` represents an outgoing request, including URL, method,
-       * headers, body, and other request configuration options. Instances should be
-       * assumed to be immutable. To modify a `HttpRequest`, the `clone`
-       * method should be used.
-       *
-       * @publicApi
-       */
-
-
-      var HttpRequest = /*#__PURE__*/function () {
-        function HttpRequest(method, url, third, fourth) {
-          _classCallCheck(this, HttpRequest);
-
-          this.url = url;
-          /**
-           * The request body, or `null` if one isn't set.
-           *
-           * Bodies are not enforced to be immutable, as they can include a reference to any
-           * user-defined data type. However, interceptors should take care to preserve
-           * idempotence by treating them as such.
-           */
-
-          this.body = null;
-          /**
-           * Whether this request should be made in a way that exposes progress events.
-           *
-           * Progress events are expensive (change detection runs on each event) and so
-           * they should only be requested if the consumer intends to monitor them.
-           */
-
-          this.reportProgress = false;
-          /**
-           * Whether this request should be sent with outgoing credentials (cookies).
-           */
-
-          this.withCredentials = false;
-          /**
-           * The expected response type of the server.
-           *
-           * This is used to parse the response appropriately before returning it to
-           * the requestee.
-           */
-
-          this.responseType = 'json';
-          this.method = method.toUpperCase(); // Next, need to figure out which argument holds the HttpRequestInit
-          // options, if any.
-
-          var options; // Check whether a body argument is expected. The only valid way to omit
-          // the body argument is to use a known no-body method like GET.
-
-          if (mightHaveBody(this.method) || !!fourth) {
-            // Body is the third argument, options are the fourth.
-            this.body = third !== undefined ? third : null;
-            options = fourth;
-          } else {
-            // No body required, options are the third argument. The body stays null.
-            options = third;
-          } // If options have been passed, interpret them.
-
-
-          if (options) {
-            // Normalize reportProgress and withCredentials.
-            this.reportProgress = !!options.reportProgress;
-            this.withCredentials = !!options.withCredentials; // Override default response type of 'json' if one is provided.
-
-            if (!!options.responseType) {
-              this.responseType = options.responseType;
-            } // Override headers if they're provided.
-
-
-            if (!!options.headers) {
-              this.headers = options.headers;
-            }
-
-            if (!!options.params) {
-              this.params = options.params;
-            }
-          } // If no headers have been passed in, construct a new HttpHeaders instance.
-
-
-          if (!this.headers) {
-            this.headers = new HttpHeaders();
-          } // If no parameters have been passed in, construct a new HttpUrlEncodedParams instance.
-
-
-          if (!this.params) {
-            this.params = new HttpParams();
-            this.urlWithParams = url;
-          } else {
-            // Encode the parameters to a string in preparation for inclusion in the URL.
-            var params = this.params.toString();
-
-            if (params.length === 0) {
-              // No parameters, the visible URL is just the URL given at creation time.
-              this.urlWithParams = url;
-            } else {
-              // Does the URL already have query parameters? Look for '?'.
-              var qIdx = url.indexOf('?'); // There are 3 cases to handle:
-              // 1) No existing parameters -> append '?' followed by params.
-              // 2) '?' exists and is followed by existing query string ->
-              //    append '&' followed by params.
-              // 3) '?' exists at the end of the url -> append params directly.
-              // This basically amounts to determining the character, if any, with
-              // which to join the URL and parameters.
-
-              var sep = qIdx === -1 ? '?' : qIdx < url.length - 1 ? '&' : '';
-              this.urlWithParams = url + sep + params;
-            }
-          }
-        }
-        /**
-         * Transform the free-form body into a serialized format suitable for
-         * transmission to the server.
-         */
-
-
-        _createClass2(HttpRequest, [{
-          key: "serializeBody",
-          value: function serializeBody() {
-            // If no body is present, no need to serialize it.
-            if (this.body === null) {
-              return null;
-            } // Check whether the body is already in a serialized form. If so,
-            // it can just be returned directly.
-
-
-            if (isArrayBuffer(this.body) || isBlob(this.body) || isFormData(this.body) || typeof this.body === 'string') {
-              return this.body;
-            } // Check whether the body is an instance of HttpUrlEncodedParams.
-
-
-            if (this.body instanceof HttpParams) {
-              return this.body.toString();
-            } // Check whether the body is an object or array, and serialize with JSON if so.
-
-
-            if (typeof this.body === 'object' || typeof this.body === 'boolean' || Array.isArray(this.body)) {
-              return JSON.stringify(this.body);
-            } // Fall back on toString() for everything else.
-
-
-            return this.body.toString();
-          }
-          /**
-           * Examine the body and attempt to infer an appropriate MIME type
-           * for it.
-           *
-           * If no such type can be inferred, this method will return `null`.
-           */
-
-        }, {
-          key: "detectContentTypeHeader",
-          value: function detectContentTypeHeader() {
-            // An empty body has no content type.
-            if (this.body === null) {
-              return null;
-            } // FormData bodies rely on the browser's content type assignment.
-
-
-            if (isFormData(this.body)) {
-              return null;
-            } // Blobs usually have their own content type. If it doesn't, then
-            // no type can be inferred.
-
-
-            if (isBlob(this.body)) {
-              return this.body.type || null;
-            } // Array buffers have unknown contents and thus no type can be inferred.
-
-
-            if (isArrayBuffer(this.body)) {
-              return null;
-            } // Technically, strings could be a form of JSON data, but it's safe enough
-            // to assume they're plain strings.
-
-
-            if (typeof this.body === 'string') {
-              return 'text/plain';
-            } // `HttpUrlEncodedParams` has its own content-type.
-
-
-            if (this.body instanceof HttpParams) {
-              return 'application/x-www-form-urlencoded;charset=UTF-8';
-            } // Arrays, objects, and numbers will be encoded as JSON.
-
-
-            if (typeof this.body === 'object' || typeof this.body === 'number' || Array.isArray(this.body)) {
-              return 'application/json';
-            } // No type could be inferred.
-
-
-            return null;
-          }
-        }, {
-          key: "clone",
-          value: function clone() {
-            var update = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-            // For method, url, and responseType, take the current value unless
-            // it is overridden in the update hash.
-            var method = update.method || this.method;
-            var url = update.url || this.url;
-            var responseType = update.responseType || this.responseType; // The body is somewhat special - a `null` value in update.body means
-            // whatever current body is present is being overridden with an empty
-            // body, whereas an `undefined` value in update.body implies no
-            // override.
-
-            var body = update.body !== undefined ? update.body : this.body; // Carefully handle the boolean options to differentiate between
-            // `false` and `undefined` in the update args.
-
-            var withCredentials = update.withCredentials !== undefined ? update.withCredentials : this.withCredentials;
-            var reportProgress = update.reportProgress !== undefined ? update.reportProgress : this.reportProgress; // Headers and params may be appended to if `setHeaders` or
-            // `setParams` are used.
-
-            var headers = update.headers || this.headers;
-            var params = update.params || this.params; // Check whether the caller has asked to add headers.
-
-            if (update.setHeaders !== undefined) {
-              // Set every requested header.
-              headers = Object.keys(update.setHeaders).reduce(function (headers, name) {
-                return headers.set(name, update.setHeaders[name]);
-              }, headers);
-            } // Check whether the caller has asked to set params.
-
-
-            if (update.setParams) {
-              // Set every requested param.
-              params = Object.keys(update.setParams).reduce(function (params, param) {
-                return params.set(param, update.setParams[param]);
-              }, params);
-            } // Finally, construct the new HttpRequest using the pieces from above.
-
-
-            return new HttpRequest(method, url, body, {
-              params: params,
-              headers: headers,
-              reportProgress: reportProgress,
-              responseType: responseType,
-              withCredentials: withCredentials
-            });
-          }
-        }]);
-
-        return HttpRequest;
-      }();
-      /**
-       * @license
-       * Copyright Google LLC All Rights Reserved.
-       *
-       * Use of this source code is governed by an MIT-style license that can be
-       * found in the LICENSE file at https://angular.io/license
-       */
-
-      /**
-       * Type enumeration for the different kinds of `HttpEvent`.
-       *
-       * @publicApi
-       */
-
-
-      var HttpEventType;
-
-      (function (HttpEventType) {
-        /**
-         * The request was sent out over the wire.
-         */
-        HttpEventType[HttpEventType["Sent"] = 0] = "Sent";
-        /**
-         * An upload progress event was received.
-         */
-
-        HttpEventType[HttpEventType["UploadProgress"] = 1] = "UploadProgress";
-        /**
-         * The response status code and headers were received.
-         */
-
-        HttpEventType[HttpEventType["ResponseHeader"] = 2] = "ResponseHeader";
-        /**
-         * A download progress event was received.
-         */
-
-        HttpEventType[HttpEventType["DownloadProgress"] = 3] = "DownloadProgress";
-        /**
-         * The full response including the body was received.
-         */
-
-        HttpEventType[HttpEventType["Response"] = 4] = "Response";
-        /**
-         * A custom event from an interceptor or a backend.
-         */
-
-        HttpEventType[HttpEventType["User"] = 5] = "User";
-      })(HttpEventType || (HttpEventType = {}));
-      /**
-       * Base class for both `HttpResponse` and `HttpHeaderResponse`.
-       *
-       * @publicApi
-       */
-
-
-      var HttpResponseBase =
-      /**
-       * Super-constructor for all responses.
-       *
-       * The single parameter accepted is an initialization hash. Any properties
-       * of the response passed there will override the default values.
-       */
-      function HttpResponseBase(init) {
-        var defaultStatus = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 200;
-        var defaultStatusText = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 'OK';
-
-        _classCallCheck(this, HttpResponseBase);
-
-        // If the hash has values passed, use them to initialize the response.
-        // Otherwise use the default values.
-        this.headers = init.headers || new HttpHeaders();
-        this.status = init.status !== undefined ? init.status : defaultStatus;
-        this.statusText = init.statusText || defaultStatusText;
-        this.url = init.url || null; // Cache the ok value to avoid defining a getter.
-
-        this.ok = this.status >= 200 && this.status < 300;
-      };
-      /**
-       * A partial HTTP response which only includes the status and header data,
-       * but no response body.
-       *
-       * `HttpHeaderResponse` is a `HttpEvent` available on the response
-       * event stream, only when progress events are requested.
-       *
-       * @publicApi
-       */
-
-
-      var HttpHeaderResponse = /*#__PURE__*/function (_HttpResponseBase) {
-        _inherits(HttpHeaderResponse, _HttpResponseBase);
-
-        var _super = _createSuper(HttpHeaderResponse);
-
-        /**
-         * Create a new `HttpHeaderResponse` with the given parameters.
-         */
-        function HttpHeaderResponse() {
-          var _this8;
-
-          var init = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-
-          _classCallCheck(this, HttpHeaderResponse);
-
-          _this8 = _super.call(this, init);
-          _this8.type = HttpEventType.ResponseHeader;
-          return _this8;
-        }
-        /**
-         * Copy this `HttpHeaderResponse`, overriding its contents with the
-         * given parameter hash.
-         */
-
-
-        _createClass2(HttpHeaderResponse, [{
-          key: "clone",
-          value: function clone() {
-            var update = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-            // Perform a straightforward initialization of the new HttpHeaderResponse,
-            // overriding the current parameters with new ones if given.
-            return new HttpHeaderResponse({
-              headers: update.headers || this.headers,
-              status: update.status !== undefined ? update.status : this.status,
-              statusText: update.statusText || this.statusText,
-              url: update.url || this.url || undefined
-            });
-          }
-        }]);
-
-        return HttpHeaderResponse;
-      }(HttpResponseBase);
-      /**
-       * A full HTTP response, including a typed response body (which may be `null`
-       * if one was not returned).
-       *
-       * `HttpResponse` is a `HttpEvent` available on the response event
-       * stream.
-       *
-       * @publicApi
-       */
-
-
-      var HttpResponse = /*#__PURE__*/function (_HttpResponseBase2) {
-        _inherits(HttpResponse, _HttpResponseBase2);
-
-        var _super2 = _createSuper(HttpResponse);
-
-        /**
-         * Construct a new `HttpResponse`.
-         */
-        function HttpResponse() {
-          var _this9;
-
-          var init = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-
-          _classCallCheck(this, HttpResponse);
-
-          _this9 = _super2.call(this, init);
-          _this9.type = HttpEventType.Response;
-          _this9.body = init.body !== undefined ? init.body : null;
-          return _this9;
-        }
-
-        _createClass2(HttpResponse, [{
-          key: "clone",
-          value: function clone() {
-            var update = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-            return new HttpResponse({
-              body: update.body !== undefined ? update.body : this.body,
-              headers: update.headers || this.headers,
-              status: update.status !== undefined ? update.status : this.status,
-              statusText: update.statusText || this.statusText,
-              url: update.url || this.url || undefined
-            });
-          }
-        }]);
-
-        return HttpResponse;
-      }(HttpResponseBase);
-      /**
-       * A response that represents an error or failure, either from a
-       * non-successful HTTP status, an error while executing the request,
-       * or some other failure which occurred during the parsing of the response.
-       *
-       * Any error returned on the `Observable` response stream will be
-       * wrapped in an `HttpErrorResponse` to provide additional context about
-       * the state of the HTTP layer when the error occurred. The error property
-       * will contain either a wrapped Error object or the error response returned
-       * from the server.
-       *
-       * @publicApi
-       */
-
-
-      var HttpErrorResponse = /*#__PURE__*/function (_HttpResponseBase3) {
-        _inherits(HttpErrorResponse, _HttpResponseBase3);
-
-        var _super3 = _createSuper(HttpErrorResponse);
-
-        function HttpErrorResponse(init) {
-          var _this10;
-
-          _classCallCheck(this, HttpErrorResponse);
-
-          // Initialize with a default status of 0 / Unknown Error.
-          _this10 = _super3.call(this, init, 0, 'Unknown Error');
-          _this10.name = 'HttpErrorResponse';
-          /**
-           * Errors are never okay, even when the status code is in the 2xx success range.
-           */
-
-          _this10.ok = false; // If the response was successful, then this was a parse error. Otherwise, it was
-          // a protocol-level failure of some sort. Either the request failed in transit
-          // or the server returned an unsuccessful status code.
-
-          if (_this10.status >= 200 && _this10.status < 300) {
-            _this10.message = "Http failure during parsing for ".concat(init.url || '(unknown url)');
-          } else {
-            _this10.message = "Http failure response for ".concat(init.url || '(unknown url)', ": ").concat(init.status, " ").concat(init.statusText);
-          }
-
-          _this10.error = init.error || null;
-          return _this10;
-        }
-
-        return HttpErrorResponse;
-      }(HttpResponseBase);
-      /**
-       * @license
-       * Copyright Google LLC All Rights Reserved.
-       *
-       * Use of this source code is governed by an MIT-style license that can be
-       * found in the LICENSE file at https://angular.io/license
-       */
-
-      /**
-       * Constructs an instance of `HttpRequestOptions<T>` from a source `HttpMethodOptions` and
-       * the given `body`. This function clones the object and adds the body.
-       *
-       * Note that the `responseType` *options* value is a String that identifies the
-       * single data type of the response.
-       * A single overload version of the method handles each response type.
-       * The value of `responseType` cannot be a union, as the combined signature could imply.
-       *
-       */
-
-
-      function addBody(options, body) {
-        return {
-          body: body,
-          headers: options.headers,
-          observe: options.observe,
-          params: options.params,
-          reportProgress: options.reportProgress,
-          responseType: options.responseType,
-          withCredentials: options.withCredentials
-        };
-      }
-      /**
-       * Performs HTTP requests.
-       * This service is available as an injectable class, with methods to perform HTTP requests.
-       * Each request method has multiple signatures, and the return type varies based on
-       * the signature that is called (mainly the values of `observe` and `responseType`).
-       *
-       * Note that the `responseType` *options* value is a String that identifies the
-       * single data type of the response.
-       * A single overload version of the method handles each response type.
-       * The value of `responseType` cannot be a union, as the combined signature could imply.
-      
-       *
-       * @usageNotes
-       * Sample HTTP requests for the [Tour of Heroes](/tutorial/toh-pt0) application.
-       *
-       * ### HTTP Request Example
-       *
-       * ```
-       *  // GET heroes whose name contains search term
-       * searchHeroes(term: string): observable<Hero[]>{
-       *
-       *  const params = new HttpParams({fromString: 'name=term'});
-       *    return this.httpClient.request('GET', this.heroesUrl, {responseType:'json', params});
-       * }
-       * ```
-       * ### JSONP Example
-       * ```
-       * requestJsonp(url, callback = 'callback') {
-       *  return this.httpClient.jsonp(this.heroesURL, callback);
-       * }
-       * ```
-       *
-       * ### PATCH Example
-       * ```
-       * // PATCH one of the heroes' name
-       * patchHero (id: number, heroName: string): Observable<{}> {
-       * const url = `${this.heroesUrl}/${id}`;   // PATCH api/heroes/42
-       *  return this.httpClient.patch(url, {name: heroName}, httpOptions)
-       *    .pipe(catchError(this.handleError('patchHero')));
-       * }
-       * ```
-       *
-       * @see [HTTP Guide](guide/http)
-       *
-       * @publicApi
-       */
-
-
-      var HttpClient = /*#__PURE__*/function () {
-        function HttpClient(handler) {
-          _classCallCheck(this, HttpClient);
-
-          this.handler = handler;
-        }
-        /**
-         * Constructs an observable for a generic HTTP request that, when subscribed,
-         * fires the request through the chain of registered interceptors and on to the
-         * server.
-         *
-         * You can pass an `HttpRequest` directly as the only parameter. In this case,
-         * the call returns an observable of the raw `HttpEvent` stream.
-         *
-         * Alternatively you can pass an HTTP method as the first parameter,
-         * a URL string as the second, and an options hash containing the request body as the third.
-         * See `addBody()`. In this case, the specified `responseType` and `observe` options determine the
-         * type of returned observable.
-         *   * The `responseType` value determines how a successful response body is parsed.
-         *   * If `responseType` is the default `json`, you can pass a type interface for the resulting
-         * object as a type parameter to the call.
-         *
-         * The `observe` value determines the return type, according to what you are interested in
-         * observing.
-         *   * An `observe` value of events returns an observable of the raw `HttpEvent` stream, including
-         * progress events by default.
-         *   * An `observe` value of response returns an observable of `HttpResponse<T>`,
-         * where the `T` parameter depends on the `responseType` and any optionally provided type
-         * parameter.
-         *   * An `observe` value of body returns an observable of `<T>` with the same `T` body type.
-         *
-         */
-
-
-        _createClass2(HttpClient, [{
-          key: "request",
-          value: function request(first, url) {
-            var _this11 = this;
-
-            var options = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
-            var req; // First, check whether the primary argument is an instance of `HttpRequest`.
-
-            if (first instanceof HttpRequest) {
-              // It is. The other arguments must be undefined (per the signatures) and can be
-              // ignored.
-              req = first;
-            } else {
-              // It's a string, so it represents a URL. Construct a request based on it,
-              // and incorporate the remaining arguments (assuming `GET` unless a method is
-              // provided.
-              // Figure out the headers.
-              var headers = undefined;
-
-              if (options.headers instanceof HttpHeaders) {
-                headers = options.headers;
-              } else {
-                headers = new HttpHeaders(options.headers);
-              } // Sort out parameters.
-
-
-              var params = undefined;
-
-              if (!!options.params) {
-                if (options.params instanceof HttpParams) {
-                  params = options.params;
-                } else {
-                  params = new HttpParams({
-                    fromObject: options.params
-                  });
-                }
-              } // Construct the request.
-
-
-              req = new HttpRequest(first, url, options.body !== undefined ? options.body : null, {
-                headers: headers,
-                params: params,
-                reportProgress: options.reportProgress,
-                // By default, JSON is assumed to be returned for all calls.
-                responseType: options.responseType || 'json',
-                withCredentials: options.withCredentials
-              });
-            } // Start with an Observable.of() the initial request, and run the handler (which
-            // includes all interceptors) inside a concatMap(). This way, the handler runs
-            // inside an Observable chain, which causes interceptors to be re-run on every
-            // subscription (this also makes retries re-run the handler, including interceptors).
-
-
-            var events$ = Object(rxjs__WEBPACK_IMPORTED_MODULE_1__["of"])(req).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["concatMap"])(function (req) {
-              return _this11.handler.handle(req);
-            })); // If coming via the API signature which accepts a previously constructed HttpRequest,
-            // the only option is to get the event stream. Otherwise, return the event stream if
-            // that is what was requested.
-
-            if (first instanceof HttpRequest || options.observe === 'events') {
-              return events$;
-            } // The requested stream contains either the full response or the body. In either
-            // case, the first step is to filter the event stream to extract a stream of
-            // responses(s).
-
-
-            var res$ = events$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["filter"])(function (event) {
-              return event instanceof HttpResponse;
-            })); // Decide which stream to return.
-
-            switch (options.observe || 'body') {
-              case 'body':
-                // The requested stream is the body. Map the response stream to the response
-                // body. This could be done more simply, but a misbehaving interceptor might
-                // transform the response body into a different format and ignore the requested
-                // responseType. Guard against this by validating that the response is of the
-                // requested type.
-                switch (req.responseType) {
-                  case 'arraybuffer':
-                    return res$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])(function (res) {
-                      // Validate that the body is an ArrayBuffer.
-                      if (res.body !== null && !(res.body instanceof ArrayBuffer)) {
-                        throw new Error('Response is not an ArrayBuffer.');
-                      }
-
-                      return res.body;
-                    }));
-
-                  case 'blob':
-                    return res$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])(function (res) {
-                      // Validate that the body is a Blob.
-                      if (res.body !== null && !(res.body instanceof Blob)) {
-                        throw new Error('Response is not a Blob.');
-                      }
-
-                      return res.body;
-                    }));
-
-                  case 'text':
-                    return res$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])(function (res) {
-                      // Validate that the body is a string.
-                      if (res.body !== null && typeof res.body !== 'string') {
-                        throw new Error('Response is not a string.');
-                      }
-
-                      return res.body;
-                    }));
-
-                  case 'json':
-                  default:
-                    // No validation needed for JSON responses, as they can be of any type.
-                    return res$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])(function (res) {
-                      return res.body;
-                    }));
-                }
-
-              case 'response':
-                // The response stream was requested directly, so return it.
-                return res$;
-
-              default:
-                // Guard against new future observe types being added.
-                throw new Error("Unreachable: unhandled observe type ".concat(options.observe, "}"));
-            }
-          }
-          /**
-           * Constructs an observable that, when subscribed, causes the configured
-           * `DELETE` request to execute on the server. See the individual overloads for
-           * details on the return type.
-           *
-           * @param url     The endpoint URL.
-           * @param options The HTTP options to send with the request.
-           *
-           */
-
-        }, {
-          key: "delete",
-          value: function _delete(url) {
-            var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-            return this.request('DELETE', url, options);
-          }
-          /**
-           * Constructs an observable that, when subscribed, causes the configured
-           * `GET` request to execute on the server. See the individual overloads for
-           * details on the return type.
-           */
-
-        }, {
-          key: "get",
-          value: function get(url) {
-            var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-            return this.request('GET', url, options);
-          }
-          /**
-           * Constructs an observable that, when subscribed, causes the configured
-           * `HEAD` request to execute on the server. The `HEAD` method returns
-           * meta information about the resource without transferring the
-           * resource itself. See the individual overloads for
-           * details on the return type.
-           */
-
-        }, {
-          key: "head",
-          value: function head(url) {
-            var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-            return this.request('HEAD', url, options);
-          }
-          /**
-           * Constructs an `Observable` that, when subscribed, causes a request with the special method
-           * `JSONP` to be dispatched via the interceptor pipeline.
-           * The [JSONP pattern](https://en.wikipedia.org/wiki/JSONP) works around limitations of certain
-           * API endpoints that don't support newer,
-           * and preferable [CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS) protocol.
-           * JSONP treats the endpoint API as a JavaScript file and tricks the browser to process the
-           * requests even if the API endpoint is not located on the same domain (origin) as the client-side
-           * application making the request.
-           * The endpoint API must support JSONP callback for JSONP requests to work.
-           * The resource API returns the JSON response wrapped in a callback function.
-           * You can pass the callback function name as one of the query parameters.
-           * Note that JSONP requests can only be used with `GET` requests.
-           *
-           * @param url The resource URL.
-           * @param callbackParam The callback function name.
-           *
-           */
-
-        }, {
-          key: "jsonp",
-          value: function jsonp(url, callbackParam) {
-            return this.request('JSONP', url, {
-              params: new HttpParams().append(callbackParam, 'JSONP_CALLBACK'),
-              observe: 'body',
-              responseType: 'json'
-            });
-          }
-          /**
-           * Constructs an `Observable` that, when subscribed, causes the configured
-           * `OPTIONS` request to execute on the server. This method allows the client
-           * to determine the supported HTTP methods and other capabilites of an endpoint,
-           * without implying a resource action. See the individual overloads for
-           * details on the return type.
-           */
-
-        }, {
-          key: "options",
-          value: function options(url) {
-            var _options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-
-            return this.request('OPTIONS', url, _options);
-          }
-          /**
-           * Constructs an observable that, when subscribed, causes the configured
-           * `PATCH` request to execute on the server. See the individual overloads for
-           * details on the return type.
-           */
-
-        }, {
-          key: "patch",
-          value: function patch(url, body) {
-            var options = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
-            return this.request('PATCH', url, addBody(options, body));
-          }
-          /**
-           * Constructs an observable that, when subscribed, causes the configured
-           * `POST` request to execute on the server. The server responds with the location of
-           * the replaced resource. See the individual overloads for
-           * details on the return type.
-           */
-
-        }, {
-          key: "post",
-          value: function post(url, body) {
-            var options = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
-            return this.request('POST', url, addBody(options, body));
-          }
-          /**
-           * Constructs an observable that, when subscribed, causes the configured
-           * `PUT` request to execute on the server. The `PUT` method replaces an existing resource
-           * with a new set of values.
-           * See the individual overloads for details on the return type.
-           */
-
-        }, {
-          key: "put",
-          value: function put(url, body) {
-            var options = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
-            return this.request('PUT', url, addBody(options, body));
-          }
-        }]);
-
-        return HttpClient;
-      }();
-
-      HttpClient.ɵfac = function HttpClient_Factory(t) {
-        return new (t || HttpClient)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](HttpHandler));
-      };
-
-      HttpClient.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjectable"]({
-        token: HttpClient,
-        factory: HttpClient.ɵfac
-      });
-
-      HttpClient.ctorParameters = function () {
-        return [{
-          type: HttpHandler
-        }];
-      };
-      /*@__PURE__*/
-
-
-      (function () {
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](HttpClient, [{
-          type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"]
-        }], function () {
-          return [{
-            type: HttpHandler
-          }];
-        }, null);
-      })();
-      /**
-       * @license
-       * Copyright Google LLC All Rights Reserved.
-       *
-       * Use of this source code is governed by an MIT-style license that can be
-       * found in the LICENSE file at https://angular.io/license
-       */
-
-      /**
-       * `HttpHandler` which applies an `HttpInterceptor` to an `HttpRequest`.
-       *
-       *
-       */
-
-
-      var HttpInterceptorHandler = /*#__PURE__*/function () {
-        function HttpInterceptorHandler(next, interceptor) {
-          _classCallCheck(this, HttpInterceptorHandler);
-
-          this.next = next;
-          this.interceptor = interceptor;
-        }
-
-        _createClass2(HttpInterceptorHandler, [{
-          key: "handle",
-          value: function handle(req) {
-            return this.interceptor.intercept(req, this.next);
-          }
-        }]);
-
-        return HttpInterceptorHandler;
-      }();
-      /**
-       * A multi-provider token that represents the array of registered
-       * `HttpInterceptor` objects.
-       *
-       * @publicApi
-       */
-
-
-      var HTTP_INTERCEPTORS = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["InjectionToken"]('HTTP_INTERCEPTORS');
-
-      var NoopInterceptor = /*#__PURE__*/function () {
-        function NoopInterceptor() {
-          _classCallCheck(this, NoopInterceptor);
-        }
-
-        _createClass2(NoopInterceptor, [{
-          key: "intercept",
-          value: function intercept(req, next) {
-            return next.handle(req);
-          }
-        }]);
-
-        return NoopInterceptor;
-      }();
-
-      NoopInterceptor.ɵfac = function NoopInterceptor_Factory(t) {
-        return new (t || NoopInterceptor)();
-      };
-
-      NoopInterceptor.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjectable"]({
-        token: NoopInterceptor,
-        factory: NoopInterceptor.ɵfac
-      });
-      /*@__PURE__*/
-
-      (function () {
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](NoopInterceptor, [{
-          type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"]
-        }], null, null);
-      })();
-      /**
-       * @license
-       * Copyright Google LLC All Rights Reserved.
-       *
-       * Use of this source code is governed by an MIT-style license that can be
-       * found in the LICENSE file at https://angular.io/license
-       */
-      // Every request made through JSONP needs a callback name that's unique across the
-      // whole page. Each request is assigned an id and the callback name is constructed
-      // from that. The next id to be assigned is tracked in a global variable here that
-      // is shared among all applications on the page.
-
-
-      var nextRequestId = 0; // Error text given when a JSONP script is injected, but doesn't invoke the callback
-      // passed in its URL.
-
-      var JSONP_ERR_NO_CALLBACK = 'JSONP injected script did not invoke callback.'; // Error text given when a request is passed to the JsonpClientBackend that doesn't
-      // have a request method JSONP.
-
-      var JSONP_ERR_WRONG_METHOD = 'JSONP requests must use JSONP request method.';
-      var JSONP_ERR_WRONG_RESPONSE_TYPE = 'JSONP requests must use Json response type.';
-      /**
-       * DI token/abstract type representing a map of JSONP callbacks.
-       *
-       * In the browser, this should always be the `window` object.
-       *
-       *
-       */
-
-      var JsonpCallbackContext = function JsonpCallbackContext() {
-        _classCallCheck(this, JsonpCallbackContext);
-      };
-      /**
-       * Processes an `HttpRequest` with the JSONP method,
-       * by performing JSONP style requests.
-       * @see `HttpHandler`
-       * @see `HttpXhrBackend`
-       *
-       * @publicApi
-       */
-
-
-      var JsonpClientBackend = /*#__PURE__*/function () {
-        function JsonpClientBackend(callbackMap, document) {
-          _classCallCheck(this, JsonpClientBackend);
-
-          this.callbackMap = callbackMap;
-          this.document = document;
-        }
-        /**
-         * Get the name of the next callback method, by incrementing the global `nextRequestId`.
-         */
-
-
-        _createClass2(JsonpClientBackend, [{
-          key: "nextCallback",
-          value: function nextCallback() {
-            return "ng_jsonp_callback_".concat(nextRequestId++);
-          }
-          /**
-           * Processes a JSONP request and returns an event stream of the results.
-           * @param req The request object.
-           * @returns An observable of the response events.
-           *
-           */
-
-        }, {
-          key: "handle",
-          value: function handle(req) {
-            var _this12 = this;
-
-            // Firstly, check both the method and response type. If either doesn't match
-            // then the request was improperly routed here and cannot be handled.
-            if (req.method !== 'JSONP') {
-              throw new Error(JSONP_ERR_WRONG_METHOD);
-            } else if (req.responseType !== 'json') {
-              throw new Error(JSONP_ERR_WRONG_RESPONSE_TYPE);
-            } // Everything else happens inside the Observable boundary.
-
-
-            return new rxjs__WEBPACK_IMPORTED_MODULE_1__["Observable"](function (observer) {
-              // The first step to make a request is to generate the callback name, and replace the
-              // callback placeholder in the URL with the name. Care has to be taken here to ensure
-              // a trailing &, if matched, gets inserted back into the URL in the correct place.
-              var callback = _this12.nextCallback();
-
-              var url = req.urlWithParams.replace(/=JSONP_CALLBACK(&|$)/, "=".concat(callback, "$1")); // Construct the <script> tag and point it at the URL.
-
-              var node = _this12.document.createElement('script');
-
-              node.src = url; // A JSONP request requires waiting for multiple callbacks. These variables
-              // are closed over and track state across those callbacks.
-              // The response object, if one has been received, or null otherwise.
-
-              var body = null; // Whether the response callback has been called.
-
-              var finished = false; // Whether the request has been cancelled (and thus any other callbacks)
-              // should be ignored.
-
-              var cancelled = false; // Set the response callback in this.callbackMap (which will be the window
-              // object in the browser. The script being loaded via the <script> tag will
-              // eventually call this callback.
-
-              _this12.callbackMap[callback] = function (data) {
-                // Data has been received from the JSONP script. Firstly, delete this callback.
-                delete _this12.callbackMap[callback]; // Next, make sure the request wasn't cancelled in the meantime.
-
-                if (cancelled) {
-                  return;
-                } // Set state to indicate data was received.
-
-
-                body = data;
-                finished = true;
-              }; // cleanup() is a utility closure that removes the <script> from the page and
-              // the response callback from the window. This logic is used in both the
-              // success, error, and cancellation paths, so it's extracted out for convenience.
-
-
-              var cleanup = function cleanup() {
-                // Remove the <script> tag if it's still on the page.
-                if (node.parentNode) {
-                  node.parentNode.removeChild(node);
-                } // Remove the response callback from the callbackMap (window object in the
-                // browser).
-
-
-                delete _this12.callbackMap[callback];
-              }; // onLoad() is the success callback which runs after the response callback
-              // if the JSONP script loads successfully. The event itself is unimportant.
-              // If something went wrong, onLoad() may run without the response callback
-              // having been invoked.
-
-
-              var onLoad = function onLoad(event) {
-                // Do nothing if the request has been cancelled.
-                if (cancelled) {
-                  return;
-                } // Cleanup the page.
-
-
-                cleanup(); // Check whether the response callback has run.
-
-                if (!finished) {
-                  // It hasn't, something went wrong with the request. Return an error via
-                  // the Observable error path. All JSONP errors have status 0.
-                  observer.error(new HttpErrorResponse({
-                    url: url,
-                    status: 0,
-                    statusText: 'JSONP Error',
-                    error: new Error(JSONP_ERR_NO_CALLBACK)
-                  }));
-                  return;
-                } // Success. body either contains the response body or null if none was
-                // returned.
-
-
-                observer.next(new HttpResponse({
-                  body: body,
-                  status: 200,
-                  statusText: 'OK',
-                  url: url
-                })); // Complete the stream, the response is over.
-
-                observer.complete();
-              }; // onError() is the error callback, which runs if the script returned generates
-              // a Javascript error. It emits the error via the Observable error channel as
-              // a HttpErrorResponse.
-
-
-              var onError = function onError(error) {
-                // If the request was already cancelled, no need to emit anything.
-                if (cancelled) {
-                  return;
-                }
-
-                cleanup(); // Wrap the error in a HttpErrorResponse.
-
-                observer.error(new HttpErrorResponse({
-                  error: error,
-                  status: 0,
-                  statusText: 'JSONP Error',
-                  url: url
-                }));
-              }; // Subscribe to both the success (load) and error events on the <script> tag,
-              // and add it to the page.
-
-
-              node.addEventListener('load', onLoad);
-              node.addEventListener('error', onError);
-
-              _this12.document.body.appendChild(node); // The request has now been successfully sent.
-
-
-              observer.next({
-                type: HttpEventType.Sent
-              }); // Cancellation handler.
-
-              return function () {
-                // Track the cancellation so event listeners won't do anything even if already scheduled.
-                cancelled = true; // Remove the event listeners so they won't run if the events later fire.
-
-                node.removeEventListener('load', onLoad);
-                node.removeEventListener('error', onError); // And finally, clean up the page.
-
-                cleanup();
-              };
-            });
-          }
-        }]);
-
-        return JsonpClientBackend;
-      }();
-
-      JsonpClientBackend.ɵfac = function JsonpClientBackend_Factory(t) {
-        return new (t || JsonpClientBackend)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](JsonpCallbackContext), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_angular_common__WEBPACK_IMPORTED_MODULE_3__["DOCUMENT"]));
-      };
-
-      JsonpClientBackend.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjectable"]({
-        token: JsonpClientBackend,
-        factory: JsonpClientBackend.ɵfac
-      });
-
-      JsonpClientBackend.ctorParameters = function () {
-        return [{
-          type: JsonpCallbackContext
-        }, {
-          type: undefined,
-          decorators: [{
-            type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Inject"],
-            args: [_angular_common__WEBPACK_IMPORTED_MODULE_3__["DOCUMENT"]]
-          }]
-        }];
-      };
-      /*@__PURE__*/
-
-
-      (function () {
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](JsonpClientBackend, [{
-          type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"]
-        }], function () {
-          return [{
-            type: JsonpCallbackContext
-          }, {
-            type: undefined,
-            decorators: [{
-              type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Inject"],
-              args: [_angular_common__WEBPACK_IMPORTED_MODULE_3__["DOCUMENT"]]
-            }]
-          }];
-        }, null);
-      })();
-      /**
-       * Identifies requests with the method JSONP and
-       * shifts them to the `JsonpClientBackend`.
-       *
-       * @see `HttpInterceptor`
-       *
-       * @publicApi
-       */
-
-
-      var JsonpInterceptor = /*#__PURE__*/function () {
-        function JsonpInterceptor(jsonp) {
-          _classCallCheck(this, JsonpInterceptor);
-
-          this.jsonp = jsonp;
-        }
-        /**
-         * Identifies and handles a given JSONP request.
-         * @param req The outgoing request object to handle.
-         * @param next The next interceptor in the chain, or the backend
-         * if no interceptors remain in the chain.
-         * @returns An observable of the event stream.
-         */
-
-
-        _createClass2(JsonpInterceptor, [{
-          key: "intercept",
-          value: function intercept(req, next) {
-            if (req.method === 'JSONP') {
-              return this.jsonp.handle(req);
-            } // Fall through for normal HTTP requests.
-
-
-            return next.handle(req);
-          }
-        }]);
-
-        return JsonpInterceptor;
-      }();
-
-      JsonpInterceptor.ɵfac = function JsonpInterceptor_Factory(t) {
-        return new (t || JsonpInterceptor)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](JsonpClientBackend));
-      };
-
-      JsonpInterceptor.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjectable"]({
-        token: JsonpInterceptor,
-        factory: JsonpInterceptor.ɵfac
-      });
-
-      JsonpInterceptor.ctorParameters = function () {
-        return [{
-          type: JsonpClientBackend
-        }];
-      };
-      /*@__PURE__*/
-
-
-      (function () {
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](JsonpInterceptor, [{
-          type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"]
-        }], function () {
-          return [{
-            type: JsonpClientBackend
-          }];
-        }, null);
-      })();
-      /**
-       * @license
-       * Copyright Google LLC All Rights Reserved.
-       *
-       * Use of this source code is governed by an MIT-style license that can be
-       * found in the LICENSE file at https://angular.io/license
-       */
-
-
-      var XSSI_PREFIX = /^\)\]\}',?\n/;
-      /**
-       * Determine an appropriate URL for the response, by checking either
-       * XMLHttpRequest.responseURL or the X-Request-URL header.
-       */
-
-      function getResponseUrl(xhr) {
-        if ('responseURL' in xhr && xhr.responseURL) {
-          return xhr.responseURL;
-        }
-
-        if (/^X-Request-URL:/m.test(xhr.getAllResponseHeaders())) {
-          return xhr.getResponseHeader('X-Request-URL');
-        }
-
-        return null;
-      }
-      /**
-       * A wrapper around the `XMLHttpRequest` constructor.
-       *
-       * @publicApi
-       */
-
-
-      var XhrFactory = function XhrFactory() {
-        _classCallCheck(this, XhrFactory);
-      };
-      /**
-       * A factory for `HttpXhrBackend` that uses the `XMLHttpRequest` browser API.
-       *
-       */
-
-
-      var BrowserXhr = /*#__PURE__*/function () {
-        function BrowserXhr() {
-          _classCallCheck(this, BrowserXhr);
-        }
-
-        _createClass2(BrowserXhr, [{
-          key: "build",
-          value: function build() {
-            return new XMLHttpRequest();
-          }
-        }]);
-
-        return BrowserXhr;
-      }();
-
-      BrowserXhr.ɵfac = function BrowserXhr_Factory(t) {
-        return new (t || BrowserXhr)();
-      };
-
-      BrowserXhr.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjectable"]({
-        token: BrowserXhr,
-        factory: BrowserXhr.ɵfac
-      });
-
-      BrowserXhr.ctorParameters = function () {
-        return [];
-      };
-      /*@__PURE__*/
-
-
-      (function () {
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](BrowserXhr, [{
-          type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"]
-        }], function () {
-          return [];
-        }, null);
-      })();
-      /**
-       * Uses `XMLHttpRequest` to send requests to a backend server.
-       * @see `HttpHandler`
-       * @see `JsonpClientBackend`
-       *
-       * @publicApi
-       */
-
-
-      var HttpXhrBackend = /*#__PURE__*/function () {
-        function HttpXhrBackend(xhrFactory) {
-          _classCallCheck(this, HttpXhrBackend);
-
-          this.xhrFactory = xhrFactory;
-        }
-        /**
-         * Processes a request and returns a stream of response events.
-         * @param req The request object.
-         * @returns An observable of the response events.
-         */
-
-
-        _createClass2(HttpXhrBackend, [{
-          key: "handle",
-          value: function handle(req) {
-            var _this13 = this;
-
-            // Quick check to give a better error message when a user attempts to use
-            // HttpClient.jsonp() without installing the JsonpClientModule
-            if (req.method === 'JSONP') {
-              throw new Error("Attempted to construct Jsonp request without JsonpClientModule installed.");
-            } // Everything happens on Observable subscription.
-
-
-            return new rxjs__WEBPACK_IMPORTED_MODULE_1__["Observable"](function (observer) {
-              // Start by setting up the XHR object with request method, URL, and withCredentials flag.
-              var xhr = _this13.xhrFactory.build();
-
-              xhr.open(req.method, req.urlWithParams);
-
-              if (!!req.withCredentials) {
-                xhr.withCredentials = true;
-              } // Add all the requested headers.
-
-
-              req.headers.forEach(function (name, values) {
-                return xhr.setRequestHeader(name, values.join(','));
-              }); // Add an Accept header if one isn't present already.
-
-              if (!req.headers.has('Accept')) {
-                xhr.setRequestHeader('Accept', 'application/json, text/plain, */*');
-              } // Auto-detect the Content-Type header if one isn't present already.
-
-
-              if (!req.headers.has('Content-Type')) {
-                var detectedType = req.detectContentTypeHeader(); // Sometimes Content-Type detection fails.
-
-                if (detectedType !== null) {
-                  xhr.setRequestHeader('Content-Type', detectedType);
-                }
-              } // Set the responseType if one was requested.
-
-
-              if (req.responseType) {
-                var responseType = req.responseType.toLowerCase(); // JSON responses need to be processed as text. This is because if the server
-                // returns an XSSI-prefixed JSON response, the browser will fail to parse it,
-                // xhr.response will be null, and xhr.responseText cannot be accessed to
-                // retrieve the prefixed JSON data in order to strip the prefix. Thus, all JSON
-                // is parsed by first requesting text and then applying JSON.parse.
-
-                xhr.responseType = responseType !== 'json' ? responseType : 'text';
-              } // Serialize the request body if one is present. If not, this will be set to null.
-
-
-              var reqBody = req.serializeBody(); // If progress events are enabled, response headers will be delivered
-              // in two events - the HttpHeaderResponse event and the full HttpResponse
-              // event. However, since response headers don't change in between these
-              // two events, it doesn't make sense to parse them twice. So headerResponse
-              // caches the data extracted from the response whenever it's first parsed,
-              // to ensure parsing isn't duplicated.
-
-              var headerResponse = null; // partialFromXhr extracts the HttpHeaderResponse from the current XMLHttpRequest
-              // state, and memoizes it into headerResponse.
-
-              var partialFromXhr = function partialFromXhr() {
-                if (headerResponse !== null) {
-                  return headerResponse;
-                } // Read status and normalize an IE9 bug (http://bugs.jquery.com/ticket/1450).
-
-
-                var status = xhr.status === 1223 ? 204 : xhr.status;
-                var statusText = xhr.statusText || 'OK'; // Parse headers from XMLHttpRequest - this step is lazy.
-
-                var headers = new HttpHeaders(xhr.getAllResponseHeaders()); // Read the response URL from the XMLHttpResponse instance and fall back on the
-                // request URL.
-
-                var url = getResponseUrl(xhr) || req.url; // Construct the HttpHeaderResponse and memoize it.
-
-                headerResponse = new HttpHeaderResponse({
-                  headers: headers,
-                  status: status,
-                  statusText: statusText,
-                  url: url
-                });
-                return headerResponse;
-              }; // Next, a few closures are defined for the various events which XMLHttpRequest can
-              // emit. This allows them to be unregistered as event listeners later.
-              // First up is the load event, which represents a response being fully available.
-
-
-              var onLoad = function onLoad() {
-                // Read response state from the memoized partial data.
-                var _partialFromXhr = partialFromXhr(),
-                    headers = _partialFromXhr.headers,
-                    status = _partialFromXhr.status,
-                    statusText = _partialFromXhr.statusText,
-                    url = _partialFromXhr.url; // The body will be read out if present.
-
-
-                var body = null;
-
-                if (status !== 204) {
-                  // Use XMLHttpRequest.response if set, responseText otherwise.
-                  body = typeof xhr.response === 'undefined' ? xhr.responseText : xhr.response;
-                } // Normalize another potential bug (this one comes from CORS).
-
-
-                if (status === 0) {
-                  status = !!body ? 200 : 0;
-                } // ok determines whether the response will be transmitted on the event or
-                // error channel. Unsuccessful status codes (not 2xx) will always be errors,
-                // but a successful status code can still result in an error if the user
-                // asked for JSON data and the body cannot be parsed as such.
-
-
-                var ok = status >= 200 && status < 300; // Check whether the body needs to be parsed as JSON (in many cases the browser
-                // will have done that already).
-
-                if (req.responseType === 'json' && typeof body === 'string') {
-                  // Save the original body, before attempting XSSI prefix stripping.
-                  var originalBody = body;
-                  body = body.replace(XSSI_PREFIX, '');
-
-                  try {
-                    // Attempt the parse. If it fails, a parse error should be delivered to the user.
-                    body = body !== '' ? JSON.parse(body) : null;
-                  } catch (error) {
-                    // Since the JSON.parse failed, it's reasonable to assume this might not have been a
-                    // JSON response. Restore the original body (including any XSSI prefix) to deliver
-                    // a better error response.
-                    body = originalBody; // If this was an error request to begin with, leave it as a string, it probably
-                    // just isn't JSON. Otherwise, deliver the parsing error to the user.
-
-                    if (ok) {
-                      // Even though the response status was 2xx, this is still an error.
-                      ok = false; // The parse error contains the text of the body that failed to parse.
-
-                      body = {
-                        error: error,
-                        text: body
-                      };
-                    }
-                  }
-                }
-
-                if (ok) {
-                  // A successful response is delivered on the event stream.
-                  observer.next(new HttpResponse({
-                    body: body,
-                    headers: headers,
-                    status: status,
-                    statusText: statusText,
-                    url: url || undefined
-                  })); // The full body has been received and delivered, no further events
-                  // are possible. This request is complete.
-
-                  observer.complete();
-                } else {
-                  // An unsuccessful request is delivered on the error channel.
-                  observer.error(new HttpErrorResponse({
-                    // The error in this case is the response body (error from the server).
-                    error: body,
-                    headers: headers,
-                    status: status,
-                    statusText: statusText,
-                    url: url || undefined
-                  }));
-                }
-              }; // The onError callback is called when something goes wrong at the network level.
-              // Connection timeout, DNS error, offline, etc. These are actual errors, and are
-              // transmitted on the error channel.
-
-
-              var onError = function onError(error) {
-                var _partialFromXhr2 = partialFromXhr(),
-                    url = _partialFromXhr2.url;
-
-                var res = new HttpErrorResponse({
-                  error: error,
-                  status: xhr.status || 0,
-                  statusText: xhr.statusText || 'Unknown Error',
-                  url: url || undefined
-                });
-                observer.error(res);
-              }; // The sentHeaders flag tracks whether the HttpResponseHeaders event
-              // has been sent on the stream. This is necessary to track if progress
-              // is enabled since the event will be sent on only the first download
-              // progerss event.
-
-
-              var sentHeaders = false; // The download progress event handler, which is only registered if
-              // progress events are enabled.
-
-              var onDownProgress = function onDownProgress(event) {
-                // Send the HttpResponseHeaders event if it hasn't been sent already.
-                if (!sentHeaders) {
-                  observer.next(partialFromXhr());
-                  sentHeaders = true;
-                } // Start building the download progress event to deliver on the response
-                // event stream.
-
-
-                var progressEvent = {
-                  type: HttpEventType.DownloadProgress,
-                  loaded: event.loaded
-                }; // Set the total number of bytes in the event if it's available.
-
-                if (event.lengthComputable) {
-                  progressEvent.total = event.total;
-                } // If the request was for text content and a partial response is
-                // available on XMLHttpRequest, include it in the progress event
-                // to allow for streaming reads.
-
-
-                if (req.responseType === 'text' && !!xhr.responseText) {
-                  progressEvent.partialText = xhr.responseText;
-                } // Finally, fire the event.
-
-
-                observer.next(progressEvent);
-              }; // The upload progress event handler, which is only registered if
-              // progress events are enabled.
-
-
-              var onUpProgress = function onUpProgress(event) {
-                // Upload progress events are simpler. Begin building the progress
-                // event.
-                var progress = {
-                  type: HttpEventType.UploadProgress,
-                  loaded: event.loaded
-                }; // If the total number of bytes being uploaded is available, include
-                // it.
-
-                if (event.lengthComputable) {
-                  progress.total = event.total;
-                } // Send the event.
-
-
-                observer.next(progress);
-              }; // By default, register for load and error events.
-
-
-              xhr.addEventListener('load', onLoad);
-              xhr.addEventListener('error', onError); // Progress events are only enabled if requested.
-
-              if (req.reportProgress) {
-                // Download progress is always enabled if requested.
-                xhr.addEventListener('progress', onDownProgress); // Upload progress depends on whether there is a body to upload.
-
-                if (reqBody !== null && xhr.upload) {
-                  xhr.upload.addEventListener('progress', onUpProgress);
-                }
-              } // Fire the request, and notify the event stream that it was fired.
-
-
-              xhr.send(reqBody);
-              observer.next({
-                type: HttpEventType.Sent
-              }); // This is the return from the Observable function, which is the
-              // request cancellation handler.
-
-              return function () {
-                // On a cancellation, remove all registered event listeners.
-                xhr.removeEventListener('error', onError);
-                xhr.removeEventListener('load', onLoad);
-
-                if (req.reportProgress) {
-                  xhr.removeEventListener('progress', onDownProgress);
-
-                  if (reqBody !== null && xhr.upload) {
-                    xhr.upload.removeEventListener('progress', onUpProgress);
-                  }
-                } // Finally, abort the in-flight request.
-
-
-                if (xhr.readyState !== xhr.DONE) {
-                  xhr.abort();
-                }
-              };
-            });
-          }
-        }]);
-
-        return HttpXhrBackend;
-      }();
-
-      HttpXhrBackend.ɵfac = function HttpXhrBackend_Factory(t) {
-        return new (t || HttpXhrBackend)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](XhrFactory));
-      };
-
-      HttpXhrBackend.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjectable"]({
-        token: HttpXhrBackend,
-        factory: HttpXhrBackend.ɵfac
-      });
-
-      HttpXhrBackend.ctorParameters = function () {
-        return [{
-          type: XhrFactory
-        }];
-      };
-      /*@__PURE__*/
-
-
-      (function () {
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](HttpXhrBackend, [{
-          type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"]
-        }], function () {
-          return [{
-            type: XhrFactory
-          }];
-        }, null);
-      })();
-      /**
-       * @license
-       * Copyright Google LLC All Rights Reserved.
-       *
-       * Use of this source code is governed by an MIT-style license that can be
-       * found in the LICENSE file at https://angular.io/license
-       */
-
-
-      var XSRF_COOKIE_NAME = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["InjectionToken"]('XSRF_COOKIE_NAME');
-      var XSRF_HEADER_NAME = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["InjectionToken"]('XSRF_HEADER_NAME');
-      /**
-       * Retrieves the current XSRF token to use with the next outgoing request.
-       *
-       * @publicApi
-       */
-
-      var HttpXsrfTokenExtractor = function HttpXsrfTokenExtractor() {
-        _classCallCheck(this, HttpXsrfTokenExtractor);
-      };
-      /**
-       * `HttpXsrfTokenExtractor` which retrieves the token from a cookie.
-       */
-
-
-      var HttpXsrfCookieExtractor = /*#__PURE__*/function () {
-        function HttpXsrfCookieExtractor(doc, platform, cookieName) {
-          _classCallCheck(this, HttpXsrfCookieExtractor);
-
-          this.doc = doc;
-          this.platform = platform;
-          this.cookieName = cookieName;
-          this.lastCookieString = '';
-          this.lastToken = null;
-          /**
-           * @internal for testing
-           */
-
-          this.parseCount = 0;
-        }
-
-        _createClass2(HttpXsrfCookieExtractor, [{
-          key: "getToken",
-          value: function getToken() {
-            if (this.platform === 'server') {
-              return null;
-            }
-
-            var cookieString = this.doc.cookie || '';
-
-            if (cookieString !== this.lastCookieString) {
-              this.parseCount++;
-              this.lastToken = Object(_angular_common__WEBPACK_IMPORTED_MODULE_3__["ɵparseCookieValue"])(cookieString, this.cookieName);
-              this.lastCookieString = cookieString;
-            }
-
-            return this.lastToken;
-          }
-        }]);
-
-        return HttpXsrfCookieExtractor;
-      }();
-
-      HttpXsrfCookieExtractor.ɵfac = function HttpXsrfCookieExtractor_Factory(t) {
-        return new (t || HttpXsrfCookieExtractor)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_angular_common__WEBPACK_IMPORTED_MODULE_3__["DOCUMENT"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_angular_core__WEBPACK_IMPORTED_MODULE_0__["PLATFORM_ID"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](XSRF_COOKIE_NAME));
-      };
-
-      HttpXsrfCookieExtractor.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjectable"]({
-        token: HttpXsrfCookieExtractor,
-        factory: HttpXsrfCookieExtractor.ɵfac
-      });
-
-      HttpXsrfCookieExtractor.ctorParameters = function () {
-        return [{
-          type: undefined,
-          decorators: [{
-            type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Inject"],
-            args: [_angular_common__WEBPACK_IMPORTED_MODULE_3__["DOCUMENT"]]
-          }]
-        }, {
-          type: String,
-          decorators: [{
-            type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Inject"],
-            args: [_angular_core__WEBPACK_IMPORTED_MODULE_0__["PLATFORM_ID"]]
-          }]
-        }, {
-          type: String,
-          decorators: [{
-            type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Inject"],
-            args: [XSRF_COOKIE_NAME]
-          }]
-        }];
-      };
-      /*@__PURE__*/
-
-
-      (function () {
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](HttpXsrfCookieExtractor, [{
-          type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"]
-        }], function () {
-          return [{
-            type: undefined,
-            decorators: [{
-              type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Inject"],
-              args: [_angular_common__WEBPACK_IMPORTED_MODULE_3__["DOCUMENT"]]
-            }]
-          }, {
-            type: String,
-            decorators: [{
-              type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Inject"],
-              args: [_angular_core__WEBPACK_IMPORTED_MODULE_0__["PLATFORM_ID"]]
-            }]
-          }, {
-            type: String,
-            decorators: [{
-              type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Inject"],
-              args: [XSRF_COOKIE_NAME]
-            }]
-          }];
-        }, null);
-      })();
-      /**
-       * `HttpInterceptor` which adds an XSRF token to eligible outgoing requests.
-       */
-
-
-      var HttpXsrfInterceptor = /*#__PURE__*/function () {
-        function HttpXsrfInterceptor(tokenService, headerName) {
-          _classCallCheck(this, HttpXsrfInterceptor);
-
-          this.tokenService = tokenService;
-          this.headerName = headerName;
-        }
-
-        _createClass2(HttpXsrfInterceptor, [{
-          key: "intercept",
-          value: function intercept(req, next) {
-            var lcUrl = req.url.toLowerCase(); // Skip both non-mutating requests and absolute URLs.
-            // Non-mutating requests don't require a token, and absolute URLs require special handling
-            // anyway as the cookie set
-            // on our origin is not the same as the token expected by another origin.
-
-            if (req.method === 'GET' || req.method === 'HEAD' || lcUrl.startsWith('http://') || lcUrl.startsWith('https://')) {
-              return next.handle(req);
-            }
-
-            var token = this.tokenService.getToken(); // Be careful not to overwrite an existing header of the same name.
-
-            if (token !== null && !req.headers.has(this.headerName)) {
-              req = req.clone({
-                headers: req.headers.set(this.headerName, token)
-              });
-            }
-
-            return next.handle(req);
-          }
-        }]);
-
-        return HttpXsrfInterceptor;
-      }();
-
-      HttpXsrfInterceptor.ɵfac = function HttpXsrfInterceptor_Factory(t) {
-        return new (t || HttpXsrfInterceptor)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](HttpXsrfTokenExtractor), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](XSRF_HEADER_NAME));
-      };
-
-      HttpXsrfInterceptor.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjectable"]({
-        token: HttpXsrfInterceptor,
-        factory: HttpXsrfInterceptor.ɵfac
-      });
-
-      HttpXsrfInterceptor.ctorParameters = function () {
-        return [{
-          type: HttpXsrfTokenExtractor
-        }, {
-          type: String,
-          decorators: [{
-            type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Inject"],
-            args: [XSRF_HEADER_NAME]
-          }]
-        }];
-      };
-      /*@__PURE__*/
-
-
-      (function () {
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](HttpXsrfInterceptor, [{
-          type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"]
-        }], function () {
-          return [{
-            type: HttpXsrfTokenExtractor
-          }, {
-            type: String,
-            decorators: [{
-              type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Inject"],
-              args: [XSRF_HEADER_NAME]
-            }]
-          }];
-        }, null);
-      })();
-      /**
-       * @license
-       * Copyright Google LLC All Rights Reserved.
-       *
-       * Use of this source code is governed by an MIT-style license that can be
-       * found in the LICENSE file at https://angular.io/license
-       */
-
-      /**
-       * An injectable `HttpHandler` that applies multiple interceptors
-       * to a request before passing it to the given `HttpBackend`.
-       *
-       * The interceptors are loaded lazily from the injector, to allow
-       * interceptors to themselves inject classes depending indirectly
-       * on `HttpInterceptingHandler` itself.
-       * @see `HttpInterceptor`
-       */
-
-
-      var HttpInterceptingHandler = /*#__PURE__*/function () {
-        function HttpInterceptingHandler(backend, injector) {
-          _classCallCheck(this, HttpInterceptingHandler);
-
-          this.backend = backend;
-          this.injector = injector;
-          this.chain = null;
-        }
-
-        _createClass2(HttpInterceptingHandler, [{
-          key: "handle",
-          value: function handle(req) {
-            if (this.chain === null) {
-              var interceptors = this.injector.get(HTTP_INTERCEPTORS, []);
-              this.chain = interceptors.reduceRight(function (next, interceptor) {
-                return new HttpInterceptorHandler(next, interceptor);
-              }, this.backend);
-            }
-
-            return this.chain.handle(req);
-          }
-        }]);
-
-        return HttpInterceptingHandler;
-      }();
-
-      HttpInterceptingHandler.ɵfac = function HttpInterceptingHandler_Factory(t) {
-        return new (t || HttpInterceptingHandler)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](HttpBackend), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injector"]));
-      };
-
-      HttpInterceptingHandler.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjectable"]({
-        token: HttpInterceptingHandler,
-        factory: HttpInterceptingHandler.ɵfac
-      });
-
-      HttpInterceptingHandler.ctorParameters = function () {
-        return [{
-          type: HttpBackend
-        }, {
-          type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Injector"]
-        }];
-      };
-      /*@__PURE__*/
-
-
-      (function () {
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](HttpInterceptingHandler, [{
-          type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"]
-        }], function () {
-          return [{
-            type: HttpBackend
-          }, {
-            type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Injector"]
-          }];
-        }, null);
-      })();
-      /**
-       * Constructs an `HttpHandler` that applies interceptors
-       * to a request before passing it to the given `HttpBackend`.
-       *
-       * Use as a factory function within `HttpClientModule`.
-       *
-       *
-       */
-
-
-      function interceptingHandler(backend) {
-        var interceptors = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : [];
-
-        if (!interceptors) {
-          return backend;
-        }
-
-        return interceptors.reduceRight(function (next, interceptor) {
-          return new HttpInterceptorHandler(next, interceptor);
-        }, backend);
-      }
-      /**
-       * Factory function that determines where to store JSONP callbacks.
-       *
-       * Ordinarily JSONP callbacks are stored on the `window` object, but this may not exist
-       * in test environments. In that case, callbacks are stored on an anonymous object instead.
-       *
-       *
-       */
-
-
-      function jsonpCallbackContext() {
-        if (typeof window === 'object') {
-          return window;
-        }
-
-        return {};
-      }
-      /**
-       * Configures XSRF protection support for outgoing requests.
-       *
-       * For a server that supports a cookie-based XSRF protection system,
-       * use directly to configure XSRF protection with the correct
-       * cookie and header names.
-       *
-       * If no names are supplied, the default cookie name is `XSRF-TOKEN`
-       * and the default header name is `X-XSRF-TOKEN`.
-       *
-       * @publicApi
-       */
-
-
-      var HttpClientXsrfModule = /*#__PURE__*/function () {
-        function HttpClientXsrfModule() {
-          _classCallCheck(this, HttpClientXsrfModule);
-        }
-
-        _createClass2(HttpClientXsrfModule, null, [{
-          key: "disable",
-
-          /**
-           * Disable the default XSRF protection.
-           */
-          value: function disable() {
-            return {
-              ngModule: HttpClientXsrfModule,
-              providers: [{
-                provide: HttpXsrfInterceptor,
-                useClass: NoopInterceptor
-              }]
-            };
-          }
-          /**
-           * Configure XSRF protection.
-           * @param options An object that can specify either or both
-           * cookie name or header name.
-           * - Cookie name default is `XSRF-TOKEN`.
-           * - Header name default is `X-XSRF-TOKEN`.
-           *
-           */
-
-        }, {
-          key: "withOptions",
-          value: function withOptions() {
-            var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-            return {
-              ngModule: HttpClientXsrfModule,
-              providers: [options.cookieName ? {
-                provide: XSRF_COOKIE_NAME,
-                useValue: options.cookieName
-              } : [], options.headerName ? {
-                provide: XSRF_HEADER_NAME,
-                useValue: options.headerName
-              } : []]
-            };
-          }
-        }]);
-
-        return HttpClientXsrfModule;
-      }();
-
-      HttpClientXsrfModule.ɵmod = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineNgModule"]({
-        type: HttpClientXsrfModule
-      });
-      HttpClientXsrfModule.ɵinj = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjector"]({
-        factory: function HttpClientXsrfModule_Factory(t) {
-          return new (t || HttpClientXsrfModule)();
-        },
-        providers: [HttpXsrfInterceptor, {
-          provide: HTTP_INTERCEPTORS,
-          useExisting: HttpXsrfInterceptor,
-          multi: true
-        }, {
-          provide: HttpXsrfTokenExtractor,
-          useClass: HttpXsrfCookieExtractor
-        }, {
-          provide: XSRF_COOKIE_NAME,
-          useValue: 'XSRF-TOKEN'
-        }, {
-          provide: XSRF_HEADER_NAME,
-          useValue: 'X-XSRF-TOKEN'
-        }]
-      });
-      /*@__PURE__*/
-
-      (function () {
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](HttpClientXsrfModule, [{
-          type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["NgModule"],
-          args: [{
-            providers: [HttpXsrfInterceptor, {
-              provide: HTTP_INTERCEPTORS,
-              useExisting: HttpXsrfInterceptor,
-              multi: true
-            }, {
-              provide: HttpXsrfTokenExtractor,
-              useClass: HttpXsrfCookieExtractor
-            }, {
-              provide: XSRF_COOKIE_NAME,
-              useValue: 'XSRF-TOKEN'
-            }, {
-              provide: XSRF_HEADER_NAME,
-              useValue: 'X-XSRF-TOKEN'
-            }]
-          }]
-        }], null, null);
-      })();
-      /**
-       * Configures the [dependency injector](guide/glossary#injector) for `HttpClient`
-       * with supporting services for XSRF. Automatically imported by `HttpClientModule`.
-       *
-       * You can add interceptors to the chain behind `HttpClient` by binding them to the
-       * multiprovider for built-in [DI token](guide/glossary#di-token) `HTTP_INTERCEPTORS`.
-       *
-       * @publicApi
-       */
-
-
-      var HttpClientModule = function HttpClientModule() {
-        _classCallCheck(this, HttpClientModule);
-      };
-
-      HttpClientModule.ɵmod = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineNgModule"]({
-        type: HttpClientModule
-      });
-      HttpClientModule.ɵinj = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjector"]({
-        factory: function HttpClientModule_Factory(t) {
-          return new (t || HttpClientModule)();
-        },
-        providers: [HttpClient, {
-          provide: HttpHandler,
-          useClass: HttpInterceptingHandler
-        }, HttpXhrBackend, {
-          provide: HttpBackend,
-          useExisting: HttpXhrBackend
-        }, BrowserXhr, {
-          provide: XhrFactory,
-          useExisting: BrowserXhr
-        }],
-        imports: [[HttpClientXsrfModule.withOptions({
-          cookieName: 'XSRF-TOKEN',
-          headerName: 'X-XSRF-TOKEN'
-        })]]
-      });
-
-      (function () {
-        (typeof ngJitMode === "undefined" || ngJitMode) && _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵsetNgModuleScope"](HttpClientModule, {
-          imports: [HttpClientXsrfModule]
-        });
-      })();
-      /*@__PURE__*/
-
-
-      (function () {
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](HttpClientModule, [{
-          type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["NgModule"],
-          args: [{
-            /**
-             * Optional configuration for XSRF protection.
-             */
-            imports: [HttpClientXsrfModule.withOptions({
-              cookieName: 'XSRF-TOKEN',
-              headerName: 'X-XSRF-TOKEN'
-            })],
-
-            /**
-             * Configures the [dependency injector](guide/glossary#injector) where it is imported
-             * with supporting services for HTTP communications.
-             */
-            providers: [HttpClient, {
-              provide: HttpHandler,
-              useClass: HttpInterceptingHandler
-            }, HttpXhrBackend, {
-              provide: HttpBackend,
-              useExisting: HttpXhrBackend
-            }, BrowserXhr, {
-              provide: XhrFactory,
-              useExisting: BrowserXhr
-            }]
-          }]
-        }], null, null);
-      })();
-      /**
-       * Configures the [dependency injector](guide/glossary#injector) for `HttpClient`
-       * with supporting services for JSONP.
-       * Without this module, Jsonp requests reach the backend
-       * with method JSONP, where they are rejected.
-       *
-       * You can add interceptors to the chain behind `HttpClient` by binding them to the
-       * multiprovider for built-in [DI token](guide/glossary#di-token) `HTTP_INTERCEPTORS`.
-       *
-       * @publicApi
-       */
-
-
-      var HttpClientJsonpModule = function HttpClientJsonpModule() {
-        _classCallCheck(this, HttpClientJsonpModule);
-      };
-
-      HttpClientJsonpModule.ɵmod = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineNgModule"]({
-        type: HttpClientJsonpModule
-      });
-      HttpClientJsonpModule.ɵinj = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjector"]({
-        factory: function HttpClientJsonpModule_Factory(t) {
-          return new (t || HttpClientJsonpModule)();
-        },
-        providers: [JsonpClientBackend, {
-          provide: JsonpCallbackContext,
-          useFactory: jsonpCallbackContext
-        }, {
-          provide: HTTP_INTERCEPTORS,
-          useClass: JsonpInterceptor,
-          multi: true
-        }]
-      });
-      /*@__PURE__*/
-
-      (function () {
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](HttpClientJsonpModule, [{
-          type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["NgModule"],
-          args: [{
-            providers: [JsonpClientBackend, {
-              provide: JsonpCallbackContext,
-              useFactory: jsonpCallbackContext
-            }, {
-              provide: HTTP_INTERCEPTORS,
-              useClass: JsonpInterceptor,
-              multi: true
-            }]
-          }]
-        }], null, null);
-      })();
-      /**
-       * @license
-       * Copyright Google LLC All Rights Reserved.
-       *
-       * Use of this source code is governed by an MIT-style license that can be
-       * found in the LICENSE file at https://angular.io/license
-       */
-
-      /**
-       * @license
-       * Copyright Google LLC All Rights Reserved.
-       *
-       * Use of this source code is governed by an MIT-style license that can be
-       * found in the LICENSE file at https://angular.io/license
-       */
-
-      /**
-       * Generated bundle index. Do not edit.
-       */
-      //# sourceMappingURL=http.js.map
-
-      /***/
-
-    },
-
-    /***/
-    "./node_modules/@angular/common/fesm2015/common.js":
-    /*!*********************************************************!*\
-      !*** ./node_modules/@angular/common/fesm2015/common.js ***!
-      \*********************************************************/
+    "./node_modules/@angular/common/__ivy_ngcc__/fesm2015/common.js":
+    /*!**********************************************************************!*\
+      !*** ./node_modules/@angular/common/__ivy_ngcc__/fesm2015/common.js ***!
+      \**********************************************************************/
 
     /*! exports provided: APP_BASE_HREF, AsyncPipe, CommonModule, CurrencyPipe, DOCUMENT, DatePipe, DecimalPipe, FormStyle, FormatWidth, HashLocationStrategy, I18nPluralPipe, I18nSelectPipe, JsonPipe, KeyValuePipe, LOCATION_INITIALIZED, Location, LocationStrategy, LowerCasePipe, NgClass, NgComponentOutlet, NgForOf, NgForOfContext, NgIf, NgIfContext, NgLocaleLocalization, NgLocalization, NgPlural, NgPluralCase, NgStyle, NgSwitch, NgSwitchCase, NgSwitchDefault, NgTemplateOutlet, NumberFormatStyle, NumberSymbol, PathLocationStrategy, PercentPipe, PlatformLocation, Plural, SlicePipe, TitleCasePipe, TranslationWidth, UpperCasePipe, VERSION, ViewportScroller, WeekDay, formatCurrency, formatDate, formatNumber, formatPercent, getCurrencySymbol, getLocaleCurrencyCode, getLocaleCurrencyName, getLocaleCurrencySymbol, getLocaleDateFormat, getLocaleDateTimeFormat, getLocaleDayNames, getLocaleDayPeriods, getLocaleDirection, getLocaleEraNames, getLocaleExtraDayPeriodRules, getLocaleExtraDayPeriods, getLocaleFirstDayOfWeek, getLocaleId, getLocaleMonthNames, getLocaleNumberFormat, getLocaleNumberSymbol, getLocalePluralCase, getLocaleTimeFormat, getLocaleWeekEndRange, getNumberOfCurrencyDigits, isPlatformBrowser, isPlatformServer, isPlatformWorkerApp, isPlatformWorkerUi, registerLocaleData, ɵBrowserPlatformLocation, ɵDomAdapter, ɵNullViewportScroller, ɵPLATFORM_BROWSER_ID, ɵPLATFORM_SERVER_ID, ɵPLATFORM_WORKER_APP_ID, ɵPLATFORM_WORKER_UI_ID, ɵangular_packages_common_common_a, ɵangular_packages_common_common_b, ɵangular_packages_common_common_c, ɵangular_packages_common_common_d, ɵangular_packages_common_common_e, ɵangular_packages_common_common_f, ɵgetDOM, ɵparseCookieValue, ɵsetRootDomAdapter */
 
     /***/
-    function node_modulesAngularCommonFesm2015CommonJs(module, __webpack_exports__, __webpack_require__) {
+    function node_modulesAngularCommon__ivy_ngcc__Fesm2015CommonJs(module, __webpack_exports__, __webpack_require__) {
       "use strict";
 
       __webpack_require__.r(__webpack_exports__);
@@ -4348,9 +1153,9 @@
 
       var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
       /*! @angular/core */
-      "./node_modules/@angular/core/fesm2015/core.js");
+      "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
       /**
-       * @license Angular v10.0.4
+       * @license Angular v10.0.12
        * (c) 2010-2020 Google LLC. https://angular.io/
        * License: MIT
        */
@@ -4489,19 +1294,19 @@
       var BrowserPlatformLocation = /*#__PURE__*/function (_PlatformLocation) {
         _inherits(BrowserPlatformLocation, _PlatformLocation);
 
-        var _super4 = _createSuper(BrowserPlatformLocation);
+        var _super = _createSuper(BrowserPlatformLocation);
 
         function BrowserPlatformLocation(_doc) {
-          var _this14;
+          var _this;
 
           _classCallCheck(this, BrowserPlatformLocation);
 
-          _this14 = _super4.call(this);
-          _this14._doc = _doc;
+          _this = _super.call(this);
+          _this._doc = _doc;
 
-          _this14._init();
+          _this._init();
 
-          return _this14;
+          return _this;
         } // This is moved to its own method so that `MockPlatformLocationStrategy` can overwrite it
 
         /** @internal */
@@ -4828,16 +1633,20 @@
        * browser's URL.
        *
        * If you're using `PathLocationStrategy`, you must provide a {@link APP_BASE_HREF}
-       * or add a base element to the document. This URL prefix that will be preserved
-       * when generating and recognizing URLs.
+       * or add a `<base href>` element to the document.
        *
-       * For instance, if you provide an `APP_BASE_HREF` of `'/my/app'` and call
+       * For instance, if you provide an `APP_BASE_HREF` of `'/my/app/'` and call
+       * `location.go('/foo')`, the browser's URL will become
+       * `example.com/my/app/foo`. To ensure all relative URIs resolve correctly,
+       * the `<base href>` and/or `APP_BASE_HREF` should end with a `/`.
+       *
+       * Similarly, if you add `<base href='/my/app/'/>` to the document and call
        * `location.go('/foo')`, the browser's URL will become
        * `example.com/my/app/foo`.
        *
-       * Similarly, if you add `<base href='/my/app'/>` to the document and call
-       * `location.go('/foo')`, the browser's URL will become
-       * `example.com/my/app/foo`.
+       * Note that when using `PathLocationStrategy`, neither the query nor
+       * the fragment in the `<base href>` will be preserved, as outlined
+       * by the [RFC](https://tools.ietf.org/html/rfc3986#section-5.2.2).
        *
        * @usageNotes
        *
@@ -4851,26 +1660,26 @@
       var PathLocationStrategy = /*#__PURE__*/function (_LocationStrategy) {
         _inherits(PathLocationStrategy, _LocationStrategy);
 
-        var _super5 = _createSuper(PathLocationStrategy);
+        var _super2 = _createSuper(PathLocationStrategy);
 
         function PathLocationStrategy(_platformLocation, href) {
-          var _this15;
+          var _this2;
 
           _classCallCheck(this, PathLocationStrategy);
 
-          _this15 = _super5.call(this);
-          _this15._platformLocation = _platformLocation;
+          _this2 = _super2.call(this);
+          _this2._platformLocation = _platformLocation;
 
           if (href == null) {
-            href = _this15._platformLocation.getBaseHrefFromDOM();
+            href = _this2._platformLocation.getBaseHrefFromDOM();
           }
 
           if (href == null) {
             throw new Error("No base href set. Please provide a value for the APP_BASE_HREF token or add a base element to the document.");
           }
 
-          _this15._baseHref = href;
-          return _this15;
+          _this2._baseHref = href;
+          return _this2;
         }
 
         _createClass2(PathLocationStrategy, [{
@@ -5000,22 +1809,22 @@
       var HashLocationStrategy = /*#__PURE__*/function (_LocationStrategy2) {
         _inherits(HashLocationStrategy, _LocationStrategy2);
 
-        var _super6 = _createSuper(HashLocationStrategy);
+        var _super3 = _createSuper(HashLocationStrategy);
 
         function HashLocationStrategy(_platformLocation, _baseHref) {
-          var _this16;
+          var _this3;
 
           _classCallCheck(this, HashLocationStrategy);
 
-          _this16 = _super6.call(this);
-          _this16._platformLocation = _platformLocation;
-          _this16._baseHref = '';
+          _this3 = _super3.call(this);
+          _this3._platformLocation = _platformLocation;
+          _this3._baseHref = '';
 
           if (_baseHref != null) {
-            _this16._baseHref = _baseHref;
+            _this3._baseHref = _baseHref;
           }
 
-          return _this16;
+          return _this3;
         }
 
         _createClass2(HashLocationStrategy, [{
@@ -5165,7 +1974,7 @@
 
       var Location = /*#__PURE__*/function () {
         function Location(platformStrategy, platformLocation) {
-          var _this17 = this;
+          var _this4 = this;
 
           _classCallCheck(this, Location);
 
@@ -5182,8 +1991,8 @@
           this._baseHref = stripTrailingSlash(_stripIndexHtml(browserBaseHref));
 
           this._platformStrategy.onPopState(function (ev) {
-            _this17._subject.emit({
-              'url': _this17.path(true),
+            _this4._subject.emit({
+              'url': _this4.path(true),
               'pop': true,
               'state': ev.state,
               'type': ev.type
@@ -5334,13 +2143,13 @@
         }, {
           key: "onUrlChange",
           value: function onUrlChange(fn) {
-            var _this18 = this;
+            var _this5 = this;
 
             this._urlChangeListeners.push(fn);
 
             if (!this._urlChangeSubscription) {
               this._urlChangeSubscription = this.subscribe(function (v) {
-                _this18._notifyUrlChangeListeners(v.url, v.state);
+                _this5._notifyUrlChangeListeners(v.url, v.state);
               });
             }
           }
@@ -7674,16 +4483,16 @@
       var NgLocaleLocalization = /*#__PURE__*/function (_NgLocalization) {
         _inherits(NgLocaleLocalization, _NgLocalization);
 
-        var _super7 = _createSuper(NgLocaleLocalization);
+        var _super4 = _createSuper(NgLocaleLocalization);
 
         function NgLocaleLocalization(locale) {
-          var _this19;
+          var _this6;
 
           _classCallCheck(this, NgLocaleLocalization);
 
-          _this19 = _super7.call(this);
-          _this19.locale = locale;
-          return _this19;
+          _this6 = _super4.call(this);
+          _this6.locale = locale;
+          return _this6;
         }
 
         _createClass2(NgLocaleLocalization, [{
@@ -7791,10 +4600,10 @@
             var cookie = _step.value;
             var eqIndex = cookie.indexOf('=');
 
-            var _ref4 = eqIndex == -1 ? [cookie, ''] : [cookie.slice(0, eqIndex), cookie.slice(eqIndex + 1)],
-                _ref5 = _slicedToArray(_ref4, 2),
-                cookieName = _ref5[0],
-                cookieValue = _ref5[1];
+            var _ref2 = eqIndex == -1 ? [cookie, ''] : [cookie.slice(0, eqIndex), cookie.slice(eqIndex + 1)],
+                _ref3 = _slicedToArray(_ref2, 2),
+                cookieName = _ref3[0],
+                cookieValue = _ref3[1];
 
             if (cookieName.trim() === name) {
               return decodeURIComponent(cookieValue);
@@ -7880,34 +4689,34 @@
         }, {
           key: "_applyKeyValueChanges",
           value: function _applyKeyValueChanges(changes) {
-            var _this20 = this;
+            var _this7 = this;
 
             changes.forEachAddedItem(function (record) {
-              return _this20._toggleClass(record.key, record.currentValue);
+              return _this7._toggleClass(record.key, record.currentValue);
             });
             changes.forEachChangedItem(function (record) {
-              return _this20._toggleClass(record.key, record.currentValue);
+              return _this7._toggleClass(record.key, record.currentValue);
             });
             changes.forEachRemovedItem(function (record) {
               if (record.previousValue) {
-                _this20._toggleClass(record.key, false);
+                _this7._toggleClass(record.key, false);
               }
             });
           }
         }, {
           key: "_applyIterableChanges",
           value: function _applyIterableChanges(changes) {
-            var _this21 = this;
+            var _this8 = this;
 
             changes.forEachAddedItem(function (record) {
               if (typeof record.item === 'string') {
-                _this21._toggleClass(record.item, true);
+                _this8._toggleClass(record.item, true);
               } else {
                 throw new Error("NgClass can only toggle CSS classes expressed as strings, got ".concat(Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵstringify"])(record.item)));
               }
             });
             changes.forEachRemovedItem(function (record) {
-              return _this21._toggleClass(record.item, false);
+              return _this8._toggleClass(record.item, false);
             });
           }
           /**
@@ -7922,16 +4731,16 @@
         }, {
           key: "_applyClasses",
           value: function _applyClasses(rawClassVal) {
-            var _this22 = this;
+            var _this9 = this;
 
             if (rawClassVal) {
               if (Array.isArray(rawClassVal) || rawClassVal instanceof Set) {
                 rawClassVal.forEach(function (klass) {
-                  return _this22._toggleClass(klass, true);
+                  return _this9._toggleClass(klass, true);
                 });
               } else {
                 Object.keys(rawClassVal).forEach(function (klass) {
-                  return _this22._toggleClass(klass, !!rawClassVal[klass]);
+                  return _this9._toggleClass(klass, !!rawClassVal[klass]);
                 });
               }
             }
@@ -7944,16 +4753,16 @@
         }, {
           key: "_removeClasses",
           value: function _removeClasses(rawClassVal) {
-            var _this23 = this;
+            var _this10 = this;
 
             if (rawClassVal) {
               if (Array.isArray(rawClassVal) || rawClassVal instanceof Set) {
                 rawClassVal.forEach(function (klass) {
-                  return _this23._toggleClass(klass, false);
+                  return _this10._toggleClass(klass, false);
                 });
               } else {
                 Object.keys(rawClassVal).forEach(function (klass) {
-                  return _this23._toggleClass(klass, false);
+                  return _this10._toggleClass(klass, false);
                 });
               }
             }
@@ -7961,16 +4770,16 @@
         }, {
           key: "_toggleClass",
           value: function _toggleClass(klass, enabled) {
-            var _this24 = this;
+            var _this11 = this;
 
             klass = klass.trim();
 
             if (klass) {
               klass.split(/\s+/g).forEach(function (klass) {
                 if (enabled) {
-                  _this24._renderer.addClass(_this24._ngEl.nativeElement, klass);
+                  _this11._renderer.addClass(_this11._ngEl.nativeElement, klass);
                 } else {
-                  _this24._renderer.removeClass(_this24._ngEl.nativeElement, klass);
+                  _this11._renderer.removeClass(_this11._ngEl.nativeElement, klass);
                 }
               });
             }
@@ -8441,7 +5250,7 @@
         }, {
           key: "_applyChanges",
           value: function _applyChanges(changes) {
-            var _this25 = this;
+            var _this12 = this;
 
             var insertTuples = [];
             changes.forEachOperation(function (item, adjustedPreviousIndex, currentIndex) {
@@ -8449,16 +5258,16 @@
                 // NgForOf is never "null" or "undefined" here because the differ detected
                 // that a new item needs to be inserted from the iterable. This implies that
                 // there is an iterable value for "_ngForOf".
-                var view = _this25._viewContainer.createEmbeddedView(_this25._template, new NgForOfContext(null, _this25._ngForOf, -1, -1), currentIndex === null ? undefined : currentIndex);
+                var view = _this12._viewContainer.createEmbeddedView(_this12._template, new NgForOfContext(null, _this12._ngForOf, -1, -1), currentIndex === null ? undefined : currentIndex);
 
                 var tuple = new RecordViewTuple(item, view);
                 insertTuples.push(tuple);
               } else if (currentIndex == null) {
-                _this25._viewContainer.remove(adjustedPreviousIndex === null ? undefined : adjustedPreviousIndex);
+                _this12._viewContainer.remove(adjustedPreviousIndex === null ? undefined : adjustedPreviousIndex);
               } else if (adjustedPreviousIndex !== null) {
-                var _view2 = _this25._viewContainer.get(adjustedPreviousIndex);
+                var _view2 = _this12._viewContainer.get(adjustedPreviousIndex);
 
-                _this25._viewContainer.move(_view2, currentIndex);
+                _this12._viewContainer.move(_view2, currentIndex);
 
                 var _tuple = new RecordViewTuple(item, _view2);
 
@@ -8479,7 +5288,7 @@
             }
 
             changes.forEachIdentityChange(function (record) {
-              var viewRef = _this25._viewContainer.get(record.currentIndex);
+              var viewRef = _this12._viewContainer.get(record.currentIndex);
 
               viewRef.context.$implicit = record.item;
             });
@@ -8517,7 +5326,7 @@
            * rather than the identity of the object itself.
            *
            * The function receives two inputs,
-           * the iteration index and the node object ID.
+           * the iteration index and the associated node data.
            */
 
         }, {
@@ -8537,7 +5346,7 @@
           }
           /**
            * A reference to the template that is stamped out for each item in the iterable.
-           * @see [template reference variable](guide/template-syntax#template-reference-variables--var-)
+           * @see [template reference variable](guide/template-reference-variables)
            */
 
         }, {
@@ -8733,7 +5542,7 @@
        *
        * The conditional displays the data only if `userStream` returns a value,
        * so you don't need to use the
-       * [safe-navigation-operator](guide/template-syntax#safe-navigation-operator) (`?.`)
+       * [safe-navigation-operator](guide/template-expression-operators#safe-navigation-operator) (`?.`)
        * to guard against null values when accessing properties.
        * You can display an alternative template while waiting for the data.
        *
@@ -9653,16 +6462,16 @@
         }, {
           key: "_applyChanges",
           value: function _applyChanges(changes) {
-            var _this26 = this;
+            var _this13 = this;
 
             changes.forEachRemovedItem(function (record) {
-              return _this26._setStyle(record.key, null);
+              return _this13._setStyle(record.key, null);
             });
             changes.forEachAddedItem(function (record) {
-              return _this26._setStyle(record.key, record.currentValue);
+              return _this13._setStyle(record.key, record.currentValue);
             });
             changes.forEachChangedItem(function (record) {
-              return _this26._setStyle(record.key, record.currentValue);
+              return _this13._setStyle(record.key, record.currentValue);
             });
           }
         }, {
@@ -10070,12 +6879,12 @@
         }, {
           key: "_subscribe",
           value: function _subscribe(obj) {
-            var _this27 = this;
+            var _this14 = this;
 
             this._obj = obj;
             this._strategy = this._selectStrategy(obj);
             this._subscription = this._strategy.createSubscription(obj, function (value) {
-              return _this27._updateLatestValue(obj, value);
+              return _this14._updateLatestValue(obj, value);
             });
           }
         }, {
@@ -10853,7 +7662,7 @@
         _createClass2(KeyValuePipe, [{
           key: "transform",
           value: function transform(input) {
-            var _this28 = this;
+            var _this15 = this;
 
             var compareFn = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : defaultComparator;
 
@@ -10871,7 +7680,7 @@
             if (differChanges) {
               this.keyValues = [];
               differChanges.forEachItem(function (r) {
-                _this28.keyValues.push(makeKeyValuePair(r.key, r.currentValue));
+                _this15.keyValues.push(makeKeyValuePair(r.key, r.currentValue));
               });
               this.keyValues.sort(compareFn);
             }
@@ -11595,7 +8404,7 @@
        */
 
 
-      var VERSION = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["Version"]('10.0.4');
+      var VERSION = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["Version"]('10.0.12');
       /**
        * @license
        * Copyright Google LLC All Rights Reserved.
@@ -11668,7 +8477,7 @@
         }, {
           key: "getScrollPosition",
           value: function getScrollPosition() {
-            if (this.supportScrollRestoration()) {
+            if (this.supportsScrolling()) {
               return [this.window.scrollX, this.window.scrollY];
             } else {
               return [0, 0];
@@ -11682,7 +8491,7 @@
         }, {
           key: "scrollToPosition",
           value: function scrollToPosition(position) {
-            if (this.supportScrollRestoration()) {
+            if (this.supportsScrolling()) {
               this.window.scrollTo(position[0], position[1]);
             }
           }
@@ -11694,31 +8503,11 @@
         }, {
           key: "scrollToAnchor",
           value: function scrollToAnchor(anchor) {
-            if (this.supportScrollRestoration()) {
-              // Escape anything passed to `querySelector` as it can throw errors and stop the application
-              // from working if invalid values are passed.
-              if (this.window.CSS && this.window.CSS.escape) {
-                anchor = this.window.CSS.escape(anchor);
-              } else {
-                anchor = anchor.replace(/(\"|\'\ |:|\.|\[|\]|,|=)/g, '\\$1');
-              }
+            if (this.supportsScrolling()) {
+              var elSelected = this.document.getElementById(anchor) || this.document.getElementsByName(anchor)[0];
 
-              try {
-                var elSelectedById = this.document.querySelector("#".concat(anchor));
-
-                if (elSelectedById) {
-                  this.scrollToElement(elSelectedById);
-                  return;
-                }
-
-                var elSelectedByName = this.document.querySelector("[name='".concat(anchor, "']"));
-
-                if (elSelectedByName) {
-                  this.scrollToElement(elSelectedByName);
-                  return;
-                }
-              } catch (e) {
-                this.errorHandler.handleError(e);
+              if (elSelected) {
+                this.scrollToElement(elSelected);
               }
             }
           }
@@ -11759,7 +8548,24 @@
           key: "supportScrollRestoration",
           value: function supportScrollRestoration() {
             try {
-              return !!this.window && !!this.window.scrollTo;
+              if (!this.window || !this.window.scrollTo) {
+                return false;
+              } // The `scrollRestoration` property could be on the `history` instance or its prototype.
+
+
+              var scrollRestorationDescriptor = getScrollRestorationProperty(this.window.history) || getScrollRestorationProperty(Object.getPrototypeOf(this.window.history)); // We can write to the `scrollRestoration` property if it is a writable data field or it has a
+              // setter function.
+
+              return !!scrollRestorationDescriptor && !!(scrollRestorationDescriptor.writable || scrollRestorationDescriptor.set);
+            } catch (_a) {
+              return false;
+            }
+          }
+        }, {
+          key: "supportsScrolling",
+          value: function supportsScrolling() {
+            try {
+              return !!this.window.scrollTo;
             } catch (_a) {
               return false;
             }
@@ -11768,6 +8574,10 @@
 
         return BrowserViewportScroller;
       }();
+
+      function getScrollRestorationProperty(obj) {
+        return Object.getOwnPropertyDescriptor(obj, 'scrollRestoration');
+      }
       /**
        * Provides an empty implementation of the viewport scroller. This will
        * live in @angular/common as it will be used by both platform-server and platform-webworker.
@@ -11855,15 +8665,3210 @@
     },
 
     /***/
-    "./node_modules/@angular/core/fesm2015/core.js":
-    /*!*****************************************************!*\
-      !*** ./node_modules/@angular/core/fesm2015/core.js ***!
-      \*****************************************************/
+    "./node_modules/@angular/common/__ivy_ngcc__/fesm2015/http.js":
+    /*!********************************************************************!*\
+      !*** ./node_modules/@angular/common/__ivy_ngcc__/fesm2015/http.js ***!
+      \********************************************************************/
 
-    /*! exports provided: ANALYZE_FOR_ENTRY_COMPONENTS, APP_BOOTSTRAP_LISTENER, APP_ID, APP_INITIALIZER, ApplicationInitStatus, ApplicationModule, ApplicationRef, Attribute, COMPILER_OPTIONS, CUSTOM_ELEMENTS_SCHEMA, ChangeDetectionStrategy, ChangeDetectorRef, Compiler, CompilerFactory, Component, ComponentFactory, ComponentFactoryResolver, ComponentRef, ContentChild, ContentChildren, DEFAULT_CURRENCY_CODE, DebugElement, DebugEventListener, DebugNode, DefaultIterableDiffer, Directive, ElementRef, EmbeddedViewRef, ErrorHandler, EventEmitter, Host, HostBinding, HostListener, INJECTOR, Inject, InjectFlags, Injectable, InjectionToken, Injector, Input, IterableDiffers, KeyValueDiffers, LOCALE_ID, MissingTranslationStrategy, ModuleWithComponentFactories, NO_ERRORS_SCHEMA, NgModule, NgModuleFactory, NgModuleFactoryLoader, NgModuleRef, NgProbeToken, NgZone, Optional, Output, PACKAGE_ROOT_URL, PLATFORM_ID, PLATFORM_INITIALIZER, Pipe, PlatformRef, Query, QueryList, ReflectiveInjector, ReflectiveKey, Renderer2, RendererFactory2, RendererStyleFlags2, ResolvedReflectiveFactory, Sanitizer, SecurityContext, Self, SimpleChange, SkipSelf, SystemJsNgModuleLoader, SystemJsNgModuleLoaderConfig, TRANSLATIONS, TRANSLATIONS_FORMAT, TemplateRef, Testability, TestabilityRegistry, Type, VERSION, Version, ViewChild, ViewChildren, ViewContainerRef, ViewEncapsulation, ViewRef, WrappedValue, asNativeElements, assertPlatform, createPlatform, createPlatformFactory, defineInjectable, destroyPlatform, enableProdMode, forwardRef, getDebugNode, getModuleFactory, getPlatform, inject, isDevMode, platformCore, resolveForwardRef, setTestabilityGetter, ɵ0, ɵ1, ɵALLOW_MULTIPLE_PLATFORMS, ɵAPP_ID_RANDOM_PROVIDER, ɵChangeDetectorStatus, ɵCodegenComponentFactoryResolver, ɵCompiler_compileModuleAndAllComponentsAsync__POST_R3__, ɵCompiler_compileModuleAndAllComponentsSync__POST_R3__, ɵCompiler_compileModuleAsync__POST_R3__, ɵCompiler_compileModuleSync__POST_R3__, ɵComponentFactory, ɵConsole, ɵDEFAULT_LOCALE_ID, ɵEMPTY_ARRAY, ɵEMPTY_MAP, ɵINJECTOR_IMPL__POST_R3__, ɵINJECTOR_SCOPE, ɵLifecycleHooksFeature, ɵLocaleDataIndex, ɵNG_COMP_DEF, ɵNG_DIR_DEF, ɵNG_ELEMENT_ID, ɵNG_INJ_DEF, ɵNG_MOD_DEF, ɵNG_PIPE_DEF, ɵNG_PROV_DEF, ɵNOT_FOUND_CHECK_ONLY_ELEMENT_INJECTOR, ɵNO_CHANGE, ɵNgModuleFactory, ɵNoopNgZone, ɵReflectionCapabilities, ɵRender3ComponentFactory, ɵRender3ComponentRef, ɵRender3NgModuleRef, ɵSWITCH_CHANGE_DETECTOR_REF_FACTORY__POST_R3__, ɵSWITCH_COMPILE_COMPONENT__POST_R3__, ɵSWITCH_COMPILE_DIRECTIVE__POST_R3__, ɵSWITCH_COMPILE_INJECTABLE__POST_R3__, ɵSWITCH_COMPILE_NGMODULE__POST_R3__, ɵSWITCH_COMPILE_PIPE__POST_R3__, ɵSWITCH_ELEMENT_REF_FACTORY__POST_R3__, ɵSWITCH_IVY_ENABLED__POST_R3__, ɵSWITCH_RENDERER2_FACTORY__POST_R3__, ɵSWITCH_TEMPLATE_REF_FACTORY__POST_R3__, ɵSWITCH_VIEW_CONTAINER_REF_FACTORY__POST_R3__, ɵ_sanitizeHtml, ɵ_sanitizeUrl, ɵallowSanitizationBypassAndThrow, ɵand, ɵangular_packages_core_core_a, ɵangular_packages_core_core_b, ɵangular_packages_core_core_ba, ɵangular_packages_core_core_bb, ɵangular_packages_core_core_bc, ɵangular_packages_core_core_bd, ɵangular_packages_core_core_bf, ɵangular_packages_core_core_bg, ɵangular_packages_core_core_bh, ɵangular_packages_core_core_bi, ɵangular_packages_core_core_bj, ɵangular_packages_core_core_bk, ɵangular_packages_core_core_bl, ɵangular_packages_core_core_bm, ɵangular_packages_core_core_bn, ɵangular_packages_core_core_bp, ɵangular_packages_core_core_bq, ɵangular_packages_core_core_c, ɵangular_packages_core_core_d, ɵangular_packages_core_core_e, ɵangular_packages_core_core_f, ɵangular_packages_core_core_g, ɵangular_packages_core_core_h, ɵangular_packages_core_core_i, ɵangular_packages_core_core_j, ɵangular_packages_core_core_k, ɵangular_packages_core_core_l, ɵangular_packages_core_core_m, ɵangular_packages_core_core_n, ɵangular_packages_core_core_o, ɵangular_packages_core_core_p, ɵangular_packages_core_core_q, ɵangular_packages_core_core_r, ɵangular_packages_core_core_s, ɵangular_packages_core_core_t, ɵangular_packages_core_core_u, ɵangular_packages_core_core_v, ɵangular_packages_core_core_w, ɵangular_packages_core_core_x, ɵangular_packages_core_core_y, ɵangular_packages_core_core_z, ɵbypassSanitizationTrustHtml, ɵbypassSanitizationTrustResourceUrl, ɵbypassSanitizationTrustScript, ɵbypassSanitizationTrustStyle, ɵbypassSanitizationTrustUrl, ɵccf, ɵclearOverrides, ɵclearResolutionOfComponentResourcesQueue, ɵcmf, ɵcompileComponent, ɵcompileDirective, ɵcompileNgModule, ɵcompileNgModuleDefs, ɵcompileNgModuleFactory__POST_R3__, ɵcompilePipe, ɵcreateInjector, ɵcrt, ɵdefaultIterableDiffers, ɵdefaultKeyValueDiffers, ɵdetectChanges, ɵdevModeEqual, ɵdid, ɵeld, ɵfindLocaleData, ɵflushModuleScopingQueueAsMuchAsPossible, ɵgetComponentViewDefinitionFactory, ɵgetDebugNodeR2, ɵgetDebugNode__POST_R3__, ɵgetDirectives, ɵgetHostElement, ɵgetInjectableDef, ɵgetLContext, ɵgetLocaleCurrencyCode, ɵgetLocalePluralCase, ɵgetModuleFactory__POST_R3__, ɵgetSanitizationBypassType, ɵglobal, ɵinitServicesIfNeeded, ɵinlineInterpolate, ɵinterpolate, ɵisBoundToModule__POST_R3__, ɵisDefaultChangeDetectionStrategy, ɵisListLikeIterable, ɵisObservable, ɵisPromise, ɵivyEnabled, ɵmakeDecorator, ɵmarkDirty, ɵmod, ɵmpd, ɵncd, ɵnov, ɵoverrideComponentView, ɵoverrideProvider, ɵpad, ɵpatchComponentDefWithScope, ɵpid, ɵpod, ɵppd, ɵprd, ɵpublishDefaultGlobalUtils, ɵpublishGlobalUtil, ɵqud, ɵregisterLocaleData, ɵregisterModuleFactory, ɵregisterNgModuleType, ɵrenderComponent, ɵresetCompiledComponents, ɵresetJitOptions, ɵresolveComponentResources, ɵsetClassMetadata, ɵsetCurrentInjector, ɵsetDocument, ɵsetLocaleId, ɵstore, ɵstringify, ɵted, ɵtransitiveScopesFor, ɵunregisterLocaleData, ɵunv, ɵunwrapSafeValue, ɵvid, ɵwhenRendered, ɵɵCopyDefinitionFeature, ɵɵInheritDefinitionFeature, ɵɵNgOnChangesFeature, ɵɵProvidersFeature, ɵɵadvance, ɵɵattribute, ɵɵattributeInterpolate1, ɵɵattributeInterpolate2, ɵɵattributeInterpolate3, ɵɵattributeInterpolate4, ɵɵattributeInterpolate5, ɵɵattributeInterpolate6, ɵɵattributeInterpolate7, ɵɵattributeInterpolate8, ɵɵattributeInterpolateV, ɵɵclassMap, ɵɵclassMapInterpolate1, ɵɵclassMapInterpolate2, ɵɵclassMapInterpolate3, ɵɵclassMapInterpolate4, ɵɵclassMapInterpolate5, ɵɵclassMapInterpolate6, ɵɵclassMapInterpolate7, ɵɵclassMapInterpolate8, ɵɵclassMapInterpolateV, ɵɵclassProp, ɵɵcomponentHostSyntheticListener, ɵɵcontentQuery, ɵɵdefineComponent, ɵɵdefineDirective, ɵɵdefineInjectable, ɵɵdefineInjector, ɵɵdefineNgModule, ɵɵdefinePipe, ɵɵdirectiveInject, ɵɵdisableBindings, ɵɵelement, ɵɵelementContainer, ɵɵelementContainerEnd, ɵɵelementContainerStart, ɵɵelementEnd, ɵɵelementStart, ɵɵenableBindings, ɵɵgetCurrentView, ɵɵgetFactoryOf, ɵɵgetInheritedFactory, ɵɵhostProperty, ɵɵi18n, ɵɵi18nApply, ɵɵi18nAttributes, ɵɵi18nEnd, ɵɵi18nExp, ɵɵi18nPostprocess, ɵɵi18nStart, ɵɵinject, ɵɵinjectAttribute, ɵɵinjectPipeChangeDetectorRef, ɵɵinvalidFactory, ɵɵinvalidFactoryDep, ɵɵlistener, ɵɵloadQuery, ɵɵnamespaceHTML, ɵɵnamespaceMathML, ɵɵnamespaceSVG, ɵɵnextContext, ɵɵpipe, ɵɵpipeBind1, ɵɵpipeBind2, ɵɵpipeBind3, ɵɵpipeBind4, ɵɵpipeBindV, ɵɵprojection, ɵɵprojectionDef, ɵɵproperty, ɵɵpropertyInterpolate, ɵɵpropertyInterpolate1, ɵɵpropertyInterpolate2, ɵɵpropertyInterpolate3, ɵɵpropertyInterpolate4, ɵɵpropertyInterpolate5, ɵɵpropertyInterpolate6, ɵɵpropertyInterpolate7, ɵɵpropertyInterpolate8, ɵɵpropertyInterpolateV, ɵɵpureFunction0, ɵɵpureFunction1, ɵɵpureFunction2, ɵɵpureFunction3, ɵɵpureFunction4, ɵɵpureFunction5, ɵɵpureFunction6, ɵɵpureFunction7, ɵɵpureFunction8, ɵɵpureFunctionV, ɵɵqueryRefresh, ɵɵreference, ɵɵresolveBody, ɵɵresolveDocument, ɵɵresolveWindow, ɵɵrestoreView, ɵɵsanitizeHtml, ɵɵsanitizeResourceUrl, ɵɵsanitizeScript, ɵɵsanitizeStyle, ɵɵsanitizeUrl, ɵɵsanitizeUrlOrResourceUrl, ɵɵselect, ɵɵsetComponentScope, ɵɵsetNgModuleScope, ɵɵstaticContentQuery, ɵɵstaticViewQuery, ɵɵstyleMap, ɵɵstyleMapInterpolate1, ɵɵstyleMapInterpolate2, ɵɵstyleMapInterpolate3, ɵɵstyleMapInterpolate4, ɵɵstyleMapInterpolate5, ɵɵstyleMapInterpolate6, ɵɵstyleMapInterpolate7, ɵɵstyleMapInterpolate8, ɵɵstyleMapInterpolateV, ɵɵstyleProp, ɵɵstylePropInterpolate1, ɵɵstylePropInterpolate2, ɵɵstylePropInterpolate3, ɵɵstylePropInterpolate4, ɵɵstylePropInterpolate5, ɵɵstylePropInterpolate6, ɵɵstylePropInterpolate7, ɵɵstylePropInterpolate8, ɵɵstylePropInterpolateV, ɵɵtemplate, ɵɵtemplateRefExtractor, ɵɵtext, ɵɵtextInterpolate, ɵɵtextInterpolate1, ɵɵtextInterpolate2, ɵɵtextInterpolate3, ɵɵtextInterpolate4, ɵɵtextInterpolate5, ɵɵtextInterpolate6, ɵɵtextInterpolate7, ɵɵtextInterpolate8, ɵɵtextInterpolateV, ɵɵupdateSyntheticHostBinding, ɵɵviewQuery */
+    /*! exports provided: HTTP_INTERCEPTORS, HttpBackend, HttpClient, HttpClientJsonpModule, HttpClientModule, HttpClientXsrfModule, HttpErrorResponse, HttpEventType, HttpHandler, HttpHeaderResponse, HttpHeaders, HttpParams, HttpRequest, HttpResponse, HttpResponseBase, HttpUrlEncodingCodec, HttpXhrBackend, HttpXsrfTokenExtractor, JsonpClientBackend, JsonpInterceptor, XhrFactory, ɵHttpInterceptingHandler, ɵangular_packages_common_http_http_a, ɵangular_packages_common_http_http_b, ɵangular_packages_common_http_http_c, ɵangular_packages_common_http_http_d, ɵangular_packages_common_http_http_e, ɵangular_packages_common_http_http_f, ɵangular_packages_common_http_http_g, ɵangular_packages_common_http_http_h */
 
     /***/
-    function node_modulesAngularCoreFesm2015CoreJs(module, __webpack_exports__, __webpack_require__) {
+    function node_modulesAngularCommon__ivy_ngcc__Fesm2015HttpJs(module, __webpack_exports__, __webpack_require__) {
+      "use strict";
+
+      __webpack_require__.r(__webpack_exports__);
+      /* harmony export (binding) */
+
+
+      __webpack_require__.d(__webpack_exports__, "HTTP_INTERCEPTORS", function () {
+        return HTTP_INTERCEPTORS;
+      });
+      /* harmony export (binding) */
+
+
+      __webpack_require__.d(__webpack_exports__, "HttpBackend", function () {
+        return HttpBackend;
+      });
+      /* harmony export (binding) */
+
+
+      __webpack_require__.d(__webpack_exports__, "HttpClient", function () {
+        return HttpClient;
+      });
+      /* harmony export (binding) */
+
+
+      __webpack_require__.d(__webpack_exports__, "HttpClientJsonpModule", function () {
+        return HttpClientJsonpModule;
+      });
+      /* harmony export (binding) */
+
+
+      __webpack_require__.d(__webpack_exports__, "HttpClientModule", function () {
+        return HttpClientModule;
+      });
+      /* harmony export (binding) */
+
+
+      __webpack_require__.d(__webpack_exports__, "HttpClientXsrfModule", function () {
+        return HttpClientXsrfModule;
+      });
+      /* harmony export (binding) */
+
+
+      __webpack_require__.d(__webpack_exports__, "HttpErrorResponse", function () {
+        return HttpErrorResponse;
+      });
+      /* harmony export (binding) */
+
+
+      __webpack_require__.d(__webpack_exports__, "HttpEventType", function () {
+        return HttpEventType;
+      });
+      /* harmony export (binding) */
+
+
+      __webpack_require__.d(__webpack_exports__, "HttpHandler", function () {
+        return HttpHandler;
+      });
+      /* harmony export (binding) */
+
+
+      __webpack_require__.d(__webpack_exports__, "HttpHeaderResponse", function () {
+        return HttpHeaderResponse;
+      });
+      /* harmony export (binding) */
+
+
+      __webpack_require__.d(__webpack_exports__, "HttpHeaders", function () {
+        return HttpHeaders;
+      });
+      /* harmony export (binding) */
+
+
+      __webpack_require__.d(__webpack_exports__, "HttpParams", function () {
+        return HttpParams;
+      });
+      /* harmony export (binding) */
+
+
+      __webpack_require__.d(__webpack_exports__, "HttpRequest", function () {
+        return HttpRequest;
+      });
+      /* harmony export (binding) */
+
+
+      __webpack_require__.d(__webpack_exports__, "HttpResponse", function () {
+        return HttpResponse;
+      });
+      /* harmony export (binding) */
+
+
+      __webpack_require__.d(__webpack_exports__, "HttpResponseBase", function () {
+        return HttpResponseBase;
+      });
+      /* harmony export (binding) */
+
+
+      __webpack_require__.d(__webpack_exports__, "HttpUrlEncodingCodec", function () {
+        return HttpUrlEncodingCodec;
+      });
+      /* harmony export (binding) */
+
+
+      __webpack_require__.d(__webpack_exports__, "HttpXhrBackend", function () {
+        return HttpXhrBackend;
+      });
+      /* harmony export (binding) */
+
+
+      __webpack_require__.d(__webpack_exports__, "HttpXsrfTokenExtractor", function () {
+        return HttpXsrfTokenExtractor;
+      });
+      /* harmony export (binding) */
+
+
+      __webpack_require__.d(__webpack_exports__, "JsonpClientBackend", function () {
+        return JsonpClientBackend;
+      });
+      /* harmony export (binding) */
+
+
+      __webpack_require__.d(__webpack_exports__, "JsonpInterceptor", function () {
+        return JsonpInterceptor;
+      });
+      /* harmony export (binding) */
+
+
+      __webpack_require__.d(__webpack_exports__, "XhrFactory", function () {
+        return XhrFactory;
+      });
+      /* harmony export (binding) */
+
+
+      __webpack_require__.d(__webpack_exports__, "ɵHttpInterceptingHandler", function () {
+        return HttpInterceptingHandler;
+      });
+      /* harmony export (binding) */
+
+
+      __webpack_require__.d(__webpack_exports__, "ɵangular_packages_common_http_http_a", function () {
+        return NoopInterceptor;
+      });
+      /* harmony export (binding) */
+
+
+      __webpack_require__.d(__webpack_exports__, "ɵangular_packages_common_http_http_b", function () {
+        return JsonpCallbackContext;
+      });
+      /* harmony export (binding) */
+
+
+      __webpack_require__.d(__webpack_exports__, "ɵangular_packages_common_http_http_c", function () {
+        return jsonpCallbackContext;
+      });
+      /* harmony export (binding) */
+
+
+      __webpack_require__.d(__webpack_exports__, "ɵangular_packages_common_http_http_d", function () {
+        return BrowserXhr;
+      });
+      /* harmony export (binding) */
+
+
+      __webpack_require__.d(__webpack_exports__, "ɵangular_packages_common_http_http_e", function () {
+        return XSRF_COOKIE_NAME;
+      });
+      /* harmony export (binding) */
+
+
+      __webpack_require__.d(__webpack_exports__, "ɵangular_packages_common_http_http_f", function () {
+        return XSRF_HEADER_NAME;
+      });
+      /* harmony export (binding) */
+
+
+      __webpack_require__.d(__webpack_exports__, "ɵangular_packages_common_http_http_g", function () {
+        return HttpXsrfCookieExtractor;
+      });
+      /* harmony export (binding) */
+
+
+      __webpack_require__.d(__webpack_exports__, "ɵangular_packages_common_http_http_h", function () {
+        return HttpXsrfInterceptor;
+      });
+      /* harmony import */
+
+
+      var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+      /*! @angular/core */
+      "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
+      /* harmony import */
+
+
+      var rxjs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+      /*! rxjs */
+      "./node_modules/rxjs/_esm2015/index.js");
+      /* harmony import */
+
+
+      var rxjs_operators__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+      /*! rxjs/operators */
+      "./node_modules/rxjs/_esm2015/operators/index.js");
+      /* harmony import */
+
+
+      var _angular_common__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+      /*! @angular/common */
+      "./node_modules/@angular/common/__ivy_ngcc__/fesm2015/common.js");
+      /**
+       * @license Angular v10.0.12
+       * (c) 2010-2020 Google LLC. https://angular.io/
+       * License: MIT
+       */
+
+      /**
+       * @license
+       * Copyright Google LLC All Rights Reserved.
+       *
+       * Use of this source code is governed by an MIT-style license that can be
+       * found in the LICENSE file at https://angular.io/license
+       */
+
+      /**
+       * Transforms an `HttpRequest` into a stream of `HttpEvent`s, one of which will likely be a
+       * `HttpResponse`.
+       *
+       * `HttpHandler` is injectable. When injected, the handler instance dispatches requests to the
+       * first interceptor in the chain, which dispatches to the second, etc, eventually reaching the
+       * `HttpBackend`.
+       *
+       * In an `HttpInterceptor`, the `HttpHandler` parameter is the next interceptor in the chain.
+       *
+       * @publicApi
+       */
+
+
+      var HttpHandler = function HttpHandler() {
+        _classCallCheck(this, HttpHandler);
+      };
+      /**
+       * A final `HttpHandler` which will dispatch the request via browser HTTP APIs to a backend.
+       *
+       * Interceptors sit between the `HttpClient` interface and the `HttpBackend`.
+       *
+       * When injected, `HttpBackend` dispatches requests directly to the backend, without going
+       * through the interceptor chain.
+       *
+       * @publicApi
+       */
+
+
+      var HttpBackend = function HttpBackend() {
+        _classCallCheck(this, HttpBackend);
+      };
+      /**
+       * @license
+       * Copyright Google LLC All Rights Reserved.
+       *
+       * Use of this source code is governed by an MIT-style license that can be
+       * found in the LICENSE file at https://angular.io/license
+       */
+
+      /**
+       * Represents the header configuration options for an HTTP request.
+       * Instances are immutable. Modifying methods return a cloned
+       * instance with the change. The original object is never changed.
+       *
+       * @publicApi
+       */
+
+
+      var HttpHeaders = /*#__PURE__*/function () {
+        /**  Constructs a new HTTP header object with the given values.*/
+        function HttpHeaders(headers) {
+          var _this16 = this;
+
+          _classCallCheck(this, HttpHeaders);
+
+          /**
+           * Internal map of lowercased header names to the normalized
+           * form of the name (the form seen first).
+           */
+          this.normalizedNames = new Map();
+          /**
+           * Queued updates to be materialized the next initialization.
+           */
+
+          this.lazyUpdate = null;
+
+          if (!headers) {
+            this.headers = new Map();
+          } else if (typeof headers === 'string') {
+            this.lazyInit = function () {
+              _this16.headers = new Map();
+              headers.split('\n').forEach(function (line) {
+                var index = line.indexOf(':');
+
+                if (index > 0) {
+                  var name = line.slice(0, index);
+                  var key = name.toLowerCase();
+                  var value = line.slice(index + 1).trim();
+
+                  _this16.maybeSetNormalizedName(name, key);
+
+                  if (_this16.headers.has(key)) {
+                    _this16.headers.get(key).push(value);
+                  } else {
+                    _this16.headers.set(key, [value]);
+                  }
+                }
+              });
+            };
+          } else {
+            this.lazyInit = function () {
+              _this16.headers = new Map();
+              Object.keys(headers).forEach(function (name) {
+                var values = headers[name];
+                var key = name.toLowerCase();
+
+                if (typeof values === 'string') {
+                  values = [values];
+                }
+
+                if (values.length > 0) {
+                  _this16.headers.set(key, values);
+
+                  _this16.maybeSetNormalizedName(name, key);
+                }
+              });
+            };
+          }
+        }
+        /**
+         * Checks for existence of a given header.
+         *
+         * @param name The header name to check for existence.
+         *
+         * @returns True if the header exists, false otherwise.
+         */
+
+
+        _createClass2(HttpHeaders, [{
+          key: "has",
+          value: function has(name) {
+            this.init();
+            return this.headers.has(name.toLowerCase());
+          }
+          /**
+           * Retrieves the first value of a given header.
+           *
+           * @param name The header name.
+           *
+           * @returns The value string if the header exists, null otherwise
+           */
+
+        }, {
+          key: "get",
+          value: function get(name) {
+            this.init();
+            var values = this.headers.get(name.toLowerCase());
+            return values && values.length > 0 ? values[0] : null;
+          }
+          /**
+           * Retrieves the names of the headers.
+           *
+           * @returns A list of header names.
+           */
+
+        }, {
+          key: "keys",
+          value: function keys() {
+            this.init();
+            return Array.from(this.normalizedNames.values());
+          }
+          /**
+           * Retrieves a list of values for a given header.
+           *
+           * @param name The header name from which to retrieve values.
+           *
+           * @returns A string of values if the header exists, null otherwise.
+           */
+
+        }, {
+          key: "getAll",
+          value: function getAll(name) {
+            this.init();
+            return this.headers.get(name.toLowerCase()) || null;
+          }
+          /**
+           * Appends a new value to the existing set of values for a header
+           * and returns them in a clone of the original instance.
+           *
+           * @param name The header name for which to append the values.
+           * @param value The value to append.
+           *
+           * @returns A clone of the HTTP headers object with the value appended to the given header.
+           */
+
+        }, {
+          key: "append",
+          value: function append(name, value) {
+            return this.clone({
+              name: name,
+              value: value,
+              op: 'a'
+            });
+          }
+          /**
+           * Sets or modifies a value for a given header in a clone of the original instance.
+           * If the header already exists, its value is replaced with the given value
+           * in the returned object.
+           *
+           * @param name The header name.
+           * @param value The value or values to set or overide for the given header.
+           *
+           * @returns A clone of the HTTP headers object with the newly set header value.
+           */
+
+        }, {
+          key: "set",
+          value: function set(name, value) {
+            return this.clone({
+              name: name,
+              value: value,
+              op: 's'
+            });
+          }
+          /**
+           * Deletes values for a given header in a clone of the original instance.
+           *
+           * @param name The header name.
+           * @param value The value or values to delete for the given header.
+           *
+           * @returns A clone of the HTTP headers object with the given value deleted.
+           */
+
+        }, {
+          key: "delete",
+          value: function _delete(name, value) {
+            return this.clone({
+              name: name,
+              value: value,
+              op: 'd'
+            });
+          }
+        }, {
+          key: "maybeSetNormalizedName",
+          value: function maybeSetNormalizedName(name, lcName) {
+            if (!this.normalizedNames.has(lcName)) {
+              this.normalizedNames.set(lcName, name);
+            }
+          }
+        }, {
+          key: "init",
+          value: function init() {
+            var _this17 = this;
+
+            if (!!this.lazyInit) {
+              if (this.lazyInit instanceof HttpHeaders) {
+                this.copyFrom(this.lazyInit);
+              } else {
+                this.lazyInit();
+              }
+
+              this.lazyInit = null;
+
+              if (!!this.lazyUpdate) {
+                this.lazyUpdate.forEach(function (update) {
+                  return _this17.applyUpdate(update);
+                });
+                this.lazyUpdate = null;
+              }
+            }
+          }
+        }, {
+          key: "copyFrom",
+          value: function copyFrom(other) {
+            var _this18 = this;
+
+            other.init();
+            Array.from(other.headers.keys()).forEach(function (key) {
+              _this18.headers.set(key, other.headers.get(key));
+
+              _this18.normalizedNames.set(key, other.normalizedNames.get(key));
+            });
+          }
+        }, {
+          key: "clone",
+          value: function clone(update) {
+            var clone = new HttpHeaders();
+            clone.lazyInit = !!this.lazyInit && this.lazyInit instanceof HttpHeaders ? this.lazyInit : this;
+            clone.lazyUpdate = (this.lazyUpdate || []).concat([update]);
+            return clone;
+          }
+        }, {
+          key: "applyUpdate",
+          value: function applyUpdate(update) {
+            var key = update.name.toLowerCase();
+
+            switch (update.op) {
+              case 'a':
+              case 's':
+                var value = update.value;
+
+                if (typeof value === 'string') {
+                  value = [value];
+                }
+
+                if (value.length === 0) {
+                  return;
+                }
+
+                this.maybeSetNormalizedName(update.name, key);
+                var base = (update.op === 'a' ? this.headers.get(key) : undefined) || [];
+                base.push.apply(base, _toConsumableArray(value));
+                this.headers.set(key, base);
+                break;
+
+              case 'd':
+                var toDelete = update.value;
+
+                if (!toDelete) {
+                  this.headers["delete"](key);
+                  this.normalizedNames["delete"](key);
+                } else {
+                  var existing = this.headers.get(key);
+
+                  if (!existing) {
+                    return;
+                  }
+
+                  existing = existing.filter(function (value) {
+                    return toDelete.indexOf(value) === -1;
+                  });
+
+                  if (existing.length === 0) {
+                    this.headers["delete"](key);
+                    this.normalizedNames["delete"](key);
+                  } else {
+                    this.headers.set(key, existing);
+                  }
+                }
+
+                break;
+            }
+          }
+          /**
+           * @internal
+           */
+
+        }, {
+          key: "forEach",
+          value: function forEach(fn) {
+            var _this19 = this;
+
+            this.init();
+            Array.from(this.normalizedNames.keys()).forEach(function (key) {
+              return fn(_this19.normalizedNames.get(key), _this19.headers.get(key));
+            });
+          }
+        }]);
+
+        return HttpHeaders;
+      }();
+      /**
+       * @license
+       * Copyright Google LLC All Rights Reserved.
+       *
+       * Use of this source code is governed by an MIT-style license that can be
+       * found in the LICENSE file at https://angular.io/license
+       */
+
+      /**
+       * Provides encoding and decoding of URL parameter and query-string values.
+       *
+       * Serializes and parses URL parameter keys and values to encode and decode them.
+       * If you pass URL query parameters without encoding,
+       * the query parameters can be misinterpreted at the receiving end.
+       *
+       *
+       * @publicApi
+       */
+
+
+      var HttpUrlEncodingCodec = /*#__PURE__*/function () {
+        function HttpUrlEncodingCodec() {
+          _classCallCheck(this, HttpUrlEncodingCodec);
+        }
+
+        _createClass2(HttpUrlEncodingCodec, [{
+          key: "encodeKey",
+
+          /**
+           * Encodes a key name for a URL parameter or query-string.
+           * @param key The key name.
+           * @returns The encoded key name.
+           */
+          value: function encodeKey(key) {
+            return standardEncoding(key);
+          }
+          /**
+           * Encodes the value of a URL parameter or query-string.
+           * @param value The value.
+           * @returns The encoded value.
+           */
+
+        }, {
+          key: "encodeValue",
+          value: function encodeValue(value) {
+            return standardEncoding(value);
+          }
+          /**
+           * Decodes an encoded URL parameter or query-string key.
+           * @param key The encoded key name.
+           * @returns The decoded key name.
+           */
+
+        }, {
+          key: "decodeKey",
+          value: function decodeKey(key) {
+            return decodeURIComponent(key);
+          }
+          /**
+           * Decodes an encoded URL parameter or query-string value.
+           * @param value The encoded value.
+           * @returns The decoded value.
+           */
+
+        }, {
+          key: "decodeValue",
+          value: function decodeValue(value) {
+            return decodeURIComponent(value);
+          }
+        }]);
+
+        return HttpUrlEncodingCodec;
+      }();
+
+      function paramParser(rawParams, codec) {
+        var map = new Map();
+
+        if (rawParams.length > 0) {
+          var params = rawParams.split('&');
+          params.forEach(function (param) {
+            var eqIdx = param.indexOf('=');
+
+            var _ref4 = eqIdx == -1 ? [codec.decodeKey(param), ''] : [codec.decodeKey(param.slice(0, eqIdx)), codec.decodeValue(param.slice(eqIdx + 1))],
+                _ref5 = _slicedToArray(_ref4, 2),
+                key = _ref5[0],
+                val = _ref5[1];
+
+            var list = map.get(key) || [];
+            list.push(val);
+            map.set(key, list);
+          });
+        }
+
+        return map;
+      }
+
+      function standardEncoding(v) {
+        return encodeURIComponent(v).replace(/%40/gi, '@').replace(/%3A/gi, ':').replace(/%24/gi, '$').replace(/%2C/gi, ',').replace(/%3B/gi, ';').replace(/%2B/gi, '+').replace(/%3D/gi, '=').replace(/%3F/gi, '?').replace(/%2F/gi, '/');
+      }
+      /**
+       * An HTTP request/response body that represents serialized parameters,
+       * per the MIME type `application/x-www-form-urlencoded`.
+       *
+       * This class is immutable; all mutation operations return a new instance.
+       *
+       * @publicApi
+       */
+
+
+      var HttpParams = /*#__PURE__*/function () {
+        function HttpParams() {
+          var _this20 = this;
+
+          var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+
+          _classCallCheck(this, HttpParams);
+
+          this.updates = null;
+          this.cloneFrom = null;
+          this.encoder = options.encoder || new HttpUrlEncodingCodec();
+
+          if (!!options.fromString) {
+            if (!!options.fromObject) {
+              throw new Error("Cannot specify both fromString and fromObject.");
+            }
+
+            this.map = paramParser(options.fromString, this.encoder);
+          } else if (!!options.fromObject) {
+            this.map = new Map();
+            Object.keys(options.fromObject).forEach(function (key) {
+              var value = options.fromObject[key];
+
+              _this20.map.set(key, Array.isArray(value) ? value : [value]);
+            });
+          } else {
+            this.map = null;
+          }
+        }
+        /**
+         * Reports whether the body includes one or more values for a given parameter.
+         * @param param The parameter name.
+         * @returns True if the parameter has one or more values,
+         * false if it has no value or is not present.
+         */
+
+
+        _createClass2(HttpParams, [{
+          key: "has",
+          value: function has(param) {
+            this.init();
+            return this.map.has(param);
+          }
+          /**
+           * Retrieves the first value for a parameter.
+           * @param param The parameter name.
+           * @returns The first value of the given parameter,
+           * or `null` if the parameter is not present.
+           */
+
+        }, {
+          key: "get",
+          value: function get(param) {
+            this.init();
+            var res = this.map.get(param);
+            return !!res ? res[0] : null;
+          }
+          /**
+           * Retrieves all values for a  parameter.
+           * @param param The parameter name.
+           * @returns All values in a string array,
+           * or `null` if the parameter not present.
+           */
+
+        }, {
+          key: "getAll",
+          value: function getAll(param) {
+            this.init();
+            return this.map.get(param) || null;
+          }
+          /**
+           * Retrieves all the parameters for this body.
+           * @returns The parameter names in a string array.
+           */
+
+        }, {
+          key: "keys",
+          value: function keys() {
+            this.init();
+            return Array.from(this.map.keys());
+          }
+          /**
+           * Appends a new value to existing values for a parameter.
+           * @param param The parameter name.
+           * @param value The new value to add.
+           * @return A new body with the appended value.
+           */
+
+        }, {
+          key: "append",
+          value: function append(param, value) {
+            return this.clone({
+              param: param,
+              value: value,
+              op: 'a'
+            });
+          }
+          /**
+           * Replaces the value for a parameter.
+           * @param param The parameter name.
+           * @param value The new value.
+           * @return A new body with the new value.
+           */
+
+        }, {
+          key: "set",
+          value: function set(param, value) {
+            return this.clone({
+              param: param,
+              value: value,
+              op: 's'
+            });
+          }
+          /**
+           * Removes a given value or all values from a parameter.
+           * @param param The parameter name.
+           * @param value The value to remove, if provided.
+           * @return A new body with the given value removed, or with all values
+           * removed if no value is specified.
+           */
+
+        }, {
+          key: "delete",
+          value: function _delete(param, value) {
+            return this.clone({
+              param: param,
+              value: value,
+              op: 'd'
+            });
+          }
+          /**
+           * Serializes the body to an encoded string, where key-value pairs (separated by `=`) are
+           * separated by `&`s.
+           */
+
+        }, {
+          key: "toString",
+          value: function toString() {
+            var _this21 = this;
+
+            this.init();
+            return this.keys().map(function (key) {
+              var eKey = _this21.encoder.encodeKey(key); // `a: ['1']` produces `'a=1'`
+              // `b: []` produces `''`
+              // `c: ['1', '2']` produces `'c=1&c=2'`
+
+
+              return _this21.map.get(key).map(function (value) {
+                return eKey + '=' + _this21.encoder.encodeValue(value);
+              }).join('&');
+            }) // filter out empty values because `b: []` produces `''`
+            // which results in `a=1&&c=1&c=2` instead of `a=1&c=1&c=2` if we don't
+            .filter(function (param) {
+              return param !== '';
+            }).join('&');
+          }
+        }, {
+          key: "clone",
+          value: function clone(update) {
+            var clone = new HttpParams({
+              encoder: this.encoder
+            });
+            clone.cloneFrom = this.cloneFrom || this;
+            clone.updates = (this.updates || []).concat([update]);
+            return clone;
+          }
+        }, {
+          key: "init",
+          value: function init() {
+            var _this22 = this;
+
+            if (this.map === null) {
+              this.map = new Map();
+            }
+
+            if (this.cloneFrom !== null) {
+              this.cloneFrom.init();
+              this.cloneFrom.keys().forEach(function (key) {
+                return _this22.map.set(key, _this22.cloneFrom.map.get(key));
+              });
+              this.updates.forEach(function (update) {
+                switch (update.op) {
+                  case 'a':
+                  case 's':
+                    var base = (update.op === 'a' ? _this22.map.get(update.param) : undefined) || [];
+                    base.push(update.value);
+
+                    _this22.map.set(update.param, base);
+
+                    break;
+
+                  case 'd':
+                    if (update.value !== undefined) {
+                      var _base = _this22.map.get(update.param) || [];
+
+                      var idx = _base.indexOf(update.value);
+
+                      if (idx !== -1) {
+                        _base.splice(idx, 1);
+                      }
+
+                      if (_base.length > 0) {
+                        _this22.map.set(update.param, _base);
+                      } else {
+                        _this22.map["delete"](update.param);
+                      }
+                    } else {
+                      _this22.map["delete"](update.param);
+
+                      break;
+                    }
+
+                }
+              });
+              this.cloneFrom = this.updates = null;
+            }
+          }
+        }]);
+
+        return HttpParams;
+      }();
+      /**
+       * @license
+       * Copyright Google LLC All Rights Reserved.
+       *
+       * Use of this source code is governed by an MIT-style license that can be
+       * found in the LICENSE file at https://angular.io/license
+       */
+
+      /**
+       * Determine whether the given HTTP method may include a body.
+       */
+
+
+      function mightHaveBody(method) {
+        switch (method) {
+          case 'DELETE':
+          case 'GET':
+          case 'HEAD':
+          case 'OPTIONS':
+          case 'JSONP':
+            return false;
+
+          default:
+            return true;
+        }
+      }
+      /**
+       * Safely assert whether the given value is an ArrayBuffer.
+       *
+       * In some execution environments ArrayBuffer is not defined.
+       */
+
+
+      function isArrayBuffer(value) {
+        return typeof ArrayBuffer !== 'undefined' && value instanceof ArrayBuffer;
+      }
+      /**
+       * Safely assert whether the given value is a Blob.
+       *
+       * In some execution environments Blob is not defined.
+       */
+
+
+      function isBlob(value) {
+        return typeof Blob !== 'undefined' && value instanceof Blob;
+      }
+      /**
+       * Safely assert whether the given value is a FormData instance.
+       *
+       * In some execution environments FormData is not defined.
+       */
+
+
+      function isFormData(value) {
+        return typeof FormData !== 'undefined' && value instanceof FormData;
+      }
+      /**
+       * An outgoing HTTP request with an optional typed body.
+       *
+       * `HttpRequest` represents an outgoing request, including URL, method,
+       * headers, body, and other request configuration options. Instances should be
+       * assumed to be immutable. To modify a `HttpRequest`, the `clone`
+       * method should be used.
+       *
+       * @publicApi
+       */
+
+
+      var HttpRequest = /*#__PURE__*/function () {
+        function HttpRequest(method, url, third, fourth) {
+          _classCallCheck(this, HttpRequest);
+
+          this.url = url;
+          /**
+           * The request body, or `null` if one isn't set.
+           *
+           * Bodies are not enforced to be immutable, as they can include a reference to any
+           * user-defined data type. However, interceptors should take care to preserve
+           * idempotence by treating them as such.
+           */
+
+          this.body = null;
+          /**
+           * Whether this request should be made in a way that exposes progress events.
+           *
+           * Progress events are expensive (change detection runs on each event) and so
+           * they should only be requested if the consumer intends to monitor them.
+           */
+
+          this.reportProgress = false;
+          /**
+           * Whether this request should be sent with outgoing credentials (cookies).
+           */
+
+          this.withCredentials = false;
+          /**
+           * The expected response type of the server.
+           *
+           * This is used to parse the response appropriately before returning it to
+           * the requestee.
+           */
+
+          this.responseType = 'json';
+          this.method = method.toUpperCase(); // Next, need to figure out which argument holds the HttpRequestInit
+          // options, if any.
+
+          var options; // Check whether a body argument is expected. The only valid way to omit
+          // the body argument is to use a known no-body method like GET.
+
+          if (mightHaveBody(this.method) || !!fourth) {
+            // Body is the third argument, options are the fourth.
+            this.body = third !== undefined ? third : null;
+            options = fourth;
+          } else {
+            // No body required, options are the third argument. The body stays null.
+            options = third;
+          } // If options have been passed, interpret them.
+
+
+          if (options) {
+            // Normalize reportProgress and withCredentials.
+            this.reportProgress = !!options.reportProgress;
+            this.withCredentials = !!options.withCredentials; // Override default response type of 'json' if one is provided.
+
+            if (!!options.responseType) {
+              this.responseType = options.responseType;
+            } // Override headers if they're provided.
+
+
+            if (!!options.headers) {
+              this.headers = options.headers;
+            }
+
+            if (!!options.params) {
+              this.params = options.params;
+            }
+          } // If no headers have been passed in, construct a new HttpHeaders instance.
+
+
+          if (!this.headers) {
+            this.headers = new HttpHeaders();
+          } // If no parameters have been passed in, construct a new HttpUrlEncodedParams instance.
+
+
+          if (!this.params) {
+            this.params = new HttpParams();
+            this.urlWithParams = url;
+          } else {
+            // Encode the parameters to a string in preparation for inclusion in the URL.
+            var params = this.params.toString();
+
+            if (params.length === 0) {
+              // No parameters, the visible URL is just the URL given at creation time.
+              this.urlWithParams = url;
+            } else {
+              // Does the URL already have query parameters? Look for '?'.
+              var qIdx = url.indexOf('?'); // There are 3 cases to handle:
+              // 1) No existing parameters -> append '?' followed by params.
+              // 2) '?' exists and is followed by existing query string ->
+              //    append '&' followed by params.
+              // 3) '?' exists at the end of the url -> append params directly.
+              // This basically amounts to determining the character, if any, with
+              // which to join the URL and parameters.
+
+              var sep = qIdx === -1 ? '?' : qIdx < url.length - 1 ? '&' : '';
+              this.urlWithParams = url + sep + params;
+            }
+          }
+        }
+        /**
+         * Transform the free-form body into a serialized format suitable for
+         * transmission to the server.
+         */
+
+
+        _createClass2(HttpRequest, [{
+          key: "serializeBody",
+          value: function serializeBody() {
+            // If no body is present, no need to serialize it.
+            if (this.body === null) {
+              return null;
+            } // Check whether the body is already in a serialized form. If so,
+            // it can just be returned directly.
+
+
+            if (isArrayBuffer(this.body) || isBlob(this.body) || isFormData(this.body) || typeof this.body === 'string') {
+              return this.body;
+            } // Check whether the body is an instance of HttpUrlEncodedParams.
+
+
+            if (this.body instanceof HttpParams) {
+              return this.body.toString();
+            } // Check whether the body is an object or array, and serialize with JSON if so.
+
+
+            if (typeof this.body === 'object' || typeof this.body === 'boolean' || Array.isArray(this.body)) {
+              return JSON.stringify(this.body);
+            } // Fall back on toString() for everything else.
+
+
+            return this.body.toString();
+          }
+          /**
+           * Examine the body and attempt to infer an appropriate MIME type
+           * for it.
+           *
+           * If no such type can be inferred, this method will return `null`.
+           */
+
+        }, {
+          key: "detectContentTypeHeader",
+          value: function detectContentTypeHeader() {
+            // An empty body has no content type.
+            if (this.body === null) {
+              return null;
+            } // FormData bodies rely on the browser's content type assignment.
+
+
+            if (isFormData(this.body)) {
+              return null;
+            } // Blobs usually have their own content type. If it doesn't, then
+            // no type can be inferred.
+
+
+            if (isBlob(this.body)) {
+              return this.body.type || null;
+            } // Array buffers have unknown contents and thus no type can be inferred.
+
+
+            if (isArrayBuffer(this.body)) {
+              return null;
+            } // Technically, strings could be a form of JSON data, but it's safe enough
+            // to assume they're plain strings.
+
+
+            if (typeof this.body === 'string') {
+              return 'text/plain';
+            } // `HttpUrlEncodedParams` has its own content-type.
+
+
+            if (this.body instanceof HttpParams) {
+              return 'application/x-www-form-urlencoded;charset=UTF-8';
+            } // Arrays, objects, and numbers will be encoded as JSON.
+
+
+            if (typeof this.body === 'object' || typeof this.body === 'number' || Array.isArray(this.body)) {
+              return 'application/json';
+            } // No type could be inferred.
+
+
+            return null;
+          }
+        }, {
+          key: "clone",
+          value: function clone() {
+            var update = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+            // For method, url, and responseType, take the current value unless
+            // it is overridden in the update hash.
+            var method = update.method || this.method;
+            var url = update.url || this.url;
+            var responseType = update.responseType || this.responseType; // The body is somewhat special - a `null` value in update.body means
+            // whatever current body is present is being overridden with an empty
+            // body, whereas an `undefined` value in update.body implies no
+            // override.
+
+            var body = update.body !== undefined ? update.body : this.body; // Carefully handle the boolean options to differentiate between
+            // `false` and `undefined` in the update args.
+
+            var withCredentials = update.withCredentials !== undefined ? update.withCredentials : this.withCredentials;
+            var reportProgress = update.reportProgress !== undefined ? update.reportProgress : this.reportProgress; // Headers and params may be appended to if `setHeaders` or
+            // `setParams` are used.
+
+            var headers = update.headers || this.headers;
+            var params = update.params || this.params; // Check whether the caller has asked to add headers.
+
+            if (update.setHeaders !== undefined) {
+              // Set every requested header.
+              headers = Object.keys(update.setHeaders).reduce(function (headers, name) {
+                return headers.set(name, update.setHeaders[name]);
+              }, headers);
+            } // Check whether the caller has asked to set params.
+
+
+            if (update.setParams) {
+              // Set every requested param.
+              params = Object.keys(update.setParams).reduce(function (params, param) {
+                return params.set(param, update.setParams[param]);
+              }, params);
+            } // Finally, construct the new HttpRequest using the pieces from above.
+
+
+            return new HttpRequest(method, url, body, {
+              params: params,
+              headers: headers,
+              reportProgress: reportProgress,
+              responseType: responseType,
+              withCredentials: withCredentials
+            });
+          }
+        }]);
+
+        return HttpRequest;
+      }();
+      /**
+       * @license
+       * Copyright Google LLC All Rights Reserved.
+       *
+       * Use of this source code is governed by an MIT-style license that can be
+       * found in the LICENSE file at https://angular.io/license
+       */
+
+      /**
+       * Type enumeration for the different kinds of `HttpEvent`.
+       *
+       * @publicApi
+       */
+
+
+      var HttpEventType;
+
+      (function (HttpEventType) {
+        /**
+         * The request was sent out over the wire.
+         */
+        HttpEventType[HttpEventType["Sent"] = 0] = "Sent";
+        /**
+         * An upload progress event was received.
+         */
+
+        HttpEventType[HttpEventType["UploadProgress"] = 1] = "UploadProgress";
+        /**
+         * The response status code and headers were received.
+         */
+
+        HttpEventType[HttpEventType["ResponseHeader"] = 2] = "ResponseHeader";
+        /**
+         * A download progress event was received.
+         */
+
+        HttpEventType[HttpEventType["DownloadProgress"] = 3] = "DownloadProgress";
+        /**
+         * The full response including the body was received.
+         */
+
+        HttpEventType[HttpEventType["Response"] = 4] = "Response";
+        /**
+         * A custom event from an interceptor or a backend.
+         */
+
+        HttpEventType[HttpEventType["User"] = 5] = "User";
+      })(HttpEventType || (HttpEventType = {}));
+      /**
+       * Base class for both `HttpResponse` and `HttpHeaderResponse`.
+       *
+       * @publicApi
+       */
+
+
+      var HttpResponseBase =
+      /**
+       * Super-constructor for all responses.
+       *
+       * The single parameter accepted is an initialization hash. Any properties
+       * of the response passed there will override the default values.
+       */
+      function HttpResponseBase(init) {
+        var defaultStatus = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 200;
+        var defaultStatusText = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 'OK';
+
+        _classCallCheck(this, HttpResponseBase);
+
+        // If the hash has values passed, use them to initialize the response.
+        // Otherwise use the default values.
+        this.headers = init.headers || new HttpHeaders();
+        this.status = init.status !== undefined ? init.status : defaultStatus;
+        this.statusText = init.statusText || defaultStatusText;
+        this.url = init.url || null; // Cache the ok value to avoid defining a getter.
+
+        this.ok = this.status >= 200 && this.status < 300;
+      };
+      /**
+       * A partial HTTP response which only includes the status and header data,
+       * but no response body.
+       *
+       * `HttpHeaderResponse` is a `HttpEvent` available on the response
+       * event stream, only when progress events are requested.
+       *
+       * @publicApi
+       */
+
+
+      var HttpHeaderResponse = /*#__PURE__*/function (_HttpResponseBase) {
+        _inherits(HttpHeaderResponse, _HttpResponseBase);
+
+        var _super5 = _createSuper(HttpHeaderResponse);
+
+        /**
+         * Create a new `HttpHeaderResponse` with the given parameters.
+         */
+        function HttpHeaderResponse() {
+          var _this23;
+
+          var init = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+
+          _classCallCheck(this, HttpHeaderResponse);
+
+          _this23 = _super5.call(this, init);
+          _this23.type = HttpEventType.ResponseHeader;
+          return _this23;
+        }
+        /**
+         * Copy this `HttpHeaderResponse`, overriding its contents with the
+         * given parameter hash.
+         */
+
+
+        _createClass2(HttpHeaderResponse, [{
+          key: "clone",
+          value: function clone() {
+            var update = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+            // Perform a straightforward initialization of the new HttpHeaderResponse,
+            // overriding the current parameters with new ones if given.
+            return new HttpHeaderResponse({
+              headers: update.headers || this.headers,
+              status: update.status !== undefined ? update.status : this.status,
+              statusText: update.statusText || this.statusText,
+              url: update.url || this.url || undefined
+            });
+          }
+        }]);
+
+        return HttpHeaderResponse;
+      }(HttpResponseBase);
+      /**
+       * A full HTTP response, including a typed response body (which may be `null`
+       * if one was not returned).
+       *
+       * `HttpResponse` is a `HttpEvent` available on the response event
+       * stream.
+       *
+       * @publicApi
+       */
+
+
+      var HttpResponse = /*#__PURE__*/function (_HttpResponseBase2) {
+        _inherits(HttpResponse, _HttpResponseBase2);
+
+        var _super6 = _createSuper(HttpResponse);
+
+        /**
+         * Construct a new `HttpResponse`.
+         */
+        function HttpResponse() {
+          var _this24;
+
+          var init = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+
+          _classCallCheck(this, HttpResponse);
+
+          _this24 = _super6.call(this, init);
+          _this24.type = HttpEventType.Response;
+          _this24.body = init.body !== undefined ? init.body : null;
+          return _this24;
+        }
+
+        _createClass2(HttpResponse, [{
+          key: "clone",
+          value: function clone() {
+            var update = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+            return new HttpResponse({
+              body: update.body !== undefined ? update.body : this.body,
+              headers: update.headers || this.headers,
+              status: update.status !== undefined ? update.status : this.status,
+              statusText: update.statusText || this.statusText,
+              url: update.url || this.url || undefined
+            });
+          }
+        }]);
+
+        return HttpResponse;
+      }(HttpResponseBase);
+      /**
+       * A response that represents an error or failure, either from a
+       * non-successful HTTP status, an error while executing the request,
+       * or some other failure which occurred during the parsing of the response.
+       *
+       * Any error returned on the `Observable` response stream will be
+       * wrapped in an `HttpErrorResponse` to provide additional context about
+       * the state of the HTTP layer when the error occurred. The error property
+       * will contain either a wrapped Error object or the error response returned
+       * from the server.
+       *
+       * @publicApi
+       */
+
+
+      var HttpErrorResponse = /*#__PURE__*/function (_HttpResponseBase3) {
+        _inherits(HttpErrorResponse, _HttpResponseBase3);
+
+        var _super7 = _createSuper(HttpErrorResponse);
+
+        function HttpErrorResponse(init) {
+          var _this25;
+
+          _classCallCheck(this, HttpErrorResponse);
+
+          // Initialize with a default status of 0 / Unknown Error.
+          _this25 = _super7.call(this, init, 0, 'Unknown Error');
+          _this25.name = 'HttpErrorResponse';
+          /**
+           * Errors are never okay, even when the status code is in the 2xx success range.
+           */
+
+          _this25.ok = false; // If the response was successful, then this was a parse error. Otherwise, it was
+          // a protocol-level failure of some sort. Either the request failed in transit
+          // or the server returned an unsuccessful status code.
+
+          if (_this25.status >= 200 && _this25.status < 300) {
+            _this25.message = "Http failure during parsing for ".concat(init.url || '(unknown url)');
+          } else {
+            _this25.message = "Http failure response for ".concat(init.url || '(unknown url)', ": ").concat(init.status, " ").concat(init.statusText);
+          }
+
+          _this25.error = init.error || null;
+          return _this25;
+        }
+
+        return HttpErrorResponse;
+      }(HttpResponseBase);
+      /**
+       * @license
+       * Copyright Google LLC All Rights Reserved.
+       *
+       * Use of this source code is governed by an MIT-style license that can be
+       * found in the LICENSE file at https://angular.io/license
+       */
+
+      /**
+       * Constructs an instance of `HttpRequestOptions<T>` from a source `HttpMethodOptions` and
+       * the given `body`. This function clones the object and adds the body.
+       *
+       * Note that the `responseType` *options* value is a String that identifies the
+       * single data type of the response.
+       * A single overload version of the method handles each response type.
+       * The value of `responseType` cannot be a union, as the combined signature could imply.
+       *
+       */
+
+
+      function addBody(options, body) {
+        return {
+          body: body,
+          headers: options.headers,
+          observe: options.observe,
+          params: options.params,
+          reportProgress: options.reportProgress,
+          responseType: options.responseType,
+          withCredentials: options.withCredentials
+        };
+      }
+      /**
+       * Performs HTTP requests.
+       * This service is available as an injectable class, with methods to perform HTTP requests.
+       * Each request method has multiple signatures, and the return type varies based on
+       * the signature that is called (mainly the values of `observe` and `responseType`).
+       *
+       * Note that the `responseType` *options* value is a String that identifies the
+       * single data type of the response.
+       * A single overload version of the method handles each response type.
+       * The value of `responseType` cannot be a union, as the combined signature could imply.
+      
+       *
+       * @usageNotes
+       * Sample HTTP requests for the [Tour of Heroes](/tutorial/toh-pt0) application.
+       *
+       * ### HTTP Request Example
+       *
+       * ```
+       *  // GET heroes whose name contains search term
+       * searchHeroes(term: string): observable<Hero[]>{
+       *
+       *  const params = new HttpParams({fromString: 'name=term'});
+       *    return this.httpClient.request('GET', this.heroesUrl, {responseType:'json', params});
+       * }
+       * ```
+       * ### JSONP Example
+       * ```
+       * requestJsonp(url, callback = 'callback') {
+       *  return this.httpClient.jsonp(this.heroesURL, callback);
+       * }
+       * ```
+       *
+       * ### PATCH Example
+       * ```
+       * // PATCH one of the heroes' name
+       * patchHero (id: number, heroName: string): Observable<{}> {
+       * const url = `${this.heroesUrl}/${id}`;   // PATCH api/heroes/42
+       *  return this.httpClient.patch(url, {name: heroName}, httpOptions)
+       *    .pipe(catchError(this.handleError('patchHero')));
+       * }
+       * ```
+       *
+       * @see [HTTP Guide](guide/http)
+       *
+       * @publicApi
+       */
+
+
+      var HttpClient = /*#__PURE__*/function () {
+        function HttpClient(handler) {
+          _classCallCheck(this, HttpClient);
+
+          this.handler = handler;
+        }
+        /**
+         * Constructs an observable for a generic HTTP request that, when subscribed,
+         * fires the request through the chain of registered interceptors and on to the
+         * server.
+         *
+         * You can pass an `HttpRequest` directly as the only parameter. In this case,
+         * the call returns an observable of the raw `HttpEvent` stream.
+         *
+         * Alternatively you can pass an HTTP method as the first parameter,
+         * a URL string as the second, and an options hash containing the request body as the third.
+         * See `addBody()`. In this case, the specified `responseType` and `observe` options determine the
+         * type of returned observable.
+         *   * The `responseType` value determines how a successful response body is parsed.
+         *   * If `responseType` is the default `json`, you can pass a type interface for the resulting
+         * object as a type parameter to the call.
+         *
+         * The `observe` value determines the return type, according to what you are interested in
+         * observing.
+         *   * An `observe` value of events returns an observable of the raw `HttpEvent` stream, including
+         * progress events by default.
+         *   * An `observe` value of response returns an observable of `HttpResponse<T>`,
+         * where the `T` parameter depends on the `responseType` and any optionally provided type
+         * parameter.
+         *   * An `observe` value of body returns an observable of `<T>` with the same `T` body type.
+         *
+         */
+
+
+        _createClass2(HttpClient, [{
+          key: "request",
+          value: function request(first, url) {
+            var _this26 = this;
+
+            var options = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
+            var req; // First, check whether the primary argument is an instance of `HttpRequest`.
+
+            if (first instanceof HttpRequest) {
+              // It is. The other arguments must be undefined (per the signatures) and can be
+              // ignored.
+              req = first;
+            } else {
+              // It's a string, so it represents a URL. Construct a request based on it,
+              // and incorporate the remaining arguments (assuming `GET` unless a method is
+              // provided.
+              // Figure out the headers.
+              var headers = undefined;
+
+              if (options.headers instanceof HttpHeaders) {
+                headers = options.headers;
+              } else {
+                headers = new HttpHeaders(options.headers);
+              } // Sort out parameters.
+
+
+              var params = undefined;
+
+              if (!!options.params) {
+                if (options.params instanceof HttpParams) {
+                  params = options.params;
+                } else {
+                  params = new HttpParams({
+                    fromObject: options.params
+                  });
+                }
+              } // Construct the request.
+
+
+              req = new HttpRequest(first, url, options.body !== undefined ? options.body : null, {
+                headers: headers,
+                params: params,
+                reportProgress: options.reportProgress,
+                // By default, JSON is assumed to be returned for all calls.
+                responseType: options.responseType || 'json',
+                withCredentials: options.withCredentials
+              });
+            } // Start with an Observable.of() the initial request, and run the handler (which
+            // includes all interceptors) inside a concatMap(). This way, the handler runs
+            // inside an Observable chain, which causes interceptors to be re-run on every
+            // subscription (this also makes retries re-run the handler, including interceptors).
+
+
+            var events$ = Object(rxjs__WEBPACK_IMPORTED_MODULE_1__["of"])(req).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["concatMap"])(function (req) {
+              return _this26.handler.handle(req);
+            })); // If coming via the API signature which accepts a previously constructed HttpRequest,
+            // the only option is to get the event stream. Otherwise, return the event stream if
+            // that is what was requested.
+
+            if (first instanceof HttpRequest || options.observe === 'events') {
+              return events$;
+            } // The requested stream contains either the full response or the body. In either
+            // case, the first step is to filter the event stream to extract a stream of
+            // responses(s).
+
+
+            var res$ = events$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["filter"])(function (event) {
+              return event instanceof HttpResponse;
+            })); // Decide which stream to return.
+
+            switch (options.observe || 'body') {
+              case 'body':
+                // The requested stream is the body. Map the response stream to the response
+                // body. This could be done more simply, but a misbehaving interceptor might
+                // transform the response body into a different format and ignore the requested
+                // responseType. Guard against this by validating that the response is of the
+                // requested type.
+                switch (req.responseType) {
+                  case 'arraybuffer':
+                    return res$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])(function (res) {
+                      // Validate that the body is an ArrayBuffer.
+                      if (res.body !== null && !(res.body instanceof ArrayBuffer)) {
+                        throw new Error('Response is not an ArrayBuffer.');
+                      }
+
+                      return res.body;
+                    }));
+
+                  case 'blob':
+                    return res$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])(function (res) {
+                      // Validate that the body is a Blob.
+                      if (res.body !== null && !(res.body instanceof Blob)) {
+                        throw new Error('Response is not a Blob.');
+                      }
+
+                      return res.body;
+                    }));
+
+                  case 'text':
+                    return res$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])(function (res) {
+                      // Validate that the body is a string.
+                      if (res.body !== null && typeof res.body !== 'string') {
+                        throw new Error('Response is not a string.');
+                      }
+
+                      return res.body;
+                    }));
+
+                  case 'json':
+                  default:
+                    // No validation needed for JSON responses, as they can be of any type.
+                    return res$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])(function (res) {
+                      return res.body;
+                    }));
+                }
+
+              case 'response':
+                // The response stream was requested directly, so return it.
+                return res$;
+
+              default:
+                // Guard against new future observe types being added.
+                throw new Error("Unreachable: unhandled observe type ".concat(options.observe, "}"));
+            }
+          }
+          /**
+           * Constructs an observable that, when subscribed, causes the configured
+           * `DELETE` request to execute on the server. See the individual overloads for
+           * details on the return type.
+           *
+           * @param url     The endpoint URL.
+           * @param options The HTTP options to send with the request.
+           *
+           */
+
+        }, {
+          key: "delete",
+          value: function _delete(url) {
+            var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+            return this.request('DELETE', url, options);
+          }
+          /**
+           * Constructs an observable that, when subscribed, causes the configured
+           * `GET` request to execute on the server. See the individual overloads for
+           * details on the return type.
+           */
+
+        }, {
+          key: "get",
+          value: function get(url) {
+            var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+            return this.request('GET', url, options);
+          }
+          /**
+           * Constructs an observable that, when subscribed, causes the configured
+           * `HEAD` request to execute on the server. The `HEAD` method returns
+           * meta information about the resource without transferring the
+           * resource itself. See the individual overloads for
+           * details on the return type.
+           */
+
+        }, {
+          key: "head",
+          value: function head(url) {
+            var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+            return this.request('HEAD', url, options);
+          }
+          /**
+           * Constructs an `Observable` that, when subscribed, causes a request with the special method
+           * `JSONP` to be dispatched via the interceptor pipeline.
+           * The [JSONP pattern](https://en.wikipedia.org/wiki/JSONP) works around limitations of certain
+           * API endpoints that don't support newer,
+           * and preferable [CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS) protocol.
+           * JSONP treats the endpoint API as a JavaScript file and tricks the browser to process the
+           * requests even if the API endpoint is not located on the same domain (origin) as the client-side
+           * application making the request.
+           * The endpoint API must support JSONP callback for JSONP requests to work.
+           * The resource API returns the JSON response wrapped in a callback function.
+           * You can pass the callback function name as one of the query parameters.
+           * Note that JSONP requests can only be used with `GET` requests.
+           *
+           * @param url The resource URL.
+           * @param callbackParam The callback function name.
+           *
+           */
+
+        }, {
+          key: "jsonp",
+          value: function jsonp(url, callbackParam) {
+            return this.request('JSONP', url, {
+              params: new HttpParams().append(callbackParam, 'JSONP_CALLBACK'),
+              observe: 'body',
+              responseType: 'json'
+            });
+          }
+          /**
+           * Constructs an `Observable` that, when subscribed, causes the configured
+           * `OPTIONS` request to execute on the server. This method allows the client
+           * to determine the supported HTTP methods and other capabilites of an endpoint,
+           * without implying a resource action. See the individual overloads for
+           * details on the return type.
+           */
+
+        }, {
+          key: "options",
+          value: function options(url) {
+            var _options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+
+            return this.request('OPTIONS', url, _options);
+          }
+          /**
+           * Constructs an observable that, when subscribed, causes the configured
+           * `PATCH` request to execute on the server. See the individual overloads for
+           * details on the return type.
+           */
+
+        }, {
+          key: "patch",
+          value: function patch(url, body) {
+            var options = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
+            return this.request('PATCH', url, addBody(options, body));
+          }
+          /**
+           * Constructs an observable that, when subscribed, causes the configured
+           * `POST` request to execute on the server. The server responds with the location of
+           * the replaced resource. See the individual overloads for
+           * details on the return type.
+           */
+
+        }, {
+          key: "post",
+          value: function post(url, body) {
+            var options = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
+            return this.request('POST', url, addBody(options, body));
+          }
+          /**
+           * Constructs an observable that, when subscribed, causes the configured
+           * `PUT` request to execute on the server. The `PUT` method replaces an existing resource
+           * with a new set of values.
+           * See the individual overloads for details on the return type.
+           */
+
+        }, {
+          key: "put",
+          value: function put(url, body) {
+            var options = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
+            return this.request('PUT', url, addBody(options, body));
+          }
+        }]);
+
+        return HttpClient;
+      }();
+
+      HttpClient.ɵfac = function HttpClient_Factory(t) {
+        return new (t || HttpClient)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](HttpHandler));
+      };
+
+      HttpClient.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjectable"]({
+        token: HttpClient,
+        factory: HttpClient.ɵfac
+      });
+
+      HttpClient.ctorParameters = function () {
+        return [{
+          type: HttpHandler
+        }];
+      };
+      /*@__PURE__*/
+
+
+      (function () {
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](HttpClient, [{
+          type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"]
+        }], function () {
+          return [{
+            type: HttpHandler
+          }];
+        }, null);
+      })();
+      /**
+       * @license
+       * Copyright Google LLC All Rights Reserved.
+       *
+       * Use of this source code is governed by an MIT-style license that can be
+       * found in the LICENSE file at https://angular.io/license
+       */
+
+      /**
+       * `HttpHandler` which applies an `HttpInterceptor` to an `HttpRequest`.
+       *
+       *
+       */
+
+
+      var HttpInterceptorHandler = /*#__PURE__*/function () {
+        function HttpInterceptorHandler(next, interceptor) {
+          _classCallCheck(this, HttpInterceptorHandler);
+
+          this.next = next;
+          this.interceptor = interceptor;
+        }
+
+        _createClass2(HttpInterceptorHandler, [{
+          key: "handle",
+          value: function handle(req) {
+            return this.interceptor.intercept(req, this.next);
+          }
+        }]);
+
+        return HttpInterceptorHandler;
+      }();
+      /**
+       * A multi-provider token that represents the array of registered
+       * `HttpInterceptor` objects.
+       *
+       * @publicApi
+       */
+
+
+      var HTTP_INTERCEPTORS = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["InjectionToken"]('HTTP_INTERCEPTORS');
+
+      var NoopInterceptor = /*#__PURE__*/function () {
+        function NoopInterceptor() {
+          _classCallCheck(this, NoopInterceptor);
+        }
+
+        _createClass2(NoopInterceptor, [{
+          key: "intercept",
+          value: function intercept(req, next) {
+            return next.handle(req);
+          }
+        }]);
+
+        return NoopInterceptor;
+      }();
+
+      NoopInterceptor.ɵfac = function NoopInterceptor_Factory(t) {
+        return new (t || NoopInterceptor)();
+      };
+
+      NoopInterceptor.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjectable"]({
+        token: NoopInterceptor,
+        factory: NoopInterceptor.ɵfac
+      });
+      /*@__PURE__*/
+
+      (function () {
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](NoopInterceptor, [{
+          type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"]
+        }], null, null);
+      })();
+      /**
+       * @license
+       * Copyright Google LLC All Rights Reserved.
+       *
+       * Use of this source code is governed by an MIT-style license that can be
+       * found in the LICENSE file at https://angular.io/license
+       */
+      // Every request made through JSONP needs a callback name that's unique across the
+      // whole page. Each request is assigned an id and the callback name is constructed
+      // from that. The next id to be assigned is tracked in a global variable here that
+      // is shared among all applications on the page.
+
+
+      var nextRequestId = 0; // Error text given when a JSONP script is injected, but doesn't invoke the callback
+      // passed in its URL.
+
+      var JSONP_ERR_NO_CALLBACK = 'JSONP injected script did not invoke callback.'; // Error text given when a request is passed to the JsonpClientBackend that doesn't
+      // have a request method JSONP.
+
+      var JSONP_ERR_WRONG_METHOD = 'JSONP requests must use JSONP request method.';
+      var JSONP_ERR_WRONG_RESPONSE_TYPE = 'JSONP requests must use Json response type.';
+      /**
+       * DI token/abstract type representing a map of JSONP callbacks.
+       *
+       * In the browser, this should always be the `window` object.
+       *
+       *
+       */
+
+      var JsonpCallbackContext = function JsonpCallbackContext() {
+        _classCallCheck(this, JsonpCallbackContext);
+      };
+      /**
+       * Processes an `HttpRequest` with the JSONP method,
+       * by performing JSONP style requests.
+       * @see `HttpHandler`
+       * @see `HttpXhrBackend`
+       *
+       * @publicApi
+       */
+
+
+      var JsonpClientBackend = /*#__PURE__*/function () {
+        function JsonpClientBackend(callbackMap, document) {
+          _classCallCheck(this, JsonpClientBackend);
+
+          this.callbackMap = callbackMap;
+          this.document = document;
+        }
+        /**
+         * Get the name of the next callback method, by incrementing the global `nextRequestId`.
+         */
+
+
+        _createClass2(JsonpClientBackend, [{
+          key: "nextCallback",
+          value: function nextCallback() {
+            return "ng_jsonp_callback_".concat(nextRequestId++);
+          }
+          /**
+           * Processes a JSONP request and returns an event stream of the results.
+           * @param req The request object.
+           * @returns An observable of the response events.
+           *
+           */
+
+        }, {
+          key: "handle",
+          value: function handle(req) {
+            var _this27 = this;
+
+            // Firstly, check both the method and response type. If either doesn't match
+            // then the request was improperly routed here and cannot be handled.
+            if (req.method !== 'JSONP') {
+              throw new Error(JSONP_ERR_WRONG_METHOD);
+            } else if (req.responseType !== 'json') {
+              throw new Error(JSONP_ERR_WRONG_RESPONSE_TYPE);
+            } // Everything else happens inside the Observable boundary.
+
+
+            return new rxjs__WEBPACK_IMPORTED_MODULE_1__["Observable"](function (observer) {
+              // The first step to make a request is to generate the callback name, and replace the
+              // callback placeholder in the URL with the name. Care has to be taken here to ensure
+              // a trailing &, if matched, gets inserted back into the URL in the correct place.
+              var callback = _this27.nextCallback();
+
+              var url = req.urlWithParams.replace(/=JSONP_CALLBACK(&|$)/, "=".concat(callback, "$1")); // Construct the <script> tag and point it at the URL.
+
+              var node = _this27.document.createElement('script');
+
+              node.src = url; // A JSONP request requires waiting for multiple callbacks. These variables
+              // are closed over and track state across those callbacks.
+              // The response object, if one has been received, or null otherwise.
+
+              var body = null; // Whether the response callback has been called.
+
+              var finished = false; // Whether the request has been cancelled (and thus any other callbacks)
+              // should be ignored.
+
+              var cancelled = false; // Set the response callback in this.callbackMap (which will be the window
+              // object in the browser. The script being loaded via the <script> tag will
+              // eventually call this callback.
+
+              _this27.callbackMap[callback] = function (data) {
+                // Data has been received from the JSONP script. Firstly, delete this callback.
+                delete _this27.callbackMap[callback]; // Next, make sure the request wasn't cancelled in the meantime.
+
+                if (cancelled) {
+                  return;
+                } // Set state to indicate data was received.
+
+
+                body = data;
+                finished = true;
+              }; // cleanup() is a utility closure that removes the <script> from the page and
+              // the response callback from the window. This logic is used in both the
+              // success, error, and cancellation paths, so it's extracted out for convenience.
+
+
+              var cleanup = function cleanup() {
+                // Remove the <script> tag if it's still on the page.
+                if (node.parentNode) {
+                  node.parentNode.removeChild(node);
+                } // Remove the response callback from the callbackMap (window object in the
+                // browser).
+
+
+                delete _this27.callbackMap[callback];
+              }; // onLoad() is the success callback which runs after the response callback
+              // if the JSONP script loads successfully. The event itself is unimportant.
+              // If something went wrong, onLoad() may run without the response callback
+              // having been invoked.
+
+
+              var onLoad = function onLoad(event) {
+                // Do nothing if the request has been cancelled.
+                if (cancelled) {
+                  return;
+                } // Cleanup the page.
+
+
+                cleanup(); // Check whether the response callback has run.
+
+                if (!finished) {
+                  // It hasn't, something went wrong with the request. Return an error via
+                  // the Observable error path. All JSONP errors have status 0.
+                  observer.error(new HttpErrorResponse({
+                    url: url,
+                    status: 0,
+                    statusText: 'JSONP Error',
+                    error: new Error(JSONP_ERR_NO_CALLBACK)
+                  }));
+                  return;
+                } // Success. body either contains the response body or null if none was
+                // returned.
+
+
+                observer.next(new HttpResponse({
+                  body: body,
+                  status: 200,
+                  statusText: 'OK',
+                  url: url
+                })); // Complete the stream, the response is over.
+
+                observer.complete();
+              }; // onError() is the error callback, which runs if the script returned generates
+              // a Javascript error. It emits the error via the Observable error channel as
+              // a HttpErrorResponse.
+
+
+              var onError = function onError(error) {
+                // If the request was already cancelled, no need to emit anything.
+                if (cancelled) {
+                  return;
+                }
+
+                cleanup(); // Wrap the error in a HttpErrorResponse.
+
+                observer.error(new HttpErrorResponse({
+                  error: error,
+                  status: 0,
+                  statusText: 'JSONP Error',
+                  url: url
+                }));
+              }; // Subscribe to both the success (load) and error events on the <script> tag,
+              // and add it to the page.
+
+
+              node.addEventListener('load', onLoad);
+              node.addEventListener('error', onError);
+
+              _this27.document.body.appendChild(node); // The request has now been successfully sent.
+
+
+              observer.next({
+                type: HttpEventType.Sent
+              }); // Cancellation handler.
+
+              return function () {
+                // Track the cancellation so event listeners won't do anything even if already scheduled.
+                cancelled = true; // Remove the event listeners so they won't run if the events later fire.
+
+                node.removeEventListener('load', onLoad);
+                node.removeEventListener('error', onError); // And finally, clean up the page.
+
+                cleanup();
+              };
+            });
+          }
+        }]);
+
+        return JsonpClientBackend;
+      }();
+
+      JsonpClientBackend.ɵfac = function JsonpClientBackend_Factory(t) {
+        return new (t || JsonpClientBackend)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](JsonpCallbackContext), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_angular_common__WEBPACK_IMPORTED_MODULE_3__["DOCUMENT"]));
+      };
+
+      JsonpClientBackend.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjectable"]({
+        token: JsonpClientBackend,
+        factory: JsonpClientBackend.ɵfac
+      });
+
+      JsonpClientBackend.ctorParameters = function () {
+        return [{
+          type: JsonpCallbackContext
+        }, {
+          type: undefined,
+          decorators: [{
+            type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Inject"],
+            args: [_angular_common__WEBPACK_IMPORTED_MODULE_3__["DOCUMENT"]]
+          }]
+        }];
+      };
+      /*@__PURE__*/
+
+
+      (function () {
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](JsonpClientBackend, [{
+          type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"]
+        }], function () {
+          return [{
+            type: JsonpCallbackContext
+          }, {
+            type: undefined,
+            decorators: [{
+              type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Inject"],
+              args: [_angular_common__WEBPACK_IMPORTED_MODULE_3__["DOCUMENT"]]
+            }]
+          }];
+        }, null);
+      })();
+      /**
+       * Identifies requests with the method JSONP and
+       * shifts them to the `JsonpClientBackend`.
+       *
+       * @see `HttpInterceptor`
+       *
+       * @publicApi
+       */
+
+
+      var JsonpInterceptor = /*#__PURE__*/function () {
+        function JsonpInterceptor(jsonp) {
+          _classCallCheck(this, JsonpInterceptor);
+
+          this.jsonp = jsonp;
+        }
+        /**
+         * Identifies and handles a given JSONP request.
+         * @param req The outgoing request object to handle.
+         * @param next The next interceptor in the chain, or the backend
+         * if no interceptors remain in the chain.
+         * @returns An observable of the event stream.
+         */
+
+
+        _createClass2(JsonpInterceptor, [{
+          key: "intercept",
+          value: function intercept(req, next) {
+            if (req.method === 'JSONP') {
+              return this.jsonp.handle(req);
+            } // Fall through for normal HTTP requests.
+
+
+            return next.handle(req);
+          }
+        }]);
+
+        return JsonpInterceptor;
+      }();
+
+      JsonpInterceptor.ɵfac = function JsonpInterceptor_Factory(t) {
+        return new (t || JsonpInterceptor)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](JsonpClientBackend));
+      };
+
+      JsonpInterceptor.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjectable"]({
+        token: JsonpInterceptor,
+        factory: JsonpInterceptor.ɵfac
+      });
+
+      JsonpInterceptor.ctorParameters = function () {
+        return [{
+          type: JsonpClientBackend
+        }];
+      };
+      /*@__PURE__*/
+
+
+      (function () {
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](JsonpInterceptor, [{
+          type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"]
+        }], function () {
+          return [{
+            type: JsonpClientBackend
+          }];
+        }, null);
+      })();
+      /**
+       * @license
+       * Copyright Google LLC All Rights Reserved.
+       *
+       * Use of this source code is governed by an MIT-style license that can be
+       * found in the LICENSE file at https://angular.io/license
+       */
+
+
+      var XSSI_PREFIX = /^\)\]\}',?\n/;
+      /**
+       * Determine an appropriate URL for the response, by checking either
+       * XMLHttpRequest.responseURL or the X-Request-URL header.
+       */
+
+      function getResponseUrl(xhr) {
+        if ('responseURL' in xhr && xhr.responseURL) {
+          return xhr.responseURL;
+        }
+
+        if (/^X-Request-URL:/m.test(xhr.getAllResponseHeaders())) {
+          return xhr.getResponseHeader('X-Request-URL');
+        }
+
+        return null;
+      }
+      /**
+       * A wrapper around the `XMLHttpRequest` constructor.
+       *
+       * @publicApi
+       */
+
+
+      var XhrFactory = function XhrFactory() {
+        _classCallCheck(this, XhrFactory);
+      };
+      /**
+       * A factory for `HttpXhrBackend` that uses the `XMLHttpRequest` browser API.
+       *
+       */
+
+
+      var BrowserXhr = /*#__PURE__*/function () {
+        function BrowserXhr() {
+          _classCallCheck(this, BrowserXhr);
+        }
+
+        _createClass2(BrowserXhr, [{
+          key: "build",
+          value: function build() {
+            return new XMLHttpRequest();
+          }
+        }]);
+
+        return BrowserXhr;
+      }();
+
+      BrowserXhr.ɵfac = function BrowserXhr_Factory(t) {
+        return new (t || BrowserXhr)();
+      };
+
+      BrowserXhr.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjectable"]({
+        token: BrowserXhr,
+        factory: BrowserXhr.ɵfac
+      });
+
+      BrowserXhr.ctorParameters = function () {
+        return [];
+      };
+      /*@__PURE__*/
+
+
+      (function () {
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](BrowserXhr, [{
+          type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"]
+        }], function () {
+          return [];
+        }, null);
+      })();
+      /**
+       * Uses `XMLHttpRequest` to send requests to a backend server.
+       * @see `HttpHandler`
+       * @see `JsonpClientBackend`
+       *
+       * @publicApi
+       */
+
+
+      var HttpXhrBackend = /*#__PURE__*/function () {
+        function HttpXhrBackend(xhrFactory) {
+          _classCallCheck(this, HttpXhrBackend);
+
+          this.xhrFactory = xhrFactory;
+        }
+        /**
+         * Processes a request and returns a stream of response events.
+         * @param req The request object.
+         * @returns An observable of the response events.
+         */
+
+
+        _createClass2(HttpXhrBackend, [{
+          key: "handle",
+          value: function handle(req) {
+            var _this28 = this;
+
+            // Quick check to give a better error message when a user attempts to use
+            // HttpClient.jsonp() without installing the JsonpClientModule
+            if (req.method === 'JSONP') {
+              throw new Error("Attempted to construct Jsonp request without JsonpClientModule installed.");
+            } // Everything happens on Observable subscription.
+
+
+            return new rxjs__WEBPACK_IMPORTED_MODULE_1__["Observable"](function (observer) {
+              // Start by setting up the XHR object with request method, URL, and withCredentials flag.
+              var xhr = _this28.xhrFactory.build();
+
+              xhr.open(req.method, req.urlWithParams);
+
+              if (!!req.withCredentials) {
+                xhr.withCredentials = true;
+              } // Add all the requested headers.
+
+
+              req.headers.forEach(function (name, values) {
+                return xhr.setRequestHeader(name, values.join(','));
+              }); // Add an Accept header if one isn't present already.
+
+              if (!req.headers.has('Accept')) {
+                xhr.setRequestHeader('Accept', 'application/json, text/plain, */*');
+              } // Auto-detect the Content-Type header if one isn't present already.
+
+
+              if (!req.headers.has('Content-Type')) {
+                var detectedType = req.detectContentTypeHeader(); // Sometimes Content-Type detection fails.
+
+                if (detectedType !== null) {
+                  xhr.setRequestHeader('Content-Type', detectedType);
+                }
+              } // Set the responseType if one was requested.
+
+
+              if (req.responseType) {
+                var responseType = req.responseType.toLowerCase(); // JSON responses need to be processed as text. This is because if the server
+                // returns an XSSI-prefixed JSON response, the browser will fail to parse it,
+                // xhr.response will be null, and xhr.responseText cannot be accessed to
+                // retrieve the prefixed JSON data in order to strip the prefix. Thus, all JSON
+                // is parsed by first requesting text and then applying JSON.parse.
+
+                xhr.responseType = responseType !== 'json' ? responseType : 'text';
+              } // Serialize the request body if one is present. If not, this will be set to null.
+
+
+              var reqBody = req.serializeBody(); // If progress events are enabled, response headers will be delivered
+              // in two events - the HttpHeaderResponse event and the full HttpResponse
+              // event. However, since response headers don't change in between these
+              // two events, it doesn't make sense to parse them twice. So headerResponse
+              // caches the data extracted from the response whenever it's first parsed,
+              // to ensure parsing isn't duplicated.
+
+              var headerResponse = null; // partialFromXhr extracts the HttpHeaderResponse from the current XMLHttpRequest
+              // state, and memoizes it into headerResponse.
+
+              var partialFromXhr = function partialFromXhr() {
+                if (headerResponse !== null) {
+                  return headerResponse;
+                } // Read status and normalize an IE9 bug (http://bugs.jquery.com/ticket/1450).
+
+
+                var status = xhr.status === 1223 ? 204 : xhr.status;
+                var statusText = xhr.statusText || 'OK'; // Parse headers from XMLHttpRequest - this step is lazy.
+
+                var headers = new HttpHeaders(xhr.getAllResponseHeaders()); // Read the response URL from the XMLHttpResponse instance and fall back on the
+                // request URL.
+
+                var url = getResponseUrl(xhr) || req.url; // Construct the HttpHeaderResponse and memoize it.
+
+                headerResponse = new HttpHeaderResponse({
+                  headers: headers,
+                  status: status,
+                  statusText: statusText,
+                  url: url
+                });
+                return headerResponse;
+              }; // Next, a few closures are defined for the various events which XMLHttpRequest can
+              // emit. This allows them to be unregistered as event listeners later.
+              // First up is the load event, which represents a response being fully available.
+
+
+              var onLoad = function onLoad() {
+                // Read response state from the memoized partial data.
+                var _partialFromXhr = partialFromXhr(),
+                    headers = _partialFromXhr.headers,
+                    status = _partialFromXhr.status,
+                    statusText = _partialFromXhr.statusText,
+                    url = _partialFromXhr.url; // The body will be read out if present.
+
+
+                var body = null;
+
+                if (status !== 204) {
+                  // Use XMLHttpRequest.response if set, responseText otherwise.
+                  body = typeof xhr.response === 'undefined' ? xhr.responseText : xhr.response;
+                } // Normalize another potential bug (this one comes from CORS).
+
+
+                if (status === 0) {
+                  status = !!body ? 200 : 0;
+                } // ok determines whether the response will be transmitted on the event or
+                // error channel. Unsuccessful status codes (not 2xx) will always be errors,
+                // but a successful status code can still result in an error if the user
+                // asked for JSON data and the body cannot be parsed as such.
+
+
+                var ok = status >= 200 && status < 300; // Check whether the body needs to be parsed as JSON (in many cases the browser
+                // will have done that already).
+
+                if (req.responseType === 'json' && typeof body === 'string') {
+                  // Save the original body, before attempting XSSI prefix stripping.
+                  var originalBody = body;
+                  body = body.replace(XSSI_PREFIX, '');
+
+                  try {
+                    // Attempt the parse. If it fails, a parse error should be delivered to the user.
+                    body = body !== '' ? JSON.parse(body) : null;
+                  } catch (error) {
+                    // Since the JSON.parse failed, it's reasonable to assume this might not have been a
+                    // JSON response. Restore the original body (including any XSSI prefix) to deliver
+                    // a better error response.
+                    body = originalBody; // If this was an error request to begin with, leave it as a string, it probably
+                    // just isn't JSON. Otherwise, deliver the parsing error to the user.
+
+                    if (ok) {
+                      // Even though the response status was 2xx, this is still an error.
+                      ok = false; // The parse error contains the text of the body that failed to parse.
+
+                      body = {
+                        error: error,
+                        text: body
+                      };
+                    }
+                  }
+                }
+
+                if (ok) {
+                  // A successful response is delivered on the event stream.
+                  observer.next(new HttpResponse({
+                    body: body,
+                    headers: headers,
+                    status: status,
+                    statusText: statusText,
+                    url: url || undefined
+                  })); // The full body has been received and delivered, no further events
+                  // are possible. This request is complete.
+
+                  observer.complete();
+                } else {
+                  // An unsuccessful request is delivered on the error channel.
+                  observer.error(new HttpErrorResponse({
+                    // The error in this case is the response body (error from the server).
+                    error: body,
+                    headers: headers,
+                    status: status,
+                    statusText: statusText,
+                    url: url || undefined
+                  }));
+                }
+              }; // The onError callback is called when something goes wrong at the network level.
+              // Connection timeout, DNS error, offline, etc. These are actual errors, and are
+              // transmitted on the error channel.
+
+
+              var onError = function onError(error) {
+                var _partialFromXhr2 = partialFromXhr(),
+                    url = _partialFromXhr2.url;
+
+                var res = new HttpErrorResponse({
+                  error: error,
+                  status: xhr.status || 0,
+                  statusText: xhr.statusText || 'Unknown Error',
+                  url: url || undefined
+                });
+                observer.error(res);
+              }; // The sentHeaders flag tracks whether the HttpResponseHeaders event
+              // has been sent on the stream. This is necessary to track if progress
+              // is enabled since the event will be sent on only the first download
+              // progerss event.
+
+
+              var sentHeaders = false; // The download progress event handler, which is only registered if
+              // progress events are enabled.
+
+              var onDownProgress = function onDownProgress(event) {
+                // Send the HttpResponseHeaders event if it hasn't been sent already.
+                if (!sentHeaders) {
+                  observer.next(partialFromXhr());
+                  sentHeaders = true;
+                } // Start building the download progress event to deliver on the response
+                // event stream.
+
+
+                var progressEvent = {
+                  type: HttpEventType.DownloadProgress,
+                  loaded: event.loaded
+                }; // Set the total number of bytes in the event if it's available.
+
+                if (event.lengthComputable) {
+                  progressEvent.total = event.total;
+                } // If the request was for text content and a partial response is
+                // available on XMLHttpRequest, include it in the progress event
+                // to allow for streaming reads.
+
+
+                if (req.responseType === 'text' && !!xhr.responseText) {
+                  progressEvent.partialText = xhr.responseText;
+                } // Finally, fire the event.
+
+
+                observer.next(progressEvent);
+              }; // The upload progress event handler, which is only registered if
+              // progress events are enabled.
+
+
+              var onUpProgress = function onUpProgress(event) {
+                // Upload progress events are simpler. Begin building the progress
+                // event.
+                var progress = {
+                  type: HttpEventType.UploadProgress,
+                  loaded: event.loaded
+                }; // If the total number of bytes being uploaded is available, include
+                // it.
+
+                if (event.lengthComputable) {
+                  progress.total = event.total;
+                } // Send the event.
+
+
+                observer.next(progress);
+              }; // By default, register for load and error events.
+
+
+              xhr.addEventListener('load', onLoad);
+              xhr.addEventListener('error', onError); // Progress events are only enabled if requested.
+
+              if (req.reportProgress) {
+                // Download progress is always enabled if requested.
+                xhr.addEventListener('progress', onDownProgress); // Upload progress depends on whether there is a body to upload.
+
+                if (reqBody !== null && xhr.upload) {
+                  xhr.upload.addEventListener('progress', onUpProgress);
+                }
+              } // Fire the request, and notify the event stream that it was fired.
+
+
+              xhr.send(reqBody);
+              observer.next({
+                type: HttpEventType.Sent
+              }); // This is the return from the Observable function, which is the
+              // request cancellation handler.
+
+              return function () {
+                // On a cancellation, remove all registered event listeners.
+                xhr.removeEventListener('error', onError);
+                xhr.removeEventListener('load', onLoad);
+
+                if (req.reportProgress) {
+                  xhr.removeEventListener('progress', onDownProgress);
+
+                  if (reqBody !== null && xhr.upload) {
+                    xhr.upload.removeEventListener('progress', onUpProgress);
+                  }
+                } // Finally, abort the in-flight request.
+
+
+                if (xhr.readyState !== xhr.DONE) {
+                  xhr.abort();
+                }
+              };
+            });
+          }
+        }]);
+
+        return HttpXhrBackend;
+      }();
+
+      HttpXhrBackend.ɵfac = function HttpXhrBackend_Factory(t) {
+        return new (t || HttpXhrBackend)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](XhrFactory));
+      };
+
+      HttpXhrBackend.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjectable"]({
+        token: HttpXhrBackend,
+        factory: HttpXhrBackend.ɵfac
+      });
+
+      HttpXhrBackend.ctorParameters = function () {
+        return [{
+          type: XhrFactory
+        }];
+      };
+      /*@__PURE__*/
+
+
+      (function () {
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](HttpXhrBackend, [{
+          type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"]
+        }], function () {
+          return [{
+            type: XhrFactory
+          }];
+        }, null);
+      })();
+      /**
+       * @license
+       * Copyright Google LLC All Rights Reserved.
+       *
+       * Use of this source code is governed by an MIT-style license that can be
+       * found in the LICENSE file at https://angular.io/license
+       */
+
+
+      var XSRF_COOKIE_NAME = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["InjectionToken"]('XSRF_COOKIE_NAME');
+      var XSRF_HEADER_NAME = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["InjectionToken"]('XSRF_HEADER_NAME');
+      /**
+       * Retrieves the current XSRF token to use with the next outgoing request.
+       *
+       * @publicApi
+       */
+
+      var HttpXsrfTokenExtractor = function HttpXsrfTokenExtractor() {
+        _classCallCheck(this, HttpXsrfTokenExtractor);
+      };
+      /**
+       * `HttpXsrfTokenExtractor` which retrieves the token from a cookie.
+       */
+
+
+      var HttpXsrfCookieExtractor = /*#__PURE__*/function () {
+        function HttpXsrfCookieExtractor(doc, platform, cookieName) {
+          _classCallCheck(this, HttpXsrfCookieExtractor);
+
+          this.doc = doc;
+          this.platform = platform;
+          this.cookieName = cookieName;
+          this.lastCookieString = '';
+          this.lastToken = null;
+          /**
+           * @internal for testing
+           */
+
+          this.parseCount = 0;
+        }
+
+        _createClass2(HttpXsrfCookieExtractor, [{
+          key: "getToken",
+          value: function getToken() {
+            if (this.platform === 'server') {
+              return null;
+            }
+
+            var cookieString = this.doc.cookie || '';
+
+            if (cookieString !== this.lastCookieString) {
+              this.parseCount++;
+              this.lastToken = Object(_angular_common__WEBPACK_IMPORTED_MODULE_3__["ɵparseCookieValue"])(cookieString, this.cookieName);
+              this.lastCookieString = cookieString;
+            }
+
+            return this.lastToken;
+          }
+        }]);
+
+        return HttpXsrfCookieExtractor;
+      }();
+
+      HttpXsrfCookieExtractor.ɵfac = function HttpXsrfCookieExtractor_Factory(t) {
+        return new (t || HttpXsrfCookieExtractor)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_angular_common__WEBPACK_IMPORTED_MODULE_3__["DOCUMENT"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_angular_core__WEBPACK_IMPORTED_MODULE_0__["PLATFORM_ID"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](XSRF_COOKIE_NAME));
+      };
+
+      HttpXsrfCookieExtractor.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjectable"]({
+        token: HttpXsrfCookieExtractor,
+        factory: HttpXsrfCookieExtractor.ɵfac
+      });
+
+      HttpXsrfCookieExtractor.ctorParameters = function () {
+        return [{
+          type: undefined,
+          decorators: [{
+            type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Inject"],
+            args: [_angular_common__WEBPACK_IMPORTED_MODULE_3__["DOCUMENT"]]
+          }]
+        }, {
+          type: String,
+          decorators: [{
+            type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Inject"],
+            args: [_angular_core__WEBPACK_IMPORTED_MODULE_0__["PLATFORM_ID"]]
+          }]
+        }, {
+          type: String,
+          decorators: [{
+            type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Inject"],
+            args: [XSRF_COOKIE_NAME]
+          }]
+        }];
+      };
+      /*@__PURE__*/
+
+
+      (function () {
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](HttpXsrfCookieExtractor, [{
+          type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"]
+        }], function () {
+          return [{
+            type: undefined,
+            decorators: [{
+              type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Inject"],
+              args: [_angular_common__WEBPACK_IMPORTED_MODULE_3__["DOCUMENT"]]
+            }]
+          }, {
+            type: String,
+            decorators: [{
+              type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Inject"],
+              args: [_angular_core__WEBPACK_IMPORTED_MODULE_0__["PLATFORM_ID"]]
+            }]
+          }, {
+            type: String,
+            decorators: [{
+              type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Inject"],
+              args: [XSRF_COOKIE_NAME]
+            }]
+          }];
+        }, null);
+      })();
+      /**
+       * `HttpInterceptor` which adds an XSRF token to eligible outgoing requests.
+       */
+
+
+      var HttpXsrfInterceptor = /*#__PURE__*/function () {
+        function HttpXsrfInterceptor(tokenService, headerName) {
+          _classCallCheck(this, HttpXsrfInterceptor);
+
+          this.tokenService = tokenService;
+          this.headerName = headerName;
+        }
+
+        _createClass2(HttpXsrfInterceptor, [{
+          key: "intercept",
+          value: function intercept(req, next) {
+            var lcUrl = req.url.toLowerCase(); // Skip both non-mutating requests and absolute URLs.
+            // Non-mutating requests don't require a token, and absolute URLs require special handling
+            // anyway as the cookie set
+            // on our origin is not the same as the token expected by another origin.
+
+            if (req.method === 'GET' || req.method === 'HEAD' || lcUrl.startsWith('http://') || lcUrl.startsWith('https://')) {
+              return next.handle(req);
+            }
+
+            var token = this.tokenService.getToken(); // Be careful not to overwrite an existing header of the same name.
+
+            if (token !== null && !req.headers.has(this.headerName)) {
+              req = req.clone({
+                headers: req.headers.set(this.headerName, token)
+              });
+            }
+
+            return next.handle(req);
+          }
+        }]);
+
+        return HttpXsrfInterceptor;
+      }();
+
+      HttpXsrfInterceptor.ɵfac = function HttpXsrfInterceptor_Factory(t) {
+        return new (t || HttpXsrfInterceptor)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](HttpXsrfTokenExtractor), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](XSRF_HEADER_NAME));
+      };
+
+      HttpXsrfInterceptor.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjectable"]({
+        token: HttpXsrfInterceptor,
+        factory: HttpXsrfInterceptor.ɵfac
+      });
+
+      HttpXsrfInterceptor.ctorParameters = function () {
+        return [{
+          type: HttpXsrfTokenExtractor
+        }, {
+          type: String,
+          decorators: [{
+            type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Inject"],
+            args: [XSRF_HEADER_NAME]
+          }]
+        }];
+      };
+      /*@__PURE__*/
+
+
+      (function () {
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](HttpXsrfInterceptor, [{
+          type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"]
+        }], function () {
+          return [{
+            type: HttpXsrfTokenExtractor
+          }, {
+            type: String,
+            decorators: [{
+              type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Inject"],
+              args: [XSRF_HEADER_NAME]
+            }]
+          }];
+        }, null);
+      })();
+      /**
+       * @license
+       * Copyright Google LLC All Rights Reserved.
+       *
+       * Use of this source code is governed by an MIT-style license that can be
+       * found in the LICENSE file at https://angular.io/license
+       */
+
+      /**
+       * An injectable `HttpHandler` that applies multiple interceptors
+       * to a request before passing it to the given `HttpBackend`.
+       *
+       * The interceptors are loaded lazily from the injector, to allow
+       * interceptors to themselves inject classes depending indirectly
+       * on `HttpInterceptingHandler` itself.
+       * @see `HttpInterceptor`
+       */
+
+
+      var HttpInterceptingHandler = /*#__PURE__*/function () {
+        function HttpInterceptingHandler(backend, injector) {
+          _classCallCheck(this, HttpInterceptingHandler);
+
+          this.backend = backend;
+          this.injector = injector;
+          this.chain = null;
+        }
+
+        _createClass2(HttpInterceptingHandler, [{
+          key: "handle",
+          value: function handle(req) {
+            if (this.chain === null) {
+              var interceptors = this.injector.get(HTTP_INTERCEPTORS, []);
+              this.chain = interceptors.reduceRight(function (next, interceptor) {
+                return new HttpInterceptorHandler(next, interceptor);
+              }, this.backend);
+            }
+
+            return this.chain.handle(req);
+          }
+        }]);
+
+        return HttpInterceptingHandler;
+      }();
+
+      HttpInterceptingHandler.ɵfac = function HttpInterceptingHandler_Factory(t) {
+        return new (t || HttpInterceptingHandler)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](HttpBackend), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injector"]));
+      };
+
+      HttpInterceptingHandler.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjectable"]({
+        token: HttpInterceptingHandler,
+        factory: HttpInterceptingHandler.ɵfac
+      });
+
+      HttpInterceptingHandler.ctorParameters = function () {
+        return [{
+          type: HttpBackend
+        }, {
+          type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Injector"]
+        }];
+      };
+      /*@__PURE__*/
+
+
+      (function () {
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](HttpInterceptingHandler, [{
+          type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"]
+        }], function () {
+          return [{
+            type: HttpBackend
+          }, {
+            type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Injector"]
+          }];
+        }, null);
+      })();
+      /**
+       * Constructs an `HttpHandler` that applies interceptors
+       * to a request before passing it to the given `HttpBackend`.
+       *
+       * Use as a factory function within `HttpClientModule`.
+       *
+       *
+       */
+
+
+      function interceptingHandler(backend) {
+        var interceptors = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : [];
+
+        if (!interceptors) {
+          return backend;
+        }
+
+        return interceptors.reduceRight(function (next, interceptor) {
+          return new HttpInterceptorHandler(next, interceptor);
+        }, backend);
+      }
+      /**
+       * Factory function that determines where to store JSONP callbacks.
+       *
+       * Ordinarily JSONP callbacks are stored on the `window` object, but this may not exist
+       * in test environments. In that case, callbacks are stored on an anonymous object instead.
+       *
+       *
+       */
+
+
+      function jsonpCallbackContext() {
+        if (typeof window === 'object') {
+          return window;
+        }
+
+        return {};
+      }
+      /**
+       * Configures XSRF protection support for outgoing requests.
+       *
+       * For a server that supports a cookie-based XSRF protection system,
+       * use directly to configure XSRF protection with the correct
+       * cookie and header names.
+       *
+       * If no names are supplied, the default cookie name is `XSRF-TOKEN`
+       * and the default header name is `X-XSRF-TOKEN`.
+       *
+       * @publicApi
+       */
+
+
+      var HttpClientXsrfModule = /*#__PURE__*/function () {
+        function HttpClientXsrfModule() {
+          _classCallCheck(this, HttpClientXsrfModule);
+        }
+
+        _createClass2(HttpClientXsrfModule, null, [{
+          key: "disable",
+
+          /**
+           * Disable the default XSRF protection.
+           */
+          value: function disable() {
+            return {
+              ngModule: HttpClientXsrfModule,
+              providers: [{
+                provide: HttpXsrfInterceptor,
+                useClass: NoopInterceptor
+              }]
+            };
+          }
+          /**
+           * Configure XSRF protection.
+           * @param options An object that can specify either or both
+           * cookie name or header name.
+           * - Cookie name default is `XSRF-TOKEN`.
+           * - Header name default is `X-XSRF-TOKEN`.
+           *
+           */
+
+        }, {
+          key: "withOptions",
+          value: function withOptions() {
+            var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+            return {
+              ngModule: HttpClientXsrfModule,
+              providers: [options.cookieName ? {
+                provide: XSRF_COOKIE_NAME,
+                useValue: options.cookieName
+              } : [], options.headerName ? {
+                provide: XSRF_HEADER_NAME,
+                useValue: options.headerName
+              } : []]
+            };
+          }
+        }]);
+
+        return HttpClientXsrfModule;
+      }();
+
+      HttpClientXsrfModule.ɵmod = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineNgModule"]({
+        type: HttpClientXsrfModule
+      });
+      HttpClientXsrfModule.ɵinj = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjector"]({
+        factory: function HttpClientXsrfModule_Factory(t) {
+          return new (t || HttpClientXsrfModule)();
+        },
+        providers: [HttpXsrfInterceptor, {
+          provide: HTTP_INTERCEPTORS,
+          useExisting: HttpXsrfInterceptor,
+          multi: true
+        }, {
+          provide: HttpXsrfTokenExtractor,
+          useClass: HttpXsrfCookieExtractor
+        }, {
+          provide: XSRF_COOKIE_NAME,
+          useValue: 'XSRF-TOKEN'
+        }, {
+          provide: XSRF_HEADER_NAME,
+          useValue: 'X-XSRF-TOKEN'
+        }]
+      });
+      /*@__PURE__*/
+
+      (function () {
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](HttpClientXsrfModule, [{
+          type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["NgModule"],
+          args: [{
+            providers: [HttpXsrfInterceptor, {
+              provide: HTTP_INTERCEPTORS,
+              useExisting: HttpXsrfInterceptor,
+              multi: true
+            }, {
+              provide: HttpXsrfTokenExtractor,
+              useClass: HttpXsrfCookieExtractor
+            }, {
+              provide: XSRF_COOKIE_NAME,
+              useValue: 'XSRF-TOKEN'
+            }, {
+              provide: XSRF_HEADER_NAME,
+              useValue: 'X-XSRF-TOKEN'
+            }]
+          }]
+        }], null, null);
+      })();
+      /**
+       * Configures the [dependency injector](guide/glossary#injector) for `HttpClient`
+       * with supporting services for XSRF. Automatically imported by `HttpClientModule`.
+       *
+       * You can add interceptors to the chain behind `HttpClient` by binding them to the
+       * multiprovider for built-in [DI token](guide/glossary#di-token) `HTTP_INTERCEPTORS`.
+       *
+       * @publicApi
+       */
+
+
+      var HttpClientModule = function HttpClientModule() {
+        _classCallCheck(this, HttpClientModule);
+      };
+
+      HttpClientModule.ɵmod = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineNgModule"]({
+        type: HttpClientModule
+      });
+      HttpClientModule.ɵinj = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjector"]({
+        factory: function HttpClientModule_Factory(t) {
+          return new (t || HttpClientModule)();
+        },
+        providers: [HttpClient, {
+          provide: HttpHandler,
+          useClass: HttpInterceptingHandler
+        }, HttpXhrBackend, {
+          provide: HttpBackend,
+          useExisting: HttpXhrBackend
+        }, BrowserXhr, {
+          provide: XhrFactory,
+          useExisting: BrowserXhr
+        }],
+        imports: [[HttpClientXsrfModule.withOptions({
+          cookieName: 'XSRF-TOKEN',
+          headerName: 'X-XSRF-TOKEN'
+        })]]
+      });
+
+      (function () {
+        (typeof ngJitMode === "undefined" || ngJitMode) && _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵsetNgModuleScope"](HttpClientModule, {
+          imports: [HttpClientXsrfModule]
+        });
+      })();
+      /*@__PURE__*/
+
+
+      (function () {
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](HttpClientModule, [{
+          type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["NgModule"],
+          args: [{
+            /**
+             * Optional configuration for XSRF protection.
+             */
+            imports: [HttpClientXsrfModule.withOptions({
+              cookieName: 'XSRF-TOKEN',
+              headerName: 'X-XSRF-TOKEN'
+            })],
+
+            /**
+             * Configures the [dependency injector](guide/glossary#injector) where it is imported
+             * with supporting services for HTTP communications.
+             */
+            providers: [HttpClient, {
+              provide: HttpHandler,
+              useClass: HttpInterceptingHandler
+            }, HttpXhrBackend, {
+              provide: HttpBackend,
+              useExisting: HttpXhrBackend
+            }, BrowserXhr, {
+              provide: XhrFactory,
+              useExisting: BrowserXhr
+            }]
+          }]
+        }], null, null);
+      })();
+      /**
+       * Configures the [dependency injector](guide/glossary#injector) for `HttpClient`
+       * with supporting services for JSONP.
+       * Without this module, Jsonp requests reach the backend
+       * with method JSONP, where they are rejected.
+       *
+       * You can add interceptors to the chain behind `HttpClient` by binding them to the
+       * multiprovider for built-in [DI token](guide/glossary#di-token) `HTTP_INTERCEPTORS`.
+       *
+       * @publicApi
+       */
+
+
+      var HttpClientJsonpModule = function HttpClientJsonpModule() {
+        _classCallCheck(this, HttpClientJsonpModule);
+      };
+
+      HttpClientJsonpModule.ɵmod = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineNgModule"]({
+        type: HttpClientJsonpModule
+      });
+      HttpClientJsonpModule.ɵinj = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjector"]({
+        factory: function HttpClientJsonpModule_Factory(t) {
+          return new (t || HttpClientJsonpModule)();
+        },
+        providers: [JsonpClientBackend, {
+          provide: JsonpCallbackContext,
+          useFactory: jsonpCallbackContext
+        }, {
+          provide: HTTP_INTERCEPTORS,
+          useClass: JsonpInterceptor,
+          multi: true
+        }]
+      });
+      /*@__PURE__*/
+
+      (function () {
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](HttpClientJsonpModule, [{
+          type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["NgModule"],
+          args: [{
+            providers: [JsonpClientBackend, {
+              provide: JsonpCallbackContext,
+              useFactory: jsonpCallbackContext
+            }, {
+              provide: HTTP_INTERCEPTORS,
+              useClass: JsonpInterceptor,
+              multi: true
+            }]
+          }]
+        }], null, null);
+      })();
+      /**
+       * @license
+       * Copyright Google LLC All Rights Reserved.
+       *
+       * Use of this source code is governed by an MIT-style license that can be
+       * found in the LICENSE file at https://angular.io/license
+       */
+
+      /**
+       * @license
+       * Copyright Google LLC All Rights Reserved.
+       *
+       * Use of this source code is governed by an MIT-style license that can be
+       * found in the LICENSE file at https://angular.io/license
+       */
+
+      /**
+       * Generated bundle index. Do not edit.
+       */
+      //# sourceMappingURL=http.js.map
+
+      /***/
+
+    },
+
+    /***/
+    "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js":
+    /*!******************************************************************!*\
+      !*** ./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js ***!
+      \******************************************************************/
+
+    /*! exports provided: ANALYZE_FOR_ENTRY_COMPONENTS, APP_BOOTSTRAP_LISTENER, APP_ID, APP_INITIALIZER, ApplicationInitStatus, ApplicationModule, ApplicationRef, Attribute, COMPILER_OPTIONS, CUSTOM_ELEMENTS_SCHEMA, ChangeDetectionStrategy, ChangeDetectorRef, Compiler, CompilerFactory, Component, ComponentFactory, ComponentFactoryResolver, ComponentRef, ContentChild, ContentChildren, DEFAULT_CURRENCY_CODE, DebugElement, DebugEventListener, DebugNode, DefaultIterableDiffer, Directive, ElementRef, EmbeddedViewRef, ErrorHandler, EventEmitter, Host, HostBinding, HostListener, INJECTOR, Inject, InjectFlags, Injectable, InjectionToken, Injector, Input, IterableDiffers, KeyValueDiffers, LOCALE_ID, MissingTranslationStrategy, ModuleWithComponentFactories, NO_ERRORS_SCHEMA, NgModule, NgModuleFactory, NgModuleFactoryLoader, NgModuleRef, NgProbeToken, NgZone, Optional, Output, PACKAGE_ROOT_URL, PLATFORM_ID, PLATFORM_INITIALIZER, Pipe, PlatformRef, Query, QueryList, ReflectiveInjector, ReflectiveKey, Renderer2, RendererFactory2, RendererStyleFlags2, ResolvedReflectiveFactory, Sanitizer, SecurityContext, Self, SimpleChange, SkipSelf, SystemJsNgModuleLoader, SystemJsNgModuleLoaderConfig, TRANSLATIONS, TRANSLATIONS_FORMAT, TemplateRef, Testability, TestabilityRegistry, Type, VERSION, Version, ViewChild, ViewChildren, ViewContainerRef, ViewEncapsulation, ViewRef, WrappedValue, asNativeElements, assertPlatform, createPlatform, createPlatformFactory, defineInjectable, destroyPlatform, enableProdMode, forwardRef, getDebugNode, getModuleFactory, getPlatform, inject, isDevMode, platformCore, resolveForwardRef, setTestabilityGetter, ɵ0, ɵ1, ɵALLOW_MULTIPLE_PLATFORMS, ɵAPP_ID_RANDOM_PROVIDER, ɵChangeDetectorStatus, ɵCodegenComponentFactoryResolver, ɵCompiler_compileModuleAndAllComponentsAsync__POST_R3__, ɵCompiler_compileModuleAndAllComponentsSync__POST_R3__, ɵCompiler_compileModuleAsync__POST_R3__, ɵCompiler_compileModuleSync__POST_R3__, ɵComponentFactory, ɵConsole, ɵDEFAULT_LOCALE_ID, ɵEMPTY_ARRAY, ɵEMPTY_MAP, ɵINJECTOR_IMPL__POST_R3__, ɵINJECTOR_SCOPE, ɵLifecycleHooksFeature, ɵLocaleDataIndex, ɵNG_COMP_DEF, ɵNG_DIR_DEF, ɵNG_ELEMENT_ID, ɵNG_INJ_DEF, ɵNG_MOD_DEF, ɵNG_PIPE_DEF, ɵNG_PROV_DEF, ɵNOT_FOUND_CHECK_ONLY_ELEMENT_INJECTOR, ɵNO_CHANGE, ɵNgModuleFactory, ɵNoopNgZone, ɵReflectionCapabilities, ɵRender3ComponentFactory, ɵRender3ComponentRef, ɵRender3NgModuleRef, ɵSWITCH_CHANGE_DETECTOR_REF_FACTORY__POST_R3__, ɵSWITCH_COMPILE_COMPONENT__POST_R3__, ɵSWITCH_COMPILE_DIRECTIVE__POST_R3__, ɵSWITCH_COMPILE_INJECTABLE__POST_R3__, ɵSWITCH_COMPILE_NGMODULE__POST_R3__, ɵSWITCH_COMPILE_PIPE__POST_R3__, ɵSWITCH_ELEMENT_REF_FACTORY__POST_R3__, ɵSWITCH_IVY_ENABLED__POST_R3__, ɵSWITCH_RENDERER2_FACTORY__POST_R3__, ɵSWITCH_TEMPLATE_REF_FACTORY__POST_R3__, ɵSWITCH_VIEW_CONTAINER_REF_FACTORY__POST_R3__, ɵ_sanitizeHtml, ɵ_sanitizeUrl, ɵallowSanitizationBypassAndThrow, ɵand, ɵangular_packages_core_core_a, ɵangular_packages_core_core_b, ɵangular_packages_core_core_ba, ɵangular_packages_core_core_bb, ɵangular_packages_core_core_bc, ɵangular_packages_core_core_bd, ɵangular_packages_core_core_be, ɵangular_packages_core_core_bg, ɵangular_packages_core_core_bh, ɵangular_packages_core_core_bi, ɵangular_packages_core_core_bj, ɵangular_packages_core_core_bk, ɵangular_packages_core_core_bl, ɵangular_packages_core_core_bm, ɵangular_packages_core_core_bn, ɵangular_packages_core_core_bo, ɵangular_packages_core_core_bq, ɵangular_packages_core_core_br, ɵangular_packages_core_core_c, ɵangular_packages_core_core_d, ɵangular_packages_core_core_e, ɵangular_packages_core_core_f, ɵangular_packages_core_core_g, ɵangular_packages_core_core_h, ɵangular_packages_core_core_i, ɵangular_packages_core_core_j, ɵangular_packages_core_core_k, ɵangular_packages_core_core_l, ɵangular_packages_core_core_m, ɵangular_packages_core_core_n, ɵangular_packages_core_core_o, ɵangular_packages_core_core_p, ɵangular_packages_core_core_q, ɵangular_packages_core_core_r, ɵangular_packages_core_core_s, ɵangular_packages_core_core_t, ɵangular_packages_core_core_u, ɵangular_packages_core_core_v, ɵangular_packages_core_core_w, ɵangular_packages_core_core_x, ɵangular_packages_core_core_y, ɵangular_packages_core_core_z, ɵbypassSanitizationTrustHtml, ɵbypassSanitizationTrustResourceUrl, ɵbypassSanitizationTrustScript, ɵbypassSanitizationTrustStyle, ɵbypassSanitizationTrustUrl, ɵccf, ɵclearOverrides, ɵclearResolutionOfComponentResourcesQueue, ɵcmf, ɵcompileComponent, ɵcompileDirective, ɵcompileNgModule, ɵcompileNgModuleDefs, ɵcompileNgModuleFactory__POST_R3__, ɵcompilePipe, ɵcreateInjector, ɵcrt, ɵdefaultIterableDiffers, ɵdefaultKeyValueDiffers, ɵdetectChanges, ɵdevModeEqual, ɵdid, ɵeld, ɵfindLocaleData, ɵflushModuleScopingQueueAsMuchAsPossible, ɵgetComponentViewDefinitionFactory, ɵgetDebugNodeR2, ɵgetDebugNode__POST_R3__, ɵgetDirectives, ɵgetHostElement, ɵgetInjectableDef, ɵgetLContext, ɵgetLocaleCurrencyCode, ɵgetLocalePluralCase, ɵgetModuleFactory__POST_R3__, ɵgetSanitizationBypassType, ɵglobal, ɵinitServicesIfNeeded, ɵinlineInterpolate, ɵinterpolate, ɵisBoundToModule__POST_R3__, ɵisDefaultChangeDetectionStrategy, ɵisListLikeIterable, ɵisObservable, ɵisPromise, ɵivyEnabled, ɵmakeDecorator, ɵmarkDirty, ɵmod, ɵmpd, ɵncd, ɵnoSideEffects, ɵnov, ɵoverrideComponentView, ɵoverrideProvider, ɵpad, ɵpatchComponentDefWithScope, ɵpid, ɵpod, ɵppd, ɵprd, ɵpublishDefaultGlobalUtils, ɵpublishGlobalUtil, ɵqud, ɵregisterLocaleData, ɵregisterModuleFactory, ɵregisterNgModuleType, ɵrenderComponent, ɵresetCompiledComponents, ɵresetJitOptions, ɵresolveComponentResources, ɵsetClassMetadata, ɵsetCurrentInjector, ɵsetDocument, ɵsetLocaleId, ɵstore, ɵstringify, ɵted, ɵtransitiveScopesFor, ɵunregisterLocaleData, ɵunv, ɵunwrapSafeValue, ɵvid, ɵwhenRendered, ɵɵCopyDefinitionFeature, ɵɵInheritDefinitionFeature, ɵɵNgOnChangesFeature, ɵɵProvidersFeature, ɵɵadvance, ɵɵattribute, ɵɵattributeInterpolate1, ɵɵattributeInterpolate2, ɵɵattributeInterpolate3, ɵɵattributeInterpolate4, ɵɵattributeInterpolate5, ɵɵattributeInterpolate6, ɵɵattributeInterpolate7, ɵɵattributeInterpolate8, ɵɵattributeInterpolateV, ɵɵclassMap, ɵɵclassMapInterpolate1, ɵɵclassMapInterpolate2, ɵɵclassMapInterpolate3, ɵɵclassMapInterpolate4, ɵɵclassMapInterpolate5, ɵɵclassMapInterpolate6, ɵɵclassMapInterpolate7, ɵɵclassMapInterpolate8, ɵɵclassMapInterpolateV, ɵɵclassProp, ɵɵcontentQuery, ɵɵdefineComponent, ɵɵdefineDirective, ɵɵdefineInjectable, ɵɵdefineInjector, ɵɵdefineNgModule, ɵɵdefinePipe, ɵɵdirectiveInject, ɵɵdisableBindings, ɵɵelement, ɵɵelementContainer, ɵɵelementContainerEnd, ɵɵelementContainerStart, ɵɵelementEnd, ɵɵelementStart, ɵɵenableBindings, ɵɵgetCurrentView, ɵɵgetFactoryOf, ɵɵgetInheritedFactory, ɵɵhostProperty, ɵɵi18n, ɵɵi18nApply, ɵɵi18nAttributes, ɵɵi18nEnd, ɵɵi18nExp, ɵɵi18nPostprocess, ɵɵi18nStart, ɵɵinject, ɵɵinjectAttribute, ɵɵinjectPipeChangeDetectorRef, ɵɵinvalidFactory, ɵɵinvalidFactoryDep, ɵɵlistener, ɵɵloadQuery, ɵɵnamespaceHTML, ɵɵnamespaceMathML, ɵɵnamespaceSVG, ɵɵnextContext, ɵɵpipe, ɵɵpipeBind1, ɵɵpipeBind2, ɵɵpipeBind3, ɵɵpipeBind4, ɵɵpipeBindV, ɵɵprojection, ɵɵprojectionDef, ɵɵproperty, ɵɵpropertyInterpolate, ɵɵpropertyInterpolate1, ɵɵpropertyInterpolate2, ɵɵpropertyInterpolate3, ɵɵpropertyInterpolate4, ɵɵpropertyInterpolate5, ɵɵpropertyInterpolate6, ɵɵpropertyInterpolate7, ɵɵpropertyInterpolate8, ɵɵpropertyInterpolateV, ɵɵpureFunction0, ɵɵpureFunction1, ɵɵpureFunction2, ɵɵpureFunction3, ɵɵpureFunction4, ɵɵpureFunction5, ɵɵpureFunction6, ɵɵpureFunction7, ɵɵpureFunction8, ɵɵpureFunctionV, ɵɵqueryRefresh, ɵɵreference, ɵɵresolveBody, ɵɵresolveDocument, ɵɵresolveWindow, ɵɵrestoreView, ɵɵsanitizeHtml, ɵɵsanitizeResourceUrl, ɵɵsanitizeScript, ɵɵsanitizeStyle, ɵɵsanitizeUrl, ɵɵsanitizeUrlOrResourceUrl, ɵɵselect, ɵɵsetComponentScope, ɵɵsetNgModuleScope, ɵɵstaticContentQuery, ɵɵstaticViewQuery, ɵɵstyleMap, ɵɵstyleMapInterpolate1, ɵɵstyleMapInterpolate2, ɵɵstyleMapInterpolate3, ɵɵstyleMapInterpolate4, ɵɵstyleMapInterpolate5, ɵɵstyleMapInterpolate6, ɵɵstyleMapInterpolate7, ɵɵstyleMapInterpolate8, ɵɵstyleMapInterpolateV, ɵɵstyleProp, ɵɵstylePropInterpolate1, ɵɵstylePropInterpolate2, ɵɵstylePropInterpolate3, ɵɵstylePropInterpolate4, ɵɵstylePropInterpolate5, ɵɵstylePropInterpolate6, ɵɵstylePropInterpolate7, ɵɵstylePropInterpolate8, ɵɵstylePropInterpolateV, ɵɵsyntheticHostListener, ɵɵsyntheticHostProperty, ɵɵtemplate, ɵɵtemplateRefExtractor, ɵɵtext, ɵɵtextInterpolate, ɵɵtextInterpolate1, ɵɵtextInterpolate2, ɵɵtextInterpolate3, ɵɵtextInterpolate4, ɵɵtextInterpolate5, ɵɵtextInterpolate6, ɵɵtextInterpolate7, ɵɵtextInterpolate8, ɵɵtextInterpolateV, ɵɵviewQuery */
+
+    /***/
+    function node_modulesAngularCore__ivy_ngcc__Fesm2015CoreJs(module, __webpack_exports__, __webpack_require__) {
       "use strict";
 
       __webpack_require__.r(__webpack_exports__);
@@ -12801,91 +12806,97 @@
 
 
       __webpack_require__.d(__webpack_exports__, "ɵangular_packages_core_core_ba", function () {
-        return getLView;
+        return instructionState;
       });
       /* harmony export (binding) */
 
 
       __webpack_require__.d(__webpack_exports__, "ɵangular_packages_core_core_bb", function () {
-        return getPreviousOrParentTNode;
+        return getLView;
       });
       /* harmony export (binding) */
 
 
       __webpack_require__.d(__webpack_exports__, "ɵangular_packages_core_core_bc", function () {
-        return getBindingRoot;
+        return getPreviousOrParentTNode;
       });
       /* harmony export (binding) */
 
 
       __webpack_require__.d(__webpack_exports__, "ɵangular_packages_core_core_bd", function () {
+        return getBindingRoot;
+      });
+      /* harmony export (binding) */
+
+
+      __webpack_require__.d(__webpack_exports__, "ɵangular_packages_core_core_be", function () {
         return nextContextImpl;
       });
       /* harmony export (binding) */
 
 
-      __webpack_require__.d(__webpack_exports__, "ɵangular_packages_core_core_bf", function () {
+      __webpack_require__.d(__webpack_exports__, "ɵangular_packages_core_core_bg", function () {
         return pureFunction1Internal;
       });
       /* harmony export (binding) */
 
 
-      __webpack_require__.d(__webpack_exports__, "ɵangular_packages_core_core_bg", function () {
+      __webpack_require__.d(__webpack_exports__, "ɵangular_packages_core_core_bh", function () {
         return pureFunction2Internal;
       });
       /* harmony export (binding) */
 
 
-      __webpack_require__.d(__webpack_exports__, "ɵangular_packages_core_core_bh", function () {
+      __webpack_require__.d(__webpack_exports__, "ɵangular_packages_core_core_bi", function () {
         return pureFunction3Internal;
       });
       /* harmony export (binding) */
 
 
-      __webpack_require__.d(__webpack_exports__, "ɵangular_packages_core_core_bi", function () {
+      __webpack_require__.d(__webpack_exports__, "ɵangular_packages_core_core_bj", function () {
         return pureFunction4Internal;
       });
       /* harmony export (binding) */
 
 
-      __webpack_require__.d(__webpack_exports__, "ɵangular_packages_core_core_bj", function () {
+      __webpack_require__.d(__webpack_exports__, "ɵangular_packages_core_core_bk", function () {
         return pureFunctionVInternal;
       });
       /* harmony export (binding) */
 
 
-      __webpack_require__.d(__webpack_exports__, "ɵangular_packages_core_core_bk", function () {
+      __webpack_require__.d(__webpack_exports__, "ɵangular_packages_core_core_bl", function () {
         return getUrlSanitizer;
       });
       /* harmony export (binding) */
 
 
-      __webpack_require__.d(__webpack_exports__, "ɵangular_packages_core_core_bl", function () {
+      __webpack_require__.d(__webpack_exports__, "ɵangular_packages_core_core_bm", function () {
         return makeParamDecorator;
       });
       /* harmony export (binding) */
 
 
-      __webpack_require__.d(__webpack_exports__, "ɵangular_packages_core_core_bm", function () {
+      __webpack_require__.d(__webpack_exports__, "ɵangular_packages_core_core_bn", function () {
         return makePropDecorator;
       });
       /* harmony export (binding) */
 
 
-      __webpack_require__.d(__webpack_exports__, "ɵangular_packages_core_core_bn", function () {
+      __webpack_require__.d(__webpack_exports__, "ɵangular_packages_core_core_bo", function () {
         return getClosureSafeProperty;
-      });
-      /* harmony export (binding) */
-
-
-      __webpack_require__.d(__webpack_exports__, "ɵangular_packages_core_core_bp", function () {
-        return noSideEffects;
       });
       /* harmony export (binding) */
 
 
       __webpack_require__.d(__webpack_exports__, "ɵangular_packages_core_core_bq", function () {
         return getRootContext;
+      });
+      /* harmony export (binding) */
+
+
+      __webpack_require__.d(__webpack_exports__, "ɵangular_packages_core_core_br", function () {
+        return i18nPostprocess;
       });
       /* harmony export (binding) */
 
@@ -13017,19 +13028,19 @@
 
 
       __webpack_require__.d(__webpack_exports__, "ɵangular_packages_core_core_x", function () {
-        return SCHEDULER;
+        return NgOnChangesFeatureImpl;
       });
       /* harmony export (binding) */
 
 
       __webpack_require__.d(__webpack_exports__, "ɵangular_packages_core_core_y", function () {
-        return injectAttributeImpl;
+        return SCHEDULER;
       });
       /* harmony export (binding) */
 
 
       __webpack_require__.d(__webpack_exports__, "ɵangular_packages_core_core_z", function () {
-        return instructionState;
+        return injectAttributeImpl;
       });
       /* harmony export (binding) */
 
@@ -13336,6 +13347,12 @@
 
       __webpack_require__.d(__webpack_exports__, "ɵncd", function () {
         return ngContentDef;
+      });
+      /* harmony export (binding) */
+
+
+      __webpack_require__.d(__webpack_exports__, "ɵnoSideEffects", function () {
+        return noSideEffects;
       });
       /* harmony export (binding) */
 
@@ -13684,12 +13701,6 @@
 
       __webpack_require__.d(__webpack_exports__, "ɵɵclassProp", function () {
         return ɵɵclassProp;
-      });
-      /* harmony export (binding) */
-
-
-      __webpack_require__.d(__webpack_exports__, "ɵɵcomponentHostSyntheticListener", function () {
-        return ɵɵcomponentHostSyntheticListener;
       });
       /* harmony export (binding) */
 
@@ -14318,6 +14329,18 @@
       /* harmony export (binding) */
 
 
+      __webpack_require__.d(__webpack_exports__, "ɵɵsyntheticHostListener", function () {
+        return ɵɵsyntheticHostListener;
+      });
+      /* harmony export (binding) */
+
+
+      __webpack_require__.d(__webpack_exports__, "ɵɵsyntheticHostProperty", function () {
+        return ɵɵsyntheticHostProperty;
+      });
+      /* harmony export (binding) */
+
+
       __webpack_require__.d(__webpack_exports__, "ɵɵtemplate", function () {
         return ɵɵtemplate;
       });
@@ -14396,12 +14419,6 @@
       /* harmony export (binding) */
 
 
-      __webpack_require__.d(__webpack_exports__, "ɵɵupdateSyntheticHostBinding", function () {
-        return ɵɵupdateSyntheticHostBinding;
-      });
-      /* harmony export (binding) */
-
-
       __webpack_require__.d(__webpack_exports__, "ɵɵviewQuery", function () {
         return ɵɵviewQuery;
       });
@@ -14418,7 +14435,7 @@
       /*! rxjs/operators */
       "./node_modules/rxjs/_esm2015/operators/index.js");
       /**
-       * @license Angular v10.0.4
+       * @license Angular v10.0.12
        * (c) 2010-2020 Google LLC. https://angular.io/
        * License: MIT
        */
@@ -14763,6 +14780,7 @@
        *   The factory can call `inject` to access the `Injector` and request injection of dependencies.
        *
        * @codeGenApi
+       * @publicApi This instruction has been emitted by ViewEngine for some time and is deployed to npm.
        */
 
 
@@ -14800,7 +14818,7 @@
        *   whose providers will also be added to the injector. Locally provided types will override
        *   providers from imports.
        *
-       * @publicApi
+       * @codeGenApi
        */
 
       function ɵɵdefineInjector(options) {
@@ -15710,7 +15728,7 @@
         assertEqual(typeof Node !== 'undefined' && node instanceof Node || typeof node === 'object' && node != null && node.constructor.name === 'WebWorkerRenderNode', true, "The provided value must be an instance of a DOM Node but got ".concat(stringify(node)));
       }
 
-      function assertDataInRange(arr, index) {
+      function assertIndexInRange(arr, index) {
         var maxLen = arr ? arr.length : 0;
         assertLessThan(index, maxLen, "Index expected to be less than ".concat(maxLen, " but got ").concat(index));
       }
@@ -16302,14 +16320,6 @@
             inputs: null,
             outputs: null,
             exportAs: componentDefinition.exportAs || null,
-            onChanges: null,
-            onInit: typePrototype.ngOnInit || null,
-            doCheck: typePrototype.ngDoCheck || null,
-            afterContentInit: typePrototype.ngAfterContentInit || null,
-            afterContentChecked: typePrototype.ngAfterContentChecked || null,
-            afterViewInit: typePrototype.ngAfterViewInit || null,
-            afterViewChecked: typePrototype.ngAfterViewChecked || null,
-            onDestroy: typePrototype.ngOnDestroy || null,
             onPush: componentDefinition.changeDetection === ChangeDetectionStrategy.OnPush,
             directiveDefs: null,
             pipeDefs: null,
@@ -16317,8 +16327,8 @@
             viewQuery: componentDefinition.viewQuery || null,
             features: componentDefinition.features || null,
             data: componentDefinition.data || {},
-            // TODO(misko): convert ViewEncapsulation into const enum so that it can be used directly in
-            // the next line. Also `None` should be 0 not 2.
+            // TODO(misko): convert ViewEncapsulation into const enum so that it can be used
+            // directly in the next line. Also `None` should be 0 not 2.
             encapsulation: componentDefinition.encapsulation || ViewEncapsulation$1.Emulated,
             id: 'c',
             styles: componentDefinition.styles || EMPTY_ARRAY,
@@ -16822,6 +16832,152 @@
        * found in the LICENSE file at https://angular.io/license
        */
 
+      /**
+       * Represents a basic change from a previous to a new value for a single
+       * property on a directive instance. Passed as a value in a
+       * {@link SimpleChanges} object to the `ngOnChanges` hook.
+       *
+       * @see `OnChanges`
+       *
+       * @publicApi
+       */
+
+
+      var SimpleChange = /*#__PURE__*/function () {
+        function SimpleChange(previousValue, currentValue, firstChange) {
+          _classCallCheck(this, SimpleChange);
+
+          this.previousValue = previousValue;
+          this.currentValue = currentValue;
+          this.firstChange = firstChange;
+        }
+        /**
+         * Check whether the new value is the first value assigned.
+         */
+
+
+        _createClass2(SimpleChange, [{
+          key: "isFirstChange",
+          value: function isFirstChange() {
+            return this.firstChange;
+          }
+        }]);
+
+        return SimpleChange;
+      }();
+      /**
+       * @license
+       * Copyright Google LLC All Rights Reserved.
+       *
+       * Use of this source code is governed by an MIT-style license that can be
+       * found in the LICENSE file at https://angular.io/license
+       */
+
+      /**
+       * The NgOnChangesFeature decorates a component with support for the ngOnChanges
+       * lifecycle hook, so it should be included in any component that implements
+       * that hook.
+       *
+       * If the component or directive uses inheritance, the NgOnChangesFeature MUST
+       * be included as a feature AFTER {@link InheritDefinitionFeature}, otherwise
+       * inherited properties will not be propagated to the ngOnChanges lifecycle
+       * hook.
+       *
+       * Example usage:
+       *
+       * ```
+       * static ɵcmp = defineComponent({
+       *   ...
+       *   inputs: {name: 'publicName'},
+       *   features: [NgOnChangesFeature]
+       * });
+       * ```
+       *
+       * @codeGenApi
+       */
+
+
+      function ɵɵNgOnChangesFeature() {
+        return NgOnChangesFeatureImpl;
+      }
+
+      function NgOnChangesFeatureImpl(definition) {
+        if (definition.type.prototype.ngOnChanges) {
+          definition.setInput = ngOnChangesSetInput;
+        }
+
+        return rememberChangeHistoryAndInvokeOnChangesHook;
+      } // This option ensures that the ngOnChanges lifecycle hook will be inherited
+      // from superclasses (in InheritDefinitionFeature).
+
+      /** @nocollapse */
+      // tslint:disable-next-line:no-toplevel-property-access
+
+
+      ɵɵNgOnChangesFeature.ngInherit = true;
+      /**
+       * This is a synthetic lifecycle hook which gets inserted into `TView.preOrderHooks` to simulate
+       * `ngOnChanges`.
+       *
+       * The hook reads the `NgSimpleChangesStore` data from the component instance and if changes are
+       * found it invokes `ngOnChanges` on the component instance.
+       *
+       * @param this Component instance. Because this function gets inserted into `TView.preOrderHooks`,
+       *     it is guaranteed to be called with component instance.
+       */
+
+      function rememberChangeHistoryAndInvokeOnChangesHook() {
+        var simpleChangesStore = getSimpleChangesStore(this);
+        var current = simpleChangesStore === null || simpleChangesStore === void 0 ? void 0 : simpleChangesStore.current;
+
+        if (current) {
+          var previous = simpleChangesStore.previous;
+
+          if (previous === EMPTY_OBJ) {
+            simpleChangesStore.previous = current;
+          } else {
+            // New changes are copied to the previous store, so that we don't lose history for inputs
+            // which were not changed this time
+            for (var key in current) {
+              previous[key] = current[key];
+            }
+          }
+
+          simpleChangesStore.current = null;
+          this.ngOnChanges(current);
+        }
+      }
+
+      function ngOnChangesSetInput(instance, value, publicName, privateName) {
+        var simpleChangesStore = getSimpleChangesStore(instance) || setSimpleChangesStore(instance, {
+          previous: EMPTY_OBJ,
+          current: null
+        });
+        var current = simpleChangesStore.current || (simpleChangesStore.current = {});
+        var previous = simpleChangesStore.previous;
+        var declaredName = this.declaredInputs[publicName];
+        var previousChange = previous[declaredName];
+        current[declaredName] = new SimpleChange(previousChange && previousChange.currentValue, value, previous === EMPTY_OBJ);
+        instance[privateName] = value;
+      }
+
+      var SIMPLE_CHANGES_STORE = '__ngSimpleChanges__';
+
+      function getSimpleChangesStore(instance) {
+        return instance[SIMPLE_CHANGES_STORE] || null;
+      }
+
+      function setSimpleChangesStore(instance, store) {
+        return instance[SIMPLE_CHANGES_STORE] = store;
+      }
+      /**
+       * @license
+       * Copyright Google LLC All Rights Reserved.
+       *
+       * Use of this source code is governed by an MIT-style license that can be
+       * found in the LICENSE file at https://angular.io/license
+       */
+
 
       var SVG_NAMESPACE = 'http://www.w3.org/2000/svg';
       var MATH_ML_NAMESPACE = 'http://www.w3.org/1998/MathML/';
@@ -17020,7 +17176,7 @@
 
       function getNativeByTNode(tNode, lView) {
         ngDevMode && assertTNodeForLView(tNode, lView);
-        ngDevMode && assertDataInRange(lView, tNode.index);
+        ngDevMode && assertIndexInRange(lView, tNode.index);
         var node = unwrapRNode(lView[tNode.index]);
         ngDevMode && !isProceduralRenderer(lView[RENDERER]) && assertDomNode(node);
         return node;
@@ -17057,13 +17213,13 @@
 
 
       function load(view, index) {
-        ngDevMode && assertDataInRange(view, index + HEADER_OFFSET);
+        ngDevMode && assertIndexInRange(view, index + HEADER_OFFSET);
         return view[index + HEADER_OFFSET];
       }
 
       function getComponentLViewByIndex(nodeIndex, hostView) {
         // Could be an LView or an LContainer. If LContainer, unwrap to find LView.
-        ngDevMode && assertDataInRange(hostView, nodeIndex);
+        ngDevMode && assertIndexInRange(hostView, nodeIndex);
         var slotValue = hostView[nodeIndex];
         var lView = isLView(slotValue) ? slotValue : slotValue[HOST];
         return lView;
@@ -17638,22 +17794,24 @@
 
       function registerPreOrderHooks(directiveIndex, directiveDef, tView) {
         ngDevMode && assertFirstCreatePass(tView);
-        var onChanges = directiveDef.onChanges,
-            onInit = directiveDef.onInit,
-            doCheck = directiveDef.doCheck;
+        var _directiveDef$type$pr = directiveDef.type.prototype,
+            ngOnChanges = _directiveDef$type$pr.ngOnChanges,
+            ngOnInit = _directiveDef$type$pr.ngOnInit,
+            ngDoCheck = _directiveDef$type$pr.ngDoCheck;
 
-        if (onChanges) {
-          (tView.preOrderHooks || (tView.preOrderHooks = [])).push(directiveIndex, onChanges);
-          (tView.preOrderCheckHooks || (tView.preOrderCheckHooks = [])).push(directiveIndex, onChanges);
+        if (ngOnChanges) {
+          var wrappedOnChanges = NgOnChangesFeatureImpl(directiveDef);
+          (tView.preOrderHooks || (tView.preOrderHooks = [])).push(directiveIndex, wrappedOnChanges);
+          (tView.preOrderCheckHooks || (tView.preOrderCheckHooks = [])).push(directiveIndex, wrappedOnChanges);
         }
 
-        if (onInit) {
-          (tView.preOrderHooks || (tView.preOrderHooks = [])).push(-directiveIndex, onInit);
+        if (ngOnInit) {
+          (tView.preOrderHooks || (tView.preOrderHooks = [])).push(0 - directiveIndex, ngOnInit);
         }
 
-        if (doCheck) {
-          (tView.preOrderHooks || (tView.preOrderHooks = [])).push(directiveIndex, doCheck);
-          (tView.preOrderCheckHooks || (tView.preOrderCheckHooks = [])).push(directiveIndex, doCheck);
+        if (ngDoCheck) {
+          (tView.preOrderHooks || (tView.preOrderHooks = [])).push(directiveIndex, ngDoCheck);
+          (tView.preOrderCheckHooks || (tView.preOrderCheckHooks = [])).push(directiveIndex, ngDoCheck);
         }
       }
       /**
@@ -17683,27 +17841,33 @@
 
         for (var i = tNode.directiveStart, end = tNode.directiveEnd; i < end; i++) {
           var _directiveDef = tView.data[i];
+          var lifecycleHooks = _directiveDef.type.prototype;
+          var ngAfterContentInit = lifecycleHooks.ngAfterContentInit,
+              ngAfterContentChecked = lifecycleHooks.ngAfterContentChecked,
+              ngAfterViewInit = lifecycleHooks.ngAfterViewInit,
+              ngAfterViewChecked = lifecycleHooks.ngAfterViewChecked,
+              ngOnDestroy = lifecycleHooks.ngOnDestroy;
 
-          if (_directiveDef.afterContentInit) {
-            (tView.contentHooks || (tView.contentHooks = [])).push(-i, _directiveDef.afterContentInit);
+          if (ngAfterContentInit) {
+            (tView.contentHooks || (tView.contentHooks = [])).push(-i, ngAfterContentInit);
           }
 
-          if (_directiveDef.afterContentChecked) {
-            (tView.contentHooks || (tView.contentHooks = [])).push(i, _directiveDef.afterContentChecked);
-            (tView.contentCheckHooks || (tView.contentCheckHooks = [])).push(i, _directiveDef.afterContentChecked);
+          if (ngAfterContentChecked) {
+            (tView.contentHooks || (tView.contentHooks = [])).push(i, ngAfterContentChecked);
+            (tView.contentCheckHooks || (tView.contentCheckHooks = [])).push(i, ngAfterContentChecked);
           }
 
-          if (_directiveDef.afterViewInit) {
-            (tView.viewHooks || (tView.viewHooks = [])).push(-i, _directiveDef.afterViewInit);
+          if (ngAfterViewInit) {
+            (tView.viewHooks || (tView.viewHooks = [])).push(-i, ngAfterViewInit);
           }
 
-          if (_directiveDef.afterViewChecked) {
-            (tView.viewHooks || (tView.viewHooks = [])).push(i, _directiveDef.afterViewChecked);
-            (tView.viewCheckHooks || (tView.viewCheckHooks = [])).push(i, _directiveDef.afterViewChecked);
+          if (ngAfterViewChecked) {
+            (tView.viewHooks || (tView.viewHooks = [])).push(i, ngAfterViewChecked);
+            (tView.viewCheckHooks || (tView.viewCheckHooks = [])).push(i, ngAfterViewChecked);
           }
 
-          if (_directiveDef.onDestroy != null) {
-            (tView.destroyHooks || (tView.destroyHooks = [])).push(i, _directiveDef.onDestroy);
+          if (ngOnDestroy != null) {
+            (tView.destroyHooks || (tView.destroyHooks = [])).push(i, ngOnDestroy);
           }
         }
       }
@@ -18937,12 +19101,12 @@
       function locateDirectiveOrProvider(tNode, tView, token, canAccessViewProviders, isHostSpecialCase) {
         var nodeProviderIndexes = tNode.providerIndexes;
         var tInjectables = tView.data;
-        var injectablesStart = nodeProviderIndexes & 65535
+        var injectablesStart = nodeProviderIndexes & 1048575
         /* ProvidersStartIndexMask */
         ;
         var directivesStart = tNode.directiveStart;
         var directiveEnd = tNode.directiveEnd;
-        var cptViewProvidersCount = nodeProviderIndexes >> 16
+        var cptViewProvidersCount = nodeProviderIndexes >> 20
         /* CptViewProvidersCountShift */
         ;
         var startingIndex = canAccessViewProviders ? injectablesStart : injectablesStart + cptViewProvidersCount; // When the host special case applies, only the viewProviders and the component are visible
@@ -19646,8 +19810,9 @@
           value: function getInertBodyElement(html) {
             // We add these extra elements to ensure that the rest of the content is parsed as expected
             // e.g. leading whitespace is maintained and tags like `<meta>` do not get hoisted to the
-            // `<head>` tag.
-            html = '<body><remove></remove>' + html + '</body>';
+            // `<head>` tag. Note that the `<body>` tag is closed implicitly to prevent unclosed tags
+            // in `html` from consuming the otherwise explicit `</body>` tag.
+            html = '<body><remove></remove>' + html;
 
             try {
               var body = new window.DOMParser().parseFromString(html, 'text/html').body;
@@ -20168,7 +20333,7 @@
        * @returns `html` string which is safe to display to user, because all of the dangerous javascript
        * and urls have been removed.
        *
-       * @publicApi
+       * @codeGenApi
        */
 
 
@@ -20196,7 +20361,7 @@
        * @param unsafeStyle untrusted `style`, typically from the user.
        * @returns `style` string which is safe to bind to the `style` properties.
        *
-       * @publicApi
+       * @codeGenApi
        */
 
 
@@ -20229,7 +20394,7 @@
        * @returns `url` string which is safe to bind to the `src` properties such as `<img src>`, because
        * all of the dangerous javascript has been removed.
        *
-       * @publicApi
+       * @codeGenApi
        */
 
 
@@ -20257,7 +20422,7 @@
        * @returns `url` string which is safe to bind to the `src` properties such as `<img src>`, because
        * only trusted `url`s have been allowed to pass.
        *
-       * @publicApi
+       * @codeGenApi
        */
 
 
@@ -20286,7 +20451,7 @@
        * @returns `url` string which is safe to bind to the `<script>` element such as `<img src>`,
        * because only trusted `scripts` have been allowed to pass.
        *
-       * @publicApi
+       * @codeGenApi
        */
 
 
@@ -20334,7 +20499,7 @@
        * @param prop name of the property that contains the value.
        * @returns `url` string which is safe to bind.
        *
-       * @publicApi
+       * @codeGenApi
        */
 
 
@@ -20898,9 +21063,16 @@
           oldValue: oldValue,
           newValue: newValue
         };
-      } // Note: This hack is necessary so we don't erroneously get a circular dependency
-      // failure based on types.
+      }
+      /**
+       * Converts `TNodeType` into human readable text.
+       * Make sure this matches with `TNodeType`
+       */
 
+
+      var TNodeTypeAsString = ['Container', 'Projection', 'View', 'Element', 'ElementContainer', 'IcuContainer' // 5
+      ]; // Note: This hack is necessary so we don't erroneously get a circular dependency
+      // failure based on types.
 
       var unusedValueExportToPlacateAjd$4 = 1;
       /**
@@ -21674,7 +21846,7 @@
 
       function selectIndexInternal(tView, lView, index, checkNoChangesMode) {
         ngDevMode && assertGreaterThan(index, -1, 'Invalid index');
-        ngDevMode && assertDataInRange(lView, index + HEADER_OFFSET); // Flush the initial hooks for elements in the view that have been added up to this point.
+        ngDevMode && assertIndexInRange(lView, index + HEADER_OFFSET); // Flush the initial hooks for elements in the view that have been added up to this point.
         // PERF WARNING: do NOT extract this to a separate function without running benchmarks
 
         if (!checkNoChangesMode) {
@@ -21715,35 +21887,6 @@
        * found in the LICENSE file at https://angular.io/license
        */
 
-      /**
-       * Marks that the next string is for element.
-       *
-       * See `I18nMutateOpCodes` documentation.
-       */
-
-
-      var ELEMENT_MARKER = {
-        marker: 'element'
-      };
-      /**
-       * Marks that the next string is for comment.
-       *
-       * See `I18nMutateOpCodes` documentation.
-       */
-
-      var COMMENT_MARKER = {
-        marker: 'comment'
-      }; // Note: This hack is necessary so we don't erroneously get a circular dependency
-      // failure based on types.
-
-      var unusedValueExportToPlacateAjd$6 = 1;
-      /**
-       * @license
-       * Copyright Google LLC All Rights Reserved.
-       *
-       * Use of this source code is governed by an MIT-style license that can be
-       * found in the LICENSE file at https://angular.io/license
-       */
 
       function toTStylingRange(prev, next) {
         ngDevMode && assertNumberInRange(prev, 0, 32767
@@ -21847,12 +21990,45 @@
        * found in the LICENSE file at https://angular.io/license
        */
 
+      /**
+       * Patch a `debug` property on top of the existing object.
+       *
+       * NOTE: always call this method with `ngDevMode && attachDebugObject(...)`
+       *
+       * @param obj Object to patch
+       * @param debug Value to patch
+       */
+
 
       function attachDebugObject(obj, debug) {
-        Object.defineProperty(obj, 'debug', {
-          value: debug,
-          enumerable: false
-        });
+        if (ngDevMode) {
+          Object.defineProperty(obj, 'debug', {
+            value: debug,
+            enumerable: false
+          });
+        } else {
+          throw new Error('This method should be guarded with `ngDevMode` so that it can be tree shaken in production!');
+        }
+      }
+      /**
+       * Patch a `debug` property getter on top of the existing object.
+       *
+       * NOTE: always call this method with `ngDevMode && attachDebugObject(...)`
+       *
+       * @param obj Object to patch
+       * @param debugGetter Getter returning a value to patch
+       */
+
+
+      function attachDebugGetter(obj, debugGetter) {
+        if (ngDevMode) {
+          Object.defineProperty(obj, 'debug', {
+            get: debugGetter,
+            enumerable: false
+          });
+        } else {
+          throw new Error('This method should be guarded with `ngDevMode` so that it can be tree shaken in production!');
+        }
       }
       /**
        * @license
@@ -21989,8 +22165,9 @@
         firstChild, //
         schemas, //
         consts, //
-        incompleteFirstPass //
-        ) {
+        incompleteFirstPass, //
+        _decls, //
+        _vars) {
           _classCallCheck(this, TView);
 
           this.type = type;
@@ -22024,6 +22201,8 @@
           this.schemas = schemas;
           this.consts = consts;
           this.incompleteFirstPass = incompleteFirstPass;
+          this._decls = _decls;
+          this._vars = _vars;
         }
 
         _createClass2(TView, [{
@@ -22309,18 +22488,27 @@
         var node = unwrapRNode(value);
 
         if (node) {
-          var isTextNode = node.nodeType === Node.TEXT_NODE;
-          var outerHTML = (isTextNode ? node.textContent : node.outerHTML) || '';
+          switch (node.nodeType) {
+            case Node.TEXT_NODE:
+              return node.textContent;
 
-          if (includeChildren || isTextNode) {
-            return outerHTML;
-          } else {
-            var innerHTML = '>' + node.innerHTML + '<';
-            return outerHTML.split(innerHTML)[0] + '>';
+            case Node.COMMENT_NODE:
+              return "<!--".concat(node.textContent, "-->");
+
+            case Node.ELEMENT_NODE:
+              var outerHTML = node.outerHTML;
+
+              if (includeChildren) {
+                return outerHTML;
+              } else {
+                var innerHTML = '>' + node.innerHTML + '<';
+                return outerHTML.split(innerHTML)[0] + '>';
+              }
+
           }
-        } else {
-          return null;
         }
+
+        return null;
       }
 
       var LViewDebug = /*#__PURE__*/function () {
@@ -22375,7 +22563,7 @@
             return toDebug(this._raw_lView[PARENT]);
           }
         }, {
-          key: "host",
+          key: "hostHTML",
           get: function get() {
             return toHtml(this._raw_lView[HOST], true);
           }
@@ -22393,8 +22581,7 @@
           }
           /**
            * The tree of nodes associated with the current `LView`. The nodes have been normalized into
-           * a
-           * tree structure with relevant details pulled out for readability.
+           * a tree structure with relevant details pulled out for readability.
            */
 
         }, {
@@ -22464,6 +22651,33 @@
           get: function get() {
             return this._raw_lView[T_HOST];
           }
+        }, {
+          key: "decls",
+          get: function get() {
+            var tView = this.tView;
+            var start = HEADER_OFFSET;
+            return toLViewRange(this.tView, this._raw_lView, start, start + tView._decls);
+          }
+        }, {
+          key: "vars",
+          get: function get() {
+            var tView = this.tView;
+            var start = HEADER_OFFSET + tView._decls;
+            return toLViewRange(this.tView, this._raw_lView, start, start + tView._vars);
+          }
+        }, {
+          key: "i18n",
+          get: function get() {
+            var tView = this.tView;
+            var start = HEADER_OFFSET + tView._decls + tView._vars;
+            return toLViewRange(this.tView, this._raw_lView, start, this.tView.expandoStartIndex);
+          }
+        }, {
+          key: "expando",
+          get: function get() {
+            var tView = this.tView;
+            return toLViewRange(this.tView, this._raw_lView, this.tView.expandoStartIndex, this._raw_lView.length);
+          }
           /**
            * Normalized view of child views (and containers) attached at this location.
            */
@@ -22485,6 +22699,25 @@
 
         return LViewDebug;
       }();
+
+      function toLViewRange(tView, lView, start, end) {
+        var content = [];
+
+        for (var index = start; index < end; index++) {
+          content.push({
+            index: index,
+            t: tView.data[index],
+            l: lView[index]
+          });
+        }
+
+        return {
+          start: start,
+          end: end,
+          length: end - start,
+          content: content
+        };
+      }
       /**
        * Turns a flat list of nodes into a tree by walking the associated `TNode` tree.
        *
@@ -22505,7 +22738,7 @@
 
           return debugNodes;
         } else {
-          return null;
+          return [];
         }
       }
 
@@ -22514,12 +22747,11 @@
 
         var _native6 = unwrapRNode(rawValue);
 
-        var componentLViewDebug = toDebug(readLViewValue(rawValue));
         return {
           html: toHtml(_native6),
+          type: TNodeTypeAsString[tNode.type],
           "native": _native6,
-          nodes: toDebugNodes(tNode.child, lView),
-          component: componentLViewDebug
+          children: toDebugNodes(tNode.child, lView)
         };
       }
 
@@ -22587,279 +22819,6 @@
         return null;
       }
 
-      var I18NDebugItem = /*#__PURE__*/function () {
-        function I18NDebugItem(__raw_opCode, _lView, nodeIndex, type) {
-          _classCallCheck(this, I18NDebugItem);
-
-          this.__raw_opCode = __raw_opCode;
-          this._lView = _lView;
-          this.nodeIndex = nodeIndex;
-          this.type = type;
-        }
-
-        _createClass2(I18NDebugItem, [{
-          key: "tNode",
-          get: function get() {
-            return getTNode(this._lView[TVIEW], this.nodeIndex);
-          }
-        }]);
-
-        return I18NDebugItem;
-      }();
-      /**
-       * Turns a list of "Create" & "Update" OpCodes into a human-readable list of operations for
-       * debugging purposes.
-       * @param mutateOpCodes mutation opCodes to read
-       * @param updateOpCodes update opCodes to read
-       * @param icus list of ICU expressions
-       * @param lView The view the opCodes are acting on
-       */
-
-
-      function attachI18nOpCodesDebug(mutateOpCodes, updateOpCodes, icus, lView) {
-        attachDebugObject(mutateOpCodes, new I18nMutateOpCodesDebug(mutateOpCodes, lView));
-        attachDebugObject(updateOpCodes, new I18nUpdateOpCodesDebug(updateOpCodes, icus, lView));
-
-        if (icus) {
-          icus.forEach(function (icu) {
-            icu.create.forEach(function (icuCase) {
-              attachDebugObject(icuCase, new I18nMutateOpCodesDebug(icuCase, lView));
-            });
-            icu.update.forEach(function (icuCase) {
-              attachDebugObject(icuCase, new I18nUpdateOpCodesDebug(icuCase, icus, lView));
-            });
-          });
-        }
-      }
-
-      var I18nMutateOpCodesDebug = /*#__PURE__*/function () {
-        function I18nMutateOpCodesDebug(__raw_opCodes, __lView) {
-          _classCallCheck(this, I18nMutateOpCodesDebug);
-
-          this.__raw_opCodes = __raw_opCodes;
-          this.__lView = __lView;
-        }
-        /**
-         * A list of operation information about how the OpCodes will act on the view.
-         */
-
-
-        _createClass2(I18nMutateOpCodesDebug, [{
-          key: "operations",
-          get: function get() {
-            var __lView = this.__lView,
-                __raw_opCodes = this.__raw_opCodes;
-            var results = [];
-
-            for (var i = 0; i < __raw_opCodes.length; i++) {
-              var opCode = __raw_opCodes[i];
-              var result = void 0;
-
-              if (typeof opCode === 'string') {
-                result = {
-                  __raw_opCode: opCode,
-                  type: 'Create Text Node',
-                  nodeIndex: __raw_opCodes[++i],
-                  text: opCode
-                };
-              }
-
-              if (typeof opCode === 'number') {
-                switch (opCode & 7
-                /* MASK_OPCODE */
-                ) {
-                  case 1
-                  /* AppendChild */
-                  :
-                    var destinationNodeIndex = opCode >>> 17
-                    /* SHIFT_PARENT */
-                    ;
-                    result = new I18NDebugItem(opCode, __lView, destinationNodeIndex, 'AppendChild');
-                    break;
-
-                  case 0
-                  /* Select */
-                  :
-                    var nodeIndex = opCode >>> 3
-                    /* SHIFT_REF */
-                    ;
-                    result = new I18NDebugItem(opCode, __lView, nodeIndex, 'Select');
-                    break;
-
-                  case 5
-                  /* ElementEnd */
-                  :
-                    var elementIndex = opCode >>> 3
-                    /* SHIFT_REF */
-                    ;
-                    result = new I18NDebugItem(opCode, __lView, elementIndex, 'ElementEnd');
-                    break;
-
-                  case 4
-                  /* Attr */
-                  :
-                    elementIndex = opCode >>> 3
-                    /* SHIFT_REF */
-                    ;
-                    result = new I18NDebugItem(opCode, __lView, elementIndex, 'Attr');
-                    result['attrName'] = __raw_opCodes[++i];
-                    result['attrValue'] = __raw_opCodes[++i];
-                    break;
-                }
-              }
-
-              if (!result) {
-                switch (opCode) {
-                  case COMMENT_MARKER:
-                    result = {
-                      __raw_opCode: opCode,
-                      type: 'COMMENT_MARKER',
-                      commentValue: __raw_opCodes[++i],
-                      nodeIndex: __raw_opCodes[++i]
-                    };
-                    break;
-
-                  case ELEMENT_MARKER:
-                    result = {
-                      __raw_opCode: opCode,
-                      type: 'ELEMENT_MARKER'
-                    };
-                    break;
-                }
-              }
-
-              if (!result) {
-                result = {
-                  __raw_opCode: opCode,
-                  type: 'Unknown Op Code',
-                  code: opCode
-                };
-              }
-
-              results.push(result);
-            }
-
-            return results;
-          }
-        }]);
-
-        return I18nMutateOpCodesDebug;
-      }();
-
-      var I18nUpdateOpCodesDebug = /*#__PURE__*/function () {
-        function I18nUpdateOpCodesDebug(__raw_opCodes, icus, __lView) {
-          _classCallCheck(this, I18nUpdateOpCodesDebug);
-
-          this.__raw_opCodes = __raw_opCodes;
-          this.icus = icus;
-          this.__lView = __lView;
-        }
-        /**
-         * A list of operation information about how the OpCodes will act on the view.
-         */
-
-
-        _createClass2(I18nUpdateOpCodesDebug, [{
-          key: "operations",
-          get: function get() {
-            var __lView = this.__lView,
-                __raw_opCodes = this.__raw_opCodes,
-                icus = this.icus;
-            var results = [];
-
-            for (var i = 0; i < __raw_opCodes.length; i++) {
-              // bit code to check if we should apply the next update
-              var checkBit = __raw_opCodes[i]; // Number of opCodes to skip until next set of update codes
-
-              var skipCodes = __raw_opCodes[++i];
-              var value = '';
-
-              for (var j = i + 1; j <= i + skipCodes; j++) {
-                var opCode = __raw_opCodes[j];
-
-                if (typeof opCode === 'string') {
-                  value += opCode;
-                } else if (typeof opCode == 'number') {
-                  if (opCode < 0) {
-                    // It's a binding index whose value is negative
-                    // We cannot know the value of the binding so we only show the index
-                    value += "\uFFFD".concat(-opCode - 1, "\uFFFD");
-                  } else {
-                    var nodeIndex = opCode >>> 2
-                    /* SHIFT_REF */
-                    ;
-                    var tIcuIndex = void 0;
-                    var tIcu = void 0;
-
-                    switch (opCode & 3
-                    /* MASK_OPCODE */
-                    ) {
-                      case 1
-                      /* Attr */
-                      :
-                        var attrName = __raw_opCodes[++j];
-                        var sanitizeFn = __raw_opCodes[++j];
-                        results.push({
-                          __raw_opCode: opCode,
-                          checkBit: checkBit,
-                          type: 'Attr',
-                          attrValue: value,
-                          attrName: attrName,
-                          sanitizeFn: sanitizeFn
-                        });
-                        break;
-
-                      case 0
-                      /* Text */
-                      :
-                        results.push({
-                          __raw_opCode: opCode,
-                          checkBit: checkBit,
-                          type: 'Text',
-                          nodeIndex: nodeIndex,
-                          text: value
-                        });
-                        break;
-
-                      case 2
-                      /* IcuSwitch */
-                      :
-                        tIcuIndex = __raw_opCodes[++j];
-                        tIcu = icus[tIcuIndex];
-                        var result = new I18NDebugItem(opCode, __lView, nodeIndex, 'IcuSwitch');
-                        result['tIcuIndex'] = tIcuIndex;
-                        result['checkBit'] = checkBit;
-                        result['mainBinding'] = value;
-                        result['tIcu'] = tIcu;
-                        results.push(result);
-                        break;
-
-                      case 3
-                      /* IcuUpdate */
-                      :
-                        tIcuIndex = __raw_opCodes[++j];
-                        tIcu = icus[tIcuIndex];
-                        result = new I18NDebugItem(opCode, __lView, nodeIndex, 'IcuUpdate');
-                        result['tIcuIndex'] = tIcuIndex;
-                        result['checkBit'] = checkBit;
-                        result['tIcu'] = tIcu;
-                        results.push(result);
-                        break;
-                    }
-                  }
-                }
-              }
-
-              i += skipCodes;
-            }
-
-            return results;
-          }
-        }]);
-
-        return I18nUpdateOpCodesDebug;
-      }();
-
       var ɵ0$4 = function ɵ0$4() {
         return Promise.resolve(null);
       };
@@ -22922,6 +22881,9 @@
               } else {
                 // If it's not a number, it's a host binding function that needs to be executed.
                 if (instruction !== null) {
+                  ngDevMode && assertLessThan(currentDirectiveIndex, 1048576
+                  /* CptViewProvidersCountShifter */
+                  , 'Reached the max number of host bindings');
                   setBindingRootForHostBindings(bindingRootIndex, currentDirectiveIndex);
                   var hostCtx = lView[currentDirectiveIndex];
                   instruction(2
@@ -23515,7 +23477,7 @@
 
         var initialViewLength = bindingStartIndex + vars;
         var blueprint = createViewBlueprint(bindingStartIndex, initialViewLength);
-        return blueprint[TVIEW] = ngDevMode ? new TViewConstructor(type, viewIndex, // id: number,
+        var tView = blueprint[TVIEW] = ngDevMode ? new TViewConstructor(type, viewIndex, // id: number,
         blueprint, // blueprint: LView,
         templateFn, // template: ComponentTemplate<{}>|null,
         null, // queries: TQueries|null
@@ -23544,8 +23506,9 @@
         null, // firstChild: TNode|null,
         schemas, // schemas: SchemaMetadata[]|null,
         consts, // consts: TConstants|null
-        false // incompleteFirstPass: boolean
-        ) : {
+        false, // incompleteFirstPass: boolean
+        decls, // ngDevMode only: decls
+        vars) : {
           type: type,
           id: viewIndex,
           blueprint: blueprint,
@@ -23578,6 +23541,15 @@
           consts: consts,
           incompleteFirstPass: false
         };
+
+        if (ngDevMode) {
+          // For performance reasons it is important that the tView retains the same shape during runtime.
+          // (To make sure that all of the code is monomorphic.) For this reason we seal the object to
+          // prevent class transitions.
+          Object.seal(tView);
+        }
+
+        return tView;
       }
 
       function createViewBlueprint(bindingStartIndex, initialViewLength) {
@@ -23661,7 +23633,7 @@
       function createTNode(tView, tParent, type, adjustedIndex, tagName, attrs) {
         ngDevMode && ngDevMode.tNode++;
         var injectorIndex = tParent ? tParent.injectorIndex : -1;
-        return ngDevMode ? new TNodeDebug(tView, // tView_: TView
+        var tNode = ngDevMode ? new TNodeDebug(tView, // tView_: TView
         type, // type: TNodeType
         adjustedIndex, // index: number
         injectorIndex, // injectorIndex: number
@@ -23723,6 +23695,15 @@
           classBindings: 0,
           styleBindings: 0
         };
+
+        if (ngDevMode) {
+          // For performance reasons it is important that the tNode retains the same shape during runtime.
+          // (To make sure that all of the code is monomorphic.) For this reason we seal the object to
+          // prevent class transitions.
+          Object.seal(tNode);
+        }
+
+        return tNode;
       }
 
       function generatePropertyAliases(inputAliasMap, directiveDefIdx, propStore) {
@@ -23831,7 +23812,7 @@
             if (ngDevMode) {
               validateAgainstEventProperties(propName);
 
-              if (!validateProperty(tView, lView, element, propName, tNode)) {
+              if (!validateProperty(tView, element, propName, tNode)) {
                 // Return here since we only log warnings for unknown properties.
                 logUnknownPropertyError(propName, tNode);
                 return;
@@ -23851,10 +23832,12 @@
             }
           } else if (tNode.type === 0
         /* Container */
+        || tNode.type === 4
+        /* ElementContainer */
         ) {
             // If the node is a container and the property didn't
             // match any of the inputs or schemas we should throw.
-            if (ngDevMode && !matchingSchemas(tView, lView, tNode.tagName)) {
+            if (ngDevMode && !matchingSchemas(tView, tNode.tagName)) {
               logUnknownPropertyError(propName, tNode);
             }
           }
@@ -23919,7 +23902,7 @@
           }
       }
 
-      function validateProperty(tView, lView, element, propName, tNode) {
+      function validateProperty(tView, element, propName, tNode) {
         // If `schemas` is set to `null`, that's an indication that this Component was compiled in AOT
         // mode where this check happens at compile time. In JIT mode, `schemas` is always present and
         // defined as an array (as an empty array in case `schemas` field is not defined) and we should
@@ -23927,7 +23910,7 @@
         if (tView.schemas === null) return true; // The property is considered valid if the element matches the schema, it exists on the element
         // or it is synthetic, and we are in a browser context (web worker nodes should be skipped).
 
-        if (matchingSchemas(tView, lView, tNode.tagName) || propName in element || isAnimationProp(propName)) {
+        if (matchingSchemas(tView, tNode.tagName) || propName in element || isAnimationProp(propName)) {
           return true;
         } // Note: `typeof Node` returns 'function' in most browsers, but on IE it is 'object' so we
         // need to account for both here, while being careful for `typeof null` also returning 'object'.
@@ -23936,7 +23919,7 @@
         return typeof Node === 'undefined' || Node === null || !(element instanceof Node);
       }
 
-      function matchingSchemas(tView, lView, tagName) {
+      function matchingSchemas(tView, tagName) {
         var schemas = tView.schemas;
 
         if (schemas !== null) {
@@ -24034,10 +24017,11 @@
               ;
               if (_def2.hostBindings !== null || _def2.hostAttrs !== null || _def2.hostVars !== 0) tNode.flags |= 128
               /* hasHostBindings */
-              ; // Only push a node index into the preOrderHooks array if this is the first
+              ;
+              var lifeCycleHooks = _def2.type.prototype; // Only push a node index into the preOrderHooks array if this is the first
               // pre-order hook found on this node.
 
-              if (!preOrderHooksFound && (_def2.onChanges || _def2.onInit || _def2.doCheck)) {
+              if (!preOrderHooksFound && (lifeCycleHooks.ngOnChanges || lifeCycleHooks.ngOnInit || lifeCycleHooks.ngDoCheck)) {
                 // We will push the actual hook function into this array later during dir instantiation.
                 // We cannot do it now because we must ensure hooks are registered in the same
                 // order that directives are created (i.e. injection order).
@@ -24045,7 +24029,7 @@
                 preOrderHooksFound = true;
               }
 
-              if (!preOrderCheckHooksFound && (_def2.onChanges || _def2.doCheck)) {
+              if (!preOrderCheckHooksFound && (lifeCycleHooks.ngOnChanges || lifeCycleHooks.ngDoCheck)) {
                 (tView.preOrderCheckHooks || (tView.preOrderCheckHooks = [])).push(tNode.index - HEADER_OFFSET);
                 preOrderCheckHooksFound = true;
               }
@@ -24211,7 +24195,7 @@
         // `0-0` will always produce `0` and will not cause a potential deoptimization in VM.
 
         var elementIndex = HEADER_OFFSET - tNode.index;
-        var providerStartIndex = tNode.providerIndexes & 65535
+        var providerStartIndex = tNode.providerIndexes & 1048575
         /* ProvidersStartIndexMask */
         ;
         var providerCount = tView.data.length - providerStartIndex;
@@ -24947,7 +24931,7 @@
           var index = inputs[i++];
           var privateName = inputs[i++];
           var instance = lView[index];
-          ngDevMode && assertDataInRange(lView, index);
+          ngDevMode && assertIndexInRange(lView, index);
           var def = tView.data[index];
 
           if (def.setInput !== null) {
@@ -24964,7 +24948,7 @@
 
       function textBindingInternal(lView, index, value) {
         ngDevMode && assertNotSame(value, NO_CHANGE, 'value should not be NO_CHANGE');
-        ngDevMode && assertDataInRange(lView, index + HEADER_OFFSET);
+        ngDevMode && assertIndexInRange(lView, index + HEADER_OFFSET);
         var element = getNativeByIndex(index, lView);
         ngDevMode && assertDefined(element, 'native element should exist');
         ngDevMode && ngDevMode.rendererSetText++;
@@ -25299,18 +25283,6 @@
         }
 
         return viewToDetach;
-      }
-      /**
-       * Removes a view from a container, i.e. detaches it and then destroys the underlying LView.
-       *
-       * @param lContainer The container from which to remove a view
-       * @param removeIndex The index of the view to remove
-       */
-
-
-      function removeView(lContainer, removeIndex) {
-        var detachedView = detachView(lContainer, removeIndex);
-        detachedView && destroyLView(detachedView[TVIEW], detachedView);
       }
       /**
        * A standalone function which destroys an LView,
@@ -26833,8 +26805,18 @@
 
                 var adjustedIdx = this._adjustIndex(index, -1);
 
-                removeView(this._lContainer, adjustedIdx);
-                removeFromArray(this._lContainer[VIEW_REFS], adjustedIdx);
+                var detachedView = detachView(this._lContainer, adjustedIdx);
+
+                if (detachedView) {
+                  // Before destroying the view, remove it from the container's array of `ViewRef`s.
+                  // This ensures the view container length is updated before calling
+                  // `destroyLView`, which could recursively call view container methods that
+                  // rely on an accurate container length.
+                  // (e.g. a method on this view container being called by a child directive's OnDestroy
+                  // lifecycle hook)
+                  removeFromArray(this._lContainer[VIEW_REFS], adjustedIdx);
+                  destroyLView(detachedView[TVIEW], detachedView);
+                }
               }
             }, {
               key: "detach",
@@ -27124,15 +27106,48 @@
        * found in the LICENSE file at https://angular.io/license
        */
 
+      /*
+       * #########################
+       * Attention: These Regular expressions have to hold even if the code is minified!
+       * ##########################
+       */
+
       /**
-       * Attention: These regex has to hold even if the code is minified!
+       * Regular expression that detects pass-through constructors for ES5 output. This Regex
+       * intends to capture the common delegation pattern emitted by TypeScript and Babel. Also
+       * it intends to capture the pattern where existing constructors have been downleveled from
+       * ES2015 to ES5 using TypeScript w/ downlevel iteration. e.g.
+       *
+       * ```
+       *   function MyClass() {
+       *     var _this = _super.apply(this, arguments) || this;
+       * ```
+       *
+       * ```
+       *   function MyClass() {
+       *     var _this = _super.apply(this, __spread(arguments)) || this;
+       * ```
+       *
+       * More details can be found in: https://github.com/angular/angular/issues/38453.
        */
 
 
-      var DELEGATE_CTOR = /^function\s+\S+\(\)\s*{[\s\S]+\.apply\(this,\s*arguments\)/;
-      var INHERITED_CLASS = /^class\s+[A-Za-z\d$_]*\s*extends\s+[^{]+{/;
-      var INHERITED_CLASS_WITH_CTOR = /^class\s+[A-Za-z\d$_]*\s*extends\s+[^{]+{[\s\S]*constructor\s*\(/;
-      var INHERITED_CLASS_WITH_DELEGATE_CTOR = /^class\s+[A-Za-z\d$_]*\s*extends\s+[^{]+{[\s\S]*constructor\s*\(\)\s*{\s*super\(\.\.\.arguments\)/;
+      var ES5_DELEGATE_CTOR = /^function\s+\S+\(\)\s*{[\s\S]+\.apply\(this,\s*(arguments|[^()]+\(arguments\))\)/;
+      /** Regular expression that detects ES2015 classes which extend from other classes. */
+
+      var ES2015_INHERITED_CLASS = /^class\s+[A-Za-z\d$_]*\s*extends\s+[^{]+{/;
+      /**
+       * Regular expression that detects ES2015 classes which extend from other classes and
+       * have an explicit constructor defined.
+       */
+
+      var ES2015_INHERITED_CLASS_WITH_CTOR = /^class\s+[A-Za-z\d$_]*\s*extends\s+[^{]+{[\s\S]*constructor\s*\(/;
+      /**
+       * Regular expression that detects ES2015 classes which extend from other classes
+       * and inherit a constructor.
+       */
+
+      var ES2015_INHERITED_CLASS_WITH_DELEGATE_CTOR = /^class\s+[A-Za-z\d$_]*\s*extends\s+[^{]+{[\s\S]*constructor\s*\(\)\s*{\s*super\(\.\.\.arguments\)/;
       /**
        * Determine whether a stringified type is a class which delegates its constructor
        * to its parent.
@@ -27143,7 +27158,7 @@
        */
 
       function isDelegateCtor(typeStr) {
-        return DELEGATE_CTOR.test(typeStr) || INHERITED_CLASS_WITH_DELEGATE_CTOR.test(typeStr) || INHERITED_CLASS.test(typeStr) && !INHERITED_CLASS_WITH_CTOR.test(typeStr);
+        return ES5_DELEGATE_CTOR.test(typeStr) || ES2015_INHERITED_CLASS_WITH_DELEGATE_CTOR.test(typeStr) || ES2015_INHERITED_CLASS.test(typeStr) && !ES2015_INHERITED_CLASS_WITH_CTOR.test(typeStr);
       }
 
       var ReflectionCapabilities = /*#__PURE__*/function () {
@@ -30384,7 +30399,7 @@
 
 
       function getBinding(lView, bindingIndex) {
-        ngDevMode && assertDataInRange(lView, bindingIndex);
+        ngDevMode && assertIndexInRange(lView, bindingIndex);
         ngDevMode && assertNotSame(lView[bindingIndex], NO_CHANGE, 'Stored value should never be NO_CHANGE.');
         return lView[bindingIndex];
       }
@@ -31336,7 +31351,7 @@
         /* Element */
         , name, attrs);
         var hasDirectives = resolveDirectives(tView, lView, tNode, getConstant(tViewConsts, localRefsIndex));
-        ngDevMode && logUnknownElementError(tView, lView, _native12, tNode, hasDirectives);
+        ngDevMode && logUnknownElementError(tView, _native12, tNode, hasDirectives);
 
         if (tNode.attrs !== null) {
           computeStaticStyling(tNode, tNode.attrs, false);
@@ -31374,7 +31389,7 @@
         var adjustedIndex = HEADER_OFFSET + index;
         ngDevMode && assertEqual(getBindingIndex(), tView.bindingStartIndex, 'elements should be created before any bindings');
         ngDevMode && ngDevMode.rendererCreateElement++;
-        ngDevMode && assertDataInRange(lView, adjustedIndex);
+        ngDevMode && assertIndexInRange(lView, adjustedIndex);
         var renderer = lView[RENDERER];
 
         var _native13 = lView[adjustedIndex] = elementCreate(name, renderer, getNamespace());
@@ -31477,7 +31492,7 @@
         ɵɵelementEnd();
       }
 
-      function logUnknownElementError(tView, lView, element, tNode, hasDirectives) {
+      function logUnknownElementError(tView, element, tNode, hasDirectives) {
         var schemas = tView.schemas; // If `schemas` is set to `null`, that's an indication that this Component was compiled in AOT
         // mode where this check happens at compile time. In JIT mode, `schemas` is always present and
         // defined as an array (as an empty array in case `schemas` field is not defined) and we should
@@ -31494,7 +31509,7 @@
           // because while most browsers return 'function', IE returns 'object'.
           typeof HTMLUnknownElement !== 'undefined' && HTMLUnknownElement && element instanceof HTMLUnknownElement || typeof customElements !== 'undefined' && tagName.indexOf('-') > -1 && !customElements.get(tagName);
 
-          if (isUnknown && !matchingSchemas(tView, lView, tagName)) {
+          if (isUnknown && !matchingSchemas(tView, tagName)) {
             var message = "'".concat(tagName, "' is not a known element:\n");
             message += "1. If '".concat(tagName, "' is an Angular component, then verify that it is part of this module.\n");
 
@@ -31559,7 +31574,7 @@
         var lView = getLView();
         var tView = getTView();
         var adjustedIndex = index + HEADER_OFFSET;
-        ngDevMode && assertDataInRange(lView, adjustedIndex);
+        ngDevMode && assertIndexInRange(lView, adjustedIndex);
         ngDevMode && assertEqual(getBindingIndex(), tView.bindingStartIndex, 'element containers should be created before any bindings');
         var tNode = tView.firstCreatePass ? elementContainerStartFirstCreatePass(index, tView, lView, attrsIndex, localRefsIndex) : tView.data[adjustedIndex];
         setPreviousOrParentTNode(tNode, true);
@@ -31724,7 +31739,7 @@
        */
 
 
-      function ɵɵcomponentHostSyntheticListener(eventName, listenerFn) {
+      function ɵɵsyntheticHostListener(eventName, listenerFn) {
         var useCapture = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
         var eventTargetResolver = arguments.length > 3 ? arguments[3] : undefined;
         var tNode = getPreviousOrParentTNode();
@@ -31733,7 +31748,7 @@
         var currentDef = getCurrentDirectiveDef(tView.data);
         var renderer = loadComponentRenderer(currentDef, tNode, lView);
         listenerInternal(tView, lView, renderer, tNode, eventName, listenerFn, useCapture, eventTargetResolver);
-        return ɵɵcomponentHostSyntheticListener;
+        return ɵɵsyntheticHostListener;
       }
       /**
        * A utility function that checks if a given element has already an event handler registered for an
@@ -31868,7 +31883,7 @@
           if (propsLength) {
             for (var i = 0; i < propsLength; i += 2) {
               var index = props[i];
-              ngDevMode && assertDataInRange(lView, index);
+              ngDevMode && assertIndexInRange(lView, index);
               var minifiedName = props[i + 1];
               var directiveInstance = lView[index];
               var output = directiveInstance[minifiedName];
@@ -33003,7 +33018,7 @@
         //   looking for since we are a wild card and everything needs to be flipped to duplicate.
 
         while (cursor !== 0 && (foundDuplicate === false || isMap)) {
-          ngDevMode && assertDataInRange(tData, cursor);
+          ngDevMode && assertIndexInRange(tData, cursor);
           var tStylingValueAtCursor = tData[cursor];
           var tStyleRangeAtCursor = tData[cursor + 1];
 
@@ -33271,6 +33286,10 @@
         /* UPPER_CASE */
         ) <= 90
         /* Z */
+        || ch >= 48
+        /* ZERO */
+        && ch <= 57
+        /* NINE */
         )) {
           startIndex++;
         }
@@ -34302,7 +34321,7 @@
         var tView = getTView();
         var adjustedIndex = index + HEADER_OFFSET;
         ngDevMode && assertEqual(getBindingIndex(), tView.bindingStartIndex, 'text nodes should be created before any bindings');
-        ngDevMode && assertDataInRange(lView, adjustedIndex);
+        ngDevMode && assertIndexInRange(lView, adjustedIndex);
         var tNode = tView.firstCreatePass ? getOrCreateTNode(tView, lView[T_HOST], index, 3
         /* Element */
         , null, null) : tView.data[adjustedIndex];
@@ -35728,7 +35747,7 @@
        */
 
 
-      function ɵɵupdateSyntheticHostBinding(propName, value, sanitizer) {
+      function ɵɵsyntheticHostProperty(propName, value, sanitizer) {
         var lView = getLView();
         var bindingIndex = nextBindingIndex();
 
@@ -35741,7 +35760,7 @@
           ngDevMode && storePropertyBindingMetadata(tView.data, tNode, propName, bindingIndex);
         }
 
-        return ɵɵupdateSyntheticHostBinding;
+        return ɵɵsyntheticHostProperty;
       }
       /**
        * @license
@@ -35897,7 +35916,7 @@
         var tView = lView[TVIEW];
         var tNode = tView.data[context.nodeIndex];
         var providerTokens = [];
-        var startIndex = tNode.providerIndexes & 65535
+        var startIndex = tNode.providerIndexes & 1048575
         /* ProvidersStartIndexMask */
         ;
         var endIndex = tNode.directiveEnd;
@@ -36352,7 +36371,7 @@
 
       function createRootComponentView(rNode, def, rootView, rendererFactory, hostRenderer, sanitizer) {
         var tView = rootView[TVIEW];
-        ngDevMode && assertDataInRange(rootView, 0 + HEADER_OFFSET);
+        ngDevMode && assertIndexInRange(rootView, 0 + HEADER_OFFSET);
         rootView[0 + HEADER_OFFSET] = rNode;
         var tNode = getOrCreateTNode(tView, null, 0, 3
         /* Element */
@@ -36554,17 +36573,7 @@
                 // not inherit Components (we throw an error above and cannot reach this code).
                 var defData = definition.data;
                 defData.animation = (defData.animation || []).concat(superDef.data.animation);
-              } // Inherit hooks
-              // Assume super class inheritance feature has already run.
-
-
-              writeableDef.afterContentChecked = writeableDef.afterContentChecked || superDef.afterContentChecked;
-              writeableDef.afterContentInit = definition.afterContentInit || superDef.afterContentInit;
-              writeableDef.afterViewChecked = definition.afterViewChecked || superDef.afterViewChecked;
-              writeableDef.afterViewInit = definition.afterViewInit || superDef.afterViewInit;
-              writeableDef.doCheck = definition.doCheck || superDef.doCheck;
-              writeableDef.onDestroy = definition.onDestroy || superDef.onDestroy;
-              writeableDef.onInit = definition.onInit || superDef.onInit;
+              }
             } // Run parent features
 
 
@@ -36768,140 +36777,6 @@
        */
 
       /**
-       * Represents a basic change from a previous to a new value for a single
-       * property on a directive instance. Passed as a value in a
-       * {@link SimpleChanges} object to the `ngOnChanges` hook.
-       *
-       * @see `OnChanges`
-       *
-       * @publicApi
-       */
-
-
-      var SimpleChange = /*#__PURE__*/function () {
-        function SimpleChange(previousValue, currentValue, firstChange) {
-          _classCallCheck(this, SimpleChange);
-
-          this.previousValue = previousValue;
-          this.currentValue = currentValue;
-          this.firstChange = firstChange;
-        }
-        /**
-         * Check whether the new value is the first value assigned.
-         */
-
-
-        _createClass2(SimpleChange, [{
-          key: "isFirstChange",
-          value: function isFirstChange() {
-            return this.firstChange;
-          }
-        }]);
-
-        return SimpleChange;
-      }();
-      /**
-       * @license
-       * Copyright Google LLC All Rights Reserved.
-       *
-       * Use of this source code is governed by an MIT-style license that can be
-       * found in the LICENSE file at https://angular.io/license
-       */
-
-
-      var PRIVATE_PREFIX = '__ngOnChanges_';
-      /**
-       * The NgOnChangesFeature decorates a component with support for the ngOnChanges
-       * lifecycle hook, so it should be included in any component that implements
-       * that hook.
-       *
-       * If the component or directive uses inheritance, the NgOnChangesFeature MUST
-       * be included as a feature AFTER {@link InheritDefinitionFeature}, otherwise
-       * inherited properties will not be propagated to the ngOnChanges lifecycle
-       * hook.
-       *
-       * Example usage:
-       *
-       * ```
-       * static ɵcmp = defineComponent({
-       *   ...
-       *   inputs: {name: 'publicName'},
-       *   features: [NgOnChangesFeature]
-       * });
-       * ```
-       *
-       * @codeGenApi
-       */
-
-      function ɵɵNgOnChangesFeature(definition) {
-        if (definition.type.prototype.ngOnChanges) {
-          definition.setInput = ngOnChangesSetInput;
-          definition.onChanges = wrapOnChanges();
-        }
-      } // This option ensures that the ngOnChanges lifecycle hook will be inherited
-      // from superclasses (in InheritDefinitionFeature).
-
-      /** @nocollapse */
-      // tslint:disable-next-line:no-toplevel-property-access
-
-
-      ɵɵNgOnChangesFeature.ngInherit = true;
-
-      function wrapOnChanges() {
-        return function wrapOnChangesHook_inPreviousChangesStorage() {
-          var simpleChangesStore = getSimpleChangesStore(this);
-          var current = simpleChangesStore && simpleChangesStore.current;
-
-          if (current) {
-            var previous = simpleChangesStore.previous;
-
-            if (previous === EMPTY_OBJ) {
-              simpleChangesStore.previous = current;
-            } else {
-              // New changes are copied to the previous store, so that we don't lose history for inputs
-              // which were not changed this time
-              for (var key in current) {
-                previous[key] = current[key];
-              }
-            }
-
-            simpleChangesStore.current = null;
-            this.ngOnChanges(current);
-          }
-        };
-      }
-
-      function ngOnChangesSetInput(instance, value, publicName, privateName) {
-        var simpleChangesStore = getSimpleChangesStore(instance) || setSimpleChangesStore(instance, {
-          previous: EMPTY_OBJ,
-          current: null
-        });
-        var current = simpleChangesStore.current || (simpleChangesStore.current = {});
-        var previous = simpleChangesStore.previous;
-        var declaredName = this.declaredInputs[publicName];
-        var previousChange = previous[declaredName];
-        current[declaredName] = new SimpleChange(previousChange && previousChange.currentValue, value, previous === EMPTY_OBJ);
-        instance[privateName] = value;
-      }
-
-      var SIMPLE_CHANGES_STORE = '__ngSimpleChanges__';
-
-      function getSimpleChangesStore(instance) {
-        return instance[SIMPLE_CHANGES_STORE] || null;
-      }
-
-      function setSimpleChangesStore(instance, store) {
-        return instance[SIMPLE_CHANGES_STORE] = store;
-      }
-      /**
-       * @license
-       * Copyright Google LLC All Rights Reserved.
-       *
-       * Use of this source code is governed by an MIT-style license that can be
-       * found in the LICENSE file at https://angular.io/license
-       */
-
-      /**
        * Resolves the providers which are defined in the DirectiveDef.
        *
        * When inserting the tokens and the factories in their respective arrays, we can assume that
@@ -36953,11 +36828,11 @@
           var token = isTypeProvider(provider) ? provider : resolveForwardRef(provider.provide);
           var providerFactory = providerToFactory(provider);
           var tNode = getPreviousOrParentTNode();
-          var beginIndex = tNode.providerIndexes & 65535
+          var beginIndex = tNode.providerIndexes & 1048575
           /* ProvidersStartIndexMask */
           ;
           var endIndex = tNode.directiveStart;
-          var cptViewProvidersCount = tNode.providerIndexes >> 16
+          var cptViewProvidersCount = tNode.providerIndexes >> 20
           /* CptViewProvidersCountShift */
           ;
 
@@ -36974,7 +36849,7 @@
               tNode.directiveEnd++;
 
               if (isViewProvider) {
-                tNode.providerIndexes += 65536
+                tNode.providerIndexes += 1048576
                 /* CptViewProvidersCountShifter */
                 ;
               }
@@ -37027,7 +36902,7 @@
               tNode.directiveEnd++;
 
               if (isViewProvider) {
-                tNode.providerIndexes += 65536
+                tNode.providerIndexes += 1048576
                 /* CptViewProvidersCountShifter */
                 ;
               }
@@ -37547,7 +37422,7 @@
        */
 
 
-      var VERSION = new Version('10.0.4');
+      var VERSION = new Version('10.0.12');
       /**
        * @license
        * Copyright Google LLC All Rights Reserved.
@@ -41761,31 +41636,6 @@
        * Use of this source code is governed by an MIT-style license that can be
        * found in the LICENSE file at https://angular.io/license
        */
-
-      /**
-       * NOTE: changes to the `ngI18nClosureMode` name must be synced with `compiler-cli/src/tooling.ts`.
-       */
-
-
-      if (typeof ngI18nClosureMode === 'undefined') {
-        // These property accesses can be ignored because ngI18nClosureMode will be set to false
-        // when optimizing code and the whole if statement will be dropped.
-        // Make sure to refer to ngI18nClosureMode as ['ngI18nClosureMode'] for closure.
-        // NOTE: we need to have it in IIFE so that the tree-shaker is happy.
-        (function () {
-          // tslint:disable-next-line:no-toplevel-property-access
-          _global['ngI18nClosureMode'] = // TODO(FW-1250): validate that this actually, you know, works.
-          // tslint:disable-next-line:no-toplevel-property-access
-          typeof goog !== 'undefined' && typeof goog.getMsg === 'function';
-        })();
-      }
-      /**
-       * @license
-       * Copyright Google LLC All Rights Reserved.
-       *
-       * Use of this source code is governed by an MIT-style license that can be
-       * found in the LICENSE file at https://angular.io/license
-       */
       // THIS CODE IS GENERATED - DO NOT MODIFY
       // See angular/tools/gulp-tasks/cldr/extract.js
 
@@ -41992,333 +41842,948 @@
        * found in the LICENSE file at https://angular.io/license
        */
 
-      var MARKER = "\uFFFD";
-      var ICU_BLOCK_REGEXP = /^\s*(�\d+:?\d*�)\s*,\s*(select|plural)\s*,/;
-      var SUBTEMPLATE_REGEXP = /�\/?\*(\d+:\d+)�/gi;
-      var PH_REGEXP = /�(\/?[#*!]\d+):?\d*�/gi;
-      var BINDING_REGEXP = /�(\d+):?\d*�/gi;
-      var ICU_REGEXP = /({\s*�\d+:?\d*�\s*,\s*\S{6}\s*,[\s\S]*})/gi; // i18nPostprocess consts
-
-      var ROOT_TEMPLATE_ID = 0;
-      var PP_MULTI_VALUE_PLACEHOLDERS_REGEXP = /\[(�.+?�?)\]/;
-      var PP_PLACEHOLDERS_REGEXP = /\[(�.+?�?)\]|(�\/?\*\d+:\d+�)/g;
-      var PP_ICU_VARS_REGEXP = /({\s*)(VAR_(PLURAL|SELECT)(_\d+)?)(\s*,)/g;
-      var PP_ICU_PLACEHOLDERS_REGEXP = /{([A-Z0-9_]+)}/g;
-      var PP_ICUS_REGEXP = /�I18N_EXP_(ICU(_\d+)?)�/g;
-      var PP_CLOSE_TEMPLATE_REGEXP = /\/\*/;
-      var PP_TEMPLATE_ID_REGEXP = /\d+\:(\d+)/;
       /**
-       * Breaks pattern into strings and top level {...} blocks.
-       * Can be used to break a message into text and ICU expressions, or to break an ICU expression into
-       * keys and cases.
-       * Original code from closure library, modified for Angular.
-       *
-       * @param pattern (sub)Pattern to be broken.
-       *
+       * The locale id that the application is currently using (for translations and ICU expressions).
+       * This is the ivy version of `LOCALE_ID` that was defined as an injection token for the view engine
+       * but is now defined as a global value.
        */
 
-      function extractParts(pattern) {
-        if (!pattern) {
-          return [];
+      var LOCALE_ID = DEFAULT_LOCALE_ID;
+      /**
+       * Sets the locale id that will be used for translations and ICU expressions.
+       * This is the ivy version of `LOCALE_ID` that was defined as an injection token for the view engine
+       * but is now defined as a global value.
+       *
+       * @param localeId
+       */
+
+      function setLocaleId(localeId) {
+        assertDefined(localeId, "Expected localeId to be defined");
+
+        if (typeof localeId === 'string') {
+          LOCALE_ID = localeId.toLowerCase().replace(/_/g, '-');
         }
-
-        var prevPos = 0;
-        var braceStack = [];
-        var results = [];
-        var braces = /[{}]/g; // lastIndex doesn't get set to 0 so we have to.
-
-        braces.lastIndex = 0;
-        var match;
-
-        while (match = braces.exec(pattern)) {
-          var pos = match.index;
-
-          if (match[0] == '}') {
-            braceStack.pop();
-
-            if (braceStack.length == 0) {
-              // End of the block.
-              var block = pattern.substring(prevPos, pos);
-
-              if (ICU_BLOCK_REGEXP.test(block)) {
-                results.push(parseICUBlock(block));
-              } else {
-                results.push(block);
-              }
-
-              prevPos = pos + 1;
-            }
-          } else {
-            if (braceStack.length == 0) {
-              var _substring = pattern.substring(prevPos, pos);
-
-              results.push(_substring);
-              prevPos = pos + 1;
-            }
-
-            braceStack.push('{');
-          }
-        }
-
-        var substring = pattern.substring(prevPos);
-        results.push(substring);
-        return results;
       }
       /**
-       * Parses text containing an ICU expression and produces a JSON object for it.
-       * Original code from closure library, modified for Angular.
-       *
-       * @param pattern Text containing an ICU expression that needs to be parsed.
-       *
+       * Gets the locale id that will be used for translations and ICU expressions.
+       * This is the ivy version of `LOCALE_ID` that was defined as an injection token for the view engine
+       * but is now defined as a global value.
        */
 
 
-      function parseICUBlock(pattern) {
-        var cases = [];
-        var values = [];
-        var icuType = 1
-        /* plural */
+      function getLocaleId() {
+        return LOCALE_ID;
+      }
+      /**
+       * @license
+       * Copyright Google LLC All Rights Reserved.
+       *
+       * Use of this source code is governed by an MIT-style license that can be
+       * found in the LICENSE file at https://angular.io/license
+       */
+
+      /**
+       * NOTE: changes to the `ngI18nClosureMode` name must be synced with `compiler-cli/src/tooling.ts`.
+       */
+
+
+      if (typeof ngI18nClosureMode === 'undefined') {
+        // These property accesses can be ignored because ngI18nClosureMode will be set to false
+        // when optimizing code and the whole if statement will be dropped.
+        // Make sure to refer to ngI18nClosureMode as ['ngI18nClosureMode'] for closure.
+        // NOTE: we need to have it in IIFE so that the tree-shaker is happy.
+        (function () {
+          // tslint:disable-next-line:no-toplevel-property-access
+          _global['ngI18nClosureMode'] = // TODO(FW-1250): validate that this actually, you know, works.
+          // tslint:disable-next-line:no-toplevel-property-access
+          typeof goog !== 'undefined' && typeof goog.getMsg === 'function';
+        })();
+      }
+      /**
+       * @license
+       * Copyright Google LLC All Rights Reserved.
+       *
+       * Use of this source code is governed by an MIT-style license that can be
+       * found in the LICENSE file at https://angular.io/license
+       */
+
+
+      function getParentFromI18nMutateOpCode(mergedCode) {
+        return mergedCode >>> 17
+        /* SHIFT_PARENT */
         ;
-        var mainBinding = 0;
-        pattern = pattern.replace(ICU_BLOCK_REGEXP, function (str, binding, type) {
-          if (type === 'select') {
-            icuType = 0
-            /* select */
-            ;
-          } else {
-            icuType = 1
-            /* plural */
-            ;
-          }
-
-          mainBinding = parseInt(binding.substr(1), 10);
-          return '';
-        });
-        var parts = extractParts(pattern); // Looking for (key block)+ sequence. One of the keys has to be "other".
-
-        for (var pos = 0; pos < parts.length;) {
-          var key = parts[pos++].trim();
-
-          if (icuType === 1
-          /* plural */
-          ) {
-              // Key can be "=x", we just want "x"
-              key = key.replace(/\s*(?:=)?(\w+)\s*/, '$1');
-            }
-
-          if (key.length) {
-            cases.push(key);
-          }
-
-          var blocks = extractParts(parts[pos++]);
-
-          if (cases.length > values.length) {
-            values.push(blocks);
-          }
-        } // TODO(ocombe): support ICU expressions in attributes, see #21615
-
-
-        return {
-          type: icuType,
-          mainBinding: mainBinding,
-          cases: cases,
-          values: values
-        };
       }
-      /**
-       * Removes everything inside the sub-templates of a message.
-       */
 
-
-      function removeInnerTemplateTranslation(message) {
-        var match;
-        var res = '';
-        var index = 0;
-        var inTemplate = false;
-        var tagMatched;
-
-        while ((match = SUBTEMPLATE_REGEXP.exec(message)) !== null) {
-          if (!inTemplate) {
-            res += message.substring(index, match.index + match[0].length);
-            tagMatched = match[1];
-            inTemplate = true;
-          } else {
-            if (match[0] === "".concat(MARKER, "/*").concat(tagMatched).concat(MARKER)) {
-              index = match.index;
-              inTemplate = false;
-            }
-          }
-        }
-
-        ngDevMode && assertEqual(inTemplate, false, "Tag mismatch: unable to find the end of the sub-template in the translation \"".concat(message, "\""));
-        res += message.substr(index);
-        return res;
-      }
-      /**
-       * Extracts a part of a message and removes the rest.
-       *
-       * This method is used for extracting a part of the message associated with a template. A translated
-       * message can span multiple templates.
-       *
-       * Example:
-       * ```
-       * <div i18n>Translate <span *ngIf>me</span>!</div>
-       * ```
-       *
-       * @param message The message to crop
-       * @param subTemplateIndex Index of the sub-template to extract. If undefined it returns the
-       * external template and removes all sub-templates.
-       */
-
-
-      function getTranslationForTemplate(message, subTemplateIndex) {
-        if (isRootTemplateMessage(subTemplateIndex)) {
-          // We want the root template message, ignore all sub-templates
-          return removeInnerTemplateTranslation(message);
-        } else {
-          // We want a specific sub-template
-          var start = message.indexOf(":".concat(subTemplateIndex).concat(MARKER)) + 2 + subTemplateIndex.toString().length;
-          var end = message.search(new RegExp("".concat(MARKER, "\\/\\*\\d+:").concat(subTemplateIndex).concat(MARKER)));
-          return removeInnerTemplateTranslation(message.substring(start, end));
-        }
-      }
-      /**
-       * Generate the OpCodes to update the bindings of a string.
-       *
-       * @param str The string containing the bindings.
-       * @param destinationNode Index of the destination node which will receive the binding.
-       * @param attrName Name of the attribute, if the string belongs to an attribute.
-       * @param sanitizeFn Sanitization function used to sanitize the string after update, if necessary.
-       */
-
-
-      function generateBindingUpdateOpCodes(str, destinationNode, attrName) {
-        var sanitizeFn = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : null;
-        var updateOpCodes = [null, null]; // Alloc space for mask and size
-
-        var textParts = str.split(BINDING_REGEXP);
-        var mask = 0;
-
-        for (var j = 0; j < textParts.length; j++) {
-          var textValue = textParts[j];
-
-          if (j & 1) {
-            // Odd indexes are bindings
-            var bindingIndex = parseInt(textValue, 10);
-            updateOpCodes.push(-1 - bindingIndex);
-            mask = mask | toMaskBit(bindingIndex);
-          } else if (textValue !== '') {
-            // Even indexes are text
-            updateOpCodes.push(textValue);
-          }
-        }
-
-        updateOpCodes.push(destinationNode << 2
+      function getRefFromI18nMutateOpCode(mergedCode) {
+        return (mergedCode & 131064
+        /* MASK_REF */
+        ) >>> 3
         /* SHIFT_REF */
-        | (attrName ? 1
-        /* Attr */
-        : 0
-        /* Text */
-        ));
-
-        if (attrName) {
-          updateOpCodes.push(attrName, sanitizeFn);
-        }
-
-        updateOpCodes[0] = mask;
-        updateOpCodes[1] = updateOpCodes.length - 2;
-        return updateOpCodes;
+        ;
       }
 
-      function getBindingMask(icuExpression) {
-        var mask = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
-        mask = mask | toMaskBit(icuExpression.mainBinding);
-        var match;
-
-        for (var i = 0; i < icuExpression.values.length; i++) {
-          var valueArr = icuExpression.values[i];
-
-          for (var j = 0; j < valueArr.length; j++) {
-            var value = valueArr[j];
-
-            if (typeof value === 'string') {
-              while (match = BINDING_REGEXP.exec(value)) {
-                mask = mask | toMaskBit(parseInt(match[1], 10));
-              }
-            } else {
-              mask = getBindingMask(value, mask);
-            }
-          }
-        }
-
-        return mask;
+      function getInstructionFromI18nMutateOpCode(mergedCode) {
+        return mergedCode & 7
+        /* MASK_INSTRUCTION */
+        ;
       }
+      /**
+       * Marks that the next string is an element name.
+       *
+       * See `I18nMutateOpCodes` documentation.
+       */
+
+
+      var ELEMENT_MARKER = {
+        marker: 'element'
+      };
+      /**
+       * Marks that the next string is comment text.
+       *
+       * See `I18nMutateOpCodes` documentation.
+       */
+
+      var COMMENT_MARKER = {
+        marker: 'comment'
+      }; // Note: This hack is necessary so we don't erroneously get a circular dependency
+      // failure based on types.
+
+      var unusedValueExportToPlacateAjd$6 = 1;
+      /**
+       * @license
+       * Copyright Google LLC All Rights Reserved.
+       *
+       * Use of this source code is governed by an MIT-style license that can be
+       * found in the LICENSE file at https://angular.io/license
+       */
 
       var i18nIndexStack = [];
       var i18nIndexStackPointer = -1;
-      /**
-       * Convert binding index to mask bit.
-       *
-       * Each index represents a single bit on the bit-mask. Because bit-mask only has 32 bits, we make
-       * the 32nd bit share all masks for all bindings higher than 32. Since it is extremely rare to have
-       * more than 32 bindings this will be hit very rarely. The downside of hitting this corner case is
-       * that we will execute binding code more often than necessary. (penalty of performance)
-       */
 
-      function toMaskBit(bindingIndex) {
-        return 1 << Math.min(bindingIndex, 31);
+      function popI18nIndex() {
+        return i18nIndexStack[i18nIndexStackPointer--];
       }
 
-      var parentIndexStack = [];
+      function pushI18nIndex(index) {
+        i18nIndexStack[++i18nIndexStackPointer] = index;
+      }
+
+      var changeMask = 0;
+      var shiftsCounter = 0;
+
+      function setMaskBit(bit) {
+        if (bit) {
+          changeMask = changeMask | 1 << shiftsCounter;
+        }
+
+        shiftsCounter++;
+      }
+
+      function applyI18n(tView, lView, index) {
+        if (shiftsCounter > 0) {
+          ngDevMode && assertDefined(tView, "tView should be defined");
+          var tI18n = tView.data[index + HEADER_OFFSET];
+          var updateOpCodes;
+          var tIcus = null;
+
+          if (Array.isArray(tI18n)) {
+            updateOpCodes = tI18n;
+          } else {
+            updateOpCodes = tI18n.update;
+            tIcus = tI18n.icus;
+          }
+
+          var bindingsStartIndex = getBindingIndex() - shiftsCounter - 1;
+          applyUpdateOpCodes(tView, tIcus, lView, updateOpCodes, bindingsStartIndex, changeMask); // Reset changeMask & maskBit to default for the next update cycle
+
+          changeMask = 0;
+          shiftsCounter = 0;
+        }
+      }
       /**
-       * Marks a block of text as translatable.
+       * Apply `I18nMutateOpCodes` OpCodes.
        *
-       * The instructions `i18nStart` and `i18nEnd` mark the translation block in the template.
-       * The translation `message` is the value which is locale specific. The translation string may
-       * contain placeholders which associate inner elements and sub-templates within the translation.
-       *
-       * The translation `message` placeholders are:
-       * - `�{index}(:{block})�`: *Binding Placeholder*: Marks a location where an expression will be
-       *   interpolated into. The placeholder `index` points to the expression binding index. An optional
-       *   `block` that matches the sub-template in which it was declared.
-       * - `�#{index}(:{block})�`/`�/#{index}(:{block})�`: *Element Placeholder*:  Marks the beginning
-       *   and end of DOM element that were embedded in the original translation block. The placeholder
-       *   `index` points to the element index in the template instructions set. An optional `block` that
-       *   matches the sub-template in which it was declared.
-       * - `�!{index}(:{block})�`/`�/!{index}(:{block})�`: *Projection Placeholder*:  Marks the
-       *   beginning and end of <ng-content> that was embedded in the original translation block.
-       *   The placeholder `index` points to the element index in the template instructions set.
-       *   An optional `block` that matches the sub-template in which it was declared.
-       * - `�*{index}:{block}�`/`�/*{index}:{block}�`: *Sub-template Placeholder*: Sub-templates must be
-       *   split up and translated separately in each angular template function. The `index` points to the
-       *   `template` instruction index. A `block` that matches the sub-template in which it was declared.
-       *
-       * @param index A unique index of the translation in the static block.
-       * @param message The translation message.
-       * @param subTemplateIndex Optional sub-template index in the `message`.
-       *
-       * @codeGenApi
+       * @param tView Current `TView`
+       * @param rootIndex Pointer to the root (parent) tNode for the i18n.
+       * @param createOpCodes OpCodes to process
+       * @param lView Current `LView`
        */
 
-      function ɵɵi18nStart(index, message, subTemplateIndex) {
-        var tView = getTView();
-        ngDevMode && assertDefined(tView, "tView should be defined");
-        i18nIndexStack[++i18nIndexStackPointer] = index; // We need to delay projections until `i18nEnd`
 
-        setDelayProjection(true);
+      function applyCreateOpCodes(tView, rootindex, createOpCodes, lView) {
+        var renderer = lView[RENDERER];
+        var currentTNode = null;
+        var previousTNode = null;
+        var visitedNodes = [];
 
-        if (tView.firstCreatePass && tView.data[index + HEADER_OFFSET] === null) {
-          i18nStartFirstPass(getLView(), tView, index, message, subTemplateIndex);
+        for (var i = 0; i < createOpCodes.length; i++) {
+          var opCode = createOpCodes[i];
+
+          if (typeof opCode == 'string') {
+            var textRNode = createTextNode(opCode, renderer);
+            var textNodeIndex = createOpCodes[++i];
+            ngDevMode && ngDevMode.rendererCreateTextNode++;
+            previousTNode = currentTNode;
+            currentTNode = createDynamicNodeAtIndex(tView, lView, textNodeIndex, 3
+            /* Element */
+            , textRNode, null);
+            visitedNodes.push(textNodeIndex);
+            setIsNotParent();
+          } else if (typeof opCode == 'number') {
+            switch (opCode & 7
+            /* MASK_INSTRUCTION */
+            ) {
+              case 1
+              /* AppendChild */
+              :
+                var destinationNodeIndex = opCode >>> 17
+                /* SHIFT_PARENT */
+                ;
+                var destinationTNode = void 0;
+
+                if (destinationNodeIndex === rootindex) {
+                  // If the destination node is `i18nStart`, we don't have a
+                  // top-level node and we should use the host node instead
+                  destinationTNode = lView[T_HOST];
+                } else {
+                  destinationTNode = getTNode(tView, destinationNodeIndex);
+                }
+
+                ngDevMode && assertDefined(currentTNode, "You need to create or select a node before you can insert it into the DOM");
+                previousTNode = appendI18nNode(tView, currentTNode, destinationTNode, previousTNode, lView);
+                break;
+
+              case 0
+              /* Select */
+              :
+                // Negative indices indicate that a given TNode is a sibling node, not a parent node
+                // (see `i18nStartFirstPass` for additional information).
+                var isParent = opCode >= 0; // FIXME(misko): This SHIFT_REF looks suspect as it does not have mask.
+
+                var nodeIndex = (isParent ? opCode : ~opCode) >>> 3
+                /* SHIFT_REF */
+                ;
+                visitedNodes.push(nodeIndex);
+                previousTNode = currentTNode;
+                currentTNode = getTNode(tView, nodeIndex);
+
+                if (currentTNode) {
+                  setPreviousOrParentTNode(currentTNode, isParent);
+                }
+
+                break;
+
+              case 5
+              /* ElementEnd */
+              :
+                var elementIndex = opCode >>> 3
+                /* SHIFT_REF */
+                ;
+                previousTNode = currentTNode = getTNode(tView, elementIndex);
+                setPreviousOrParentTNode(currentTNode, false);
+                break;
+
+              case 4
+              /* Attr */
+              :
+                var elementNodeIndex = opCode >>> 3
+                /* SHIFT_REF */
+                ;
+                var attrName = createOpCodes[++i];
+                var attrValue = createOpCodes[++i]; // This code is used for ICU expressions only, since we don't support
+                // directives/components in ICUs, we don't need to worry about inputs here
+
+                elementAttributeInternal(getTNode(tView, elementNodeIndex), lView, attrName, attrValue, null, null);
+                break;
+
+              default:
+                throw new Error("Unable to determine the type of mutate operation for \"".concat(opCode, "\""));
+            }
+          } else {
+            switch (opCode) {
+              case COMMENT_MARKER:
+                var commentValue = createOpCodes[++i];
+                var commentNodeIndex = createOpCodes[++i];
+                ngDevMode && assertEqual(typeof commentValue, 'string', "Expected \"".concat(commentValue, "\" to be a comment node value"));
+                var commentRNode = renderer.createComment(commentValue);
+                ngDevMode && ngDevMode.rendererCreateComment++;
+                previousTNode = currentTNode;
+                currentTNode = createDynamicNodeAtIndex(tView, lView, commentNodeIndex, 5
+                /* IcuContainer */
+                , commentRNode, null);
+                visitedNodes.push(commentNodeIndex);
+                attachPatchData(commentRNode, lView); // We will add the case nodes later, during the update phase
+
+                setIsNotParent();
+                break;
+
+              case ELEMENT_MARKER:
+                var tagNameValue = createOpCodes[++i];
+                var _elementNodeIndex = createOpCodes[++i];
+                ngDevMode && assertEqual(typeof tagNameValue, 'string', "Expected \"".concat(tagNameValue, "\" to be an element node tag name"));
+                var elementRNode = renderer.createElement(tagNameValue);
+                ngDevMode && ngDevMode.rendererCreateElement++;
+                previousTNode = currentTNode;
+                currentTNode = createDynamicNodeAtIndex(tView, lView, _elementNodeIndex, 3
+                /* Element */
+                , elementRNode, tagNameValue);
+                visitedNodes.push(_elementNodeIndex);
+                break;
+
+              default:
+                throw new Error("Unable to determine the type of mutate operation for \"".concat(opCode, "\""));
+            }
+          }
         }
-      } // Count for the number of vars that will be allocated for each i18n block.
+
+        setIsNotParent();
+        return visitedNodes;
+      }
+      /**
+       * Apply `I18nUpdateOpCodes` OpCodes
+       *
+       * @param tView Current `TView`
+       * @param tIcus If ICUs present than this contains them.
+       * @param lView Current `LView`
+       * @param updateOpCodes OpCodes to process
+       * @param bindingsStartIndex Location of the first `ɵɵi18nApply`
+       * @param changeMask Each bit corresponds to a `ɵɵi18nExp` (Counting backwards from
+       *     `bindingsStartIndex`)
+       */
+
+
+      function applyUpdateOpCodes(tView, tIcus, lView, updateOpCodes, bindingsStartIndex, changeMask) {
+        var caseCreated = false;
+
+        for (var i = 0; i < updateOpCodes.length; i++) {
+          // bit code to check if we should apply the next update
+          var checkBit = updateOpCodes[i]; // Number of opCodes to skip until next set of update codes
+
+          var skipCodes = updateOpCodes[++i];
+
+          if (checkBit & changeMask) {
+            // The value has been updated since last checked
+            var value = '';
+
+            for (var j = i + 1; j <= i + skipCodes; j++) {
+              var opCode = updateOpCodes[j];
+
+              if (typeof opCode == 'string') {
+                value += opCode;
+              } else if (typeof opCode == 'number') {
+                if (opCode < 0) {
+                  // Negative opCode represent `i18nExp` values offset.
+                  value += renderStringify(lView[bindingsStartIndex - opCode]);
+                } else {
+                  var nodeIndex = opCode >>> 2
+                  /* SHIFT_REF */
+                  ;
+
+                  switch (opCode & 3
+                  /* MASK_OPCODE */
+                  ) {
+                    case 1
+                    /* Attr */
+                    :
+                      var propName = updateOpCodes[++j];
+                      var sanitizeFn = updateOpCodes[++j];
+                      elementPropertyInternal(tView, getTNode(tView, nodeIndex), lView, propName, value, lView[RENDERER], sanitizeFn, false);
+                      break;
+
+                    case 0
+                    /* Text */
+                    :
+                      textBindingInternal(lView, nodeIndex, value);
+                      break;
+
+                    case 2
+                    /* IcuSwitch */
+                    :
+                      caseCreated = applyIcuSwitchCase(tView, tIcus, updateOpCodes[++j], lView, value);
+                      break;
+
+                    case 3
+                    /* IcuUpdate */
+                    :
+                      applyIcuUpdateCase(tView, tIcus, updateOpCodes[++j], bindingsStartIndex, lView, caseCreated);
+                      break;
+                  }
+                }
+              }
+            }
+          }
+
+          i += skipCodes;
+        }
+      }
+      /**
+       * Apply OpCodes associated with updating an existing ICU.
+       *
+       * @param tView Current `TView`
+       * @param tIcus ICUs active at this location.
+       * @param tIcuIndex Index into `tIcus` to process.
+       * @param bindingsStartIndex Location of the first `ɵɵi18nApply`
+       * @param lView Current `LView`
+       * @param changeMask Each bit corresponds to a `ɵɵi18nExp` (Counting backwards from
+       *     `bindingsStartIndex`)
+       */
+
+
+      function applyIcuUpdateCase(tView, tIcus, tIcuIndex, bindingsStartIndex, lView, caseCreated) {
+        ngDevMode && assertIndexInRange(tIcus, tIcuIndex);
+        var tIcu = tIcus[tIcuIndex];
+        ngDevMode && assertIndexInRange(lView, tIcu.currentCaseLViewIndex);
+        var activeCaseIndex = lView[tIcu.currentCaseLViewIndex];
+
+        if (activeCaseIndex !== null) {
+          var mask = caseCreated ? -1 : // -1 is same as all bits on, which simulates creation since it marks all bits dirty
+          changeMask;
+          applyUpdateOpCodes(tView, tIcus, lView, tIcu.update[activeCaseIndex], bindingsStartIndex, mask);
+        }
+      }
+      /**
+       * Apply OpCodes associated with switching a case on ICU.
+       *
+       * This involves tearing down existing case and than building up a new case.
+       *
+       * @param tView Current `TView`
+       * @param tIcus ICUs active at this location.
+       * @param tICuIndex Index into `tIcus` to process.
+       * @param lView Current `LView`
+       * @param value Value of the case to update to.
+       * @returns true if a new case was created (needed so that the update executes regardless of the
+       *     bitmask)
+       */
+
+
+      function applyIcuSwitchCase(tView, tIcus, tICuIndex, lView, value) {
+        applyIcuSwitchCaseRemove(tView, tIcus, tICuIndex, lView); // Rebuild a new case for this ICU
+
+        var caseCreated = false;
+        var tIcu = tIcus[tICuIndex];
+        var caseIndex = getCaseIndex(tIcu, value);
+        lView[tIcu.currentCaseLViewIndex] = caseIndex !== -1 ? caseIndex : null;
+
+        if (caseIndex > -1) {
+          // Add the nodes for the new case
+          applyCreateOpCodes(tView, -1, // -1 means we don't have parent node
+          tIcu.create[caseIndex], lView);
+          caseCreated = true;
+        }
+
+        return caseCreated;
+      }
+      /**
+       * Apply OpCodes associated with tearing down of DOM.
+       *
+       * This involves tearing down existing case and than building up a new case.
+       *
+       * @param tView Current `TView`
+       * @param tIcus ICUs active at this location.
+       * @param tIcuIndex Index into `tIcus` to process.
+       * @param lView Current `LView`
+       * @returns true if a new case was created (needed so that the update executes regardless of the
+       *     bitmask)
+       */
+
+
+      function applyIcuSwitchCaseRemove(tView, tIcus, tIcuIndex, lView) {
+        ngDevMode && assertIndexInRange(tIcus, tIcuIndex);
+        var tIcu = tIcus[tIcuIndex];
+        var activeCaseIndex = lView[tIcu.currentCaseLViewIndex];
+
+        if (activeCaseIndex !== null) {
+          var removeCodes = tIcu.remove[activeCaseIndex];
+
+          for (var k = 0; k < removeCodes.length; k++) {
+            var removeOpCode = removeCodes[k];
+            var nodeOrIcuIndex = removeOpCode >>> 3
+            /* SHIFT_REF */
+            ;
+
+            switch (removeOpCode & 7
+            /* MASK_INSTRUCTION */
+            ) {
+              case 3
+              /* Remove */
+              :
+                // FIXME(misko): this comment is wrong!
+                // Remove DOM element, but do *not* mark TNode as detached, since we are
+                // just switching ICU cases (while keeping the same TNode), so a DOM element
+                // representing a new ICU case will be re-created.
+                removeNode(tView, lView, nodeOrIcuIndex,
+                /* markAsDetached */
+                false);
+                break;
+
+              case 6
+              /* RemoveNestedIcu */
+              :
+                applyIcuSwitchCaseRemove(tView, tIcus, nodeOrIcuIndex, lView);
+                break;
+            }
+          }
+        }
+      }
+
+      function appendI18nNode(tView, tNode, parentTNode, previousTNode, lView) {
+        ngDevMode && ngDevMode.rendererMoveNode++;
+        var nextNode = tNode.next;
+
+        if (!previousTNode) {
+          previousTNode = parentTNode;
+        } // Re-organize node tree to put this node in the correct position.
+
+
+        if (previousTNode === parentTNode && tNode !== parentTNode.child) {
+          tNode.next = parentTNode.child;
+          parentTNode.child = tNode;
+        } else if (previousTNode !== parentTNode && tNode !== previousTNode.next) {
+          tNode.next = previousTNode.next;
+          previousTNode.next = tNode;
+        } else {
+          tNode.next = null;
+        }
+
+        if (parentTNode !== lView[T_HOST]) {
+          tNode.parent = parentTNode;
+        } // If tNode was moved around, we might need to fix a broken link.
+
+
+        var cursor = tNode.next;
+
+        while (cursor) {
+          if (cursor.next === tNode) {
+            cursor.next = nextNode;
+          }
+
+          cursor = cursor.next;
+        } // If the placeholder to append is a projection, we need to move the projected nodes instead
+
+
+        if (tNode.type === 1
+        /* Projection */
+        ) {
+            applyProjection(tView, lView, tNode);
+            return tNode;
+          }
+
+        appendChild(tView, lView, getNativeByTNode(tNode, lView), tNode);
+        var slotValue = lView[tNode.index];
+
+        if (tNode.type !== 0
+        /* Container */
+        && isLContainer(slotValue)) {
+          // Nodes that inject ViewContainerRef also have a comment node that should be moved
+          appendChild(tView, lView, slotValue[NATIVE], tNode);
+        }
+
+        return tNode;
+      }
+      /**
+       * See `i18nEnd` above.
+       */
+
+
+      function i18nEndFirstPass(tView, lView) {
+        ngDevMode && assertEqual(getBindingIndex(), tView.bindingStartIndex, 'i18nEnd should be called before any binding');
+        var rootIndex = popI18nIndex();
+        var tI18n = tView.data[rootIndex + HEADER_OFFSET];
+        ngDevMode && assertDefined(tI18n, "You should call i18nStart before i18nEnd"); // Find the last node that was added before `i18nEnd`
+
+        var lastCreatedNode = getPreviousOrParentTNode(); // Read the instructions to insert/move/remove DOM elements
+
+        var visitedNodes = applyCreateOpCodes(tView, rootIndex, tI18n.create, lView); // Remove deleted nodes
+
+        var index = rootIndex + 1;
+
+        while (index <= lastCreatedNode.index - HEADER_OFFSET) {
+          if (visitedNodes.indexOf(index) === -1) {
+            removeNode(tView, lView, index,
+            /* markAsDetached */
+            true);
+          } // Check if an element has any local refs and skip them
+
+
+          var tNode = getTNode(tView, index);
+
+          if (tNode && (tNode.type === 0
+          /* Container */
+          || tNode.type === 3
+          /* Element */
+          || tNode.type === 4
+          /* ElementContainer */
+          ) && tNode.localNames !== null) {
+            // Divide by 2 to get the number of local refs,
+            // since they are stored as an array that also includes directive indexes,
+            // i.e. ["localRef", directiveIndex, ...]
+            index += tNode.localNames.length >> 1;
+          }
+
+          index++;
+        }
+      }
+
+      function removeNode(tView, lView, index, markAsDetached) {
+        var removedPhTNode = getTNode(tView, index);
+        var removedPhRNode = getNativeByIndex(index, lView);
+
+        if (removedPhRNode) {
+          nativeRemoveNode(lView[RENDERER], removedPhRNode);
+        }
+
+        var slotValue = load(lView, index);
+
+        if (isLContainer(slotValue)) {
+          var lContainer = slotValue;
+
+          if (removedPhTNode.type !== 0
+          /* Container */
+          ) {
+              nativeRemoveNode(lView[RENDERER], lContainer[NATIVE]);
+            }
+        }
+
+        if (markAsDetached) {
+          // Define this node as detached to avoid projecting it later
+          removedPhTNode.flags |= 64
+          /* isDetached */
+          ;
+        }
+
+        ngDevMode && ngDevMode.rendererRemoveNode++;
+      }
+      /**
+       * Creates and stores the dynamic TNode, and unhooks it from the tree for now.
+       */
+
+
+      function createDynamicNodeAtIndex(tView, lView, index, type, _native16, name) {
+        var previousOrParentTNode = getPreviousOrParentTNode();
+        ngDevMode && assertIndexInRange(lView, index + HEADER_OFFSET);
+        lView[index + HEADER_OFFSET] = _native16; // FIXME(misko): Why does this create A TNode??? I would not expect this to be here.
+
+        var tNode = getOrCreateTNode(tView, lView[T_HOST], index, type, name, null); // We are creating a dynamic node, the previous tNode might not be pointing at this node.
+        // We will link ourselves into the tree later with `appendI18nNode`.
+
+        if (previousOrParentTNode && previousOrParentTNode.next === tNode) {
+          previousOrParentTNode.next = null;
+        }
+
+        return tNode;
+      }
+      /**
+       * Returns the index of the current case of an ICU expression depending on the main binding value
+       *
+       * @param icuExpression
+       * @param bindingValue The value of the main binding used by this ICU expression
+       */
+
+
+      function getCaseIndex(icuExpression, bindingValue) {
+        var index = icuExpression.cases.indexOf(bindingValue);
+
+        if (index === -1) {
+          switch (icuExpression.type) {
+            case 1
+            /* plural */
+            :
+              {
+                var resolvedCase = getPluralCase(bindingValue, getLocaleId());
+                index = icuExpression.cases.indexOf(resolvedCase);
+
+                if (index === -1 && resolvedCase !== 'other') {
+                  index = icuExpression.cases.indexOf('other');
+                }
+
+                break;
+              }
+
+            case 0
+            /* select */
+            :
+              {
+                index = icuExpression.cases.indexOf('other');
+                break;
+              }
+          }
+        }
+
+        return index;
+      }
+      /**
+       * @license
+       * Copyright Google LLC All Rights Reserved.
+       *
+       * Use of this source code is governed by an MIT-style license that can be
+       * found in the LICENSE file at https://angular.io/license
+       */
+
+      /**
+       * Converts `I18nUpdateOpCodes` array into a human readable format.
+       *
+       * This function is attached to the `I18nUpdateOpCodes.debug` property if `ngDevMode` is enabled.
+       * This function provides a human readable view of the opcodes. This is useful when debugging the
+       * application as well as writing more readable tests.
+       *
+       * @param this `I18nUpdateOpCodes` if attached as a method.
+       * @param opcodes `I18nUpdateOpCodes` if invoked as a function.
+       */
+
+
+      function i18nUpdateOpCodesToString(opcodes) {
+        var parser = new OpCodeParser(opcodes || (Array.isArray(this) ? this : []));
+        var lines = [];
+
+        function consumeOpCode(value) {
+          var ref = value >>> 2
+          /* SHIFT_REF */
+          ;
+          var opCode = value & 3
+          /* MASK_OPCODE */
+          ;
+
+          switch (opCode) {
+            case 0
+            /* Text */
+            :
+              return "(lView[".concat(ref, "] as Text).textContent = $$$");
+
+            case 1
+            /* Attr */
+            :
+              var attrName = parser.consumeString();
+              var sanitizationFn = parser.consumeFunction();
+
+              var _value3 = sanitizationFn ? "(".concat(sanitizationFn, ")($$$)") : '$$$';
+
+              return "(lView[".concat(ref, "] as Element).setAttribute('").concat(attrName, "', ").concat(_value3, ")");
+
+            case 2
+            /* IcuSwitch */
+            :
+              return "icuSwitchCase(lView[".concat(ref, "] as Comment, ").concat(parser.consumeNumber(), ", $$$)");
+
+            case 3
+            /* IcuUpdate */
+            :
+              return "icuUpdateCase(lView[".concat(ref, "] as Comment, ").concat(parser.consumeNumber(), ")");
+          }
+
+          throw new Error('unexpected OpCode');
+        }
+
+        while (parser.hasMore()) {
+          var mask = parser.consumeNumber();
+          var size = parser.consumeNumber();
+          var end = parser.i + size;
+          var statements = [];
+          var statement = '';
+
+          while (parser.i < end) {
+            var value = parser.consumeNumberOrString();
+
+            if (typeof value === 'string') {
+              statement += value;
+            } else if (value < 0) {
+              // Negative numbers are ref indexes
+              statement += '${lView[' + (0 - value) + ']}';
+            } else {
+              // Positive numbers are operations.
+              var opCodeText = consumeOpCode(value);
+              statements.push(opCodeText.replace('$$$', '`' + statement + '`') + ';');
+              statement = '';
+            }
+          }
+
+          lines.push("if (mask & 0b".concat(mask.toString(2), ") { ").concat(statements.join(' '), " }"));
+        }
+
+        return lines;
+      }
+      /**
+       * Converts `I18nMutableOpCodes` array into a human readable format.
+       *
+       * This function is attached to the `I18nMutableOpCodes.debug` if `ngDevMode` is enabled. This
+       * function provides a human readable view of the opcodes. This is useful when debugging the
+       * application as well as writing more readable tests.
+       *
+       * @param this `I18nMutableOpCodes` if attached as a method.
+       * @param opcodes `I18nMutableOpCodes` if invoked as a function.
+       */
+
+
+      function i18nMutateOpCodesToString(opcodes) {
+        var parser = new OpCodeParser(opcodes || (Array.isArray(this) ? this : []));
+        var lines = [];
+
+        function consumeOpCode(opCode) {
+          var parent = getParentFromI18nMutateOpCode(opCode);
+          var ref = getRefFromI18nMutateOpCode(opCode);
+
+          switch (getInstructionFromI18nMutateOpCode(opCode)) {
+            case 0
+            /* Select */
+            :
+              lastRef = ref;
+              return '';
+
+            case 1
+            /* AppendChild */
+            :
+              return "(lView[".concat(parent, "] as Element).appendChild(lView[").concat(lastRef, "])");
+
+            case 3
+            /* Remove */
+            :
+              return "(lView[".concat(parent, "] as Element).remove(lView[").concat(ref, "])");
+
+            case 4
+            /* Attr */
+            :
+              return "(lView[".concat(ref, "] as Element).setAttribute(\"").concat(parser.consumeString(), "\", \"").concat(parser.consumeString(), "\")");
+
+            case 5
+            /* ElementEnd */
+            :
+              return "setPreviousOrParentTNode(tView.data[".concat(ref, "] as TNode)");
+
+            case 6
+            /* RemoveNestedIcu */
+            :
+              return "removeNestedICU(".concat(ref, ")");
+          }
+
+          throw new Error('Unexpected OpCode');
+        }
+
+        var lastRef = -1;
+
+        while (parser.hasMore()) {
+          var value = parser.consumeNumberStringOrMarker();
+
+          if (value === COMMENT_MARKER) {
+            var text = parser.consumeString();
+            lastRef = parser.consumeNumber();
+            lines.push("lView[".concat(lastRef, "] = document.createComment(\"").concat(text, "\")"));
+          } else if (value === ELEMENT_MARKER) {
+            var _text = parser.consumeString();
+
+            lastRef = parser.consumeNumber();
+            lines.push("lView[".concat(lastRef, "] = document.createElement(\"").concat(_text, "\")"));
+          } else if (typeof value === 'string') {
+            lastRef = parser.consumeNumber();
+            lines.push("lView[".concat(lastRef, "] = document.createTextNode(\"").concat(value, "\")"));
+          } else if (typeof value === 'number') {
+            var line = consumeOpCode(value);
+            line && lines.push(line);
+          } else {
+            throw new Error('Unexpected value');
+          }
+        }
+
+        return lines;
+      }
+
+      var OpCodeParser = /*#__PURE__*/function () {
+        function OpCodeParser(codes) {
+          _classCallCheck(this, OpCodeParser);
+
+          this.i = 0;
+          this.codes = codes;
+        }
+
+        _createClass2(OpCodeParser, [{
+          key: "hasMore",
+          value: function hasMore() {
+            return this.i < this.codes.length;
+          }
+        }, {
+          key: "consumeNumber",
+          value: function consumeNumber() {
+            var value = this.codes[this.i++];
+            assertNumber(value, 'expecting number in OpCode');
+            return value;
+          }
+        }, {
+          key: "consumeString",
+          value: function consumeString() {
+            var value = this.codes[this.i++];
+            assertString(value, 'expecting string in OpCode');
+            return value;
+          }
+        }, {
+          key: "consumeFunction",
+          value: function consumeFunction() {
+            var value = this.codes[this.i++];
+
+            if (value === null || typeof value === 'function') {
+              return value;
+            }
+
+            throw new Error('expecting function in OpCode');
+          }
+        }, {
+          key: "consumeNumberOrString",
+          value: function consumeNumberOrString() {
+            var value = this.codes[this.i++];
+
+            if (typeof value === 'string') {
+              return value;
+            }
+
+            assertNumber(value, 'expecting number or string in OpCode');
+            return value;
+          }
+        }, {
+          key: "consumeNumberStringOrMarker",
+          value: function consumeNumberStringOrMarker() {
+            var value = this.codes[this.i++];
+
+            if (typeof value === 'string' || typeof value === 'number' || value == COMMENT_MARKER || value == ELEMENT_MARKER) {
+              return value;
+            }
+
+            assertNumber(value, 'expecting number, string, COMMENT_MARKER or ELEMENT_MARKER in OpCode');
+            return value;
+          }
+        }]);
+
+        return OpCodeParser;
+      }();
+      /**
+       * @license
+       * Copyright Google LLC All Rights Reserved.
+       *
+       * Use of this source code is governed by an MIT-style license that can be
+       * found in the LICENSE file at https://angular.io/license
+       */
+
+
+      var BINDING_REGEXP = /�(\d+):?\d*�/gi;
+      var ICU_REGEXP = /({\s*�\d+:?\d*�\s*,\s*\S{6}\s*,[\s\S]*})/gi;
+      var NESTED_ICU = /�(\d+)�/;
+      var ICU_BLOCK_REGEXP = /^\s*(�\d+:?\d*�)\s*,\s*(select|plural)\s*,/; // Count for the number of vars that will be allocated for each i18n block.
       // It is global because this is used in multiple functions that include loops and recursive calls.
       // This is reset to 0 when `i18nStartFirstPass` is called.
 
-
       var i18nVarsCount;
+      var parentIndexStack = [];
+      var MARKER = "\uFFFD";
+      var SUBTEMPLATE_REGEXP = /�\/?\*(\d+:\d+)�/gi;
+      var PH_REGEXP = /�(\/?[#*!]\d+):?\d*�/gi;
+      /**
+       * Angular Dart introduced &ngsp; as a placeholder for non-removable space, see:
+       * https://github.com/dart-lang/angular/blob/0bb611387d29d65b5af7f9d2515ab571fd3fbee4/_tests/test/compiler/preserve_whitespace_test.dart#L25-L32
+       * In Angular Dart &ngsp; is converted to the 0xE500 PUA (Private Use Areas) unicode character
+       * and later on replaced by a space. We are re-implementing the same idea here, since translations
+       * might contain this special character.
+       */
 
-      function allocNodeIndex(startIndex) {
-        return startIndex + i18nVarsCount++;
+      var NGSP_UNICODE_REGEXP = /\uE500/g;
+
+      function replaceNgsp(value) {
+        return value.replace(NGSP_UNICODE_REGEXP, ' ');
       }
       /**
        * See `i18nStart` above.
@@ -42333,11 +42798,16 @@
         var parentIndex = parentTNode && parentTNode !== lView[T_HOST] ? parentTNode.index - HEADER_OFFSET : index;
         var parentIndexPointer = 0;
         parentIndexStack[parentIndexPointer] = parentIndex;
-        var createOpCodes = []; // If the previous node wasn't the direct parent then we have a translation without top level
+        var createOpCodes = [];
+
+        if (ngDevMode) {
+          attachDebugGetter(createOpCodes, i18nMutateOpCodesToString);
+        } // If the previous node wasn't the direct parent then we have a translation without top level
         // element and we need to keep a reference of the previous element if there is one. We should also
         // keep track whether an element was a parent node or not, so that the logic that consumes
         // the generated `I18nMutateOpCode`s can leverage this information to properly set TNode state
         // (whether it's a parent or sibling).
+
 
         if (index > 0 && previousOrParentTNode !== parentTNode) {
           var previousTNodeIndex = previousOrParentTNode.index - HEADER_OFFSET; // If current TNode is a sibling node, encode it using a negative index. This information is
@@ -42356,6 +42826,11 @@
         }
 
         var updateOpCodes = [];
+
+        if (ngDevMode) {
+          attachDebugGetter(updateOpCodes, i18nUpdateOpCodesToString);
+        }
+
         var icuExpressions = [];
 
         if (message === '' && isRootTemplateMessage(subTemplateIndex)) {
@@ -42475,9 +42950,8 @@
 
         if (i18nVarsCount > 0) {
           allocExpando(tView, lView, i18nVarsCount);
-        }
+        } // NOTE: local var needed to properly assert the type of `TI18n`.
 
-        ngDevMode && attachI18nOpCodesDebug(createOpCodes, updateOpCodes, icuExpressions.length ? icuExpressions : null, lView); // NOTE: local var needed to properly assert the type of `TI18n`.
 
         var tI18n = {
           vars: i18nVarsCount,
@@ -42486,610 +42960,6 @@
           icus: icuExpressions.length ? icuExpressions : null
         };
         tView.data[index + HEADER_OFFSET] = tI18n;
-      }
-
-      function appendI18nNode(tView, tNode, parentTNode, previousTNode, lView) {
-        ngDevMode && ngDevMode.rendererMoveNode++;
-        var nextNode = tNode.next;
-
-        if (!previousTNode) {
-          previousTNode = parentTNode;
-        } // Re-organize node tree to put this node in the correct position.
-
-
-        if (previousTNode === parentTNode && tNode !== parentTNode.child) {
-          tNode.next = parentTNode.child;
-          parentTNode.child = tNode;
-        } else if (previousTNode !== parentTNode && tNode !== previousTNode.next) {
-          tNode.next = previousTNode.next;
-          previousTNode.next = tNode;
-        } else {
-          tNode.next = null;
-        }
-
-        if (parentTNode !== lView[T_HOST]) {
-          tNode.parent = parentTNode;
-        } // If tNode was moved around, we might need to fix a broken link.
-
-
-        var cursor = tNode.next;
-
-        while (cursor) {
-          if (cursor.next === tNode) {
-            cursor.next = nextNode;
-          }
-
-          cursor = cursor.next;
-        } // If the placeholder to append is a projection, we need to move the projected nodes instead
-
-
-        if (tNode.type === 1
-        /* Projection */
-        ) {
-            applyProjection(tView, lView, tNode);
-            return tNode;
-          }
-
-        appendChild(tView, lView, getNativeByTNode(tNode, lView), tNode);
-        var slotValue = lView[tNode.index];
-
-        if (tNode.type !== 0
-        /* Container */
-        && isLContainer(slotValue)) {
-          // Nodes that inject ViewContainerRef also have a comment node that should be moved
-          appendChild(tView, lView, slotValue[NATIVE], tNode);
-        }
-
-        return tNode;
-      }
-
-      function isRootTemplateMessage(subTemplateIndex) {
-        return subTemplateIndex === undefined;
-      }
-      /**
-       * Handles message string post-processing for internationalization.
-       *
-       * Handles message string post-processing by transforming it from intermediate
-       * format (that might contain some markers that we need to replace) to the final
-       * form, consumable by i18nStart instruction. Post processing steps include:
-       *
-       * 1. Resolve all multi-value cases (like [�*1:1��#2:1�|�#4:1�|�5�])
-       * 2. Replace all ICU vars (like "VAR_PLURAL")
-       * 3. Replace all placeholders used inside ICUs in a form of {PLACEHOLDER}
-       * 4. Replace all ICU references with corresponding values (like �ICU_EXP_ICU_1�)
-       *    in case multiple ICUs have the same placeholder name
-       *
-       * @param message Raw translation string for post processing
-       * @param replacements Set of replacements that should be applied
-       *
-       * @returns Transformed string that can be consumed by i18nStart instruction
-       *
-       * @codeGenApi
-       */
-
-
-      function ɵɵi18nPostprocess(message) {
-        var replacements = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-
-        /**
-         * Step 1: resolve all multi-value placeholders like [�#5�|�*1:1��#2:1�|�#4:1�]
-         *
-         * Note: due to the way we process nested templates (BFS), multi-value placeholders are typically
-         * grouped by templates, for example: [�#5�|�#6�|�#1:1�|�#3:2�] where �#5� and �#6� belong to root
-         * template, �#1:1� belong to nested template with index 1 and �#1:2� - nested template with index
-         * 3. However in real templates the order might be different: i.e. �#1:1� and/or �#3:2� may go in
-         * front of �#6�. The post processing step restores the right order by keeping track of the
-         * template id stack and looks for placeholders that belong to the currently active template.
-         */
-        var result = message;
-
-        if (PP_MULTI_VALUE_PLACEHOLDERS_REGEXP.test(message)) {
-          var matches = {};
-          var templateIdsStack = [ROOT_TEMPLATE_ID];
-          result = result.replace(PP_PLACEHOLDERS_REGEXP, function (m, phs, tmpl) {
-            var content = phs || tmpl;
-            var placeholders = matches[content] || [];
-
-            if (!placeholders.length) {
-              content.split('|').forEach(function (placeholder) {
-                var match = placeholder.match(PP_TEMPLATE_ID_REGEXP);
-                var templateId = match ? parseInt(match[1], 10) : ROOT_TEMPLATE_ID;
-                var isCloseTemplateTag = PP_CLOSE_TEMPLATE_REGEXP.test(placeholder);
-                placeholders.push([templateId, isCloseTemplateTag, placeholder]);
-              });
-              matches[content] = placeholders;
-            }
-
-            if (!placeholders.length) {
-              throw new Error("i18n postprocess: unmatched placeholder - ".concat(content));
-            }
-
-            var currentTemplateId = templateIdsStack[templateIdsStack.length - 1];
-            var idx = 0; // find placeholder index that matches current template id
-
-            for (var i = 0; i < placeholders.length; i++) {
-              if (placeholders[i][0] === currentTemplateId) {
-                idx = i;
-                break;
-              }
-            } // update template id stack based on the current tag extracted
-
-
-            var _placeholders$idx = _slicedToArray(placeholders[idx], 3),
-                templateId = _placeholders$idx[0],
-                isCloseTemplateTag = _placeholders$idx[1],
-                placeholder = _placeholders$idx[2];
-
-            if (isCloseTemplateTag) {
-              templateIdsStack.pop();
-            } else if (currentTemplateId !== templateId) {
-              templateIdsStack.push(templateId);
-            } // remove processed tag from the list
-
-
-            placeholders.splice(idx, 1);
-            return placeholder;
-          });
-        } // return current result if no replacements specified
-
-
-        if (!Object.keys(replacements).length) {
-          return result;
-        }
-        /**
-         * Step 2: replace all ICU vars (like "VAR_PLURAL")
-         */
-
-
-        result = result.replace(PP_ICU_VARS_REGEXP, function (match, start, key, _type, _idx, end) {
-          return replacements.hasOwnProperty(key) ? "".concat(start).concat(replacements[key]).concat(end) : match;
-        });
-        /**
-         * Step 3: replace all placeholders used inside ICUs in a form of {PLACEHOLDER}
-         */
-
-        result = result.replace(PP_ICU_PLACEHOLDERS_REGEXP, function (match, key) {
-          return replacements.hasOwnProperty(key) ? replacements[key] : match;
-        });
-        /**
-         * Step 4: replace all ICU references with corresponding values (like �ICU_EXP_ICU_1�) in case
-         * multiple ICUs have the same placeholder name
-         */
-
-        result = result.replace(PP_ICUS_REGEXP, function (match, key) {
-          if (replacements.hasOwnProperty(key)) {
-            var list = replacements[key];
-
-            if (!list.length) {
-              throw new Error("i18n postprocess: unmatched ICU - ".concat(match, " with key: ").concat(key));
-            }
-
-            return list.shift();
-          }
-
-          return match;
-        });
-        return result;
-      }
-      /**
-       * Translates a translation block marked by `i18nStart` and `i18nEnd`. It inserts the text/ICU nodes
-       * into the render tree, moves the placeholder nodes and removes the deleted nodes.
-       *
-       * @codeGenApi
-       */
-
-
-      function ɵɵi18nEnd() {
-        var lView = getLView();
-        var tView = getTView();
-        ngDevMode && assertDefined(tView, "tView should be defined");
-        i18nEndFirstPass(tView, lView); // Stop delaying projections
-
-        setDelayProjection(false);
-      }
-      /**
-       * See `i18nEnd` above.
-       */
-
-
-      function i18nEndFirstPass(tView, lView) {
-        ngDevMode && assertEqual(getBindingIndex(), tView.bindingStartIndex, 'i18nEnd should be called before any binding');
-        var rootIndex = i18nIndexStack[i18nIndexStackPointer--];
-        var tI18n = tView.data[rootIndex + HEADER_OFFSET];
-        ngDevMode && assertDefined(tI18n, "You should call i18nStart before i18nEnd"); // Find the last node that was added before `i18nEnd`
-
-        var lastCreatedNode = getPreviousOrParentTNode(); // Read the instructions to insert/move/remove DOM elements
-
-        var visitedNodes = readCreateOpCodes(rootIndex, tI18n.create, tView, lView); // Remove deleted nodes
-
-        var index = rootIndex + 1;
-
-        while (index <= lastCreatedNode.index - HEADER_OFFSET) {
-          if (visitedNodes.indexOf(index) === -1) {
-            removeNode(tView, lView, index,
-            /* markAsDetached */
-            true);
-          } // Check if an element has any local refs and skip them
-
-
-          var tNode = getTNode(tView, index);
-
-          if (tNode && (tNode.type === 0
-          /* Container */
-          || tNode.type === 3
-          /* Element */
-          || tNode.type === 4
-          /* ElementContainer */
-          ) && tNode.localNames !== null) {
-            // Divide by 2 to get the number of local refs,
-            // since they are stored as an array that also includes directive indexes,
-            // i.e. ["localRef", directiveIndex, ...]
-            index += tNode.localNames.length >> 1;
-          }
-
-          index++;
-        }
-      }
-      /**
-       * Creates and stores the dynamic TNode, and unhooks it from the tree for now.
-       */
-
-
-      function createDynamicNodeAtIndex(tView, lView, index, type, _native16, name) {
-        var previousOrParentTNode = getPreviousOrParentTNode();
-        ngDevMode && assertDataInRange(lView, index + HEADER_OFFSET);
-        lView[index + HEADER_OFFSET] = _native16;
-        var tNode = getOrCreateTNode(tView, lView[T_HOST], index, type, name, null); // We are creating a dynamic node, the previous tNode might not be pointing at this node.
-        // We will link ourselves into the tree later with `appendI18nNode`.
-
-        if (previousOrParentTNode && previousOrParentTNode.next === tNode) {
-          previousOrParentTNode.next = null;
-        }
-
-        return tNode;
-      }
-
-      function readCreateOpCodes(index, createOpCodes, tView, lView) {
-        var renderer = lView[RENDERER];
-        var currentTNode = null;
-        var previousTNode = null;
-        var visitedNodes = [];
-
-        for (var i = 0; i < createOpCodes.length; i++) {
-          var opCode = createOpCodes[i];
-
-          if (typeof opCode == 'string') {
-            var textRNode = createTextNode(opCode, renderer);
-            var textNodeIndex = createOpCodes[++i];
-            ngDevMode && ngDevMode.rendererCreateTextNode++;
-            previousTNode = currentTNode;
-            currentTNode = createDynamicNodeAtIndex(tView, lView, textNodeIndex, 3
-            /* Element */
-            , textRNode, null);
-            visitedNodes.push(textNodeIndex);
-            setIsNotParent();
-          } else if (typeof opCode == 'number') {
-            switch (opCode & 7
-            /* MASK_OPCODE */
-            ) {
-              case 1
-              /* AppendChild */
-              :
-                var destinationNodeIndex = opCode >>> 17
-                /* SHIFT_PARENT */
-                ;
-                var destinationTNode = void 0;
-
-                if (destinationNodeIndex === index) {
-                  // If the destination node is `i18nStart`, we don't have a
-                  // top-level node and we should use the host node instead
-                  destinationTNode = lView[T_HOST];
-                } else {
-                  destinationTNode = getTNode(tView, destinationNodeIndex);
-                }
-
-                ngDevMode && assertDefined(currentTNode, "You need to create or select a node before you can insert it into the DOM");
-                previousTNode = appendI18nNode(tView, currentTNode, destinationTNode, previousTNode, lView);
-                break;
-
-              case 0
-              /* Select */
-              :
-                // Negative indicies indicate that a given TNode is a sibling node, not a parent node
-                // (see `i18nStartFirstPass` for additional information).
-                var isParent = opCode >= 0;
-                var nodeIndex = (isParent ? opCode : ~opCode) >>> 3
-                /* SHIFT_REF */
-                ;
-                visitedNodes.push(nodeIndex);
-                previousTNode = currentTNode;
-                currentTNode = getTNode(tView, nodeIndex);
-
-                if (currentTNode) {
-                  setPreviousOrParentTNode(currentTNode, isParent);
-                }
-
-                break;
-
-              case 5
-              /* ElementEnd */
-              :
-                var elementIndex = opCode >>> 3
-                /* SHIFT_REF */
-                ;
-                previousTNode = currentTNode = getTNode(tView, elementIndex);
-                setPreviousOrParentTNode(currentTNode, false);
-                break;
-
-              case 4
-              /* Attr */
-              :
-                var elementNodeIndex = opCode >>> 3
-                /* SHIFT_REF */
-                ;
-                var attrName = createOpCodes[++i];
-                var attrValue = createOpCodes[++i]; // This code is used for ICU expressions only, since we don't support
-                // directives/components in ICUs, we don't need to worry about inputs here
-
-                elementAttributeInternal(getTNode(tView, elementNodeIndex), lView, attrName, attrValue, null, null);
-                break;
-
-              default:
-                throw new Error("Unable to determine the type of mutate operation for \"".concat(opCode, "\""));
-            }
-          } else {
-            switch (opCode) {
-              case COMMENT_MARKER:
-                var commentValue = createOpCodes[++i];
-                var commentNodeIndex = createOpCodes[++i];
-                ngDevMode && assertEqual(typeof commentValue, 'string', "Expected \"".concat(commentValue, "\" to be a comment node value"));
-                var commentRNode = renderer.createComment(commentValue);
-                ngDevMode && ngDevMode.rendererCreateComment++;
-                previousTNode = currentTNode;
-                currentTNode = createDynamicNodeAtIndex(tView, lView, commentNodeIndex, 5
-                /* IcuContainer */
-                , commentRNode, null);
-                visitedNodes.push(commentNodeIndex);
-                attachPatchData(commentRNode, lView);
-                currentTNode.activeCaseIndex = null; // We will add the case nodes later, during the update phase
-
-                setIsNotParent();
-                break;
-
-              case ELEMENT_MARKER:
-                var tagNameValue = createOpCodes[++i];
-                var _elementNodeIndex = createOpCodes[++i];
-                ngDevMode && assertEqual(typeof tagNameValue, 'string', "Expected \"".concat(tagNameValue, "\" to be an element node tag name"));
-                var elementRNode = renderer.createElement(tagNameValue);
-                ngDevMode && ngDevMode.rendererCreateElement++;
-                previousTNode = currentTNode;
-                currentTNode = createDynamicNodeAtIndex(tView, lView, _elementNodeIndex, 3
-                /* Element */
-                , elementRNode, tagNameValue);
-                visitedNodes.push(_elementNodeIndex);
-                break;
-
-              default:
-                throw new Error("Unable to determine the type of mutate operation for \"".concat(opCode, "\""));
-            }
-          }
-        }
-
-        setIsNotParent();
-        return visitedNodes;
-      }
-
-      function readUpdateOpCodes(updateOpCodes, icus, bindingsStartIndex, changeMask, tView, lView) {
-        var bypassCheckBit = arguments.length > 6 && arguments[6] !== undefined ? arguments[6] : false;
-        var caseCreated = false;
-
-        for (var i = 0; i < updateOpCodes.length; i++) {
-          // bit code to check if we should apply the next update
-          var checkBit = updateOpCodes[i]; // Number of opCodes to skip until next set of update codes
-
-          var skipCodes = updateOpCodes[++i];
-
-          if (bypassCheckBit || checkBit & changeMask) {
-            // The value has been updated since last checked
-            var value = '';
-
-            for (var j = i + 1; j <= i + skipCodes; j++) {
-              var opCode = updateOpCodes[j];
-
-              if (typeof opCode == 'string') {
-                value += opCode;
-              } else if (typeof opCode == 'number') {
-                if (opCode < 0) {
-                  // It's a binding index whose value is negative
-                  value += renderStringify(lView[bindingsStartIndex - opCode]);
-                } else {
-                  var nodeIndex = opCode >>> 2
-                  /* SHIFT_REF */
-                  ;
-                  var tIcuIndex = void 0;
-                  var tIcu = void 0;
-                  var icuTNode = void 0;
-
-                  switch (opCode & 3
-                  /* MASK_OPCODE */
-                  ) {
-                    case 1
-                    /* Attr */
-                    :
-                      var propName = updateOpCodes[++j];
-                      var sanitizeFn = updateOpCodes[++j];
-                      elementPropertyInternal(tView, getTNode(tView, nodeIndex), lView, propName, value, lView[RENDERER], sanitizeFn, false);
-                      break;
-
-                    case 0
-                    /* Text */
-                    :
-                      textBindingInternal(lView, nodeIndex, value);
-                      break;
-
-                    case 2
-                    /* IcuSwitch */
-                    :
-                      tIcuIndex = updateOpCodes[++j];
-                      tIcu = icus[tIcuIndex];
-                      icuTNode = getTNode(tView, nodeIndex); // If there is an active case, delete the old nodes
-
-                      if (icuTNode.activeCaseIndex !== null) {
-                        var removeCodes = tIcu.remove[icuTNode.activeCaseIndex];
-
-                        for (var k = 0; k < removeCodes.length; k++) {
-                          var removeOpCode = removeCodes[k];
-
-                          switch (removeOpCode & 7
-                          /* MASK_OPCODE */
-                          ) {
-                            case 3
-                            /* Remove */
-                            :
-                              var _nodeIndex = removeOpCode >>> 3
-                              /* SHIFT_REF */
-                              ; // Remove DOM element, but do *not* mark TNode as detached, since we are
-                              // just switching ICU cases (while keeping the same TNode), so a DOM element
-                              // representing a new ICU case will be re-created.
-
-
-                              removeNode(tView, lView, _nodeIndex,
-                              /* markAsDetached */
-                              false);
-                              break;
-
-                            case 6
-                            /* RemoveNestedIcu */
-                            :
-                              var nestedIcuNodeIndex = removeCodes[k + 1] >>> 3
-                              /* SHIFT_REF */
-                              ;
-                              var nestedIcuTNode = getTNode(tView, nestedIcuNodeIndex);
-                              var activeIndex = nestedIcuTNode.activeCaseIndex;
-
-                              if (activeIndex !== null) {
-                                var nestedIcuTIndex = removeOpCode >>> 3
-                                /* SHIFT_REF */
-                                ;
-                                var nestedTIcu = icus[nestedIcuTIndex];
-                                addAllToArray(nestedTIcu.remove[activeIndex], removeCodes);
-                              }
-
-                              break;
-                          }
-                        }
-                      } // Update the active caseIndex
-
-
-                      var caseIndex = getCaseIndex(tIcu, value);
-                      icuTNode.activeCaseIndex = caseIndex !== -1 ? caseIndex : null;
-
-                      if (caseIndex > -1) {
-                        // Add the nodes for the new case
-                        readCreateOpCodes(-1, tIcu.create[caseIndex], tView, lView);
-                        caseCreated = true;
-                      }
-
-                      break;
-
-                    case 3
-                    /* IcuUpdate */
-                    :
-                      tIcuIndex = updateOpCodes[++j];
-                      tIcu = icus[tIcuIndex];
-                      icuTNode = getTNode(tView, nodeIndex);
-
-                      if (icuTNode.activeCaseIndex !== null) {
-                        readUpdateOpCodes(tIcu.update[icuTNode.activeCaseIndex], icus, bindingsStartIndex, changeMask, tView, lView, caseCreated);
-                      }
-
-                      break;
-                  }
-                }
-              }
-            }
-          }
-
-          i += skipCodes;
-        }
-      }
-
-      function removeNode(tView, lView, index, markAsDetached) {
-        var removedPhTNode = getTNode(tView, index);
-        var removedPhRNode = getNativeByIndex(index, lView);
-
-        if (removedPhRNode) {
-          nativeRemoveNode(lView[RENDERER], removedPhRNode);
-        }
-
-        var slotValue = load(lView, index);
-
-        if (isLContainer(slotValue)) {
-          var lContainer = slotValue;
-
-          if (removedPhTNode.type !== 0
-          /* Container */
-          ) {
-              nativeRemoveNode(lView[RENDERER], lContainer[NATIVE]);
-            }
-        }
-
-        if (markAsDetached) {
-          // Define this node as detached to avoid projecting it later
-          removedPhTNode.flags |= 64
-          /* isDetached */
-          ;
-        }
-
-        ngDevMode && ngDevMode.rendererRemoveNode++;
-      }
-      /**
-       *
-       * Use this instruction to create a translation block that doesn't contain any placeholder.
-       * It calls both {@link i18nStart} and {@link i18nEnd} in one instruction.
-       *
-       * The translation `message` is the value which is locale specific. The translation string may
-       * contain placeholders which associate inner elements and sub-templates within the translation.
-       *
-       * The translation `message` placeholders are:
-       * - `�{index}(:{block})�`: *Binding Placeholder*: Marks a location where an expression will be
-       *   interpolated into. The placeholder `index` points to the expression binding index. An optional
-       *   `block` that matches the sub-template in which it was declared.
-       * - `�#{index}(:{block})�`/`�/#{index}(:{block})�`: *Element Placeholder*:  Marks the beginning
-       *   and end of DOM element that were embedded in the original translation block. The placeholder
-       *   `index` points to the element index in the template instructions set. An optional `block` that
-       *   matches the sub-template in which it was declared.
-       * - `�*{index}:{block}�`/`�/*{index}:{block}�`: *Sub-template Placeholder*: Sub-templates must be
-       *   split up and translated separately in each angular template function. The `index` points to the
-       *   `template` instruction index. A `block` that matches the sub-template in which it was declared.
-       *
-       * @param index A unique index of the translation in the static block.
-       * @param message The translation message.
-       * @param subTemplateIndex Optional sub-template index in the `message`.
-       *
-       * @codeGenApi
-       */
-
-
-      function ɵɵi18n(index, message, subTemplateIndex) {
-        ɵɵi18nStart(index, message, subTemplateIndex);
-        ɵɵi18nEnd();
-      }
-      /**
-       * Marks a list of attributes as translatable.
-       *
-       * @param index A unique index in the static block
-       * @param values
-       *
-       * @codeGenApi
-       */
-
-
-      function ɵɵi18nAttributes(index, values) {
-        var lView = getLView();
-        var tView = getTView();
-        ngDevMode && assertDefined(tView, "tView should be defined");
-        i18nAttributesFirstPass(lView, tView, index, values);
       }
       /**
        * See `i18nAttributes` above.
@@ -43100,6 +42970,10 @@
         var previousElement = getPreviousOrParentTNode();
         var previousElementIndex = previousElement.index - HEADER_OFFSET;
         var updateOpCodes = [];
+
+        if (ngDevMode) {
+          attachDebugGetter(updateOpCodes, i18nUpdateOpCodesToString);
+        }
 
         for (var i = 0; i < values.length; i += 2) {
           var attrName = values[i];
@@ -43151,101 +43025,158 @@
           tView.data[index + HEADER_OFFSET] = updateOpCodes;
         }
       }
-
-      var changeMask = 0;
-      var shiftsCounter = 0;
       /**
-       * Stores the values of the bindings during each update cycle in order to determine if we need to
-       * update the translated nodes.
+       * Generate the OpCodes to update the bindings of a string.
        *
-       * @param value The binding's value
-       * @returns This function returns itself so that it may be chained
-       * (e.g. `i18nExp(ctx.name)(ctx.title)`)
-       *
-       * @codeGenApi
+       * @param str The string containing the bindings.
+       * @param destinationNode Index of the destination node which will receive the binding.
+       * @param attrName Name of the attribute, if the string belongs to an attribute.
+       * @param sanitizeFn Sanitization function used to sanitize the string after update, if necessary.
        */
 
-      function ɵɵi18nExp(value) {
-        var lView = getLView();
 
-        if (bindingUpdated(lView, nextBindingIndex(), value)) {
-          changeMask = changeMask | 1 << shiftsCounter;
+      function generateBindingUpdateOpCodes(str, destinationNode, attrName) {
+        var sanitizeFn = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : null;
+        var updateOpCodes = [null, null]; // Alloc space for mask and size
+
+        if (ngDevMode) {
+          attachDebugGetter(updateOpCodes, i18nUpdateOpCodesToString);
         }
 
-        shiftsCounter++;
-        return ɵɵi18nExp;
+        var textParts = str.split(BINDING_REGEXP);
+        var mask = 0;
+
+        for (var j = 0; j < textParts.length; j++) {
+          var textValue = textParts[j];
+
+          if (j & 1) {
+            // Odd indexes are bindings
+            var bindingIndex = parseInt(textValue, 10);
+            updateOpCodes.push(-1 - bindingIndex);
+            mask = mask | toMaskBit(bindingIndex);
+          } else if (textValue !== '') {
+            // Even indexes are text
+            updateOpCodes.push(textValue);
+          }
+        }
+
+        updateOpCodes.push(destinationNode << 2
+        /* SHIFT_REF */
+        | (attrName ? 1
+        /* Attr */
+        : 0
+        /* Text */
+        ));
+
+        if (attrName) {
+          updateOpCodes.push(attrName, sanitizeFn);
+        }
+
+        updateOpCodes[0] = mask;
+        updateOpCodes[1] = updateOpCodes.length - 2;
+        return updateOpCodes;
+      }
+
+      function getBindingMask(icuExpression) {
+        var mask = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
+        mask = mask | toMaskBit(icuExpression.mainBinding);
+        var match;
+
+        for (var i = 0; i < icuExpression.values.length; i++) {
+          var valueArr = icuExpression.values[i];
+
+          for (var j = 0; j < valueArr.length; j++) {
+            var value = valueArr[j];
+
+            if (typeof value === 'string') {
+              while (match = BINDING_REGEXP.exec(value)) {
+                mask = mask | toMaskBit(parseInt(match[1], 10));
+              }
+            } else {
+              mask = getBindingMask(value, mask);
+            }
+          }
+        }
+
+        return mask;
+      }
+
+      function allocNodeIndex(startIndex) {
+        return startIndex + i18nVarsCount++;
       }
       /**
-       * Updates a translation block or an i18n attribute when the bindings have changed.
+       * Convert binding index to mask bit.
        *
-       * @param index Index of either {@link i18nStart} (translation block) or {@link i18nAttributes}
-       * (i18n attribute) on which it should update the content.
-       *
-       * @codeGenApi
+       * Each index represents a single bit on the bit-mask. Because bit-mask only has 32 bits, we make
+       * the 32nd bit share all masks for all bindings higher than 32. Since it is extremely rare to have
+       * more than 32 bindings this will be hit very rarely. The downside of hitting this corner case is
+       * that we will execute binding code more often than necessary. (penalty of performance)
        */
 
 
-      function ɵɵi18nApply(index) {
-        if (shiftsCounter) {
-          var tView = getTView();
-          ngDevMode && assertDefined(tView, "tView should be defined");
-          var tI18n = tView.data[index + HEADER_OFFSET];
-          var updateOpCodes;
-          var icus = null;
+      function toMaskBit(bindingIndex) {
+        return 1 << Math.min(bindingIndex, 31);
+      }
 
-          if (Array.isArray(tI18n)) {
-            updateOpCodes = tI18n;
+      function isRootTemplateMessage(subTemplateIndex) {
+        return subTemplateIndex === undefined;
+      }
+      /**
+       * Removes everything inside the sub-templates of a message.
+       */
+
+
+      function removeInnerTemplateTranslation(message) {
+        var match;
+        var res = '';
+        var index = 0;
+        var inTemplate = false;
+        var tagMatched;
+
+        while ((match = SUBTEMPLATE_REGEXP.exec(message)) !== null) {
+          if (!inTemplate) {
+            res += message.substring(index, match.index + match[0].length);
+            tagMatched = match[1];
+            inTemplate = true;
           } else {
-            updateOpCodes = tI18n.update;
-            icus = tI18n.icus;
+            if (match[0] === "".concat(MARKER, "/*").concat(tagMatched).concat(MARKER)) {
+              index = match.index;
+              inTemplate = false;
+            }
           }
-
-          var bindingsStartIndex = getBindingIndex() - shiftsCounter - 1;
-          var lView = getLView();
-          readUpdateOpCodes(updateOpCodes, icus, bindingsStartIndex, changeMask, tView, lView); // Reset changeMask & maskBit to default for the next update cycle
-
-          changeMask = 0;
-          shiftsCounter = 0;
         }
+
+        ngDevMode && assertEqual(inTemplate, false, "Tag mismatch: unable to find the end of the sub-template in the translation \"".concat(message, "\""));
+        res += message.substr(index);
+        return res;
       }
       /**
-       * Returns the index of the current case of an ICU expression depending on the main binding value
+       * Extracts a part of a message and removes the rest.
        *
-       * @param icuExpression
-       * @param bindingValue The value of the main binding used by this ICU expression
+       * This method is used for extracting a part of the message associated with a template. A translated
+       * message can span multiple templates.
+       *
+       * Example:
+       * ```
+       * <div i18n>Translate <span *ngIf>me</span>!</div>
+       * ```
+       *
+       * @param message The message to crop
+       * @param subTemplateIndex Index of the sub-template to extract. If undefined it returns the
+       * external template and removes all sub-templates.
        */
 
 
-      function getCaseIndex(icuExpression, bindingValue) {
-        var index = icuExpression.cases.indexOf(bindingValue);
-
-        if (index === -1) {
-          switch (icuExpression.type) {
-            case 1
-            /* plural */
-            :
-              {
-                var resolvedCase = getPluralCase(bindingValue, getLocaleId());
-                index = icuExpression.cases.indexOf(resolvedCase);
-
-                if (index === -1 && resolvedCase !== 'other') {
-                  index = icuExpression.cases.indexOf('other');
-                }
-
-                break;
-              }
-
-            case 0
-            /* select */
-            :
-              {
-                index = icuExpression.cases.indexOf('other');
-                break;
-              }
-          }
+      function getTranslationForTemplate(message, subTemplateIndex) {
+        if (isRootTemplateMessage(subTemplateIndex)) {
+          // We want the root template message, ignore all sub-templates
+          return removeInnerTemplateTranslation(message);
+        } else {
+          // We want a specific sub-template
+          var start = message.indexOf(":".concat(subTemplateIndex).concat(MARKER)) + 2 + subTemplateIndex.toString().length;
+          var end = message.search(new RegExp("".concat(MARKER, "\\/\\*\\d+:").concat(subTemplateIndex).concat(MARKER)));
+          return removeInnerTemplateTranslation(message.substring(start, end));
         }
-
-        return index;
       }
       /**
        * Generate the OpCodes for ICU expressions.
@@ -43263,10 +43194,11 @@
         var updateCodes = [];
         var vars = [];
         var childIcus = [];
+        var values = icuExpression.values;
 
-        for (var i = 0; i < icuExpression.values.length; i++) {
+        for (var i = 0; i < values.length; i++) {
           // Each value is an array of strings & other ICU expressions
-          var valueArr = icuExpression.values[i];
+          var valueArr = values[i];
           var nestedIcus = [];
 
           for (var j = 0; j < valueArr.length; j++) {
@@ -43291,6 +43223,8 @@
         var tIcu = {
           type: icuExpression.type,
           vars: vars,
+          currentCaseLViewIndex: HEADER_OFFSET + expandoStartIndex // expandoStartIndex does not include the header so add it.
+          + 1,
           childIcus: childIcus,
           cases: icuExpression.cases,
           create: createCodes,
@@ -43300,6 +43234,67 @@
         tIcus.push(tIcu); // Adding the maximum possible of vars needed (based on the cases with the most vars)
 
         i18nVarsCount += Math.max.apply(Math, vars);
+      }
+      /**
+       * Parses text containing an ICU expression and produces a JSON object for it.
+       * Original code from closure library, modified for Angular.
+       *
+       * @param pattern Text containing an ICU expression that needs to be parsed.
+       *
+       */
+
+
+      function parseICUBlock(pattern) {
+        var cases = [];
+        var values = [];
+        var icuType = 1
+        /* plural */
+        ;
+        var mainBinding = 0;
+        pattern = pattern.replace(ICU_BLOCK_REGEXP, function (str, binding, type) {
+          if (type === 'select') {
+            icuType = 0
+            /* select */
+            ;
+          } else {
+            icuType = 1
+            /* plural */
+            ;
+          }
+
+          mainBinding = parseInt(binding.substr(1), 10);
+          return '';
+        });
+        var parts = extractParts(pattern); // Looking for (key block)+ sequence. One of the keys has to be "other".
+
+        for (var pos = 0; pos < parts.length;) {
+          var key = parts[pos++].trim();
+
+          if (icuType === 1
+          /* plural */
+          ) {
+              // Key can be "=x", we just want "x"
+              key = key.replace(/\s*(?:=)?(\w+)\s*/, '$1');
+            }
+
+          if (key.length) {
+            cases.push(key);
+          }
+
+          var blocks = extractParts(parts[pos++]);
+
+          if (cases.length > values.length) {
+            values.push(blocks);
+          }
+        } // TODO(ocombe): support ICU expressions in attributes, see #21615
+
+
+        return {
+          type: icuType,
+          mainBinding: mainBinding,
+          cases: cases,
+          values: values
+        };
       }
       /**
        * Transforms a string template into an HTML template and a list of instructions used to update
@@ -43323,17 +43318,80 @@
 
         var wrapper = getTemplateContent(inertBodyElement) || inertBodyElement;
         var opCodes = {
-          vars: 0,
+          vars: 1,
           childIcus: [],
           create: [],
           remove: [],
           update: []
         };
+
+        if (ngDevMode) {
+          attachDebugGetter(opCodes.create, i18nMutateOpCodesToString);
+          attachDebugGetter(opCodes.remove, i18nMutateOpCodesToString);
+          attachDebugGetter(opCodes.update, i18nUpdateOpCodesToString);
+        }
+
         parseNodes(wrapper.firstChild, opCodes, parentIndex, nestedIcus, tIcus, expandoStartIndex);
         return opCodes;
       }
+      /**
+       * Breaks pattern into strings and top level {...} blocks.
+       * Can be used to break a message into text and ICU expressions, or to break an ICU expression into
+       * keys and cases.
+       * Original code from closure library, modified for Angular.
+       *
+       * @param pattern (sub)Pattern to be broken.
+       *
+       */
 
-      var NESTED_ICU = /�(\d+)�/;
+
+      function extractParts(pattern) {
+        if (!pattern) {
+          return [];
+        }
+
+        var prevPos = 0;
+        var braceStack = [];
+        var results = [];
+        var braces = /[{}]/g; // lastIndex doesn't get set to 0 so we have to.
+
+        braces.lastIndex = 0;
+        var match;
+
+        while (match = braces.exec(pattern)) {
+          var pos = match.index;
+
+          if (match[0] == '}') {
+            braceStack.pop();
+
+            if (braceStack.length == 0) {
+              // End of the block.
+              var block = pattern.substring(prevPos, pos);
+
+              if (ICU_BLOCK_REGEXP.test(block)) {
+                results.push(parseICUBlock(block));
+              } else {
+                results.push(block);
+              }
+
+              prevPos = pos + 1;
+            }
+          } else {
+            if (braceStack.length == 0) {
+              var _substring = pattern.substring(prevPos, pos);
+
+              results.push(_substring);
+              prevPos = pos + 1;
+            }
+
+            braceStack.push('{');
+          }
+        }
+
+        var substring = pattern.substring(prevPos);
+        results.push(substring);
+        return results;
+      }
       /**
        * Parses a node, its children and its siblings, and generates the mutate & update OpCodes.
        *
@@ -43344,6 +43402,7 @@
        * @param tIcus Data for all ICU expressions of the current message
        * @param expandoStartIndex Expando start index for the current ICU expression
        */
+
 
       function parseNodes(currentNode, icuCase, parentIndex, nestedIcus, tIcus, expandoStartIndex) {
         if (currentNode) {
@@ -43474,7 +43533,8 @@
             /* SHIFT_REF */
             | 2
             /* IcuSwitch */
-            , nestTIcuIndex, mask, // mask of all the bindings of this ICU expression
+            , // FIXME(misko): Index should be part of the opcode
+            nestTIcuIndex, mask, // mask of all the bindings of this ICU expression
             2, // skip 2 opCodes if not changed
             nestedIcuNodeIndex << 2
             /* SHIFT_REF */
@@ -43485,7 +43545,8 @@
             /* SHIFT_REF */
             | 6
             /* RemoveNestedIcu */
-            , nestedIcuNodeIndex << 3
+            , // FIXME(misko): Index should be part of the opcode
+            nestedIcuNodeIndex << 3
             /* SHIFT_REF */
             | 3
             /* Remove */
@@ -43494,51 +43555,316 @@
         }
       }
       /**
-       * Angular Dart introduced &ngsp; as a placeholder for non-removable space, see:
-       * https://github.com/dart-lang/angular/blob/0bb611387d29d65b5af7f9d2515ab571fd3fbee4/_tests/test/compiler/preserve_whitespace_test.dart#L25-L32
-       * In Angular Dart &ngsp; is converted to the 0xE500 PUA (Private Use Areas) unicode character
-       * and later on replaced by a space. We are re-implementing the same idea here, since translations
-       * might contain this special character.
+       * @license
+       * Copyright Google LLC All Rights Reserved.
+       *
+       * Use of this source code is governed by an MIT-style license that can be
+       * found in the LICENSE file at https://angular.io/license
+       */
+      // i18nPostprocess consts
+
+
+      var ROOT_TEMPLATE_ID = 0;
+      var PP_MULTI_VALUE_PLACEHOLDERS_REGEXP = /\[(�.+?�?)\]/;
+      var PP_PLACEHOLDERS_REGEXP = /\[(�.+?�?)\]|(�\/?\*\d+:\d+�)/g;
+      var PP_ICU_VARS_REGEXP = /({\s*)(VAR_(PLURAL|SELECT)(_\d+)?)(\s*,)/g;
+      var PP_ICU_PLACEHOLDERS_REGEXP = /{([A-Z0-9_]+)}/g;
+      var PP_ICUS_REGEXP = /�I18N_EXP_(ICU(_\d+)?)�/g;
+      var PP_CLOSE_TEMPLATE_REGEXP = /\/\*/;
+      var PP_TEMPLATE_ID_REGEXP = /\d+\:(\d+)/;
+      /**
+       * Handles message string post-processing for internationalization.
+       *
+       * Handles message string post-processing by transforming it from intermediate
+       * format (that might contain some markers that we need to replace) to the final
+       * form, consumable by i18nStart instruction. Post processing steps include:
+       *
+       * 1. Resolve all multi-value cases (like [�*1:1��#2:1�|�#4:1�|�5�])
+       * 2. Replace all ICU vars (like "VAR_PLURAL")
+       * 3. Replace all placeholders used inside ICUs in a form of {PLACEHOLDER}
+       * 4. Replace all ICU references with corresponding values (like �ICU_EXP_ICU_1�)
+       *    in case multiple ICUs have the same placeholder name
+       *
+       * @param message Raw translation string for post processing
+       * @param replacements Set of replacements that should be applied
+       *
+       * @returns Transformed string that can be consumed by i18nStart instruction
+       *
+       * @codeGenApi
        */
 
+      function i18nPostprocess(message) {
+        var replacements = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
 
-      var NGSP_UNICODE_REGEXP = /\uE500/g;
+        /**
+         * Step 1: resolve all multi-value placeholders like [�#5�|�*1:1��#2:1�|�#4:1�]
+         *
+         * Note: due to the way we process nested templates (BFS), multi-value placeholders are typically
+         * grouped by templates, for example: [�#5�|�#6�|�#1:1�|�#3:2�] where �#5� and �#6� belong to root
+         * template, �#1:1� belong to nested template with index 1 and �#1:2� - nested template with index
+         * 3. However in real templates the order might be different: i.e. �#1:1� and/or �#3:2� may go in
+         * front of �#6�. The post processing step restores the right order by keeping track of the
+         * template id stack and looks for placeholders that belong to the currently active template.
+         */
+        var result = message;
 
-      function replaceNgsp(value) {
-        return value.replace(NGSP_UNICODE_REGEXP, ' ');
+        if (PP_MULTI_VALUE_PLACEHOLDERS_REGEXP.test(message)) {
+          var matches = {};
+          var templateIdsStack = [ROOT_TEMPLATE_ID];
+          result = result.replace(PP_PLACEHOLDERS_REGEXP, function (m, phs, tmpl) {
+            var content = phs || tmpl;
+            var placeholders = matches[content] || [];
+
+            if (!placeholders.length) {
+              content.split('|').forEach(function (placeholder) {
+                var match = placeholder.match(PP_TEMPLATE_ID_REGEXP);
+                var templateId = match ? parseInt(match[1], 10) : ROOT_TEMPLATE_ID;
+                var isCloseTemplateTag = PP_CLOSE_TEMPLATE_REGEXP.test(placeholder);
+                placeholders.push([templateId, isCloseTemplateTag, placeholder]);
+              });
+              matches[content] = placeholders;
+            }
+
+            if (!placeholders.length) {
+              throw new Error("i18n postprocess: unmatched placeholder - ".concat(content));
+            }
+
+            var currentTemplateId = templateIdsStack[templateIdsStack.length - 1];
+            var idx = 0; // find placeholder index that matches current template id
+
+            for (var i = 0; i < placeholders.length; i++) {
+              if (placeholders[i][0] === currentTemplateId) {
+                idx = i;
+                break;
+              }
+            } // update template id stack based on the current tag extracted
+
+
+            var _placeholders$idx = _slicedToArray(placeholders[idx], 3),
+                templateId = _placeholders$idx[0],
+                isCloseTemplateTag = _placeholders$idx[1],
+                placeholder = _placeholders$idx[2];
+
+            if (isCloseTemplateTag) {
+              templateIdsStack.pop();
+            } else if (currentTemplateId !== templateId) {
+              templateIdsStack.push(templateId);
+            } // remove processed tag from the list
+
+
+            placeholders.splice(idx, 1);
+            return placeholder;
+          });
+        } // return current result if no replacements specified
+
+
+        if (!Object.keys(replacements).length) {
+          return result;
+        }
+        /**
+         * Step 2: replace all ICU vars (like "VAR_PLURAL")
+         */
+
+
+        result = result.replace(PP_ICU_VARS_REGEXP, function (match, start, key, _type, _idx, end) {
+          return replacements.hasOwnProperty(key) ? "".concat(start).concat(replacements[key]).concat(end) : match;
+        });
+        /**
+         * Step 3: replace all placeholders used inside ICUs in a form of {PLACEHOLDER}
+         */
+
+        result = result.replace(PP_ICU_PLACEHOLDERS_REGEXP, function (match, key) {
+          return replacements.hasOwnProperty(key) ? replacements[key] : match;
+        });
+        /**
+         * Step 4: replace all ICU references with corresponding values (like �ICU_EXP_ICU_1�) in case
+         * multiple ICUs have the same placeholder name
+         */
+
+        result = result.replace(PP_ICUS_REGEXP, function (match, key) {
+          if (replacements.hasOwnProperty(key)) {
+            var list = replacements[key];
+
+            if (!list.length) {
+              throw new Error("i18n postprocess: unmatched ICU - ".concat(match, " with key: ").concat(key));
+            }
+
+            return list.shift();
+          }
+
+          return match;
+        });
+        return result;
       }
       /**
-       * The locale id that the application is currently using (for translations and ICU expressions).
-       * This is the ivy version of `LOCALE_ID` that was defined as an injection token for the view engine
-       * but is now defined as a global value.
-       */
-
-
-      var LOCALE_ID = DEFAULT_LOCALE_ID;
-      /**
-       * Sets the locale id that will be used for translations and ICU expressions.
-       * This is the ivy version of `LOCALE_ID` that was defined as an injection token for the view engine
-       * but is now defined as a global value.
+       * @license
+       * Copyright Google LLC All Rights Reserved.
        *
-       * @param localeId
+       * Use of this source code is governed by an MIT-style license that can be
+       * found in the LICENSE file at https://angular.io/license
        */
 
-      function setLocaleId(localeId) {
-        assertDefined(localeId, "Expected localeId to be defined");
+      /**
+       * Marks a block of text as translatable.
+       *
+       * The instructions `i18nStart` and `i18nEnd` mark the translation block in the template.
+       * The translation `message` is the value which is locale specific. The translation string may
+       * contain placeholders which associate inner elements and sub-templates within the translation.
+       *
+       * The translation `message` placeholders are:
+       * - `�{index}(:{block})�`: *Binding Placeholder*: Marks a location where an expression will be
+       *   interpolated into. The placeholder `index` points to the expression binding index. An optional
+       *   `block` that matches the sub-template in which it was declared.
+       * - `�#{index}(:{block})�`/`�/#{index}(:{block})�`: *Element Placeholder*:  Marks the beginning
+       *   and end of DOM element that were embedded in the original translation block. The placeholder
+       *   `index` points to the element index in the template instructions set. An optional `block` that
+       *   matches the sub-template in which it was declared.
+       * - `�!{index}(:{block})�`/`�/!{index}(:{block})�`: *Projection Placeholder*:  Marks the
+       *   beginning and end of <ng-content> that was embedded in the original translation block.
+       *   The placeholder `index` points to the element index in the template instructions set.
+       *   An optional `block` that matches the sub-template in which it was declared.
+       * - `�*{index}:{block}�`/`�/*{index}:{block}�`: *Sub-template Placeholder*: Sub-templates must be
+       *   split up and translated separately in each angular template function. The `index` points to the
+       *   `template` instruction index. A `block` that matches the sub-template in which it was declared.
+       *
+       * @param index A unique index of the translation in the static block.
+       * @param message The translation message.
+       * @param subTemplateIndex Optional sub-template index in the `message`.
+       *
+       * @codeGenApi
+       */
 
-        if (typeof localeId === 'string') {
-          LOCALE_ID = localeId.toLowerCase().replace(/_/g, '-');
+
+      function ɵɵi18nStart(index, message, subTemplateIndex) {
+        var tView = getTView();
+        ngDevMode && assertDefined(tView, "tView should be defined");
+        pushI18nIndex(index); // We need to delay projections until `i18nEnd`
+
+        setDelayProjection(true);
+
+        if (tView.firstCreatePass && tView.data[index + HEADER_OFFSET] === null) {
+          i18nStartFirstPass(getLView(), tView, index, message, subTemplateIndex);
         }
       }
       /**
-       * Gets the locale id that will be used for translations and ICU expressions.
-       * This is the ivy version of `LOCALE_ID` that was defined as an injection token for the view engine
-       * but is now defined as a global value.
+       * Translates a translation block marked by `i18nStart` and `i18nEnd`. It inserts the text/ICU nodes
+       * into the render tree, moves the placeholder nodes and removes the deleted nodes.
+       *
+       * @codeGenApi
        */
 
 
-      function getLocaleId() {
-        return LOCALE_ID;
+      function ɵɵi18nEnd() {
+        var lView = getLView();
+        var tView = getTView();
+        ngDevMode && assertDefined(tView, "tView should be defined");
+        i18nEndFirstPass(tView, lView); // Stop delaying projections
+
+        setDelayProjection(false);
+      }
+      /**
+       *
+       * Use this instruction to create a translation block that doesn't contain any placeholder.
+       * It calls both {@link i18nStart} and {@link i18nEnd} in one instruction.
+       *
+       * The translation `message` is the value which is locale specific. The translation string may
+       * contain placeholders which associate inner elements and sub-templates within the translation.
+       *
+       * The translation `message` placeholders are:
+       * - `�{index}(:{block})�`: *Binding Placeholder*: Marks a location where an expression will be
+       *   interpolated into. The placeholder `index` points to the expression binding index. An optional
+       *   `block` that matches the sub-template in which it was declared.
+       * - `�#{index}(:{block})�`/`�/#{index}(:{block})�`: *Element Placeholder*:  Marks the beginning
+       *   and end of DOM element that were embedded in the original translation block. The placeholder
+       *   `index` points to the element index in the template instructions set. An optional `block` that
+       *   matches the sub-template in which it was declared.
+       * - `�*{index}:{block}�`/`�/*{index}:{block}�`: *Sub-template Placeholder*: Sub-templates must be
+       *   split up and translated separately in each angular template function. The `index` points to the
+       *   `template` instruction index. A `block` that matches the sub-template in which it was declared.
+       *
+       * @param index A unique index of the translation in the static block.
+       * @param message The translation message.
+       * @param subTemplateIndex Optional sub-template index in the `message`.
+       *
+       * @codeGenApi
+       */
+
+
+      function ɵɵi18n(index, message, subTemplateIndex) {
+        ɵɵi18nStart(index, message, subTemplateIndex);
+        ɵɵi18nEnd();
+      }
+      /**
+       * Marks a list of attributes as translatable.
+       *
+       * @param index A unique index in the static block
+       * @param values
+       *
+       * @codeGenApi
+       */
+
+
+      function ɵɵi18nAttributes(index, values) {
+        var lView = getLView();
+        var tView = getTView();
+        ngDevMode && assertDefined(tView, "tView should be defined");
+        i18nAttributesFirstPass(lView, tView, index, values);
+      }
+      /**
+       * Stores the values of the bindings during each update cycle in order to determine if we need to
+       * update the translated nodes.
+       *
+       * @param value The binding's value
+       * @returns This function returns itself so that it may be chained
+       * (e.g. `i18nExp(ctx.name)(ctx.title)`)
+       *
+       * @codeGenApi
+       */
+
+
+      function ɵɵi18nExp(value) {
+        var lView = getLView();
+        setMaskBit(bindingUpdated(lView, nextBindingIndex(), value));
+        return ɵɵi18nExp;
+      }
+      /**
+       * Updates a translation block or an i18n attribute when the bindings have changed.
+       *
+       * @param index Index of either {@link i18nStart} (translation block) or {@link i18nAttributes}
+       * (i18n attribute) on which it should update the content.
+       *
+       * @codeGenApi
+       */
+
+
+      function ɵɵi18nApply(index) {
+        applyI18n(getTView(), getLView(), index);
+      }
+      /**
+       * Handles message string post-processing for internationalization.
+       *
+       * Handles message string post-processing by transforming it from intermediate
+       * format (that might contain some markers that we need to replace) to the final
+       * form, consumable by i18nStart instruction. Post processing steps include:
+       *
+       * 1. Resolve all multi-value cases (like [�*1:1��#2:1�|�#4:1�|�5�])
+       * 2. Replace all ICU vars (like "VAR_PLURAL")
+       * 3. Replace all placeholders used inside ICUs in a form of {PLACEHOLDER}
+       * 4. Replace all ICU references with corresponding values (like �ICU_EXP_ICU_1�)
+       *    in case multiple ICUs have the same placeholder name
+       *
+       * @param message Raw translation string for post processing
+       * @param replacements Set of replacements that should be applied
+       *
+       * @returns Transformed string that can be consumed by i18nStart instruction
+       *
+       * @codeGenApi
+       */
+
+
+      function ɵɵi18nPostprocess(message) {
+        var replacements = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+        return i18nPostprocess(message, replacements);
       }
       /**
        * @license
@@ -44051,7 +44377,7 @@
 
 
       function getPureFunctionReturnValue(lView, returnValueIndex) {
-        ngDevMode && assertDataInRange(lView, returnValueIndex);
+        ngDevMode && assertIndexInRange(lView, returnValueIndex);
         var lastReturnValue = lView[returnValueIndex];
         return lastReturnValue === NO_CHANGE ? undefined : lastReturnValue;
       }
@@ -44832,7 +45158,7 @@
         }, {
           key: "getByIndex",
           value: function getByIndex(index) {
-            ngDevMode && assertDataInRange(this.queries, index);
+            ngDevMode && assertIndexInRange(this.queries, index);
             return this.queries[index];
           }
         }, {
@@ -44932,23 +45258,24 @@
         }, {
           key: "matchTNode",
           value: function matchTNode(tView, tNode) {
-            if (Array.isArray(this.metadata.predicate)) {
-              var localNames = this.metadata.predicate;
+            var predicate = this.metadata.predicate;
 
-              for (var i = 0; i < localNames.length; i++) {
-                this.matchTNodeWithReadOption(tView, tNode, getIdxOfMatchingSelector(tNode, localNames[i]));
+            if (Array.isArray(predicate)) {
+              for (var i = 0; i < predicate.length; i++) {
+                var name = predicate[i];
+                this.matchTNodeWithReadOption(tView, tNode, getIdxOfMatchingSelector(tNode, name)); // Also try matching the name to a provider since strings can be used as DI tokens too.
+
+                this.matchTNodeWithReadOption(tView, tNode, locateDirectiveOrProvider(tNode, tView, name, false, false));
               }
             } else {
-              var typePredicate = this.metadata.predicate;
-
-              if (typePredicate === TemplateRef) {
+              if (predicate === TemplateRef) {
                 if (tNode.type === 0
                 /* Container */
                 ) {
                     this.matchTNodeWithReadOption(tView, tNode, -1);
                   }
               } else {
-                this.matchTNodeWithReadOption(tView, tNode, locateDirectiveOrProvider(tNode, tView, typePredicate, false, false));
+                this.matchTNodeWithReadOption(tView, tNode, locateDirectiveOrProvider(tNode, tView, predicate, false, false));
               }
             }
           }
@@ -45083,7 +45410,7 @@
               // null as a placeholder
               result.push(null);
             } else {
-              ngDevMode && assertDataInRange(tViewData, matchedNodeIdx);
+              ngDevMode && assertIndexInRange(tViewData, matchedNodeIdx);
               var tNode = tViewData[matchedNodeIdx];
               result.push(createResultForNode(lView, tNode, tQueryMatches[i + 1], tQuery.metadata.read));
             }
@@ -45273,7 +45600,7 @@
 
       function loadQueryInternal(lView, queryIndex) {
         ngDevMode && assertDefined(lView[QUERIES], 'LQueries should be defined when trying to load a query');
-        ngDevMode && assertDataInRange(lView[QUERIES].queries, queryIndex);
+        ngDevMode && assertIndexInRange(lView[QUERIES].queries, queryIndex);
         return lView[QUERIES].queries[queryIndex].queryList;
       }
 
@@ -45412,8 +45739,8 @@
           'ɵɵrestoreView': ɵɵrestoreView,
           'ɵɵlistener': ɵɵlistener,
           'ɵɵprojection': ɵɵprojection,
-          'ɵɵupdateSyntheticHostBinding': ɵɵupdateSyntheticHostBinding,
-          'ɵɵcomponentHostSyntheticListener': ɵɵcomponentHostSyntheticListener,
+          'ɵɵsyntheticHostProperty': ɵɵsyntheticHostProperty,
+          'ɵɵsyntheticHostListener': ɵɵsyntheticHostListener,
           'ɵɵpipeBind1': ɵɵpipeBind1,
           'ɵɵpipeBind2': ɵɵpipeBind2,
           'ɵɵpipeBind3': ɵɵpipeBind3,
@@ -46059,6 +46386,22 @@
        */
 
       /**
+       * Keep track of the compilation depth to avoid reentrancy issues during JIT compilation. This
+       * matters in the following scenario:
+       *
+       * Consider a component 'A' that extends component 'B', both declared in module 'M'. During
+       * the compilation of 'A' the definition of 'B' is requested to capture the inheritance chain,
+       * potentially triggering compilation of 'B'. If this nested compilation were to trigger
+       * `flushModuleScopingQueueAsMuchAsPossible` it may happen that module 'M' is still pending in the
+       * queue, resulting in 'A' and 'B' to be patched with the NgModule scope. As the compilation of
+       * 'A' is still in progress, this would introduce a circular dependency on its compilation. To avoid
+       * this issue, the module scope queue is only flushed for compilations at the depth 0, to ensure
+       * all compilations have finished.
+       */
+
+
+      var compilationDepth = 0;
+      /**
        * Compile an Angular component according to its decorator metadata, and patch the resulting
        * component def (ɵcmp) onto the component type.
        *
@@ -46067,7 +46410,6 @@
        * will enqueue resource resolution into a global queue and will fail to return the `ɵcmp`
        * until the global queue has been resolved with a call to `resolveComponentResources`.
        */
-
 
       function compileComponent(type, metadata) {
         // Initialize ngDevMode. This must be the first statement in compileComponent.
@@ -46139,21 +46481,31 @@
                 interpolation: metadata.interpolation,
                 viewProviders: metadata.viewProviders || null
               });
+              compilationDepth++;
 
-              if (meta.usesInheritance) {
-                addDirectiveDefToUndecoratedParents(type);
+              try {
+                if (meta.usesInheritance) {
+                  addDirectiveDefToUndecoratedParents(type);
+                }
+
+                ngComponentDef = compiler.compileComponent(angularCoreEnv, templateUrl, meta);
+              } finally {
+                // Ensure that the compilation depth is decremented even when the compilation failed.
+                compilationDepth--;
               }
 
-              ngComponentDef = compiler.compileComponent(angularCoreEnv, templateUrl, meta); // When NgModule decorator executed, we enqueued the module definition such that
-              // it would only dequeue and add itself as module scope to all of its declarations,
-              // but only if  if all of its declarations had resolved. This call runs the check
-              // to see if any modules that are in the queue can be dequeued and add scope to
-              // their declarations.
-
-              flushModuleScopingQueueAsMuchAsPossible(); // If component compilation is async, then the @NgModule annotation which declares the
+              if (compilationDepth === 0) {
+                // When NgModule decorator executed, we enqueued the module definition such that
+                // it would only dequeue and add itself as module scope to all of its declarations,
+                // but only if  if all of its declarations had resolved. This call runs the check
+                // to see if any modules that are in the queue can be dequeued and add scope to
+                // their declarations.
+                flushModuleScopingQueueAsMuchAsPossible();
+              } // If component compilation is async, then the @NgModule annotation which declares the
               // component may execute and set an ngSelectorScope property on the component type. This
               // allows the component to patch itself with directiveDefs from the module after it
               // finishes compiling.
+
 
               if (hasSelectorScope(type)) {
                 var scopes = transitiveScopesFor(type.ngSelectorScope);
@@ -46693,7 +47045,7 @@
        * A [DI token](guide/glossary#di-token "DI token definition") that you can use to provide
        * one or more initialization functions.
        *
-       * The provided function are injected at application startup and executed during
+       * The provided functions are injected at application startup and executed during
        * app initialization. If any of these functions returns a Promise, initialization
        * does not complete until the Promise is resolved.
        *
@@ -52966,10 +53318,10 @@
               } else {
                 // a regular element.
                 for (var attr in bindingValues) {
-                  var _value3 = bindingValues[attr];
+                  var _value4 = bindingValues[attr];
 
-                  if (_value3 != null) {
-                    view.renderer.setAttribute(el, attr, _value3);
+                  if (_value4 != null) {
+                    view.renderer.setAttribute(el, attr, _value4);
                   } else {
                     view.renderer.removeAttribute(el, attr);
                   }
@@ -53870,13 +54222,13 @@
 
       var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
       /*! @angular/core */
-      "./node_modules/@angular/core/fesm2015/core.js");
+      "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
       /* harmony import */
 
 
       var _angular_common__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
       /*! @angular/common */
-      "./node_modules/@angular/common/fesm2015/common.js");
+      "./node_modules/@angular/common/__ivy_ngcc__/fesm2015/common.js");
       /* harmony import */
 
 
@@ -59003,13 +59355,13 @@
 
       var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
       /*! @angular/core */
-      "./node_modules/@angular/core/fesm2015/core.js");
+      "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
       /* harmony import */
 
 
       var _angular_common__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
       /*! @angular/common */
-      "./node_modules/@angular/common/fesm2015/common.js");
+      "./node_modules/@angular/common/__ivy_ngcc__/fesm2015/common.js");
       /* harmony import */
 
 
@@ -59033,7 +59385,7 @@
 
       var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
       /*! @angular/platform-browser */
-      "./node_modules/@angular/platform-browser/fesm2015/platform-browser.js");
+      "./node_modules/@angular/platform-browser/__ivy_ngcc__/fesm2015/platform-browser.js");
       /**
        * @license
        * Copyright Google LLC All Rights Reserved.
@@ -59094,7 +59446,7 @@
           providedIn: "root"
         });
 
-        var ɵImgSrcStyleBuilder_BaseFactory = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetInheritedFactory"](ImgSrcStyleBuilder);
+        var ɵImgSrcStyleBuilder_BaseFactory = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetInheritedFactory"](ImgSrcStyleBuilder);
         /*@__PURE__*/
 
 
@@ -59344,7 +59696,7 @@
           features: [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵInheritDefinitionFeature"]]
         });
 
-        var ɵDefaultImgSrcDirective_BaseFactory = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetInheritedFactory"](DefaultImgSrcDirective);
+        var ɵDefaultImgSrcDirective_BaseFactory = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetInheritedFactory"](DefaultImgSrcDirective);
         /*@__PURE__*/
 
 
@@ -59594,7 +59946,7 @@
           features: [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵInheritDefinitionFeature"]]
         });
 
-        var ɵDefaultClassDirective_BaseFactory = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetInheritedFactory"](DefaultClassDirective);
+        var ɵDefaultClassDirective_BaseFactory = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetInheritedFactory"](DefaultClassDirective);
         /*@__PURE__*/
 
 
@@ -59665,7 +60017,7 @@
           providedIn: "root"
         });
 
-        var ɵShowHideStyleBuilder_BaseFactory = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetInheritedFactory"](ShowHideStyleBuilder);
+        var ɵShowHideStyleBuilder_BaseFactory = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetInheritedFactory"](ShowHideStyleBuilder);
         /*@__PURE__*/
 
 
@@ -60035,7 +60387,7 @@
           features: [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵInheritDefinitionFeature"]]
         });
 
-        var ɵDefaultShowHideDirective_BaseFactory = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetInheritedFactory"](DefaultShowHideDirective);
+        var ɵDefaultShowHideDirective_BaseFactory = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetInheritedFactory"](DefaultShowHideDirective);
         /*@__PURE__*/
 
 
@@ -60525,7 +60877,7 @@
           features: [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵInheritDefinitionFeature"]]
         });
 
-        var ɵDefaultStyleDirective_BaseFactory = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetInheritedFactory"](DefaultStyleDirective);
+        var ɵDefaultStyleDirective_BaseFactory = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetInheritedFactory"](DefaultStyleDirective);
         /*@__PURE__*/
 
 
@@ -60689,13 +61041,13 @@
 
       var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
       /*! @angular/core */
-      "./node_modules/@angular/core/fesm2015/core.js");
+      "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
       /* harmony import */
 
 
       var _angular_common__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
       /*! @angular/common */
-      "./node_modules/@angular/common/fesm2015/common.js");
+      "./node_modules/@angular/common/__ivy_ngcc__/fesm2015/common.js");
       /* harmony import */
 
 
@@ -61660,7 +62012,7 @@
 
       var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
       /*! @angular/core */
-      "./node_modules/@angular/core/fesm2015/core.js");
+      "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
       /* harmony import */
 
 
@@ -61672,7 +62024,7 @@
 
       var _angular_cdk_bidi__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
       /*! @angular/cdk/bidi */
-      "./node_modules/@angular/cdk/fesm2015/bidi.js");
+      "./node_modules/@angular/cdk/__ivy_ngcc__/fesm2015/bidi.js");
       /* harmony import */
 
 
@@ -61885,7 +62237,7 @@
           providedIn: "root"
         });
 
-        var ɵLayoutStyleBuilder_BaseFactory = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetInheritedFactory"](LayoutStyleBuilder);
+        var ɵLayoutStyleBuilder_BaseFactory = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetInheritedFactory"](LayoutStyleBuilder);
         /*@__PURE__*/
 
 
@@ -62043,7 +62395,7 @@
           features: [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵInheritDefinitionFeature"]]
         });
 
-        var ɵDefaultLayoutDirective_BaseFactory = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetInheritedFactory"](DefaultLayoutDirective);
+        var ɵDefaultLayoutDirective_BaseFactory = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetInheritedFactory"](DefaultLayoutDirective);
         /*@__PURE__*/
 
 
@@ -62586,7 +62938,7 @@
           features: [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵInheritDefinitionFeature"]]
         });
 
-        var ɵDefaultLayoutGapDirective_BaseFactory = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetInheritedFactory"](DefaultLayoutGapDirective);
+        var ɵDefaultLayoutGapDirective_BaseFactory = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetInheritedFactory"](DefaultLayoutGapDirective);
         /*@__PURE__*/
 
 
@@ -63371,7 +63723,7 @@
           features: [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵInheritDefinitionFeature"]]
         });
 
-        var ɵDefaultFlexDirective_BaseFactory = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetInheritedFactory"](DefaultFlexDirective);
+        var ɵDefaultFlexDirective_BaseFactory = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetInheritedFactory"](DefaultFlexDirective);
         /*@__PURE__*/
 
 
@@ -63451,7 +63803,7 @@
           providedIn: "root"
         });
 
-        var ɵFlexOrderStyleBuilder_BaseFactory = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetInheritedFactory"](FlexOrderStyleBuilder);
+        var ɵFlexOrderStyleBuilder_BaseFactory = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetInheritedFactory"](FlexOrderStyleBuilder);
         /*@__PURE__*/
 
 
@@ -63609,7 +63961,7 @@
           features: [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵInheritDefinitionFeature"]]
         });
 
-        var ɵDefaultFlexOrderDirective_BaseFactory = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetInheritedFactory"](DefaultFlexOrderDirective);
+        var ɵDefaultFlexOrderDirective_BaseFactory = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetInheritedFactory"](DefaultFlexOrderDirective);
         /*@__PURE__*/
 
 
@@ -63699,7 +64051,7 @@
           providedIn: "root"
         });
 
-        var ɵFlexOffsetStyleBuilder_BaseFactory = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetInheritedFactory"](FlexOffsetStyleBuilder);
+        var ɵFlexOffsetStyleBuilder_BaseFactory = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetInheritedFactory"](FlexOffsetStyleBuilder);
         /*@__PURE__*/
 
 
@@ -63904,7 +64256,7 @@
           features: [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵInheritDefinitionFeature"]]
         });
 
-        var ɵDefaultFlexOffsetDirective_BaseFactory = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetInheritedFactory"](DefaultFlexOffsetDirective);
+        var ɵDefaultFlexOffsetDirective_BaseFactory = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetInheritedFactory"](DefaultFlexOffsetDirective);
         /*@__PURE__*/
 
 
@@ -64001,7 +64353,7 @@
           providedIn: "root"
         });
 
-        var ɵFlexAlignStyleBuilder_BaseFactory = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetInheritedFactory"](FlexAlignStyleBuilder);
+        var ɵFlexAlignStyleBuilder_BaseFactory = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetInheritedFactory"](FlexAlignStyleBuilder);
         /*@__PURE__*/
 
 
@@ -64159,7 +64511,7 @@
           features: [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵInheritDefinitionFeature"]]
         });
 
-        var ɵDefaultFlexAlignDirective_BaseFactory = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetInheritedFactory"](DefaultFlexAlignDirective);
+        var ɵDefaultFlexAlignDirective_BaseFactory = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetInheritedFactory"](DefaultFlexAlignDirective);
         /*@__PURE__*/
 
 
@@ -64235,7 +64587,7 @@
           providedIn: "root"
         });
 
-        var ɵFlexFillStyleBuilder_BaseFactory = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetInheritedFactory"](FlexFillStyleBuilder);
+        var ɵFlexFillStyleBuilder_BaseFactory = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetInheritedFactory"](FlexFillStyleBuilder);
         /*@__PURE__*/
 
 
@@ -64481,7 +64833,7 @@
           providedIn: "root"
         });
 
-        var ɵLayoutAlignStyleBuilder_BaseFactory = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetInheritedFactory"](LayoutAlignStyleBuilder);
+        var ɵLayoutAlignStyleBuilder_BaseFactory = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetInheritedFactory"](LayoutAlignStyleBuilder);
         /*@__PURE__*/
 
 
@@ -64724,7 +65076,7 @@
           features: [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵInheritDefinitionFeature"]]
         });
 
-        var ɵDefaultLayoutAlignDirective_BaseFactory = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetInheritedFactory"](DefaultLayoutAlignDirective);
+        var ɵDefaultLayoutAlignDirective_BaseFactory = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetInheritedFactory"](DefaultLayoutAlignDirective);
         /*@__PURE__*/
 
 
@@ -65070,7 +65422,7 @@
 
       var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
       /*! @angular/core */
-      "./node_modules/@angular/core/fesm2015/core.js");
+      "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
       /* harmony import */
 
 
@@ -65148,7 +65500,7 @@
           providedIn: "root"
         });
 
-        var ɵGridAlignStyleBuilder_BaseFactory = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetInheritedFactory"](GridAlignStyleBuilder);
+        var ɵGridAlignStyleBuilder_BaseFactory = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetInheritedFactory"](GridAlignStyleBuilder);
         /*@__PURE__*/
 
 
@@ -65311,7 +65663,7 @@
           features: [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵInheritDefinitionFeature"]]
         });
 
-        var ɵDefaultGridAlignDirective_BaseFactory = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetInheritedFactory"](DefaultGridAlignDirective);
+        var ɵDefaultGridAlignDirective_BaseFactory = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetInheritedFactory"](DefaultGridAlignDirective);
         /*@__PURE__*/
 
 
@@ -65452,7 +65804,7 @@
           providedIn: "root"
         });
 
-        var ɵGridAlignColumnsStyleBuilder_BaseFactory = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetInheritedFactory"](GridAlignColumnsStyleBuilder);
+        var ɵGridAlignColumnsStyleBuilder_BaseFactory = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetInheritedFactory"](GridAlignColumnsStyleBuilder);
         /*@__PURE__*/
 
 
@@ -65664,7 +66016,7 @@
           features: [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵInheritDefinitionFeature"]]
         });
 
-        var ɵDefaultGridAlignColumnsDirective_BaseFactory = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetInheritedFactory"](DefaultGridAlignColumnsDirective);
+        var ɵDefaultGridAlignColumnsDirective_BaseFactory = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetInheritedFactory"](DefaultGridAlignColumnsDirective);
         /*@__PURE__*/
 
 
@@ -65818,7 +66170,7 @@
           providedIn: "root"
         });
 
-        var ɵGridAlignRowsStyleBuilder_BaseFactory = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetInheritedFactory"](GridAlignRowsStyleBuilder);
+        var ɵGridAlignRowsStyleBuilder_BaseFactory = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetInheritedFactory"](GridAlignRowsStyleBuilder);
         /*@__PURE__*/
 
 
@@ -66030,7 +66382,7 @@
           features: [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵInheritDefinitionFeature"]]
         });
 
-        var ɵDefaultGridAlignRowsDirective_BaseFactory = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetInheritedFactory"](DefaultGridAlignRowsDirective);
+        var ɵDefaultGridAlignRowsDirective_BaseFactory = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetInheritedFactory"](DefaultGridAlignRowsDirective);
         /*@__PURE__*/
 
 
@@ -66155,7 +66507,7 @@
           providedIn: "root"
         });
 
-        var ɵGridAreaStyleBuilder_BaseFactory = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetInheritedFactory"](GridAreaStyleBuilder);
+        var ɵGridAreaStyleBuilder_BaseFactory = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetInheritedFactory"](GridAreaStyleBuilder);
         /*@__PURE__*/
 
 
@@ -66312,7 +66664,7 @@
           features: [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵInheritDefinitionFeature"]]
         });
 
-        var ɵDefaultGridAreaDirective_BaseFactory = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetInheritedFactory"](DefaultGridAreaDirective);
+        var ɵDefaultGridAreaDirective_BaseFactory = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetInheritedFactory"](DefaultGridAreaDirective);
         /*@__PURE__*/
 
 
@@ -66398,7 +66750,7 @@
           providedIn: "root"
         });
 
-        var ɵGridAreasStyleBuiler_BaseFactory = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetInheritedFactory"](GridAreasStyleBuiler);
+        var ɵGridAreasStyleBuiler_BaseFactory = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetInheritedFactory"](GridAreasStyleBuiler);
         /*@__PURE__*/
 
 
@@ -66608,7 +66960,7 @@
           features: [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵInheritDefinitionFeature"]]
         });
 
-        var ɵDefaultGridAreasDirective_BaseFactory = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetInheritedFactory"](DefaultGridAreasDirective);
+        var ɵDefaultGridAreasDirective_BaseFactory = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetInheritedFactory"](DefaultGridAreasDirective);
         /*@__PURE__*/
 
 
@@ -66692,7 +67044,7 @@
           providedIn: "root"
         });
 
-        var ɵGridAutoStyleBuilder_BaseFactory = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetInheritedFactory"](GridAutoStyleBuilder);
+        var ɵGridAutoStyleBuilder_BaseFactory = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetInheritedFactory"](GridAutoStyleBuilder);
         /*@__PURE__*/
 
 
@@ -66902,7 +67254,7 @@
           features: [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵInheritDefinitionFeature"]]
         });
 
-        var ɵDefaultGridAutoDirective_BaseFactory = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetInheritedFactory"](DefaultGridAutoDirective);
+        var ɵDefaultGridAutoDirective_BaseFactory = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetInheritedFactory"](DefaultGridAutoDirective);
         /*@__PURE__*/
 
 
@@ -66974,7 +67326,7 @@
           providedIn: "root"
         });
 
-        var ɵGridColumnStyleBuilder_BaseFactory = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetInheritedFactory"](GridColumnStyleBuilder);
+        var ɵGridColumnStyleBuilder_BaseFactory = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetInheritedFactory"](GridColumnStyleBuilder);
         /*@__PURE__*/
 
 
@@ -67131,7 +67483,7 @@
           features: [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵInheritDefinitionFeature"]]
         });
 
-        var ɵDefaultGridColumnDirective_BaseFactory = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetInheritedFactory"](DefaultGridColumnDirective);
+        var ɵDefaultGridColumnDirective_BaseFactory = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetInheritedFactory"](DefaultGridColumnDirective);
         /*@__PURE__*/
 
 
@@ -67226,7 +67578,7 @@
           providedIn: "root"
         });
 
-        var ɵGridColumnsStyleBuilder_BaseFactory = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetInheritedFactory"](GridColumnsStyleBuilder);
+        var ɵGridColumnsStyleBuilder_BaseFactory = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetInheritedFactory"](GridColumnsStyleBuilder);
         /*@__PURE__*/
 
 
@@ -67438,7 +67790,7 @@
           features: [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵInheritDefinitionFeature"]]
         });
 
-        var ɵDefaultGridColumnsDirective_BaseFactory = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetInheritedFactory"](DefaultGridColumnsDirective);
+        var ɵDefaultGridColumnsDirective_BaseFactory = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetInheritedFactory"](DefaultGridColumnsDirective);
         /*@__PURE__*/
 
 
@@ -67512,7 +67864,7 @@
           providedIn: "root"
         });
 
-        var ɵGridGapStyleBuilder_BaseFactory = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetInheritedFactory"](GridGapStyleBuilder);
+        var ɵGridGapStyleBuilder_BaseFactory = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetInheritedFactory"](GridGapStyleBuilder);
         /*@__PURE__*/
 
 
@@ -67724,7 +68076,7 @@
           features: [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵInheritDefinitionFeature"]]
         });
 
-        var ɵDefaultGridGapDirective_BaseFactory = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetInheritedFactory"](DefaultGridGapDirective);
+        var ɵDefaultGridGapDirective_BaseFactory = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetInheritedFactory"](DefaultGridGapDirective);
         /*@__PURE__*/
 
 
@@ -67796,7 +68148,7 @@
           providedIn: "root"
         });
 
-        var ɵGridRowStyleBuilder_BaseFactory = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetInheritedFactory"](GridRowStyleBuilder);
+        var ɵGridRowStyleBuilder_BaseFactory = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetInheritedFactory"](GridRowStyleBuilder);
         /*@__PURE__*/
 
 
@@ -67953,7 +68305,7 @@
           features: [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵInheritDefinitionFeature"]]
         });
 
-        var ɵDefaultGridRowDirective_BaseFactory = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetInheritedFactory"](DefaultGridRowDirective);
+        var ɵDefaultGridRowDirective_BaseFactory = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetInheritedFactory"](DefaultGridRowDirective);
         /*@__PURE__*/
 
 
@@ -68048,7 +68400,7 @@
           providedIn: "root"
         });
 
-        var ɵGridRowsStyleBuilder_BaseFactory = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetInheritedFactory"](GridRowsStyleBuilder);
+        var ɵGridRowsStyleBuilder_BaseFactory = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetInheritedFactory"](GridRowsStyleBuilder);
         /*@__PURE__*/
 
 
@@ -68260,7 +68612,7 @@
           features: [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵInheritDefinitionFeature"]]
         });
 
-        var ɵDefaultGridRowsDirective_BaseFactory = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetInheritedFactory"](DefaultGridRowsDirective);
+        var ɵDefaultGridRowsDirective_BaseFactory = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetInheritedFactory"](DefaultGridRowsDirective);
         /*@__PURE__*/
 
 
@@ -68361,15 +68713,15 @@
     },
 
     /***/
-    "./node_modules/@angular/forms/fesm2015/forms.js":
-    /*!*******************************************************!*\
-      !*** ./node_modules/@angular/forms/fesm2015/forms.js ***!
-      \*******************************************************/
+    "./node_modules/@angular/forms/__ivy_ngcc__/fesm2015/forms.js":
+    /*!********************************************************************!*\
+      !*** ./node_modules/@angular/forms/__ivy_ngcc__/fesm2015/forms.js ***!
+      \********************************************************************/
 
     /*! exports provided: AbstractControl, AbstractControlDirective, AbstractFormGroupDirective, COMPOSITION_BUFFER_MODE, CheckboxControlValueAccessor, CheckboxRequiredValidator, ControlContainer, DefaultValueAccessor, EmailValidator, FormArray, FormArrayName, FormBuilder, FormControl, FormControlDirective, FormControlName, FormGroup, FormGroupDirective, FormGroupName, FormsModule, MaxLengthValidator, MinLengthValidator, NG_ASYNC_VALIDATORS, NG_VALIDATORS, NG_VALUE_ACCESSOR, NgControl, NgControlStatus, NgControlStatusGroup, NgForm, NgModel, NgModelGroup, NgSelectOption, NumberValueAccessor, PatternValidator, RadioControlValueAccessor, RangeValueAccessor, ReactiveFormsModule, RequiredValidator, SelectControlValueAccessor, SelectMultipleControlValueAccessor, VERSION, Validators, ɵInternalFormsSharedModule, ɵNgNoValidate, ɵNgSelectMultipleOption, ɵangular_packages_forms_forms_a, ɵangular_packages_forms_forms_b, ɵangular_packages_forms_forms_ba, ɵangular_packages_forms_forms_bb, ɵangular_packages_forms_forms_bc, ɵangular_packages_forms_forms_bd, ɵangular_packages_forms_forms_be, ɵangular_packages_forms_forms_c, ɵangular_packages_forms_forms_d, ɵangular_packages_forms_forms_e, ɵangular_packages_forms_forms_f, ɵangular_packages_forms_forms_g, ɵangular_packages_forms_forms_h, ɵangular_packages_forms_forms_i, ɵangular_packages_forms_forms_j, ɵangular_packages_forms_forms_k, ɵangular_packages_forms_forms_l, ɵangular_packages_forms_forms_m, ɵangular_packages_forms_forms_n, ɵangular_packages_forms_forms_o, ɵangular_packages_forms_forms_p, ɵangular_packages_forms_forms_q, ɵangular_packages_forms_forms_r, ɵangular_packages_forms_forms_s, ɵangular_packages_forms_forms_t, ɵangular_packages_forms_forms_u, ɵangular_packages_forms_forms_v, ɵangular_packages_forms_forms_w, ɵangular_packages_forms_forms_x, ɵangular_packages_forms_forms_y, ɵangular_packages_forms_forms_z */
 
     /***/
-    function node_modulesAngularFormsFesm2015FormsJs(module, __webpack_exports__, __webpack_require__) {
+    function node_modulesAngularForms__ivy_ngcc__Fesm2015FormsJs(module, __webpack_exports__, __webpack_require__) {
       "use strict";
 
       __webpack_require__.r(__webpack_exports__);
@@ -68828,13 +69180,13 @@
 
       var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
       /*! @angular/core */
-      "./node_modules/@angular/core/fesm2015/core.js");
+      "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
       /* harmony import */
 
 
       var _angular_common__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
       /*! @angular/common */
-      "./node_modules/@angular/common/fesm2015/common.js");
+      "./node_modules/@angular/common/__ivy_ngcc__/fesm2015/common.js");
       /* harmony import */
 
 
@@ -68848,7 +69200,7 @@
       /*! rxjs/operators */
       "./node_modules/rxjs/_esm2015/operators/index.js");
       /**
-       * @license Angular v10.0.4
+       * @license Angular v10.0.12
        * (c) 2010-2020 Google LLC. https://angular.io/
        * License: MIT
        */
@@ -69614,7 +69966,7 @@
         features: [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵInheritDefinitionFeature"]]
       });
 
-      var ɵControlContainer_BaseFactory = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetInheritedFactory"](ControlContainer);
+      var ɵControlContainer_BaseFactory = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetInheritedFactory"](ControlContainer);
       /**
        * @license
        * Copyright Google LLC All Rights Reserved.
@@ -69629,7 +69981,7 @@
       }
       /**
        * @description
-       * A base class that all control `FormControl`-based directives extend. It binds a `FormControl`
+       * A base class that all `FormControl`-based directives extend. It binds a `FormControl`
        * object to a DOM element.
        *
        * @publicApi
@@ -70398,7 +70750,7 @@
             var presentValidators = validators.filter(isPresent);
             if (presentValidators.length == 0) return null;
             return function (control) {
-              return _mergeErrors(_executeValidators(control, presentValidators));
+              return mergeErrors(executeValidators(control, presentValidators));
             };
           }
           /**
@@ -70420,9 +70772,8 @@
             var presentValidators = validators.filter(isPresent);
             if (presentValidators.length == 0) return null;
             return function (control) {
-              var observables = _executeAsyncValidators(control, presentValidators).map(toObservable);
-
-              return Object(rxjs__WEBPACK_IMPORTED_MODULE_2__["forkJoin"])(observables).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(_mergeErrors));
+              var observables = executeValidators(control, presentValidators).map(toObservable);
+              return Object(rxjs__WEBPACK_IMPORTED_MODULE_2__["forkJoin"])(observables).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(mergeErrors));
             };
           }
         }]);
@@ -70444,19 +70795,7 @@
         return obs;
       }
 
-      function _executeValidators(control, validators) {
-        return validators.map(function (v) {
-          return v(control);
-        });
-      }
-
-      function _executeAsyncValidators(control, validators) {
-        return validators.map(function (v) {
-          return v(control);
-        });
-      }
-
-      function _mergeErrors(arrayOfErrors) {
+      function mergeErrors(arrayOfErrors) {
         var res = {}; // Not using Array.reduce here due to a Chrome 80 bug
         // https://bugs.chromium.org/p/chromium/issues/detail?id=1049982
 
@@ -70465,33 +70804,32 @@
         });
         return Object.keys(res).length === 0 ? null : res;
       }
+
+      function executeValidators(control, validators) {
+        return validators.map(function (validator) {
+          return validator(control);
+        });
+      }
+
+      function isValidatorFn(validator) {
+        return !validator.validate;
+      }
       /**
-       * @license
-       * Copyright Google LLC All Rights Reserved.
+       * Given the list of validators that may contain both functions as well as classes, return the list
+       * of validator functions (convert validator classes into validator functions). This is needed to
+       * have consistent structure in validators list before composing them.
        *
-       * Use of this source code is governed by an MIT-style license that can be
-       * found in the LICENSE file at https://angular.io/license
+       * @param validators The set of validators that may contain validators both in plain function form
+       *     as well as represented as a validator class.
        */
 
 
-      function normalizeValidator(validator) {
-        if (!!validator.validate) {
-          return function (c) {
+      function normalizeValidators(validators) {
+        return validators.map(function (validator) {
+          return isValidatorFn(validator) ? validator : function (c) {
             return validator.validate(c);
           };
-        } else {
-          return validator;
-        }
-      }
-
-      function normalizeAsyncValidator(validator) {
-        if (!!validator.validate) {
-          return function (c) {
-            return validator.validate(c);
-          };
-        } else {
-          return validator;
-        }
+        });
       }
       /**
        * @license
@@ -72264,11 +72602,11 @@
       }
 
       function composeValidators(validators) {
-        return validators != null ? Validators.compose(validators.map(normalizeValidator)) : null;
+        return validators != null ? Validators.compose(normalizeValidators(validators)) : null;
       }
 
       function composeAsyncValidators(validators) {
-        return validators != null ? Validators.composeAsync(validators.map(normalizeAsyncValidator)) : null;
+        return validators != null ? Validators.composeAsync(normalizeValidators(validators)) : null;
       }
 
       function isPropertyUpdated(changes, viewModel) {
@@ -75283,7 +75621,7 @@
         features: [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵInheritDefinitionFeature"]]
       });
 
-      var ɵAbstractFormGroupDirective_BaseFactory = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetInheritedFactory"](AbstractFormGroupDirective);
+      var ɵAbstractFormGroupDirective_BaseFactory = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetInheritedFactory"](AbstractFormGroupDirective);
       /*@__PURE__*/
 
 
@@ -77853,7 +78191,7 @@
         features: [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵProvidersFeature"]([CHECKBOX_REQUIRED_VALIDATOR]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵInheritDefinitionFeature"]]
       });
 
-      var ɵCheckboxRequiredValidator_BaseFactory = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetInheritedFactory"](CheckboxRequiredValidator);
+      var ɵCheckboxRequiredValidator_BaseFactory = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetInheritedFactory"](CheckboxRequiredValidator);
       /*@__PURE__*/
 
 
@@ -78639,7 +78977,7 @@
        */
 
 
-      var VERSION = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["Version"]('10.0.4');
+      var VERSION = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["Version"]('10.0.12');
       /**
        * @license
        * Copyright Google LLC All Rights Reserved.
@@ -78798,15 +79136,15 @@
     },
 
     /***/
-    "./node_modules/@angular/platform-browser/fesm2015/platform-browser.js":
-    /*!*****************************************************************************!*\
-      !*** ./node_modules/@angular/platform-browser/fesm2015/platform-browser.js ***!
-      \*****************************************************************************/
+    "./node_modules/@angular/platform-browser/__ivy_ngcc__/fesm2015/platform-browser.js":
+    /*!******************************************************************************************!*\
+      !*** ./node_modules/@angular/platform-browser/__ivy_ngcc__/fesm2015/platform-browser.js ***!
+      \******************************************************************************************/
 
     /*! exports provided: ɵgetDOM, BrowserModule, BrowserTransferStateModule, By, DomSanitizer, EVENT_MANAGER_PLUGINS, EventManager, HAMMER_GESTURE_CONFIG, HAMMER_LOADER, HammerGestureConfig, HammerModule, Meta, Title, TransferState, VERSION, disableDebugTools, enableDebugTools, makeStateKey, platformBrowser, ɵBROWSER_SANITIZATION_PROVIDERS, ɵBROWSER_SANITIZATION_PROVIDERS__POST_R3__, ɵBrowserDomAdapter, ɵBrowserGetTestability, ɵDomEventsPlugin, ɵDomRendererFactory2, ɵDomSanitizerImpl, ɵDomSharedStylesHost, ɵELEMENT_PROBE_PROVIDERS, ɵELEMENT_PROBE_PROVIDERS__POST_R3__, ɵHAMMER_PROVIDERS__POST_R3__, ɵHammerGesturesPlugin, ɵINTERNAL_BROWSER_PLATFORM_PROVIDERS, ɵKeyEventsPlugin, ɵNAMESPACE_URIS, ɵSharedStylesHost, ɵTRANSITION_ID, ɵangular_packages_platform_browser_platform_browser_a, ɵangular_packages_platform_browser_platform_browser_b, ɵangular_packages_platform_browser_platform_browser_c, ɵangular_packages_platform_browser_platform_browser_d, ɵangular_packages_platform_browser_platform_browser_e, ɵangular_packages_platform_browser_platform_browser_f, ɵangular_packages_platform_browser_platform_browser_g, ɵangular_packages_platform_browser_platform_browser_h, ɵangular_packages_platform_browser_platform_browser_i, ɵangular_packages_platform_browser_platform_browser_j, ɵangular_packages_platform_browser_platform_browser_k, ɵangular_packages_platform_browser_platform_browser_l, ɵangular_packages_platform_browser_platform_browser_m, ɵangular_packages_platform_browser_platform_browser_n, ɵangular_packages_platform_browser_platform_browser_o, ɵescapeHtml, ɵflattenStyles, ɵinitDomAdapter, ɵshimContentAttribute, ɵshimHostAttribute */
 
     /***/
-    function node_modulesAngularPlatformBrowserFesm2015PlatformBrowserJs(module, __webpack_exports__, __webpack_require__) {
+    function node_modulesAngularPlatformBrowser__ivy_ngcc__Fesm2015PlatformBrowserJs(module, __webpack_exports__, __webpack_require__) {
       "use strict";
 
       __webpack_require__.r(__webpack_exports__);
@@ -79145,13 +79483,13 @@
 
       var _angular_common__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
       /*! @angular/common */
-      "./node_modules/@angular/common/fesm2015/common.js");
+      "./node_modules/@angular/common/__ivy_ngcc__/fesm2015/common.js");
       /* harmony import */
 
 
       var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
       /*! @angular/core */
-      "./node_modules/@angular/core/fesm2015/core.js");
+      "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
       /* harmony reexport (safe) */
 
 
@@ -79159,7 +79497,7 @@
         return _angular_common__WEBPACK_IMPORTED_MODULE_0__["ɵgetDOM"];
       });
       /**
-       * @license Angular v10.0.4
+       * @license Angular v10.0.12
        * (c) 2010-2020 Google LLC. https://angular.io/
        * License: MIT
        */
@@ -81086,7 +81424,10 @@
             if (parts.length != 0 || key.length === 0) {
               // returning null instead of throwing to let another plugin process the event
               return null;
-            }
+            } // NOTE: Please don't rewrite this as so, as it will break JSCompiler property renaming.
+            //       The code must remain in the `result['domEventName']` form.
+            // return {domEventName, fullKey};
+
 
             var result = {};
             result['domEventName'] = domEventName;
@@ -82458,7 +82799,7 @@
        */
 
 
-      var VERSION = new _angular_core__WEBPACK_IMPORTED_MODULE_1__["Version"]('10.0.4');
+      var VERSION = new _angular_core__WEBPACK_IMPORTED_MODULE_1__["Version"]('10.0.12');
       /**
        * @license
        * Copyright Google LLC All Rights Reserved.
@@ -82900,13 +83241,13 @@
 
       var _angular_common__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
       /*! @angular/common */
-      "./node_modules/@angular/common/fesm2015/common.js");
+      "./node_modules/@angular/common/__ivy_ngcc__/fesm2015/common.js");
       /* harmony import */
 
 
       var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
       /*! @angular/core */
-      "./node_modules/@angular/core/fesm2015/core.js");
+      "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
       /* harmony import */
 
 
@@ -82920,7 +83261,7 @@
       /*! rxjs/operators */
       "./node_modules/rxjs/_esm2015/operators/index.js");
       /**
-       * @license Angular v10.0.4
+       * @license Angular v10.0.12
        * (c) 2010-2020 Google LLC. https://angular.io/
        * License: MIT
        */
@@ -82937,7 +83278,7 @@
        * Base for events the router goes through, as opposed to events tied to a specific
        * route. Fired one time for any given navigation.
        *
-       * @usageNotes
+       * The following code shows how a class subscribes to router events.
        *
        * ```ts
        * class MyService {
@@ -82952,6 +83293,7 @@
        * ```
        *
        * @see `Event`
+       * @see [Router events summary](guide/router#router-events)
        * @publicApi
        */
 
@@ -83010,6 +83352,10 @@
       /**
        * An event triggered when a navigation ends successfully.
        *
+       * @see `NavigationStart`
+       * @see `NavigationCancel`
+       * @see `NavigationError`
+       *
        * @publicApi
        */
 
@@ -83048,9 +83394,12 @@
       }(RouterEvent);
       /**
        * An event triggered when a navigation is canceled, directly or indirectly.
-       *
-       * This can happen when a [route guard](guide/router-tutorial-toh#milestone-5-route-guards)
+       * This can happen when a route guard
        * returns `false` or initiates a redirect by returning a `UrlTree`.
+       *
+       * @see `NavigationStart`
+       * @see `NavigationEnd`
+       * @see `NavigationError`
        *
        * @publicApi
        */
@@ -83091,6 +83440,10 @@
       /**
        * An event triggered when a navigation fails due to an unexpected error.
        *
+       * @see `NavigationStart`
+       * @see `NavigationEnd`
+       * @see `NavigationCancel`
+       *
        * @publicApi
        */
 
@@ -83128,7 +83481,7 @@
         return NavigationError;
       }(RouterEvent);
       /**
-       *An event triggered when routes are recognized.
+       * An event triggered when routes are recognized.
        *
        * @publicApi
        */
@@ -83172,6 +83525,8 @@
       /**
        * An event triggered at the start of the Guard phase of routing.
        *
+       * @see `GuardsCheckEnd`
+       *
        * @publicApi
        */
 
@@ -83211,6 +83566,8 @@
       }(RouterEvent);
       /**
        * An event triggered at the end of the Guard phase of routing.
+       *
+       * @see `GuardsCheckStart`
        *
        * @publicApi
        */
@@ -83257,6 +83614,8 @@
        *
        * Runs in the "resolve" phase whether or not there is anything to resolve.
        * In future, may change to only run when there are things to be resolved.
+       *
+       * @see `ResolveEnd`
        *
        * @publicApi
        */
@@ -83339,6 +83698,8 @@
       /**
        * An event triggered before lazy loading a route configuration.
        *
+       * @see `RouteConfigLoadEnd`
+       *
        * @publicApi
        */
 
@@ -83363,6 +83724,8 @@
       }();
       /**
        * An event triggered when a route has been lazy loaded.
+       *
+       * @see `RouteConfigLoadStart`
        *
        * @publicApi
        */
@@ -83419,7 +83782,7 @@
        * An event triggered at the end of the child-activation part
        * of the Resolve phase of routing.
        * @see `ChildActivationStart`
-       * @see `ResolveStart` *
+       * @see `ResolveStart`
        * @publicApi
        */
 
@@ -83446,7 +83809,7 @@
       /**
        * An event triggered at the start of the activation part
        * of the Resolve phase of routing.
-       * @see ActivationEnd`
+       * @see `ActivationEnd`
        * @see `ResolveStart`
        *
        * @publicApi
@@ -83533,58 +83896,6 @@
 
         return Scroll;
       }();
-      /**
-       * @license
-       * Copyright Google LLC All Rights Reserved.
-       *
-       * Use of this source code is governed by an MIT-style license that can be
-       * found in the LICENSE file at https://angular.io/license
-       */
-
-      /**
-       * This component is used internally within the router to be a placeholder when an empty
-       * router-outlet is needed. For example, with a config such as:
-       *
-       * `{path: 'parent', outlet: 'nav', children: [...]}`
-       *
-       * In order to render, there needs to be a component on this config, which will default
-       * to this `EmptyOutletComponent`.
-       */
-
-
-      var ɵEmptyOutletComponent = function ɵEmptyOutletComponent() {
-        _classCallCheck(this, ɵEmptyOutletComponent);
-      };
-
-      ɵEmptyOutletComponent.ɵfac = function ɵEmptyOutletComponent_Factory(t) {
-        return new (t || ɵEmptyOutletComponent)();
-      };
-
-      ɵEmptyOutletComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineComponent"]({
-        type: ɵEmptyOutletComponent,
-        selectors: [["ng-component"]],
-        decls: 1,
-        vars: 0,
-        template: function ɵEmptyOutletComponent_Template(rf, ctx) {
-          if (rf & 1) {
-            _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelement"](0, "router-outlet");
-          }
-        },
-        directives: function directives() {
-          return [RouterOutlet];
-        },
-        encapsulation: 2
-      });
-      /*@__PURE__*/
-
-      (function () {
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵsetClassMetadata"](ɵEmptyOutletComponent, [{
-          type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"],
-          args: [{
-            template: "<router-outlet></router-outlet>"
-          }]
-        }], null, null);
-      })();
       /**
        * @license
        * Copyright Google LLC All Rights Reserved.
@@ -83701,124 +84012,6 @@
           consumed: segments.slice(0, parts.length),
           posParams: posParams
         };
-      }
-      /**
-       * @license
-       * Copyright Google LLC All Rights Reserved.
-       *
-       * Use of this source code is governed by an MIT-style license that can be
-       * found in the LICENSE file at https://angular.io/license
-       */
-
-
-      var LoadedRouterConfig = function LoadedRouterConfig(routes, module) {
-        _classCallCheck(this, LoadedRouterConfig);
-
-        this.routes = routes;
-        this.module = module;
-      };
-
-      function validateConfig(config) {
-        var parentPath = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
-
-        // forEach doesn't iterate undefined values
-        for (var i = 0; i < config.length; i++) {
-          var route = config[i];
-          var fullPath = getFullPath(parentPath, route);
-          validateNode(route, fullPath);
-        }
-      }
-
-      function validateNode(route, fullPath) {
-        if (!route) {
-          throw new Error("\n      Invalid configuration of route '".concat(fullPath, "': Encountered undefined route.\n      The reason might be an extra comma.\n\n      Example:\n      const routes: Routes = [\n        { path: '', redirectTo: '/dashboard', pathMatch: 'full' },\n        { path: 'dashboard',  component: DashboardComponent },, << two commas\n        { path: 'detail/:id', component: HeroDetailComponent }\n      ];\n    "));
-        }
-
-        if (Array.isArray(route)) {
-          throw new Error("Invalid configuration of route '".concat(fullPath, "': Array cannot be specified"));
-        }
-
-        if (!route.component && !route.children && !route.loadChildren && route.outlet && route.outlet !== PRIMARY_OUTLET) {
-          throw new Error("Invalid configuration of route '".concat(fullPath, "': a componentless route without children or loadChildren cannot have a named outlet set"));
-        }
-
-        if (route.redirectTo && route.children) {
-          throw new Error("Invalid configuration of route '".concat(fullPath, "': redirectTo and children cannot be used together"));
-        }
-
-        if (route.redirectTo && route.loadChildren) {
-          throw new Error("Invalid configuration of route '".concat(fullPath, "': redirectTo and loadChildren cannot be used together"));
-        }
-
-        if (route.children && route.loadChildren) {
-          throw new Error("Invalid configuration of route '".concat(fullPath, "': children and loadChildren cannot be used together"));
-        }
-
-        if (route.redirectTo && route.component) {
-          throw new Error("Invalid configuration of route '".concat(fullPath, "': redirectTo and component cannot be used together"));
-        }
-
-        if (route.path && route.matcher) {
-          throw new Error("Invalid configuration of route '".concat(fullPath, "': path and matcher cannot be used together"));
-        }
-
-        if (route.redirectTo === void 0 && !route.component && !route.children && !route.loadChildren) {
-          throw new Error("Invalid configuration of route '".concat(fullPath, "'. One of the following must be provided: component, redirectTo, children or loadChildren"));
-        }
-
-        if (route.path === void 0 && route.matcher === void 0) {
-          throw new Error("Invalid configuration of route '".concat(fullPath, "': routes must have either a path or a matcher specified"));
-        }
-
-        if (typeof route.path === 'string' && route.path.charAt(0) === '/') {
-          throw new Error("Invalid configuration of route '".concat(fullPath, "': path cannot start with a slash"));
-        }
-
-        if (route.path === '' && route.redirectTo !== void 0 && route.pathMatch === void 0) {
-          var exp = "The default value of 'pathMatch' is 'prefix', but often the intent is to use 'full'.";
-          throw new Error("Invalid configuration of route '{path: \"".concat(fullPath, "\", redirectTo: \"").concat(route.redirectTo, "\"}': please provide 'pathMatch'. ").concat(exp));
-        }
-
-        if (route.pathMatch !== void 0 && route.pathMatch !== 'full' && route.pathMatch !== 'prefix') {
-          throw new Error("Invalid configuration of route '".concat(fullPath, "': pathMatch can only be set to 'prefix' or 'full'"));
-        }
-
-        if (route.children) {
-          validateConfig(route.children, fullPath);
-        }
-      }
-
-      function getFullPath(parentPath, currentRoute) {
-        if (!currentRoute) {
-          return parentPath;
-        }
-
-        if (!parentPath && !currentRoute.path) {
-          return '';
-        } else if (parentPath && !currentRoute.path) {
-          return "".concat(parentPath, "/");
-        } else if (!parentPath && currentRoute.path) {
-          return currentRoute.path;
-        } else {
-          return "".concat(parentPath, "/").concat(currentRoute.path);
-        }
-      }
-      /**
-       * Makes a copy of the config and adds any default required properties.
-       */
-
-
-      function standardizeConfig(r) {
-        var children = r.children && r.children.map(standardizeConfig);
-        var c = children ? Object.assign(Object.assign({}, r), {
-          children: children
-        }) : Object.assign({}, r);
-
-        if (!c.component && (children || c.loadChildren) && c.outlet && c.outlet !== PRIMARY_OUTLET) {
-          c.component = ɵEmptyOutletComponent;
-        }
-
-        return c;
       }
       /**
        * @license
@@ -84842,7 +85035,8 @@
        * and the resolved data.
        * Use the `ActivatedRoute` properties to traverse the tree from any node.
        *
-       * ### Example
+       * The following fragment shows how a component gets the root node
+       * of the current state to establish its own route tree:
        *
        * ```
        * @Component({templateUrl:'template.html'})
@@ -84858,6 +85052,7 @@
        * ```
        *
        * @see `ActivatedRoute`
+       * @see [Getting route information](guide/router#getting-route-information)
        *
        * @publicApi
        */
@@ -84917,8 +85112,13 @@
        * that is loaded in an outlet.
        * Use to traverse the `RouterState` tree and extract information from nodes.
        *
+       * The following example shows how to construct a component using information from a
+       * currently activated route.
+       *
        * {@example router/activated-route/module.ts region="activated-route"
        *     header="activated-route.component.ts"}
+       *
+       * @see [Getting route information](guide/router#getting-route-information)
        *
        * @publicApi
        */
@@ -85095,6 +85295,9 @@
        * outlet at a particular moment in time. ActivatedRouteSnapshot can also be used to
        * traverse the router state tree.
        *
+       * The following example initializes a component with route information extracted
+       * from the snapshot of the root node at the time of creation.
+       *
        * ```
        * @Component({templateUrl:'./my-component.html'})
        * class MyComponent {
@@ -85216,8 +85419,8 @@
        * This is a tree of activated route snapshots. Every node in this tree knows about
        * the "consumed" URL segments, the extracted parameters, and the resolved data.
        *
-       * @usageNotes
-       * ### Example
+       * The following example shows how a component is initialized with information
+       * from the snapshot of the root node's state at the time of creation.
        *
        * ```
        * @Component({templateUrl:'template.html'})
@@ -85350,13 +85553,13 @@
             setFutureSnapshotsOfActivatedRoutes(curr, _tree);
             return _tree;
           } else {
-            var _value4 = createActivatedRoute(curr.value);
+            var _value5 = createActivatedRoute(curr.value);
 
             var _children2 = curr.children.map(function (c) {
               return createNode(routeReuseStrategy, c);
             });
 
-            return new TreeNode(_value4, _children2);
+            return new TreeNode(_value5, _children2);
           }
         }
       }
@@ -85961,6 +86164,21 @@
 
         return null;
       }
+      /**
+       * @license
+       * Copyright Google LLC All Rights Reserved.
+       *
+       * Use of this source code is governed by an MIT-style license that can be
+       * found in the LICENSE file at https://angular.io/license
+       */
+
+
+      var LoadedRouterConfig = function LoadedRouterConfig(routes, module) {
+        _classCallCheck(this, LoadedRouterConfig);
+
+        this.routes = routes;
+        this.module = module;
+      };
       /**
        * @license
        * Copyright Google LLC All Rights Reserved.
@@ -87554,6 +87772,169 @@
        */
 
       /**
+       * This component is used internally within the router to be a placeholder when an empty
+       * router-outlet is needed. For example, with a config such as:
+       *
+       * `{path: 'parent', outlet: 'nav', children: [...]}`
+       *
+       * In order to render, there needs to be a component on this config, which will default
+       * to this `EmptyOutletComponent`.
+       */
+
+
+      var ɵEmptyOutletComponent = function ɵEmptyOutletComponent() {
+        _classCallCheck(this, ɵEmptyOutletComponent);
+      };
+
+      ɵEmptyOutletComponent.ɵfac = function ɵEmptyOutletComponent_Factory(t) {
+        return new (t || ɵEmptyOutletComponent)();
+      };
+
+      ɵEmptyOutletComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineComponent"]({
+        type: ɵEmptyOutletComponent,
+        selectors: [["ng-component"]],
+        decls: 1,
+        vars: 0,
+        template: function ɵEmptyOutletComponent_Template(rf, ctx) {
+          if (rf & 1) {
+            _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelement"](0, "router-outlet");
+          }
+        },
+        directives: function directives() {
+          return [RouterOutlet];
+        },
+        encapsulation: 2
+      });
+      /*@__PURE__*/
+
+      (function () {
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵsetClassMetadata"](ɵEmptyOutletComponent, [{
+          type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"],
+          args: [{
+            template: "<router-outlet></router-outlet>"
+          }]
+        }], null, null);
+      })();
+      /**
+       * @license
+       * Copyright Google LLC All Rights Reserved.
+       *
+       * Use of this source code is governed by an MIT-style license that can be
+       * found in the LICENSE file at https://angular.io/license
+       */
+
+
+      function validateConfig(config) {
+        var parentPath = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
+
+        // forEach doesn't iterate undefined values
+        for (var i = 0; i < config.length; i++) {
+          var route = config[i];
+          var fullPath = getFullPath(parentPath, route);
+          validateNode(route, fullPath);
+        }
+      }
+
+      function validateNode(route, fullPath) {
+        if (!route) {
+          throw new Error("\n      Invalid configuration of route '".concat(fullPath, "': Encountered undefined route.\n      The reason might be an extra comma.\n\n      Example:\n      const routes: Routes = [\n        { path: '', redirectTo: '/dashboard', pathMatch: 'full' },\n        { path: 'dashboard',  component: DashboardComponent },, << two commas\n        { path: 'detail/:id', component: HeroDetailComponent }\n      ];\n    "));
+        }
+
+        if (Array.isArray(route)) {
+          throw new Error("Invalid configuration of route '".concat(fullPath, "': Array cannot be specified"));
+        }
+
+        if (!route.component && !route.children && !route.loadChildren && route.outlet && route.outlet !== PRIMARY_OUTLET) {
+          throw new Error("Invalid configuration of route '".concat(fullPath, "': a componentless route without children or loadChildren cannot have a named outlet set"));
+        }
+
+        if (route.redirectTo && route.children) {
+          throw new Error("Invalid configuration of route '".concat(fullPath, "': redirectTo and children cannot be used together"));
+        }
+
+        if (route.redirectTo && route.loadChildren) {
+          throw new Error("Invalid configuration of route '".concat(fullPath, "': redirectTo and loadChildren cannot be used together"));
+        }
+
+        if (route.children && route.loadChildren) {
+          throw new Error("Invalid configuration of route '".concat(fullPath, "': children and loadChildren cannot be used together"));
+        }
+
+        if (route.redirectTo && route.component) {
+          throw new Error("Invalid configuration of route '".concat(fullPath, "': redirectTo and component cannot be used together"));
+        }
+
+        if (route.path && route.matcher) {
+          throw new Error("Invalid configuration of route '".concat(fullPath, "': path and matcher cannot be used together"));
+        }
+
+        if (route.redirectTo === void 0 && !route.component && !route.children && !route.loadChildren) {
+          throw new Error("Invalid configuration of route '".concat(fullPath, "'. One of the following must be provided: component, redirectTo, children or loadChildren"));
+        }
+
+        if (route.path === void 0 && route.matcher === void 0) {
+          throw new Error("Invalid configuration of route '".concat(fullPath, "': routes must have either a path or a matcher specified"));
+        }
+
+        if (typeof route.path === 'string' && route.path.charAt(0) === '/') {
+          throw new Error("Invalid configuration of route '".concat(fullPath, "': path cannot start with a slash"));
+        }
+
+        if (route.path === '' && route.redirectTo !== void 0 && route.pathMatch === void 0) {
+          var exp = "The default value of 'pathMatch' is 'prefix', but often the intent is to use 'full'.";
+          throw new Error("Invalid configuration of route '{path: \"".concat(fullPath, "\", redirectTo: \"").concat(route.redirectTo, "\"}': please provide 'pathMatch'. ").concat(exp));
+        }
+
+        if (route.pathMatch !== void 0 && route.pathMatch !== 'full' && route.pathMatch !== 'prefix') {
+          throw new Error("Invalid configuration of route '".concat(fullPath, "': pathMatch can only be set to 'prefix' or 'full'"));
+        }
+
+        if (route.children) {
+          validateConfig(route.children, fullPath);
+        }
+      }
+
+      function getFullPath(parentPath, currentRoute) {
+        if (!currentRoute) {
+          return parentPath;
+        }
+
+        if (!parentPath && !currentRoute.path) {
+          return '';
+        } else if (parentPath && !currentRoute.path) {
+          return "".concat(parentPath, "/");
+        } else if (!parentPath && currentRoute.path) {
+          return currentRoute.path;
+        } else {
+          return "".concat(parentPath, "/").concat(currentRoute.path);
+        }
+      }
+      /**
+       * Makes a copy of the config and adds any default required properties.
+       */
+
+
+      function standardizeConfig(r) {
+        var children = r.children && r.children.map(standardizeConfig);
+        var c = children ? Object.assign(Object.assign({}, r), {
+          children: children
+        }) : Object.assign({}, r);
+
+        if (!c.component && (children || c.loadChildren) && c.outlet && c.outlet !== PRIMARY_OUTLET) {
+          c.component = ɵEmptyOutletComponent;
+        }
+
+        return c;
+      }
+      /**
+       * @license
+       * Copyright Google LLC All Rights Reserved.
+       *
+       * Use of this source code is governed by an MIT-style license that can be
+       * found in the LICENSE file at https://angular.io/license
+       */
+
+      /**
        * The [DI token](guide/glossary/#di-token) for a router configuration.
        * @see `ROUTES`
        * @publicApi
@@ -87789,7 +88170,7 @@
       /**
        * @description
        *
-       * A service that provides navigation and URL manipulation capabilities.
+       * A service that provides navigation among views and URL manipulation capabilities.
        *
        * @see `Route`.
        * @see [Routing and Navigation Guide](guide/router).
@@ -88359,7 +88740,7 @@
             this.events.next(event);
           }
           /**
-           * Resets the configuration used for navigation and generating links.
+           * Resets the route configuration used for navigation and generating links.
            *
            * @param config The route array for the new configuration.
            *
@@ -88383,7 +88764,7 @@
             this.navigated = false;
             this.lastSuccessfulId = -1;
           }
-          /** @docsNotRequired */
+          /** @nodoc */
 
         }, {
           key: "ngOnDestroy",
@@ -88401,14 +88782,15 @@
             }
           }
           /**
-           * Applies an array of commands to the current URL tree and creates a new URL tree.
+           * Appends URL segments to the current URL tree to create a new URL tree.
            *
-           * When given an activated route, applies the given commands starting from the route.
-           * Otherwise, applies the given command starting from the root.
-           *
-           * @param commands An array of commands to apply.
+           * @param commands An array of URL fragments with which to construct the new URL tree.
+           * If the path is static, can be the literal URL string. For a dynamic path, pass an array of path
+           * segments, followed by the parameters for each segment.
+           * The fragments are applied to the current URL tree or the one provided  in the `relativeTo`
+           * property of the options object, if supplied.
            * @param navigationExtras Options that control the navigation strategy. This function
-           * only utilizes properties in `NavigationExtras` that would change the provided URL.
+           * only uses properties in `NavigationExtras` that would change the provided URL.
            * @returns The new URL tree.
            *
            * @usageNotes
@@ -88489,9 +88871,10 @@
             return _createUrlTree(a, this.currentUrlTree, commands, q, f);
           }
           /**
-           * Navigate based on the provided URL, which must be absolute.
+           * Navigates to a view using an absolute route path.
            *
-           * @param url An absolute URL. The function does not apply any delta to the current URL.
+           * @param url An absolute path for a defined route. The function does not apply any delta to the
+           *     current URL.
            * @param extras An object containing properties that modify the navigation strategy.
            * The function ignores any properties in the `NavigationExtras` that would change the
            * provided URL.
@@ -88501,12 +88884,16 @@
            *
            * @usageNotes
            *
+           * The following calls request navigation to an absolute path.
+           *
            * ```
            * router.navigateByUrl("/team/33/user/11");
            *
            * // Navigate without updating the URL
            * router.navigateByUrl("/team/33/user/11", { skipLocationChange: true });
            * ```
+           *
+           * @see [Routing and Navigation guide](guide/router)
            *
            */
 
@@ -88529,28 +88916,31 @@
            * Navigate based on the provided array of commands and a starting point.
            * If no starting route is provided, the navigation is absolute.
            *
-           * Returns a promise that:
-           * - resolves to 'true' when navigation succeeds,
-           * - resolves to 'false' when navigation fails,
-           * - is rejected when an error happens.
+           * @param commands An array of URL fragments with which to construct the target URL.
+           * If the path is static, can be the literal URL string. For a dynamic path, pass an array of path
+           * segments, followed by the parameters for each segment.
+           * The fragments are applied to the current URL or the one provided  in the `relativeTo` property
+           * of the options object, if supplied.
+           * @param extras An options object that determines how the URL should be constructed or
+           *     interpreted.
+           *
+           * @returns A Promise that resolves to `true` when navigation succeeds, to `false` when navigation
+           *     fails,
+           * or is rejected on error.
            *
            * @usageNotes
+           *
+           * The following calls request navigation to a dynamic route path relative to the current URL.
            *
            * ```
            * router.navigate(['team', 33, 'user', 11], {relativeTo: route});
            *
-           * // Navigate without updating the URL
+           * // Navigate without updating the URL, overriding the default behavior
            * router.navigate(['team', 33, 'user', 11], {relativeTo: route, skipLocationChange: true});
            * ```
            *
-           * The first parameter of `navigate()` is a delta to be applied to the current URL
-           * or the one provided in the `relativeTo` property of the second parameter (the
-           * `NavigationExtras`).
+           * @see [Routing and Navigation guide](guide/router)
            *
-           * In order to affect this browser's `history.state` entry, the `state`
-           * parameter can be passed. This must be an object because the router
-           * will add the `navigationId` property to this object before creating
-           * the new history item.
            */
 
         }, {
@@ -88805,56 +89195,63 @@
       /**
        * @description
        *
-       * Lets you link to specific routes in your app.
+       * When applied to an element in a template, makes that element a link
+       * that initiates navigation to a route. Navigation opens one or more routed components
+       * in one or more `<router-outlet>` locations on the page.
        *
-       * Consider the following route configuration:
-       * `[{ path: 'user/:name', component: UserCmp }]`.
-       * When linking to this `user/:name` route, you use the `RouterLink` directive.
-       *
-       * If the link is static, you can use the directive as follows:
+       * Given a route configuration `[{ path: 'user/:name', component: UserCmp }]`,
+       * the following creates a static link to the route:
        * `<a routerLink="/user/bob">link to user component</a>`
        *
-       * If you use dynamic values to generate the link, you can pass an array of path
-       * segments, followed by the params for each segment.
+       * You can use dynamic values to generate the link.
+       * For a dynamic link, pass an array of path segments,
+       * followed by the params for each segment.
+       * For example, `['/team', teamId, 'user', userName, {details: true}]`
+       * generates a link to `/team/11/user/bob;details=true`.
        *
-       * For instance `['/team', teamId, 'user', userName, {details: true}]`
-       * means that we want to generate a link to `/team/11/user/bob;details=true`.
+       * Multiple static segments can be merged into one term and combined with dynamic segements.
+       * For example, `['/team/11/user', userName, {details: true}]`
        *
-       * Multiple static segments can be merged into one
-       * (e.g., `['/team/11/user', userName, {details: true}]`).
+       * The input that you provide to the link is treated as a delta to the current URL.
+       * For instance, suppose the current URL is `/user/(box//aux:team)`.
+       * The link `<a [routerLink]="['/user/jim']">Jim</a>` creates the URL
+       * `/user/(jim//aux:team)`.
+       * See {@link Router#createUrlTree createUrlTree} for more information.
        *
-       * The first segment name can be prepended with `/`, `./`, or `../`:
-       * * If the first segment begins with `/`, the router will look up the route from the root of the
+       * @usageNotes
+       *
+       * You can use absolute or relative paths in a link, set query parameters,
+       * control how parameters are handled, and keep a history of navigation states.
+       *
+       * ### Relative link paths
+       *
+       * The first segment name can be prepended with `/`, `./`, or `../`.
+       * * If the first segment begins with `/`, the router looks up the route from the root of the
        *   app.
-       * * If the first segment begins with `./`, or doesn't begin with a slash, the router will
-       *   instead look in the children of the current activated route.
-       * * And if the first segment begins with `../`, the router will go up one level.
+       * * If the first segment begins with `./`, or doesn't begin with a slash, the router
+       *   looks in the children of the current activated route.
+       * * If the first segment begins with `../`, the router goes up one level in the route tree.
        *
-       * You can set query params and fragment as follows:
+       * ### Setting and handling query params and fragments
+       *
+       * The following link adds a query parameter and a fragment to the generated URL:
        *
        * ```
        * <a [routerLink]="['/user/bob']" [queryParams]="{debug: true}" fragment="education">
        *   link to user component
        * </a>
        * ```
-       * RouterLink will use these to generate this link: `/user/bob?debug=true#education`.
+       * By default, the directive constructs the new URL using the given query parameters.
+       * The example generates the link: `/user/bob?debug=true#education`.
        *
-       * (Deprecated in v4.0.0 use `queryParamsHandling` instead) You can also tell the
-       * directive to preserve the current query params and fragment:
+       * You can instruct the directive to handle query parameters differently
+       * by specifying the `queryParamsHandling` option in the link.
+       * Allowed values are:
        *
-       * ```
-       * <a [routerLink]="['/user/bob']" preserveQueryParams preserveFragment>
-       *   link to user component
-       * </a>
-       * ```
+       *  - `'merge'`: Merge the given `queryParams` into the current query params.
+       *  - `'preserve'`: Preserve the current query params.
        *
-       * You can tell the directive how to handle queryParams. Available options are:
-       *  - `'merge'`: merge the queryParams into the current queryParams
-       *  - `'preserve'`: preserve the current queryParams
-       *  - default/`''`: use the queryParams only
-       *
-       * Same options for {@link NavigationExtras#queryParamsHandling
-       * NavigationExtras#queryParamsHandling}.
+       * For example:
        *
        * ```
        * <a [routerLink]="['/user/bob']" [queryParams]="{debug: true}" queryParamsHandling="merge">
@@ -88862,9 +89259,13 @@
        * </a>
        * ```
        *
-       * You can provide a `state` value to be persisted to the browser's History.state
-       * property (See https://developer.mozilla.org/en-US/docs/Web/API/History#Properties). It's
-       * used as follows:
+       * See {@link NavigationExtras.queryParamsHandling NavigationExtras#queryParamsHandling}.
+       *
+       * ### Preserving navigation history
+       *
+       * You can provide a `state` value to be persisted to the browser's
+       * [`History.state` property](https://developer.mozilla.org/en-US/docs/Web/API/History#Properties).
+       * For example:
        *
        * ```
        * <a [routerLink]="['/user/bob']" [state]="{tracingId: 123}">
@@ -88872,8 +89273,9 @@
        * </a>
        * ```
        *
-       * And later the value can be read from the router through `router.getCurrentNavigation`.
-       * For example, to capture the `tracingId` above during the `NavigationStart` event:
+       * Use {@link Router.getCurrentNavigation() Router#getCurrentNavigation} to retrieve a saved
+       * navigation-state value. For example, to capture the `tracingId` during the `NavigationStart`
+       * event:
        *
        * ```
        * // Get NavigationStart events
@@ -88882,15 +89284,6 @@
        *   tracingService.trace({id: navigation.extras.state.tracingId});
        * });
        * ```
-       *
-       * The router link directive always treats the provided input as a delta to the current url.
-       *
-       * For instance, if the current url is `/user/(box//aux:team)`.
-       *
-       * Then the following link `<a [routerLink]="['/user/jim']">Jim</a>` will generate the link
-       * `/user/(jim//aux:team)`.
-       *
-       * See {@link Router#createUrlTree createUrlTree} for more information.
        *
        * @ngModule RouterModule
        *
@@ -88905,22 +89298,36 @@
           this.router = router;
           this.route = route;
           this.commands = [];
+          /** @internal */
+
+          this.onChanges = new rxjs__WEBPACK_IMPORTED_MODULE_2__["Subject"]();
 
           if (tabIndex == null) {
             renderer.setAttribute(el.nativeElement, 'tabindex', '0');
           }
         }
-        /**
-         * Commands to pass to {@link Router#createUrlTree Router#createUrlTree}.
-         *   - **array**: commands to pass to {@link Router#createUrlTree Router#createUrlTree}.
-         *   - **string**: shorthand for array of commands with just the string, i.e. `['/route']`
-         *   - **null|undefined**: shorthand for an empty array of commands, i.e. `[]`
-         * @see {@link Router#createUrlTree Router#createUrlTree}
-         */
+        /** @nodoc */
 
 
         _createClass2(RouterLink, [{
+          key: "ngOnChanges",
+          value: function ngOnChanges(changes) {
+            // This is subscribed to by `RouterLinkActive` so that it knows to update when there are changes
+            // to the RouterLinks it's tracking.
+            this.onChanges.next(this);
+          }
+          /**
+           * Commands to pass to {@link Router#createUrlTree Router#createUrlTree}.
+           *   - **array**: commands to pass to {@link Router#createUrlTree Router#createUrlTree}.
+           *   - **string**: shorthand for array of commands with just the string, i.e. `['/route']`
+           *   - **null|undefined**: shorthand for an empty array of commands, i.e. `[]`
+           * @see {@link Router#createUrlTree Router#createUrlTree}
+           */
+
+        }, {
           key: "onClick",
+
+          /** @nodoc */
           value: function onClick() {
             var extras = {
               skipLocationChange: attrBoolValue(this.skipLocationChange),
@@ -88993,7 +89400,8 @@
           skipLocationChange: "skipLocationChange",
           replaceUrl: "replaceUrl",
           state: "state"
-        }
+        },
+        features: [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵNgOnChangesFeature"]]
       });
 
       RouterLink.ctorParameters = function () {
@@ -89078,6 +89486,8 @@
           preserveQueryParams: [{
             type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"]
           }],
+
+          /** @nodoc */
           onClick: [{
             type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["HostListener"],
             args: ['click']
@@ -89128,6 +89538,9 @@
           this.route = route;
           this.locationStrategy = locationStrategy;
           this.commands = [];
+          /** @internal */
+
+          this.onChanges = new rxjs__WEBPACK_IMPORTED_MODULE_2__["Subject"]();
           this.subscription = router.events.subscribe(function (s) {
             if (s instanceof NavigationEnd) {
               _this226.updateTargetUrlAndHref();
@@ -89145,14 +89558,21 @@
 
         _createClass2(RouterLinkWithHref, [{
           key: "ngOnChanges",
+
+          /** @nodoc */
           value: function ngOnChanges(changes) {
             this.updateTargetUrlAndHref();
+            this.onChanges.next(this);
           }
+          /** @nodoc */
+
         }, {
           key: "ngOnDestroy",
           value: function ngOnDestroy() {
             this.subscription.unsubscribe();
           }
+          /** @nodoc */
+
         }, {
           key: "onClick",
           value: function onClick(button, ctrlKey, metaKey, shiftKey) {
@@ -89327,6 +89747,8 @@
           preserveQueryParams: [{
             type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"]
           }],
+
+          /** @nodoc */
           onClick: [{
             type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["HostListener"],
             args: ['click', ['$event.button', '$event.ctrlKey', '$event.metaKey', '$event.shiftKey']]
@@ -89379,44 +89801,49 @@
        *
        * @description
        *
-       * Lets you add a CSS class to an element when the link's route becomes active.
+       * Tracks whether the linked route of an element is currently active, and allows you
+       * to specify one or more CSS classes to add to the element when the linked route
+       * is active.
        *
-       * This directive lets you add a CSS class to an element when the link's route
-       * becomes active.
-       *
-       * Consider the following example:
+       * Use this directive to create a visual distinction for elements associated with an active route.
+       * For example, the following code highlights the word "Bob" when the the router
+       * activates the associated route:
        *
        * ```
        * <a routerLink="/user/bob" routerLinkActive="active-link">Bob</a>
        * ```
        *
-       * When the url is either '/user' or '/user/bob', the active-link class will
-       * be added to the `a` tag. If the url changes, the class will be removed.
+       * Whenever the URL is either '/user' or '/user/bob', the "active-link" class is
+       * added to the anchor tag. If the URL changes, the class is removed.
        *
-       * You can set more than one class, as follows:
+       * You can set more than one class using a space-separated string or an array.
+       * For example:
        *
        * ```
        * <a routerLink="/user/bob" routerLinkActive="class1 class2">Bob</a>
        * <a routerLink="/user/bob" [routerLinkActive]="['class1', 'class2']">Bob</a>
        * ```
        *
-       * You can configure RouterLinkActive by passing `exact: true`. This will add the classes
-       * only when the url matches the link exactly.
+       * To add the classes only when the URL matches the link exactly, add the option `exact: true`:
        *
        * ```
        * <a routerLink="/user/bob" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact:
        * true}">Bob</a>
        * ```
        *
-       * You can assign the RouterLinkActive instance to a template variable and directly check
-       * the `isActive` status.
+       * To directly check the `isActive` status of the link, assign the `RouterLinkActive`
+       * instance to a template variable.
+       * For example, the following checks the status without assigning any CSS classes:
+       *
        * ```
        * <a routerLink="/user/bob" routerLinkActive #rla="routerLinkActive">
        *   Bob {{ rla.isActive ? '(already open)' : ''}}
        * </a>
        * ```
        *
-       * Finally, you can apply the RouterLinkActive directive to an ancestor of a RouterLink.
+       * You can apply the `RouterLinkActive` directive to an ancestor of linked elements.
+       * For example, the following sets the active-link class on the `<div>`  parent tag
+       * when the URL is either '/user/jim' or '/user/bob'.
        *
        * ```
        * <div routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">
@@ -89424,9 +89851,6 @@
        *   <a routerLink="/user/bob">Bob</a>
        * </div>
        * ```
-       *
-       * This will set the active-link class on the div tag if the url is either '/user/jim' or
-       * '/user/bob'.
        *
        * @ngModule RouterModule
        *
@@ -89451,55 +89875,82 @@
           this.routerLinkActiveOptions = {
             exact: false
           };
-          this.subscription = router.events.subscribe(function (s) {
+          this.routerEventsSubscription = router.events.subscribe(function (s) {
             if (s instanceof NavigationEnd) {
               _this227.update();
             }
           });
         }
+        /** @nodoc */
+
 
         _createClass2(RouterLinkActive, [{
           key: "ngAfterContentInit",
           value: function ngAfterContentInit() {
             var _this228 = this;
 
-            this.links.changes.subscribe(function (_) {
-              return _this228.update();
+            // `of(null)` is used to force subscribe body to execute once immediately (like `startWith`).
+            Object(rxjs__WEBPACK_IMPORTED_MODULE_2__["from"])([this.links.changes, this.linksWithHrefs.changes, Object(rxjs__WEBPACK_IMPORTED_MODULE_2__["of"])(null)]).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["mergeAll"])()).subscribe(function (_) {
+              _this228.update();
+
+              _this228.subscribeToEachLinkOnChanges();
             });
-            this.linksWithHrefs.changes.subscribe(function (_) {
-              return _this228.update();
+          }
+        }, {
+          key: "subscribeToEachLinkOnChanges",
+          value: function subscribeToEachLinkOnChanges() {
+            var _this229 = this;
+
+            var _a;
+
+            (_a = this.linkInputChangesSubscription) === null || _a === void 0 ? void 0 : _a.unsubscribe();
+            var allLinkChanges = [].concat(_toConsumableArray(this.links.toArray()), _toConsumableArray(this.linksWithHrefs.toArray()), [this.link, this.linkWithHref]).filter(function (link) {
+              return !!link;
+            }).map(function (link) {
+              return link.onChanges;
             });
-            this.update();
+            this.linkInputChangesSubscription = Object(rxjs__WEBPACK_IMPORTED_MODULE_2__["from"])(allLinkChanges).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["mergeAll"])()).subscribe(function (link) {
+              if (_this229.isActive !== _this229.isLinkActive(_this229.router)(link)) {
+                _this229.update();
+              }
+            });
           }
         }, {
           key: "ngOnChanges",
+
+          /** @nodoc */
           value: function ngOnChanges(changes) {
             this.update();
           }
+          /** @nodoc */
+
         }, {
           key: "ngOnDestroy",
           value: function ngOnDestroy() {
-            this.subscription.unsubscribe();
+            var _a;
+
+            this.routerEventsSubscription.unsubscribe();
+            (_a = this.linkInputChangesSubscription) === null || _a === void 0 ? void 0 : _a.unsubscribe();
           }
         }, {
           key: "update",
           value: function update() {
-            var _this229 = this;
+            var _this230 = this;
 
             if (!this.links || !this.linksWithHrefs || !this.router.navigated) return;
             Promise.resolve().then(function () {
-              var hasActiveLinks = _this229.hasActiveLinks();
+              var hasActiveLinks = _this230.hasActiveLinks();
 
-              if (_this229.isActive !== hasActiveLinks) {
-                _this229.isActive = hasActiveLinks;
+              if (_this230.isActive !== hasActiveLinks) {
+                _this230.isActive = hasActiveLinks;
 
-                _this229.cdr.markForCheck();
+                _this230.cdr.markForCheck();
 
-                _this229.classes.forEach(function (c) {
+                _this230.classes.forEach(function (c) {
                   if (hasActiveLinks) {
-                    _this229.renderer.addClass(_this229.element.nativeElement, c);
+                    _this230.renderer.addClass(_this230.element.nativeElement, c);
                   } else {
-                    _this229.renderer.removeClass(_this229.element.nativeElement, c);
+                    _this230.renderer.removeClass(_this230.element.nativeElement, c);
                   }
                 });
               }
@@ -89508,10 +89959,10 @@
         }, {
           key: "isLinkActive",
           value: function isLinkActive(router) {
-            var _this230 = this;
+            var _this231 = this;
 
             return function (link) {
-              return router.isActive(link.urlTree, _this230.routerLinkActiveOptions.exact);
+              return router.isActive(link.urlTree, _this231.routerLinkActiveOptions.exact);
             };
           }
         }, {
@@ -89676,6 +90127,21 @@
        * <router-outlet name='right'></router-outlet>
        * ```
        *
+       * Named outlets can be the targets of secondary routes.
+       * The `Route` object for a secondary route has an `outlet` property to identify the target outlet:
+       *
+       * `{path: <base-path>, component: <component>, outlet: <target_outlet_name>}`
+       *
+       * Using named outlets and secondary routes, you can target multiple outlets in
+       * the same `RouterLink` directive.
+       *
+       * The router keeps track of separate branches in a navigation tree for each named outlet and
+       * generates a representation of that tree in the URL.
+       * The URL for a secondary route uses the following syntax to specify both the primary and secondary
+       * routes at the same time:
+       *
+       * `http://base-path/primary-route-path(outlet-name:route-path)`
+       *
        * A router outlet emits an activate event when a new component is instantiated,
        * and a deactivate event when a component is destroyed.
        *
@@ -89684,6 +90150,11 @@
        *   (activate)='onActivate($event)'
        *   (deactivate)='onDeactivate($event)'></router-outlet>
        * ```
+       *
+       * @see [Routing tutorial](guide/router-tutorial-toh#named-outlets "Example of a named
+       * outlet and secondary route configuration").
+       * @see `RouterLink`
+       * @see `Route`
        * @ngModule RouterModule
        *
        * @publicApi
@@ -89705,12 +90176,16 @@
           this.name = name || PRIMARY_OUTLET;
           parentContexts.onChildOutletCreated(this.name, this);
         }
+        /** @nodoc */
+
 
         _createClass2(RouterOutlet, [{
           key: "ngOnDestroy",
           value: function ngOnDestroy() {
             this.parentContexts.onChildOutletDestroyed(this.name);
           }
+          /** @nodoc */
+
         }, {
           key: "ngOnInit",
           value: function ngOnInit() {
@@ -90032,12 +90507,12 @@
         _createClass2(RouterPreloader, [{
           key: "setUpPreloading",
           value: function setUpPreloading() {
-            var _this231 = this;
+            var _this232 = this;
 
             this.subscription = this.router.events.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["filter"])(function (e) {
               return e instanceof NavigationEnd;
             }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["concatMap"])(function () {
-              return _this231.preload();
+              return _this232.preload();
             })).subscribe(function () {});
           }
         }, {
@@ -90045,14 +90520,15 @@
           value: function preload() {
             var ngModule = this.injector.get(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModuleRef"]);
             return this.processRoutes(ngModule, this.router.config);
-          } // TODO(jasonaden): This class relies on code external to the class to call setUpPreloading. If
-          // this hasn't been done, ngOnDestroy will fail as this.subscription will be undefined. This
-          // should be refactored.
+          }
+          /** @nodoc */
 
         }, {
           key: "ngOnDestroy",
           value: function ngOnDestroy() {
-            this.subscription.unsubscribe();
+            if (this.subscription) {
+              this.subscription.unsubscribe();
+            }
           }
         }, {
           key: "processRoutes",
@@ -90089,14 +90565,14 @@
         }, {
           key: "preloadConfig",
           value: function preloadConfig(ngModule, route) {
-            var _this232 = this;
+            var _this233 = this;
 
             return this.preloadingStrategy.preload(route, function () {
-              var loaded$ = _this232.loader.load(ngModule.injector, route);
+              var loaded$ = _this233.loader.load(ngModule.injector, route);
 
               return loaded$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["mergeMap"])(function (config) {
                 route._loadedConfig = config;
-                return _this232.processRoutes(config.module, config.routes);
+                return _this233.processRoutes(config.module, config.routes);
               }));
             });
           }
@@ -90192,41 +90668,41 @@
         }, {
           key: "createScrollEvents",
           value: function createScrollEvents() {
-            var _this233 = this;
+            var _this234 = this;
 
             return this.router.events.subscribe(function (e) {
               if (e instanceof NavigationStart) {
                 // store the scroll position of the current stable navigations.
-                _this233.store[_this233.lastId] = _this233.viewportScroller.getScrollPosition();
-                _this233.lastSource = e.navigationTrigger;
-                _this233.restoredId = e.restoredState ? e.restoredState.navigationId : 0;
+                _this234.store[_this234.lastId] = _this234.viewportScroller.getScrollPosition();
+                _this234.lastSource = e.navigationTrigger;
+                _this234.restoredId = e.restoredState ? e.restoredState.navigationId : 0;
               } else if (e instanceof NavigationEnd) {
-                _this233.lastId = e.id;
+                _this234.lastId = e.id;
 
-                _this233.scheduleScrollEvent(e, _this233.router.parseUrl(e.urlAfterRedirects).fragment);
+                _this234.scheduleScrollEvent(e, _this234.router.parseUrl(e.urlAfterRedirects).fragment);
               }
             });
           }
         }, {
           key: "consumeScrollEvents",
           value: function consumeScrollEvents() {
-            var _this234 = this;
+            var _this235 = this;
 
             return this.router.events.subscribe(function (e) {
               if (!(e instanceof Scroll)) return; // a popstate event. The pop state event will always ignore anchor scrolling.
 
               if (e.position) {
-                if (_this234.options.scrollPositionRestoration === 'top') {
-                  _this234.viewportScroller.scrollToPosition([0, 0]);
-                } else if (_this234.options.scrollPositionRestoration === 'enabled') {
-                  _this234.viewportScroller.scrollToPosition(e.position);
+                if (_this235.options.scrollPositionRestoration === 'top') {
+                  _this235.viewportScroller.scrollToPosition([0, 0]);
+                } else if (_this235.options.scrollPositionRestoration === 'enabled') {
+                  _this235.viewportScroller.scrollToPosition(e.position);
                 } // imperative navigation "forward"
 
               } else {
-                if (e.anchor && _this234.options.anchorScrolling === 'enabled') {
-                  _this234.viewportScroller.scrollToAnchor(e.anchor);
-                } else if (_this234.options.scrollPositionRestoration !== 'disabled') {
-                  _this234.viewportScroller.scrollToPosition([0, 0]);
+                if (e.anchor && _this235.options.anchorScrolling === 'enabled') {
+                  _this235.viewportScroller.scrollToAnchor(e.anchor);
+                } else if (_this235.options.scrollPositionRestoration !== 'disabled') {
+                  _this235.viewportScroller.scrollToPosition([0, 0]);
                 }
               }
             });
@@ -90236,6 +90712,8 @@
           value: function scheduleScrollEvent(routerEvent, anchor) {
             this.router.triggerEvent(new Scroll(routerEvent, this.lastSource === 'popstate' ? this.store[this.restoredId] : null, anchor));
           }
+          /** @nodoc */
+
         }, {
           key: "ngOnDestroy",
           value: function ngOnDestroy() {
@@ -90338,53 +90816,23 @@
         return new _angular_core__WEBPACK_IMPORTED_MODULE_1__["NgProbeToken"]('Router', Router);
       }
       /**
-       * @usageNotes
-       *
-       * RouterModule can be imported multiple times: once per lazily-loaded bundle.
-       * Since the router deals with a global shared resource--location, we cannot have
-       * more than one router service active.
-       *
-       * That is why there are two ways to create the module: `RouterModule.forRoot` and
-       * `RouterModule.forChild`.
-       *
-       * * `forRoot` creates a module that contains all the directives, the given routes, and the router
-       *   service itself.
-       * * `forChild` creates a module that contains all the directives and the given routes, but does not
-       *   include the router service.
-       *
-       * When registered at the root, the module should be used as follows
-       *
-       * ```
-       * @NgModule({
-       *   imports: [RouterModule.forRoot(ROUTES)]
-       * })
-       * class MyNgModule {}
-       * ```
-       *
-       * For submodules and lazy loaded submodules the module should be used as follows:
-       *
-       * ```
-       * @NgModule({
-       *   imports: [RouterModule.forChild(ROUTES)]
-       * })
-       * class MyNgModule {}
-       * ```
-       *
        * @description
        *
-       * Adds router directives and providers.
+       * Adds directives and providers for in-app navigation among views defined in an application.
+       * Use the Angular `Router` service to declaratively specify application states and manage state
+       * transitions.
        *
-       * Managing state transitions is one of the hardest parts of building applications. This is
-       * especially true on the web, where you also need to ensure that the state is reflected in the URL.
-       * In addition, we often want to split applications into multiple bundles and load them on demand.
-       * Doing this transparently is not trivial.
+       * You can import this NgModule multiple times, once for each lazy-loaded bundle.
+       * However, only one `Router` service can be active.
+       * To ensure this, there are two ways to register routes when importing this module:
        *
-       * The Angular router service solves these problems. Using the router, you can declaratively specify
-       * application states, manage state transitions while taking care of the URL, and load bundles on
-       * demand.
+       * * The `forRoot()` method creates an `NgModule` that contains all the directives, the given
+       * routes, and the `Router` service itself.
+       * * The `forChild()` method creates an `NgModule` that contains all the directives and the given
+       * routes, but does not include the `Router` service.
        *
-       * @see [Routing and Navigation](guide/router.html) for an
-       * overview of how the router service should be used.
+       * @see [Routing and Navigation guide](guide/router) for an
+       * overview of how the `Router` service should be used.
        *
        * @publicApi
        */
@@ -90399,9 +90847,19 @@
          * Creates and configures a module with all the router providers and directives.
          * Optionally sets up an application listener to perform an initial navigation.
          *
+         * When registering the NgModule at the root, import as follows:
+         *
+         * ```
+         * @NgModule({
+         *   imports: [RouterModule.forRoot(ROUTES)]
+         * })
+         * class MyNgModule {}
+         * ```
+         *
          * @param routes An array of `Route` objects that define the navigation paths for the application.
          * @param config An `ExtraOptions` configuration object that controls how navigation is performed.
-         * @return The new router module.
+         * @return The new `NgModule`.
+         *
          */
 
 
@@ -90436,7 +90894,20 @@
             };
           }
           /**
-           * Creates a module with all the router directives and a provider registering routes.
+           * Creates a module with all the router directives and a provider registering routes,
+           * without creating a new Router service.
+           * When registering for submodules and lazy-loaded submodules, create the NgModule as follows:
+           *
+           * ```
+           * @NgModule({
+           *   imports: [RouterModule.forChild(ROUTES)]
+           * })
+           * class MyNgModule {}
+           * ```
+           *
+           * @param routes An array of `Route` objects that define the navigation paths for the submodule.
+           * @return The new NgModule.
+           *
            */
 
         }, {
@@ -90642,7 +91113,7 @@
         _createClass2(RouterInitializer, [{
           key: "appInitializer",
           value: function appInitializer() {
-            var _this235 = this;
+            var _this236 = this;
 
             var p = this.injector.get(_angular_common__WEBPACK_IMPORTED_MODULE_0__["LOCATION_INITIALIZED"], Promise.resolve(null));
             return p.then(function () {
@@ -90651,11 +91122,11 @@
                 return resolve = r;
               });
 
-              var router = _this235.injector.get(Router);
+              var router = _this236.injector.get(Router);
 
-              var opts = _this235.injector.get(ROUTER_CONFIGURATION);
+              var opts = _this236.injector.get(ROUTER_CONFIGURATION);
 
-              if (_this235.isLegacyDisabled(opts) || _this235.isLegacyEnabled(opts)) {
+              if (_this236.isLegacyDisabled(opts) || _this236.isLegacyEnabled(opts)) {
                 resolve(true);
               } else if (opts.initialNavigation === 'disabled') {
                 router.setUpLocationChangeListener();
@@ -90663,10 +91134,10 @@
               } else if (opts.initialNavigation === 'enabled') {
                 router.hooks.afterPreactivation = function () {
                   // only the initial navigation should be delayed
-                  if (!_this235.initNavigation) {
-                    _this235.initNavigation = true;
+                  if (!_this236.initNavigation) {
+                    _this236.initNavigation = true;
                     resolve(true);
-                    return _this235.resultOfPreactivationDone; // subsequent navigations should not be delayed
+                    return _this236.resultOfPreactivationDone; // subsequent navigations should not be delayed
                   } else {
                     return Object(rxjs__WEBPACK_IMPORTED_MODULE_2__["of"])(null);
                   }
@@ -90793,7 +91264,7 @@
        */
 
 
-      var VERSION = new _angular_core__WEBPACK_IMPORTED_MODULE_1__["Version"]('10.0.4');
+      var VERSION = new _angular_core__WEBPACK_IMPORTED_MODULE_1__["Version"]('10.0.12');
       /**
        * @license
        * Copyright Google LLC All Rights Reserved.
@@ -91575,15 +92046,15 @@
         var _super136 = _createSuper(AsyncSubject);
 
         function AsyncSubject() {
-          var _this236;
+          var _this237;
 
           _classCallCheck(this, AsyncSubject);
 
-          _this236 = _super136.apply(this, arguments);
-          _this236.value = null;
-          _this236.hasNext = false;
-          _this236.hasCompleted = false;
-          return _this236;
+          _this237 = _super136.apply(this, arguments);
+          _this237.value = null;
+          _this237.hasNext = false;
+          _this237.hasCompleted = false;
+          return _this237;
         }
 
         _createClass2(AsyncSubject, [{
@@ -91673,13 +92144,13 @@
         var _super137 = _createSuper(BehaviorSubject);
 
         function BehaviorSubject(_value) {
-          var _this237;
+          var _this238;
 
           _classCallCheck(this, BehaviorSubject);
 
-          _this237 = _super137.call(this);
-          _this237._value = _value;
-          return _this237;
+          _this238 = _super137.call(this);
+          _this238._value = _value;
+          return _this238;
         }
 
         _createClass2(BehaviorSubject, [{
@@ -91755,16 +92226,16 @@
         var _super138 = _createSuper(InnerSubscriber);
 
         function InnerSubscriber(parent, outerValue, outerIndex) {
-          var _this238;
+          var _this239;
 
           _classCallCheck(this, InnerSubscriber);
 
-          _this238 = _super138.call(this);
-          _this238.parent = parent;
-          _this238.outerValue = outerValue;
-          _this238.outerIndex = outerIndex;
-          _this238.index = 0;
-          return _this238;
+          _this239 = _super138.call(this);
+          _this239.parent = parent;
+          _this239.outerValue = outerValue;
+          _this239.outerIndex = outerIndex;
+          _this239.index = 0;
+          return _this239;
         }
 
         _createClass2(InnerSubscriber, [{
@@ -92056,12 +92527,12 @@
         }, {
           key: "forEach",
           value: function forEach(next, promiseCtor) {
-            var _this239 = this;
+            var _this240 = this;
 
             promiseCtor = getPromiseCtor(promiseCtor);
             return new promiseCtor(function (resolve, reject) {
               var subscription;
-              subscription = _this239.subscribe(function (value) {
+              subscription = _this240.subscribe(function (value) {
                 try {
                   next(value);
                 } catch (err) {
@@ -92101,13 +92572,13 @@
         }, {
           key: "toPromise",
           value: function toPromise(promiseCtor) {
-            var _this240 = this;
+            var _this241 = this;
 
             promiseCtor = getPromiseCtor(promiseCtor);
             return new promiseCtor(function (resolve, reject) {
               var value;
 
-              _this240.subscribe(function (x) {
+              _this241.subscribe(function (x) {
                 return value = x;
               }, function (err) {
                 return reject(err);
@@ -92312,7 +92783,7 @@
         var _super140 = _createSuper(ReplaySubject);
 
         function ReplaySubject() {
-          var _this241;
+          var _this242;
 
           var bufferSize = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : Number.POSITIVE_INFINITY;
           var windowTime = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : Number.POSITIVE_INFINITY;
@@ -92320,21 +92791,21 @@
 
           _classCallCheck(this, ReplaySubject);
 
-          _this241 = _super140.call(this);
-          _this241.scheduler = scheduler;
-          _this241._events = [];
-          _this241._infiniteTimeWindow = false;
-          _this241._bufferSize = bufferSize < 1 ? 1 : bufferSize;
-          _this241._windowTime = windowTime < 1 ? 1 : windowTime;
+          _this242 = _super140.call(this);
+          _this242.scheduler = scheduler;
+          _this242._events = [];
+          _this242._infiniteTimeWindow = false;
+          _this242._bufferSize = bufferSize < 1 ? 1 : bufferSize;
+          _this242._windowTime = windowTime < 1 ? 1 : windowTime;
 
           if (windowTime === Number.POSITIVE_INFINITY) {
-            _this241._infiniteTimeWindow = true;
-            _this241.next = _this241.nextInfiniteTimeWindow;
+            _this242._infiniteTimeWindow = true;
+            _this242.next = _this242.nextInfiniteTimeWindow;
           } else {
-            _this241.next = _this241.nextTimeWindow;
+            _this242.next = _this242.nextTimeWindow;
           }
 
-          return _this241;
+          return _this242;
         }
 
         _createClass2(ReplaySubject, [{
@@ -92575,13 +93046,13 @@
         var _super141 = _createSuper(SubjectSubscriber);
 
         function SubjectSubscriber(destination) {
-          var _this242;
+          var _this243;
 
           _classCallCheck(this, SubjectSubscriber);
 
-          _this242 = _super141.call(this, destination);
-          _this242.destination = destination;
-          return _this242;
+          _this243 = _super141.call(this, destination);
+          _this243.destination = destination;
+          return _this243;
         }
 
         return SubjectSubscriber;
@@ -92593,17 +93064,17 @@
         var _super142 = _createSuper(Subject);
 
         function Subject() {
-          var _this243;
+          var _this244;
 
           _classCallCheck(this, Subject);
 
-          _this243 = _super142.call(this);
-          _this243.observers = [];
-          _this243.closed = false;
-          _this243.isStopped = false;
-          _this243.hasError = false;
-          _this243.thrownError = null;
-          return _this243;
+          _this244 = _super142.call(this);
+          _this244.observers = [];
+          _this244.closed = false;
+          _this244.isStopped = false;
+          _this244.hasError = false;
+          _this244.thrownError = null;
+          return _this244;
         }
 
         _createClass2(Subject, [{
@@ -92727,14 +93198,14 @@
         var _super143 = _createSuper(AnonymousSubject);
 
         function AnonymousSubject(destination, source) {
-          var _this244;
+          var _this245;
 
           _classCallCheck(this, AnonymousSubject);
 
-          _this244 = _super143.call(this);
-          _this244.destination = destination;
-          _this244.source = source;
-          return _this244;
+          _this245 = _super143.call(this);
+          _this245.destination = destination;
+          _this245.source = source;
+          return _this245;
         }
 
         _createClass2(AnonymousSubject, [{
@@ -92816,15 +93287,15 @@
         var _super144 = _createSuper(SubjectSubscription);
 
         function SubjectSubscription(subject, subscriber) {
-          var _this245;
+          var _this246;
 
           _classCallCheck(this, SubjectSubscription);
 
-          _this245 = _super144.call(this);
-          _this245.subject = subject;
-          _this245.subscriber = subscriber;
-          _this245.closed = false;
-          return _this245;
+          _this246 = _super144.call(this);
+          _this246.subject = subject;
+          _this246.subscriber = subscriber;
+          _this246.closed = false;
+          return _this246;
         }
 
         _createClass2(SubjectSubscription, [{
@@ -92926,47 +93397,47 @@
         var _super145 = _createSuper(Subscriber);
 
         function Subscriber(destinationOrNext, error, complete) {
-          var _this246;
+          var _this247;
 
           _classCallCheck(this, Subscriber);
 
-          _this246 = _super145.call(this);
-          _this246.syncErrorValue = null;
-          _this246.syncErrorThrown = false;
-          _this246.syncErrorThrowable = false;
-          _this246.isStopped = false;
+          _this247 = _super145.call(this);
+          _this247.syncErrorValue = null;
+          _this247.syncErrorThrown = false;
+          _this247.syncErrorThrowable = false;
+          _this247.isStopped = false;
 
           switch (arguments.length) {
             case 0:
-              _this246.destination = _Observer__WEBPACK_IMPORTED_MODULE_1__["empty"];
+              _this247.destination = _Observer__WEBPACK_IMPORTED_MODULE_1__["empty"];
               break;
 
             case 1:
               if (!destinationOrNext) {
-                _this246.destination = _Observer__WEBPACK_IMPORTED_MODULE_1__["empty"];
+                _this247.destination = _Observer__WEBPACK_IMPORTED_MODULE_1__["empty"];
                 break;
               }
 
               if (typeof destinationOrNext === 'object') {
                 if (destinationOrNext instanceof Subscriber) {
-                  _this246.syncErrorThrowable = destinationOrNext.syncErrorThrowable;
-                  _this246.destination = destinationOrNext;
-                  destinationOrNext.add(_assertThisInitialized(_this246));
+                  _this247.syncErrorThrowable = destinationOrNext.syncErrorThrowable;
+                  _this247.destination = destinationOrNext;
+                  destinationOrNext.add(_assertThisInitialized(_this247));
                 } else {
-                  _this246.syncErrorThrowable = true;
-                  _this246.destination = new SafeSubscriber(_assertThisInitialized(_this246), destinationOrNext);
+                  _this247.syncErrorThrowable = true;
+                  _this247.destination = new SafeSubscriber(_assertThisInitialized(_this247), destinationOrNext);
                 }
 
                 break;
               }
 
             default:
-              _this246.syncErrorThrowable = true;
-              _this246.destination = new SafeSubscriber(_assertThisInitialized(_this246), destinationOrNext, error, complete);
+              _this247.syncErrorThrowable = true;
+              _this247.destination = new SafeSubscriber(_assertThisInitialized(_this247), destinationOrNext, error, complete);
               break;
           }
 
-          return _this246;
+          return _this247;
         }
 
         _createClass2(Subscriber, [{
@@ -93056,15 +93527,15 @@
         var _super146 = _createSuper(SafeSubscriber);
 
         function SafeSubscriber(_parentSubscriber, observerOrNext, error, complete) {
-          var _this247;
+          var _this248;
 
           _classCallCheck(this, SafeSubscriber);
 
-          _this247 = _super146.call(this);
-          _this247._parentSubscriber = _parentSubscriber;
+          _this248 = _super146.call(this);
+          _this248._parentSubscriber = _parentSubscriber;
           var next;
 
-          var context = _assertThisInitialized(_this247);
+          var context = _assertThisInitialized(_this248);
 
           if (Object(_util_isFunction__WEBPACK_IMPORTED_MODULE_0__["isFunction"])(observerOrNext)) {
             next = observerOrNext;
@@ -93077,18 +93548,18 @@
               context = Object.create(observerOrNext);
 
               if (Object(_util_isFunction__WEBPACK_IMPORTED_MODULE_0__["isFunction"])(context.unsubscribe)) {
-                _this247.add(context.unsubscribe.bind(context));
+                _this248.add(context.unsubscribe.bind(context));
               }
 
-              context.unsubscribe = _this247.unsubscribe.bind(_assertThisInitialized(_this247));
+              context.unsubscribe = _this248.unsubscribe.bind(_assertThisInitialized(_this248));
             }
           }
 
-          _this247._context = context;
-          _this247._next = next;
-          _this247._error = error;
-          _this247._complete = complete;
-          return _this247;
+          _this248._context = context;
+          _this248._next = next;
+          _this248._error = error;
+          _this248._complete = complete;
+          return _this248;
         }
 
         _createClass2(SafeSubscriber, [{
@@ -93144,14 +93615,14 @@
         }, {
           key: "complete",
           value: function complete() {
-            var _this248 = this;
+            var _this249 = this;
 
             if (!this.isStopped) {
               var _parentSubscriber = this._parentSubscriber;
 
               if (this._complete) {
                 var wrappedComplete = function wrappedComplete() {
-                  return _this248._complete.call(_this248._context);
+                  return _this249._complete.call(_this249._context);
                 };
 
                 if (!_config__WEBPACK_IMPORTED_MODULE_4__["config"].useDeprecatedSynchronousErrorHandling || !_parentSubscriber.syncErrorThrowable) {
@@ -93276,6 +93747,7 @@
           this._subscriptions = null;
 
           if (unsubscribe) {
+            this._ctorUnsubscribe = true;
             this._unsubscribe = unsubscribe;
           }
         }
@@ -93290,6 +93762,7 @@
             }
 
             var _parentOrParents = this._parentOrParents,
+                _ctorUnsubscribe = this._ctorUnsubscribe,
                 _unsubscribe = this._unsubscribe,
                 _subscriptions = this._subscriptions;
             this.closed = true;
@@ -93306,6 +93779,10 @@
             }
 
             if (Object(_util_isFunction__WEBPACK_IMPORTED_MODULE_2__["isFunction"])(_unsubscribe)) {
+              if (_ctorUnsubscribe) {
+                this._unsubscribe = undefined;
+              }
+
               try {
                 _unsubscribe.call(this);
               } catch (e) {
@@ -93479,6 +93956,222 @@
     },
 
     /***/
+    "./node_modules/rxjs/_esm2015/internal/innerSubscribe.js":
+    /*!***************************************************************!*\
+      !*** ./node_modules/rxjs/_esm2015/internal/innerSubscribe.js ***!
+      \***************************************************************/
+
+    /*! exports provided: SimpleInnerSubscriber, ComplexInnerSubscriber, SimpleOuterSubscriber, ComplexOuterSubscriber, innerSubscribe */
+
+    /***/
+    function node_modulesRxjs_esm2015InternalInnerSubscribeJs(module, __webpack_exports__, __webpack_require__) {
+      "use strict";
+
+      __webpack_require__.r(__webpack_exports__);
+      /* harmony export (binding) */
+
+
+      __webpack_require__.d(__webpack_exports__, "SimpleInnerSubscriber", function () {
+        return SimpleInnerSubscriber;
+      });
+      /* harmony export (binding) */
+
+
+      __webpack_require__.d(__webpack_exports__, "ComplexInnerSubscriber", function () {
+        return ComplexInnerSubscriber;
+      });
+      /* harmony export (binding) */
+
+
+      __webpack_require__.d(__webpack_exports__, "SimpleOuterSubscriber", function () {
+        return SimpleOuterSubscriber;
+      });
+      /* harmony export (binding) */
+
+
+      __webpack_require__.d(__webpack_exports__, "ComplexOuterSubscriber", function () {
+        return ComplexOuterSubscriber;
+      });
+      /* harmony export (binding) */
+
+
+      __webpack_require__.d(__webpack_exports__, "innerSubscribe", function () {
+        return innerSubscribe;
+      });
+      /* harmony import */
+
+
+      var _Subscriber__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+      /*! ./Subscriber */
+      "./node_modules/rxjs/_esm2015/internal/Subscriber.js");
+      /* harmony import */
+
+
+      var _Observable__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+      /*! ./Observable */
+      "./node_modules/rxjs/_esm2015/internal/Observable.js");
+      /* harmony import */
+
+
+      var _util_subscribeTo__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+      /*! ./util/subscribeTo */
+      "./node_modules/rxjs/_esm2015/internal/util/subscribeTo.js");
+
+      var SimpleInnerSubscriber = /*#__PURE__*/function (_Subscriber__WEBPACK_4) {
+        _inherits(SimpleInnerSubscriber, _Subscriber__WEBPACK_4);
+
+        var _super147 = _createSuper(SimpleInnerSubscriber);
+
+        function SimpleInnerSubscriber(parent) {
+          var _this250;
+
+          _classCallCheck(this, SimpleInnerSubscriber);
+
+          _this250 = _super147.call(this);
+          _this250.parent = parent;
+          return _this250;
+        }
+
+        _createClass2(SimpleInnerSubscriber, [{
+          key: "_next",
+          value: function _next(value) {
+            this.parent.notifyNext(value);
+          }
+        }, {
+          key: "_error",
+          value: function _error(error) {
+            this.parent.notifyError(error);
+            this.unsubscribe();
+          }
+        }, {
+          key: "_complete",
+          value: function _complete() {
+            this.parent.notifyComplete();
+            this.unsubscribe();
+          }
+        }]);
+
+        return SimpleInnerSubscriber;
+      }(_Subscriber__WEBPACK_IMPORTED_MODULE_0__["Subscriber"]);
+
+      var ComplexInnerSubscriber = /*#__PURE__*/function (_Subscriber__WEBPACK_5) {
+        _inherits(ComplexInnerSubscriber, _Subscriber__WEBPACK_5);
+
+        var _super148 = _createSuper(ComplexInnerSubscriber);
+
+        function ComplexInnerSubscriber(parent, outerValue, outerIndex) {
+          var _this251;
+
+          _classCallCheck(this, ComplexInnerSubscriber);
+
+          _this251 = _super148.call(this);
+          _this251.parent = parent;
+          _this251.outerValue = outerValue;
+          _this251.outerIndex = outerIndex;
+          return _this251;
+        }
+
+        _createClass2(ComplexInnerSubscriber, [{
+          key: "_next",
+          value: function _next(value) {
+            this.parent.notifyNext(this.outerValue, value, this.outerIndex, this);
+          }
+        }, {
+          key: "_error",
+          value: function _error(error) {
+            this.parent.notifyError(error);
+            this.unsubscribe();
+          }
+        }, {
+          key: "_complete",
+          value: function _complete() {
+            this.parent.notifyComplete(this);
+            this.unsubscribe();
+          }
+        }]);
+
+        return ComplexInnerSubscriber;
+      }(_Subscriber__WEBPACK_IMPORTED_MODULE_0__["Subscriber"]);
+
+      var SimpleOuterSubscriber = /*#__PURE__*/function (_Subscriber__WEBPACK_6) {
+        _inherits(SimpleOuterSubscriber, _Subscriber__WEBPACK_6);
+
+        var _super149 = _createSuper(SimpleOuterSubscriber);
+
+        function SimpleOuterSubscriber() {
+          _classCallCheck(this, SimpleOuterSubscriber);
+
+          return _super149.apply(this, arguments);
+        }
+
+        _createClass2(SimpleOuterSubscriber, [{
+          key: "notifyNext",
+          value: function notifyNext(innerValue) {
+            this.destination.next(innerValue);
+          }
+        }, {
+          key: "notifyError",
+          value: function notifyError(err) {
+            this.destination.error(err);
+          }
+        }, {
+          key: "notifyComplete",
+          value: function notifyComplete() {
+            this.destination.complete();
+          }
+        }]);
+
+        return SimpleOuterSubscriber;
+      }(_Subscriber__WEBPACK_IMPORTED_MODULE_0__["Subscriber"]);
+
+      var ComplexOuterSubscriber = /*#__PURE__*/function (_Subscriber__WEBPACK_7) {
+        _inherits(ComplexOuterSubscriber, _Subscriber__WEBPACK_7);
+
+        var _super150 = _createSuper(ComplexOuterSubscriber);
+
+        function ComplexOuterSubscriber() {
+          _classCallCheck(this, ComplexOuterSubscriber);
+
+          return _super150.apply(this, arguments);
+        }
+
+        _createClass2(ComplexOuterSubscriber, [{
+          key: "notifyNext",
+          value: function notifyNext(_outerValue, innerValue, _outerIndex, _innerSub) {
+            this.destination.next(innerValue);
+          }
+        }, {
+          key: "notifyError",
+          value: function notifyError(error) {
+            this.destination.error(error);
+          }
+        }, {
+          key: "notifyComplete",
+          value: function notifyComplete(_innerSub) {
+            this.destination.complete();
+          }
+        }]);
+
+        return ComplexOuterSubscriber;
+      }(_Subscriber__WEBPACK_IMPORTED_MODULE_0__["Subscriber"]);
+
+      function innerSubscribe(result, innerSubscriber) {
+        if (innerSubscriber.closed) {
+          return undefined;
+        }
+
+        if (result instanceof _Observable__WEBPACK_IMPORTED_MODULE_1__["Observable"]) {
+          return result.subscribe(innerSubscriber);
+        }
+
+        return Object(_util_subscribeTo__WEBPACK_IMPORTED_MODULE_2__["subscribeTo"])(result)(innerSubscriber);
+      } //# sourceMappingURL=innerSubscribe.js.map
+
+      /***/
+
+    },
+
+    /***/
     "./node_modules/rxjs/_esm2015/internal/observable/ConnectableObservable.js":
     /*!*********************************************************************************!*\
       !*** ./node_modules/rxjs/_esm2015/internal/observable/ConnectableObservable.js ***!
@@ -93537,19 +94230,19 @@
       var ConnectableObservable = /*#__PURE__*/function (_Observable__WEBPACK_2) {
         _inherits(ConnectableObservable, _Observable__WEBPACK_2);
 
-        var _super147 = _createSuper(ConnectableObservable);
+        var _super151 = _createSuper(ConnectableObservable);
 
         function ConnectableObservable(source, subjectFactory) {
-          var _this249;
+          var _this252;
 
           _classCallCheck(this, ConnectableObservable);
 
-          _this249 = _super147.call(this);
-          _this249.source = source;
-          _this249.subjectFactory = subjectFactory;
-          _this249._refCount = 0;
-          _this249._isComplete = false;
-          return _this249;
+          _this252 = _super151.call(this);
+          _this252.source = source;
+          _this252.subjectFactory = subjectFactory;
+          _this252._refCount = 0;
+          _this252._isComplete = false;
+          return _this252;
         }
 
         _createClass2(ConnectableObservable, [{
@@ -93636,16 +94329,16 @@
       var ConnectableSubscriber = /*#__PURE__*/function (_Subject__WEBPACK_IMP4) {
         _inherits(ConnectableSubscriber, _Subject__WEBPACK_IMP4);
 
-        var _super148 = _createSuper(ConnectableSubscriber);
+        var _super152 = _createSuper(ConnectableSubscriber);
 
         function ConnectableSubscriber(destination, connectable) {
-          var _this250;
+          var _this253;
 
           _classCallCheck(this, ConnectableSubscriber);
 
-          _this250 = _super148.call(this, destination);
-          _this250.connectable = connectable;
-          return _this250;
+          _this253 = _super152.call(this, destination);
+          _this253.connectable = connectable;
+          return _this253;
         }
 
         _createClass2(ConnectableSubscriber, [{
@@ -93712,19 +94405,19 @@
         return RefCountOperator;
       }();
 
-      var RefCountSubscriber = /*#__PURE__*/function (_Subscriber__WEBPACK_4) {
-        _inherits(RefCountSubscriber, _Subscriber__WEBPACK_4);
+      var RefCountSubscriber = /*#__PURE__*/function (_Subscriber__WEBPACK_8) {
+        _inherits(RefCountSubscriber, _Subscriber__WEBPACK_8);
 
-        var _super149 = _createSuper(RefCountSubscriber);
+        var _super153 = _createSuper(RefCountSubscriber);
 
         function RefCountSubscriber(destination, connectable) {
-          var _this251;
+          var _this254;
 
           _classCallCheck(this, RefCountSubscriber);
 
-          _this251 = _super149.call(this, destination);
-          _this251.connectable = connectable;
-          return _this251;
+          _this254 = _super153.call(this, destination);
+          _this254.connectable = connectable;
+          return _this254;
         }
 
         _createClass2(RefCountSubscriber, [{
@@ -93810,30 +94503,30 @@
       var SubscribeOnObservable = /*#__PURE__*/function (_Observable__WEBPACK_3) {
         _inherits(SubscribeOnObservable, _Observable__WEBPACK_3);
 
-        var _super150 = _createSuper(SubscribeOnObservable);
+        var _super154 = _createSuper(SubscribeOnObservable);
 
         function SubscribeOnObservable(source) {
-          var _this252;
+          var _this255;
 
           var delayTime = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
           var scheduler = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : _scheduler_asap__WEBPACK_IMPORTED_MODULE_1__["asap"];
 
           _classCallCheck(this, SubscribeOnObservable);
 
-          _this252 = _super150.call(this);
-          _this252.source = source;
-          _this252.delayTime = delayTime;
-          _this252.scheduler = scheduler;
+          _this255 = _super154.call(this);
+          _this255.source = source;
+          _this255.delayTime = delayTime;
+          _this255.scheduler = scheduler;
 
           if (!Object(_util_isNumeric__WEBPACK_IMPORTED_MODULE_2__["isNumeric"])(delayTime) || delayTime < 0) {
-            _this252.delayTime = 0;
+            _this255.delayTime = 0;
           }
 
           if (!scheduler || typeof scheduler.schedule !== 'function') {
-            _this252.scheduler = _scheduler_asap__WEBPACK_IMPORTED_MODULE_1__["asap"];
+            _this255.scheduler = _scheduler_asap__WEBPACK_IMPORTED_MODULE_1__["asap"];
           }
 
-          return _this252;
+          return _this255;
         }
 
         _createClass2(SubscribeOnObservable, [{
@@ -93991,7 +94684,7 @@
       }
 
       function dispatch(state) {
-        var _this253 = this;
+        var _this256 = this;
 
         var self = this;
         var args = state.args,
@@ -94012,7 +94705,7 @@
 
             var value = innerArgs.length <= 1 ? innerArgs[0] : innerArgs;
 
-            _this253.add(scheduler.schedule(dispatchNext, 0, {
+            _this256.add(scheduler.schedule(dispatchNext, 0, {
               value: value,
               subject: subject
             }));
@@ -94174,7 +94867,7 @@
       }
 
       function dispatch(state) {
-        var _this254 = this;
+        var _this257 = this;
 
         var params = state.params,
             subscriber = state.subscriber,
@@ -94195,14 +94888,14 @@
             var err = innerArgs.shift();
 
             if (err) {
-              _this254.add(scheduler.schedule(dispatchError, 0, {
+              _this257.add(scheduler.schedule(dispatchError, 0, {
                 err: err,
                 subject: subject
               }));
             } else {
               var value = innerArgs.length <= 1 ? innerArgs[0] : innerArgs;
 
-              _this254.add(scheduler.schedule(dispatchNext, 0, {
+              _this257.add(scheduler.schedule(dispatchNext, 0, {
                 value: value,
                 subject: subject
               }));
@@ -94308,8 +95001,8 @@
           observables[_key23] = arguments[_key23];
         }
 
-        var resultSelector = null;
-        var scheduler = null;
+        var resultSelector = undefined;
+        var scheduler = undefined;
 
         if (Object(_util_isScheduler__WEBPACK_IMPORTED_MODULE_0__["isScheduler"])(observables[observables.length - 1])) {
           scheduler = observables.pop();
@@ -94346,19 +95039,19 @@
       var CombineLatestSubscriber = /*#__PURE__*/function (_OuterSubscriber__WEB) {
         _inherits(CombineLatestSubscriber, _OuterSubscriber__WEB);
 
-        var _super151 = _createSuper(CombineLatestSubscriber);
+        var _super155 = _createSuper(CombineLatestSubscriber);
 
         function CombineLatestSubscriber(destination, resultSelector) {
-          var _this255;
+          var _this258;
 
           _classCallCheck(this, CombineLatestSubscriber);
 
-          _this255 = _super151.call(this, destination);
-          _this255.resultSelector = resultSelector;
-          _this255.active = 0;
-          _this255.values = [];
-          _this255.observables = [];
-          return _this255;
+          _this258 = _super155.call(this, destination);
+          _this258.resultSelector = resultSelector;
+          _this258.active = 0;
+          _this258.values = [];
+          _this258.observables = [];
+          return _this258;
         }
 
         _createClass2(CombineLatestSubscriber, [{
@@ -94381,7 +95074,7 @@
 
               for (var i = 0; i < len; i++) {
                 var observable = observables[i];
-                this.add(Object(_util_subscribeToResult__WEBPACK_IMPORTED_MODULE_3__["subscribeToResult"])(this, observable, observable, i));
+                this.add(Object(_util_subscribeToResult__WEBPACK_IMPORTED_MODULE_3__["subscribeToResult"])(this, observable, undefined, i));
               }
             }
           }
@@ -94394,7 +95087,7 @@
           }
         }, {
           key: "notifyNext",
-          value: function notifyNext(outerValue, innerValue, outerIndex, innerIndex, innerSub) {
+          value: function notifyNext(_outerValue, innerValue, outerIndex) {
             var values = this.values;
             var oldVal = values[outerIndex];
             var toRespond = !this.toRespond ? 0 : oldVal === NONE ? --this.toRespond : this.toRespond;
@@ -95825,18 +96518,18 @@
       var RaceSubscriber = /*#__PURE__*/function (_OuterSubscriber__WEB2) {
         _inherits(RaceSubscriber, _OuterSubscriber__WEB2);
 
-        var _super152 = _createSuper(RaceSubscriber);
+        var _super156 = _createSuper(RaceSubscriber);
 
         function RaceSubscriber(destination) {
-          var _this256;
+          var _this259;
 
           _classCallCheck(this, RaceSubscriber);
 
-          _this256 = _super152.call(this, destination);
-          _this256.hasFirst = false;
-          _this256.observables = [];
-          _this256.subscriptions = [];
-          return _this256;
+          _this259 = _super156.call(this, destination);
+          _this259.hasFirst = false;
+          _this259.observables = [];
+          _this259.subscriptions = [];
+          return _this259;
         }
 
         _createClass2(RaceSubscriber, [{
@@ -95855,7 +96548,7 @@
             } else {
               for (var i = 0; i < len && !this.hasFirst; i++) {
                 var observable = observables[i];
-                var subscription = Object(_util_subscribeToResult__WEBPACK_IMPORTED_MODULE_3__["subscribeToResult"])(this, observable, observable, i);
+                var subscription = Object(_util_subscribeToResult__WEBPACK_IMPORTED_MODULE_3__["subscribeToResult"])(this, observable, undefined, i);
 
                 if (this.subscriptions) {
                   this.subscriptions.push(subscription);
@@ -95869,7 +96562,7 @@
           }
         }, {
           key: "notifyNext",
-          value: function notifyNext(outerValue, innerValue, outerIndex, innerIndex, innerSub) {
+          value: function notifyNext(_outerValue, innerValue, outerIndex) {
             if (!this.hasFirst) {
               this.hasFirst = true;
 
@@ -96259,21 +96952,15 @@
       /* harmony import */
 
 
-      var _OuterSubscriber__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
-      /*! ../OuterSubscriber */
-      "./node_modules/rxjs/_esm2015/internal/OuterSubscriber.js");
-      /* harmony import */
-
-
-      var _util_subscribeToResult__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
-      /*! ../util/subscribeToResult */
-      "./node_modules/rxjs/_esm2015/internal/util/subscribeToResult.js");
-      /* harmony import */
-
-
-      var _internal_symbol_iterator__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
+      var _internal_symbol_iterator__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
       /*! ../../internal/symbol/iterator */
       "./node_modules/rxjs/_esm2015/internal/symbol/iterator.js");
+      /* harmony import */
+
+
+      var _innerSubscribe__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
+      /*! ../innerSubscribe */
+      "./node_modules/rxjs/_esm2015/internal/innerSubscribe.js");
 
       function zip() {
         for (var _len33 = arguments.length, observables = new Array(_len33), _key30 = 0; _key30 < _len33; _key30++) {
@@ -96306,24 +96993,24 @@
         return ZipOperator;
       }();
 
-      var ZipSubscriber = /*#__PURE__*/function (_Subscriber__WEBPACK_5) {
-        _inherits(ZipSubscriber, _Subscriber__WEBPACK_5);
+      var ZipSubscriber = /*#__PURE__*/function (_Subscriber__WEBPACK_9) {
+        _inherits(ZipSubscriber, _Subscriber__WEBPACK_9);
 
-        var _super153 = _createSuper(ZipSubscriber);
+        var _super157 = _createSuper(ZipSubscriber);
 
         function ZipSubscriber(destination, resultSelector) {
-          var _this257;
+          var _this260;
 
           var values = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : Object.create(null);
 
           _classCallCheck(this, ZipSubscriber);
 
-          _this257 = _super153.call(this, destination);
-          _this257.iterators = [];
-          _this257.active = 0;
-          _this257.resultSelector = typeof resultSelector === 'function' ? resultSelector : null;
-          _this257.values = values;
-          return _this257;
+          _this260 = _super157.call(this, destination);
+          _this260.resultSelector = resultSelector;
+          _this260.iterators = [];
+          _this260.active = 0;
+          _this260.resultSelector = typeof resultSelector === 'function' ? resultSelector : undefined;
+          return _this260;
         }
 
         _createClass2(ZipSubscriber, [{
@@ -96333,8 +97020,8 @@
 
             if (Object(_util_isArray__WEBPACK_IMPORTED_MODULE_1__["isArray"])(value)) {
               iterators.push(new StaticArrayIterator(value));
-            } else if (typeof value[_internal_symbol_iterator__WEBPACK_IMPORTED_MODULE_5__["iterator"]] === 'function') {
-              iterators.push(new StaticIterator(value[_internal_symbol_iterator__WEBPACK_IMPORTED_MODULE_5__["iterator"]]()));
+            } else if (typeof value[_internal_symbol_iterator__WEBPACK_IMPORTED_MODULE_3__["iterator"]] === 'function') {
+              iterators.push(new StaticIterator(value[_internal_symbol_iterator__WEBPACK_IMPORTED_MODULE_3__["iterator"]]()));
             } else {
               iterators.push(new ZipBufferIterator(this.destination, this, value));
             }
@@ -96358,7 +97045,7 @@
 
               if (iterator.stillUnsubscribed) {
                 var destination = this.destination;
-                destination.add(iterator.subscribe(iterator, i));
+                destination.add(iterator.subscribe());
               } else {
                 this.active--;
               }
@@ -96461,7 +97148,7 @@
           key: "hasCompleted",
           value: function hasCompleted() {
             var nextResult = this.nextResult;
-            return nextResult && nextResult.done;
+            return Boolean(nextResult && nextResult.done);
           }
         }]);
 
@@ -96479,7 +97166,7 @@
         }
 
         _createClass2(StaticArrayIterator, [{
-          key: _internal_symbol_iterator__WEBPACK_IMPORTED_MODULE_5__["iterator"],
+          key: _internal_symbol_iterator__WEBPACK_IMPORTED_MODULE_3__["iterator"],
           value: function value() {
             return this;
           }
@@ -96511,27 +97198,27 @@
         return StaticArrayIterator;
       }();
 
-      var ZipBufferIterator = /*#__PURE__*/function (_OuterSubscriber__WEB3) {
-        _inherits(ZipBufferIterator, _OuterSubscriber__WEB3);
+      var ZipBufferIterator = /*#__PURE__*/function (_innerSubscribe__WEBP) {
+        _inherits(ZipBufferIterator, _innerSubscribe__WEBP);
 
-        var _super154 = _createSuper(ZipBufferIterator);
+        var _super158 = _createSuper(ZipBufferIterator);
 
         function ZipBufferIterator(destination, parent, observable) {
-          var _this258;
+          var _this261;
 
           _classCallCheck(this, ZipBufferIterator);
 
-          _this258 = _super154.call(this, destination);
-          _this258.parent = parent;
-          _this258.observable = observable;
-          _this258.stillUnsubscribed = true;
-          _this258.buffer = [];
-          _this258.isComplete = false;
-          return _this258;
+          _this261 = _super158.call(this, destination);
+          _this261.parent = parent;
+          _this261.observable = observable;
+          _this261.stillUnsubscribed = true;
+          _this261.buffer = [];
+          _this261.isComplete = false;
+          return _this261;
         }
 
         _createClass2(ZipBufferIterator, [{
-          key: _internal_symbol_iterator__WEBPACK_IMPORTED_MODULE_5__["iterator"],
+          key: _internal_symbol_iterator__WEBPACK_IMPORTED_MODULE_3__["iterator"],
           value: function value() {
             return this;
           }
@@ -96574,19 +97261,19 @@
           }
         }, {
           key: "notifyNext",
-          value: function notifyNext(outerValue, innerValue, outerIndex, innerIndex, innerSub) {
+          value: function notifyNext(innerValue) {
             this.buffer.push(innerValue);
             this.parent.checkIterators();
           }
         }, {
           key: "subscribe",
-          value: function subscribe(value, index) {
-            return Object(_util_subscribeToResult__WEBPACK_IMPORTED_MODULE_4__["subscribeToResult"])(this, this.observable, this, index);
+          value: function subscribe() {
+            return Object(_innerSubscribe__WEBPACK_IMPORTED_MODULE_4__["innerSubscribe"])(this.observable, new _innerSubscribe__WEBPACK_IMPORTED_MODULE_4__["SimpleInnerSubscriber"](this));
           }
         }]);
 
         return ZipBufferIterator;
-      }(_OuterSubscriber__WEBPACK_IMPORTED_MODULE_3__["OuterSubscriber"]); //# sourceMappingURL=zip.js.map
+      }(_innerSubscribe__WEBPACK_IMPORTED_MODULE_4__["SimpleOuterSubscriber"]); //# sourceMappingURL=zip.js.map
 
       /***/
 
@@ -96614,15 +97301,9 @@
       /* harmony import */
 
 
-      var _OuterSubscriber__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
-      /*! ../OuterSubscriber */
-      "./node_modules/rxjs/_esm2015/internal/OuterSubscriber.js");
-      /* harmony import */
-
-
-      var _util_subscribeToResult__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
-      /*! ../util/subscribeToResult */
-      "./node_modules/rxjs/_esm2015/internal/util/subscribeToResult.js");
+      var _innerSubscribe__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+      /*! ../innerSubscribe */
+      "./node_modules/rxjs/_esm2015/internal/innerSubscribe.js");
 
       function audit(durationSelector) {
         return function auditOperatorFunction(source) {
@@ -96647,20 +97328,20 @@
         return AuditOperator;
       }();
 
-      var AuditSubscriber = /*#__PURE__*/function (_OuterSubscriber__WEB4) {
-        _inherits(AuditSubscriber, _OuterSubscriber__WEB4);
+      var AuditSubscriber = /*#__PURE__*/function (_innerSubscribe__WEBP2) {
+        _inherits(AuditSubscriber, _innerSubscribe__WEBP2);
 
-        var _super155 = _createSuper(AuditSubscriber);
+        var _super159 = _createSuper(AuditSubscriber);
 
         function AuditSubscriber(destination, durationSelector) {
-          var _this259;
+          var _this262;
 
           _classCallCheck(this, AuditSubscriber);
 
-          _this259 = _super155.call(this, destination);
-          _this259.durationSelector = durationSelector;
-          _this259.hasValue = false;
-          return _this259;
+          _this262 = _super159.call(this, destination);
+          _this262.durationSelector = durationSelector;
+          _this262.hasValue = false;
+          return _this262;
         }
 
         _createClass2(AuditSubscriber, [{
@@ -96679,7 +97360,7 @@
                 return this.destination.error(err);
               }
 
-              var innerSubscription = Object(_util_subscribeToResult__WEBPACK_IMPORTED_MODULE_1__["subscribeToResult"])(this, duration);
+              var innerSubscription = Object(_innerSubscribe__WEBPACK_IMPORTED_MODULE_0__["innerSubscribe"])(duration, new _innerSubscribe__WEBPACK_IMPORTED_MODULE_0__["SimpleInnerSubscriber"](this));
 
               if (!innerSubscription || innerSubscription.closed) {
                 this.clearThrottle();
@@ -96697,19 +97378,19 @@
 
             if (throttled) {
               this.remove(throttled);
-              this.throttled = null;
+              this.throttled = undefined;
               throttled.unsubscribe();
             }
 
             if (hasValue) {
-              this.value = null;
+              this.value = undefined;
               this.hasValue = false;
               this.destination.next(value);
             }
           }
         }, {
           key: "notifyNext",
-          value: function notifyNext(outerValue, innerValue, outerIndex, innerIndex) {
+          value: function notifyNext() {
             this.clearThrottle();
           }
         }, {
@@ -96720,7 +97401,7 @@
         }]);
 
         return AuditSubscriber;
-      }(_OuterSubscriber__WEBPACK_IMPORTED_MODULE_0__["OuterSubscriber"]); //# sourceMappingURL=audit.js.map
+      }(_innerSubscribe__WEBPACK_IMPORTED_MODULE_0__["SimpleOuterSubscriber"]); //# sourceMappingURL=audit.js.map
 
       /***/
 
@@ -96797,15 +97478,9 @@
       /* harmony import */
 
 
-      var _OuterSubscriber__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
-      /*! ../OuterSubscriber */
-      "./node_modules/rxjs/_esm2015/internal/OuterSubscriber.js");
-      /* harmony import */
-
-
-      var _util_subscribeToResult__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
-      /*! ../util/subscribeToResult */
-      "./node_modules/rxjs/_esm2015/internal/util/subscribeToResult.js");
+      var _innerSubscribe__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+      /*! ../innerSubscribe */
+      "./node_modules/rxjs/_esm2015/internal/innerSubscribe.js");
 
       function buffer(closingNotifier) {
         return function bufferOperatorFunction(source) {
@@ -96830,22 +97505,22 @@
         return BufferOperator;
       }();
 
-      var BufferSubscriber = /*#__PURE__*/function (_OuterSubscriber__WEB5) {
-        _inherits(BufferSubscriber, _OuterSubscriber__WEB5);
+      var BufferSubscriber = /*#__PURE__*/function (_innerSubscribe__WEBP3) {
+        _inherits(BufferSubscriber, _innerSubscribe__WEBP3);
 
-        var _super156 = _createSuper(BufferSubscriber);
+        var _super160 = _createSuper(BufferSubscriber);
 
         function BufferSubscriber(destination, closingNotifier) {
-          var _this260;
+          var _this263;
 
           _classCallCheck(this, BufferSubscriber);
 
-          _this260 = _super156.call(this, destination);
-          _this260.buffer = [];
+          _this263 = _super160.call(this, destination);
+          _this263.buffer = [];
 
-          _this260.add(Object(_util_subscribeToResult__WEBPACK_IMPORTED_MODULE_1__["subscribeToResult"])(_assertThisInitialized(_this260), closingNotifier));
+          _this263.add(Object(_innerSubscribe__WEBPACK_IMPORTED_MODULE_0__["innerSubscribe"])(closingNotifier, new _innerSubscribe__WEBPACK_IMPORTED_MODULE_0__["SimpleInnerSubscriber"](_assertThisInitialized(_this263))));
 
-          return _this260;
+          return _this263;
         }
 
         _createClass2(BufferSubscriber, [{
@@ -96855,7 +97530,7 @@
           }
         }, {
           key: "notifyNext",
-          value: function notifyNext(outerValue, innerValue, outerIndex, innerIndex, innerSub) {
+          value: function notifyNext() {
             var buffer = this.buffer;
             this.buffer = [];
             this.destination.next(buffer);
@@ -96863,7 +97538,7 @@
         }]);
 
         return BufferSubscriber;
-      }(_OuterSubscriber__WEBPACK_IMPORTED_MODULE_0__["OuterSubscriber"]); //# sourceMappingURL=buffer.js.map
+      }(_innerSubscribe__WEBPACK_IMPORTED_MODULE_0__["SimpleOuterSubscriber"]); //# sourceMappingURL=buffer.js.map
 
       /***/
 
@@ -96926,20 +97601,20 @@
         return BufferCountOperator;
       }();
 
-      var BufferCountSubscriber = /*#__PURE__*/function (_Subscriber__WEBPACK_6) {
-        _inherits(BufferCountSubscriber, _Subscriber__WEBPACK_6);
+      var BufferCountSubscriber = /*#__PURE__*/function (_Subscriber__WEBPACK_10) {
+        _inherits(BufferCountSubscriber, _Subscriber__WEBPACK_10);
 
-        var _super157 = _createSuper(BufferCountSubscriber);
+        var _super161 = _createSuper(BufferCountSubscriber);
 
         function BufferCountSubscriber(destination, bufferSize) {
-          var _this261;
+          var _this264;
 
           _classCallCheck(this, BufferCountSubscriber);
 
-          _this261 = _super157.call(this, destination);
-          _this261.bufferSize = bufferSize;
-          _this261.buffer = [];
-          return _this261;
+          _this264 = _super161.call(this, destination);
+          _this264.bufferSize = bufferSize;
+          _this264.buffer = [];
+          return _this264;
         }
 
         _createClass2(BufferCountSubscriber, [{
@@ -96969,22 +97644,22 @@
         return BufferCountSubscriber;
       }(_Subscriber__WEBPACK_IMPORTED_MODULE_0__["Subscriber"]);
 
-      var BufferSkipCountSubscriber = /*#__PURE__*/function (_Subscriber__WEBPACK_7) {
-        _inherits(BufferSkipCountSubscriber, _Subscriber__WEBPACK_7);
+      var BufferSkipCountSubscriber = /*#__PURE__*/function (_Subscriber__WEBPACK_11) {
+        _inherits(BufferSkipCountSubscriber, _Subscriber__WEBPACK_11);
 
-        var _super158 = _createSuper(BufferSkipCountSubscriber);
+        var _super162 = _createSuper(BufferSkipCountSubscriber);
 
         function BufferSkipCountSubscriber(destination, bufferSize, startBufferEvery) {
-          var _this262;
+          var _this265;
 
           _classCallCheck(this, BufferSkipCountSubscriber);
 
-          _this262 = _super158.call(this, destination);
-          _this262.bufferSize = bufferSize;
-          _this262.startBufferEvery = startBufferEvery;
-          _this262.buffers = [];
-          _this262.count = 0;
-          return _this262;
+          _this265 = _super162.call(this, destination);
+          _this265.bufferSize = bufferSize;
+          _this265.startBufferEvery = startBufferEvery;
+          _this265.buffers = [];
+          _this265.count = 0;
+          return _this265;
         }
 
         _createClass2(BufferSkipCountSubscriber, [{
@@ -97125,53 +97800,53 @@
         this.buffer = [];
       };
 
-      var BufferTimeSubscriber = /*#__PURE__*/function (_Subscriber__WEBPACK_8) {
-        _inherits(BufferTimeSubscriber, _Subscriber__WEBPACK_8);
+      var BufferTimeSubscriber = /*#__PURE__*/function (_Subscriber__WEBPACK_12) {
+        _inherits(BufferTimeSubscriber, _Subscriber__WEBPACK_12);
 
-        var _super159 = _createSuper(BufferTimeSubscriber);
+        var _super163 = _createSuper(BufferTimeSubscriber);
 
         function BufferTimeSubscriber(destination, bufferTimeSpan, bufferCreationInterval, maxBufferSize, scheduler) {
-          var _this263;
+          var _this266;
 
           _classCallCheck(this, BufferTimeSubscriber);
 
-          _this263 = _super159.call(this, destination);
-          _this263.bufferTimeSpan = bufferTimeSpan;
-          _this263.bufferCreationInterval = bufferCreationInterval;
-          _this263.maxBufferSize = maxBufferSize;
-          _this263.scheduler = scheduler;
-          _this263.contexts = [];
+          _this266 = _super163.call(this, destination);
+          _this266.bufferTimeSpan = bufferTimeSpan;
+          _this266.bufferCreationInterval = bufferCreationInterval;
+          _this266.maxBufferSize = maxBufferSize;
+          _this266.scheduler = scheduler;
+          _this266.contexts = [];
 
-          var context = _this263.openContext();
+          var context = _this266.openContext();
 
-          _this263.timespanOnly = bufferCreationInterval == null || bufferCreationInterval < 0;
+          _this266.timespanOnly = bufferCreationInterval == null || bufferCreationInterval < 0;
 
-          if (_this263.timespanOnly) {
+          if (_this266.timespanOnly) {
             var timeSpanOnlyState = {
-              subscriber: _assertThisInitialized(_this263),
+              subscriber: _assertThisInitialized(_this266),
               context: context,
               bufferTimeSpan: bufferTimeSpan
             };
 
-            _this263.add(context.closeAction = scheduler.schedule(dispatchBufferTimeSpanOnly, bufferTimeSpan, timeSpanOnlyState));
+            _this266.add(context.closeAction = scheduler.schedule(dispatchBufferTimeSpanOnly, bufferTimeSpan, timeSpanOnlyState));
           } else {
             var closeState = {
-              subscriber: _assertThisInitialized(_this263),
+              subscriber: _assertThisInitialized(_this266),
               context: context
             };
             var creationState = {
               bufferTimeSpan: bufferTimeSpan,
               bufferCreationInterval: bufferCreationInterval,
-              subscriber: _assertThisInitialized(_this263),
+              subscriber: _assertThisInitialized(_this266),
               scheduler: scheduler
             };
 
-            _this263.add(context.closeAction = scheduler.schedule(dispatchBufferClose, bufferTimeSpan, closeState));
+            _this266.add(context.closeAction = scheduler.schedule(dispatchBufferClose, bufferTimeSpan, closeState));
 
-            _this263.add(scheduler.schedule(dispatchBufferCreation, bufferCreationInterval, creationState));
+            _this266.add(scheduler.schedule(dispatchBufferCreation, bufferCreationInterval, creationState));
           }
 
-          return _this263;
+          return _this266;
         }
 
         _createClass2(BufferTimeSubscriber, [{
@@ -97365,24 +98040,23 @@
         return BufferToggleOperator;
       }();
 
-      var BufferToggleSubscriber = /*#__PURE__*/function (_OuterSubscriber__WEB6) {
-        _inherits(BufferToggleSubscriber, _OuterSubscriber__WEB6);
+      var BufferToggleSubscriber = /*#__PURE__*/function (_OuterSubscriber__WEB3) {
+        _inherits(BufferToggleSubscriber, _OuterSubscriber__WEB3);
 
-        var _super160 = _createSuper(BufferToggleSubscriber);
+        var _super164 = _createSuper(BufferToggleSubscriber);
 
         function BufferToggleSubscriber(destination, openings, closingSelector) {
-          var _this264;
+          var _this267;
 
           _classCallCheck(this, BufferToggleSubscriber);
 
-          _this264 = _super160.call(this, destination);
-          _this264.openings = openings;
-          _this264.closingSelector = closingSelector;
-          _this264.contexts = [];
+          _this267 = _super164.call(this, destination);
+          _this267.closingSelector = closingSelector;
+          _this267.contexts = [];
 
-          _this264.add(Object(_util_subscribeToResult__WEBPACK_IMPORTED_MODULE_1__["subscribeToResult"])(_assertThisInitialized(_this264), openings));
+          _this267.add(Object(_util_subscribeToResult__WEBPACK_IMPORTED_MODULE_1__["subscribeToResult"])(_assertThisInitialized(_this267), openings));
 
-          return _this264;
+          return _this267;
         }
 
         _createClass2(BufferToggleSubscriber, [{
@@ -97430,7 +98104,7 @@
           }
         }, {
           key: "notifyNext",
-          value: function notifyNext(outerValue, innerValue, outerIndex, innerIndex, innerSub) {
+          value: function notifyNext(outerValue, innerValue) {
             outerValue ? this.closeBuffer(outerValue) : this.openBuffer(innerValue);
           }
         }, {
@@ -97524,15 +98198,9 @@
       /* harmony import */
 
 
-      var _OuterSubscriber__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
-      /*! ../OuterSubscriber */
-      "./node_modules/rxjs/_esm2015/internal/OuterSubscriber.js");
-      /* harmony import */
-
-
-      var _util_subscribeToResult__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
-      /*! ../util/subscribeToResult */
-      "./node_modules/rxjs/_esm2015/internal/util/subscribeToResult.js");
+      var _innerSubscribe__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+      /*! ../innerSubscribe */
+      "./node_modules/rxjs/_esm2015/internal/innerSubscribe.js");
 
       function bufferWhen(closingSelector) {
         return function (source) {
@@ -97557,23 +98225,23 @@
         return BufferWhenOperator;
       }();
 
-      var BufferWhenSubscriber = /*#__PURE__*/function (_OuterSubscriber__WEB7) {
-        _inherits(BufferWhenSubscriber, _OuterSubscriber__WEB7);
+      var BufferWhenSubscriber = /*#__PURE__*/function (_innerSubscribe__WEBP4) {
+        _inherits(BufferWhenSubscriber, _innerSubscribe__WEBP4);
 
-        var _super161 = _createSuper(BufferWhenSubscriber);
+        var _super165 = _createSuper(BufferWhenSubscriber);
 
         function BufferWhenSubscriber(destination, closingSelector) {
-          var _this265;
+          var _this268;
 
           _classCallCheck(this, BufferWhenSubscriber);
 
-          _this265 = _super161.call(this, destination);
-          _this265.closingSelector = closingSelector;
-          _this265.subscribing = false;
+          _this268 = _super165.call(this, destination);
+          _this268.closingSelector = closingSelector;
+          _this268.subscribing = false;
 
-          _this265.openBuffer();
+          _this268.openBuffer();
 
-          return _this265;
+          return _this268;
         }
 
         _createClass2(BufferWhenSubscriber, [{
@@ -97595,12 +98263,12 @@
         }, {
           key: "_unsubscribe",
           value: function _unsubscribe() {
-            this.buffer = null;
+            this.buffer = undefined;
             this.subscribing = false;
           }
         }, {
           key: "notifyNext",
-          value: function notifyNext(outerValue, innerValue, outerIndex, innerIndex, innerSub) {
+          value: function notifyNext() {
             this.openBuffer();
           }
         }, {
@@ -97642,13 +98310,13 @@
             this.closingSubscription = closingSubscription;
             this.add(closingSubscription);
             this.subscribing = true;
-            closingSubscription.add(Object(_util_subscribeToResult__WEBPACK_IMPORTED_MODULE_2__["subscribeToResult"])(this, closingNotifier));
+            closingSubscription.add(Object(_innerSubscribe__WEBPACK_IMPORTED_MODULE_1__["innerSubscribe"])(closingNotifier, new _innerSubscribe__WEBPACK_IMPORTED_MODULE_1__["SimpleInnerSubscriber"](this)));
             this.subscribing = false;
           }
         }]);
 
         return BufferWhenSubscriber;
-      }(_OuterSubscriber__WEBPACK_IMPORTED_MODULE_1__["OuterSubscriber"]); //# sourceMappingURL=bufferWhen.js.map
+      }(_innerSubscribe__WEBPACK_IMPORTED_MODULE_1__["SimpleOuterSubscriber"]); //# sourceMappingURL=bufferWhen.js.map
 
       /***/
 
@@ -97676,21 +98344,9 @@
       /* harmony import */
 
 
-      var _OuterSubscriber__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
-      /*! ../OuterSubscriber */
-      "./node_modules/rxjs/_esm2015/internal/OuterSubscriber.js");
-      /* harmony import */
-
-
-      var _InnerSubscriber__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
-      /*! ../InnerSubscriber */
-      "./node_modules/rxjs/_esm2015/internal/InnerSubscriber.js");
-      /* harmony import */
-
-
-      var _util_subscribeToResult__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
-      /*! ../util/subscribeToResult */
-      "./node_modules/rxjs/_esm2015/internal/util/subscribeToResult.js");
+      var _innerSubscribe__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+      /*! ../innerSubscribe */
+      "./node_modules/rxjs/_esm2015/internal/innerSubscribe.js");
 
       function catchError(selector) {
         return function catchErrorOperatorFunction(source) {
@@ -97717,20 +98373,20 @@
         return CatchOperator;
       }();
 
-      var CatchSubscriber = /*#__PURE__*/function (_OuterSubscriber__WEB8) {
-        _inherits(CatchSubscriber, _OuterSubscriber__WEB8);
+      var CatchSubscriber = /*#__PURE__*/function (_innerSubscribe__WEBP5) {
+        _inherits(CatchSubscriber, _innerSubscribe__WEBP5);
 
-        var _super162 = _createSuper(CatchSubscriber);
+        var _super166 = _createSuper(CatchSubscriber);
 
         function CatchSubscriber(destination, selector, caught) {
-          var _this266;
+          var _this269;
 
           _classCallCheck(this, CatchSubscriber);
 
-          _this266 = _super162.call(this, destination);
-          _this266.selector = selector;
-          _this266.caught = caught;
-          return _this266;
+          _this269 = _super166.call(this, destination);
+          _this269.selector = selector;
+          _this269.caught = caught;
+          return _this269;
         }
 
         _createClass2(CatchSubscriber, [{
@@ -97749,9 +98405,9 @@
 
               this._unsubscribeAndRecycle();
 
-              var innerSubscriber = new _InnerSubscriber__WEBPACK_IMPORTED_MODULE_1__["InnerSubscriber"](this, undefined, undefined);
+              var innerSubscriber = new _innerSubscribe__WEBPACK_IMPORTED_MODULE_0__["SimpleInnerSubscriber"](this);
               this.add(innerSubscriber);
-              var innerSubscription = Object(_util_subscribeToResult__WEBPACK_IMPORTED_MODULE_2__["subscribeToResult"])(this, result, undefined, undefined, innerSubscriber);
+              var innerSubscription = Object(_innerSubscribe__WEBPACK_IMPORTED_MODULE_0__["innerSubscribe"])(result, innerSubscriber);
 
               if (innerSubscription !== innerSubscriber) {
                 this.add(innerSubscription);
@@ -97761,7 +98417,7 @@
         }]);
 
         return CatchSubscriber;
-      }(_OuterSubscriber__WEBPACK_IMPORTED_MODULE_0__["OuterSubscriber"]); //# sourceMappingURL=catchError.js.map
+      }(_innerSubscribe__WEBPACK_IMPORTED_MODULE_0__["SimpleOuterSubscriber"]); //# sourceMappingURL=catchError.js.map
 
       /***/
 
@@ -98061,22 +98717,22 @@
         return CountOperator;
       }();
 
-      var CountSubscriber = /*#__PURE__*/function (_Subscriber__WEBPACK_9) {
-        _inherits(CountSubscriber, _Subscriber__WEBPACK_9);
+      var CountSubscriber = /*#__PURE__*/function (_Subscriber__WEBPACK_13) {
+        _inherits(CountSubscriber, _Subscriber__WEBPACK_13);
 
-        var _super163 = _createSuper(CountSubscriber);
+        var _super167 = _createSuper(CountSubscriber);
 
         function CountSubscriber(destination, predicate, source) {
-          var _this267;
+          var _this270;
 
           _classCallCheck(this, CountSubscriber);
 
-          _this267 = _super163.call(this, destination);
-          _this267.predicate = predicate;
-          _this267.source = source;
-          _this267.count = 0;
-          _this267.index = 0;
-          return _this267;
+          _this270 = _super167.call(this, destination);
+          _this270.predicate = predicate;
+          _this270.source = source;
+          _this270.count = 0;
+          _this270.index = 0;
+          return _this270;
         }
 
         _createClass2(CountSubscriber, [{
@@ -98141,15 +98797,9 @@
       /* harmony import */
 
 
-      var _OuterSubscriber__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
-      /*! ../OuterSubscriber */
-      "./node_modules/rxjs/_esm2015/internal/OuterSubscriber.js");
-      /* harmony import */
-
-
-      var _util_subscribeToResult__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
-      /*! ../util/subscribeToResult */
-      "./node_modules/rxjs/_esm2015/internal/util/subscribeToResult.js");
+      var _innerSubscribe__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+      /*! ../innerSubscribe */
+      "./node_modules/rxjs/_esm2015/internal/innerSubscribe.js");
 
       function debounce(durationSelector) {
         return function (source) {
@@ -98174,21 +98824,20 @@
         return DebounceOperator;
       }();
 
-      var DebounceSubscriber = /*#__PURE__*/function (_OuterSubscriber__WEB9) {
-        _inherits(DebounceSubscriber, _OuterSubscriber__WEB9);
+      var DebounceSubscriber = /*#__PURE__*/function (_innerSubscribe__WEBP6) {
+        _inherits(DebounceSubscriber, _innerSubscribe__WEBP6);
 
-        var _super164 = _createSuper(DebounceSubscriber);
+        var _super168 = _createSuper(DebounceSubscriber);
 
         function DebounceSubscriber(destination, durationSelector) {
-          var _this268;
+          var _this271;
 
           _classCallCheck(this, DebounceSubscriber);
 
-          _this268 = _super164.call(this, destination);
-          _this268.durationSelector = durationSelector;
-          _this268.hasValue = false;
-          _this268.durationSubscription = null;
-          return _this268;
+          _this271 = _super168.call(this, destination);
+          _this271.durationSelector = durationSelector;
+          _this271.hasValue = false;
+          return _this271;
         }
 
         _createClass2(DebounceSubscriber, [{
@@ -98222,7 +98871,7 @@
               this.remove(subscription);
             }
 
-            subscription = Object(_util_subscribeToResult__WEBPACK_IMPORTED_MODULE_1__["subscribeToResult"])(this, duration);
+            subscription = Object(_innerSubscribe__WEBPACK_IMPORTED_MODULE_0__["innerSubscribe"])(duration, new _innerSubscribe__WEBPACK_IMPORTED_MODULE_0__["SimpleInnerSubscriber"](this));
 
             if (subscription && !subscription.closed) {
               this.add(this.durationSubscription = subscription);
@@ -98230,7 +98879,7 @@
           }
         }, {
           key: "notifyNext",
-          value: function notifyNext(outerValue, innerValue, outerIndex, innerIndex, innerSub) {
+          value: function notifyNext() {
             this.emitValue();
           }
         }, {
@@ -98246,12 +98895,12 @@
               var subscription = this.durationSubscription;
 
               if (subscription) {
-                this.durationSubscription = null;
+                this.durationSubscription = undefined;
                 subscription.unsubscribe();
                 this.remove(subscription);
               }
 
-              this.value = null;
+              this.value = undefined;
               this.hasValue = false;
 
               _get(_getPrototypeOf(DebounceSubscriber.prototype), "_next", this).call(this, value);
@@ -98260,7 +98909,7 @@
         }]);
 
         return DebounceSubscriber;
-      }(_OuterSubscriber__WEBPACK_IMPORTED_MODULE_0__["OuterSubscriber"]); //# sourceMappingURL=debounce.js.map
+      }(_innerSubscribe__WEBPACK_IMPORTED_MODULE_0__["SimpleOuterSubscriber"]); //# sourceMappingURL=debounce.js.map
 
       /***/
 
@@ -98323,23 +98972,23 @@
         return DebounceTimeOperator;
       }();
 
-      var DebounceTimeSubscriber = /*#__PURE__*/function (_Subscriber__WEBPACK_10) {
-        _inherits(DebounceTimeSubscriber, _Subscriber__WEBPACK_10);
+      var DebounceTimeSubscriber = /*#__PURE__*/function (_Subscriber__WEBPACK_14) {
+        _inherits(DebounceTimeSubscriber, _Subscriber__WEBPACK_14);
 
-        var _super165 = _createSuper(DebounceTimeSubscriber);
+        var _super169 = _createSuper(DebounceTimeSubscriber);
 
         function DebounceTimeSubscriber(destination, dueTime, scheduler) {
-          var _this269;
+          var _this272;
 
           _classCallCheck(this, DebounceTimeSubscriber);
 
-          _this269 = _super165.call(this, destination);
-          _this269.dueTime = dueTime;
-          _this269.scheduler = scheduler;
-          _this269.debouncedSubscription = null;
-          _this269.lastValue = null;
-          _this269.hasValue = false;
-          return _this269;
+          _this272 = _super169.call(this, destination);
+          _this272.dueTime = dueTime;
+          _this272.scheduler = scheduler;
+          _this272.debouncedSubscription = null;
+          _this272.lastValue = null;
+          _this272.hasValue = false;
+          return _this272;
         }
 
         _createClass2(DebounceTimeSubscriber, [{
@@ -98442,20 +99091,20 @@
         return DefaultIfEmptyOperator;
       }();
 
-      var DefaultIfEmptySubscriber = /*#__PURE__*/function (_Subscriber__WEBPACK_11) {
-        _inherits(DefaultIfEmptySubscriber, _Subscriber__WEBPACK_11);
+      var DefaultIfEmptySubscriber = /*#__PURE__*/function (_Subscriber__WEBPACK_15) {
+        _inherits(DefaultIfEmptySubscriber, _Subscriber__WEBPACK_15);
 
-        var _super166 = _createSuper(DefaultIfEmptySubscriber);
+        var _super170 = _createSuper(DefaultIfEmptySubscriber);
 
         function DefaultIfEmptySubscriber(destination, defaultValue) {
-          var _this270;
+          var _this273;
 
           _classCallCheck(this, DefaultIfEmptySubscriber);
 
-          _this270 = _super166.call(this, destination);
-          _this270.defaultValue = defaultValue;
-          _this270.isEmpty = true;
-          return _this270;
+          _this273 = _super170.call(this, destination);
+          _this273.defaultValue = defaultValue;
+          _this273.isEmpty = true;
+          return _this273;
         }
 
         _createClass2(DefaultIfEmptySubscriber, [{
@@ -98553,23 +99202,23 @@
         return DelayOperator;
       }();
 
-      var DelaySubscriber = /*#__PURE__*/function (_Subscriber__WEBPACK_12) {
-        _inherits(DelaySubscriber, _Subscriber__WEBPACK_12);
+      var DelaySubscriber = /*#__PURE__*/function (_Subscriber__WEBPACK_16) {
+        _inherits(DelaySubscriber, _Subscriber__WEBPACK_16);
 
-        var _super167 = _createSuper(DelaySubscriber);
+        var _super171 = _createSuper(DelaySubscriber);
 
         function DelaySubscriber(destination, delay, scheduler) {
-          var _this271;
+          var _this274;
 
           _classCallCheck(this, DelaySubscriber);
 
-          _this271 = _super167.call(this, destination);
-          _this271.delay = delay;
-          _this271.scheduler = scheduler;
-          _this271.queue = [];
-          _this271.active = false;
-          _this271.errored = false;
-          return _this271;
+          _this274 = _super171.call(this, destination);
+          _this274.delay = delay;
+          _this274.scheduler = scheduler;
+          _this274.queue = [];
+          _this274.active = false;
+          _this274.errored = false;
+          return _this274;
         }
 
         _createClass2(DelaySubscriber, [{
@@ -98727,27 +99376,27 @@
         return DelayWhenOperator;
       }();
 
-      var DelayWhenSubscriber = /*#__PURE__*/function (_OuterSubscriber__WEB10) {
-        _inherits(DelayWhenSubscriber, _OuterSubscriber__WEB10);
+      var DelayWhenSubscriber = /*#__PURE__*/function (_OuterSubscriber__WEB4) {
+        _inherits(DelayWhenSubscriber, _OuterSubscriber__WEB4);
 
-        var _super168 = _createSuper(DelayWhenSubscriber);
+        var _super172 = _createSuper(DelayWhenSubscriber);
 
         function DelayWhenSubscriber(destination, delayDurationSelector) {
-          var _this272;
+          var _this275;
 
           _classCallCheck(this, DelayWhenSubscriber);
 
-          _this272 = _super168.call(this, destination);
-          _this272.delayDurationSelector = delayDurationSelector;
-          _this272.completed = false;
-          _this272.delayNotifierSubscriptions = [];
-          _this272.index = 0;
-          return _this272;
+          _this275 = _super172.call(this, destination);
+          _this275.delayDurationSelector = delayDurationSelector;
+          _this275.completed = false;
+          _this275.delayNotifierSubscriptions = [];
+          _this275.index = 0;
+          return _this275;
         }
 
         _createClass2(DelayWhenSubscriber, [{
           key: "notifyNext",
-          value: function notifyNext(outerValue, innerValue, outerIndex, innerIndex, innerSub) {
+          value: function notifyNext(outerValue, _innerValue, _outerIndex, _innerIndex, innerSub) {
             this.destination.next(outerValue);
             this.removeSubscription(innerSub);
             this.tryComplete();
@@ -98828,17 +99477,17 @@
       var SubscriptionDelayObservable = /*#__PURE__*/function (_Observable__WEBPACK_4) {
         _inherits(SubscriptionDelayObservable, _Observable__WEBPACK_4);
 
-        var _super169 = _createSuper(SubscriptionDelayObservable);
+        var _super173 = _createSuper(SubscriptionDelayObservable);
 
         function SubscriptionDelayObservable(source, subscriptionDelay) {
-          var _this273;
+          var _this276;
 
           _classCallCheck(this, SubscriptionDelayObservable);
 
-          _this273 = _super169.call(this);
-          _this273.source = source;
-          _this273.subscriptionDelay = subscriptionDelay;
-          return _this273;
+          _this276 = _super173.call(this);
+          _this276.source = source;
+          _this276.subscriptionDelay = subscriptionDelay;
+          return _this276;
         }
 
         _createClass2(SubscriptionDelayObservable, [{
@@ -98851,21 +99500,21 @@
         return SubscriptionDelayObservable;
       }(_Observable__WEBPACK_IMPORTED_MODULE_1__["Observable"]);
 
-      var SubscriptionDelaySubscriber = /*#__PURE__*/function (_Subscriber__WEBPACK_13) {
-        _inherits(SubscriptionDelaySubscriber, _Subscriber__WEBPACK_13);
+      var SubscriptionDelaySubscriber = /*#__PURE__*/function (_Subscriber__WEBPACK_17) {
+        _inherits(SubscriptionDelaySubscriber, _Subscriber__WEBPACK_17);
 
-        var _super170 = _createSuper(SubscriptionDelaySubscriber);
+        var _super174 = _createSuper(SubscriptionDelaySubscriber);
 
         function SubscriptionDelaySubscriber(parent, source) {
-          var _this274;
+          var _this277;
 
           _classCallCheck(this, SubscriptionDelaySubscriber);
 
-          _this274 = _super170.call(this);
-          _this274.parent = parent;
-          _this274.source = source;
-          _this274.sourceSubscribed = false;
-          return _this274;
+          _this277 = _super174.call(this);
+          _this277.parent = parent;
+          _this277.source = source;
+          _this277.sourceSubscribed = false;
+          return _this277;
         }
 
         _createClass2(SubscriptionDelaySubscriber, [{
@@ -98950,15 +99599,15 @@
         return DeMaterializeOperator;
       }();
 
-      var DeMaterializeSubscriber = /*#__PURE__*/function (_Subscriber__WEBPACK_14) {
-        _inherits(DeMaterializeSubscriber, _Subscriber__WEBPACK_14);
+      var DeMaterializeSubscriber = /*#__PURE__*/function (_Subscriber__WEBPACK_18) {
+        _inherits(DeMaterializeSubscriber, _Subscriber__WEBPACK_18);
 
-        var _super171 = _createSuper(DeMaterializeSubscriber);
+        var _super175 = _createSuper(DeMaterializeSubscriber);
 
         function DeMaterializeSubscriber(destination) {
           _classCallCheck(this, DeMaterializeSubscriber);
 
-          return _super171.call(this, destination);
+          return _super175.call(this, destination);
         }
 
         _createClass2(DeMaterializeSubscriber, [{
@@ -99003,15 +99652,9 @@
       /* harmony import */
 
 
-      var _OuterSubscriber__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
-      /*! ../OuterSubscriber */
-      "./node_modules/rxjs/_esm2015/internal/OuterSubscriber.js");
-      /* harmony import */
-
-
-      var _util_subscribeToResult__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
-      /*! ../util/subscribeToResult */
-      "./node_modules/rxjs/_esm2015/internal/util/subscribeToResult.js");
+      var _innerSubscribe__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+      /*! ../innerSubscribe */
+      "./node_modules/rxjs/_esm2015/internal/innerSubscribe.js");
 
       function distinct(keySelector, flushes) {
         return function (source) {
@@ -99037,35 +99680,35 @@
         return DistinctOperator;
       }();
 
-      var DistinctSubscriber = /*#__PURE__*/function (_OuterSubscriber__WEB11) {
-        _inherits(DistinctSubscriber, _OuterSubscriber__WEB11);
+      var DistinctSubscriber = /*#__PURE__*/function (_innerSubscribe__WEBP7) {
+        _inherits(DistinctSubscriber, _innerSubscribe__WEBP7);
 
-        var _super172 = _createSuper(DistinctSubscriber);
+        var _super176 = _createSuper(DistinctSubscriber);
 
         function DistinctSubscriber(destination, keySelector, flushes) {
-          var _this275;
+          var _this278;
 
           _classCallCheck(this, DistinctSubscriber);
 
-          _this275 = _super172.call(this, destination);
-          _this275.keySelector = keySelector;
-          _this275.values = new Set();
+          _this278 = _super176.call(this, destination);
+          _this278.keySelector = keySelector;
+          _this278.values = new Set();
 
           if (flushes) {
-            _this275.add(Object(_util_subscribeToResult__WEBPACK_IMPORTED_MODULE_1__["subscribeToResult"])(_assertThisInitialized(_this275), flushes));
+            _this278.add(Object(_innerSubscribe__WEBPACK_IMPORTED_MODULE_0__["innerSubscribe"])(flushes, new _innerSubscribe__WEBPACK_IMPORTED_MODULE_0__["SimpleInnerSubscriber"](_assertThisInitialized(_this278))));
           }
 
-          return _this275;
+          return _this278;
         }
 
         _createClass2(DistinctSubscriber, [{
           key: "notifyNext",
-          value: function notifyNext(outerValue, innerValue, outerIndex, innerIndex, innerSub) {
+          value: function notifyNext() {
             this.values.clear();
           }
         }, {
           key: "notifyError",
-          value: function notifyError(error, innerSub) {
+          value: function notifyError(error) {
             this._error(error);
           }
         }, {
@@ -99105,7 +99748,7 @@
         }]);
 
         return DistinctSubscriber;
-      }(_OuterSubscriber__WEBPACK_IMPORTED_MODULE_0__["OuterSubscriber"]); //# sourceMappingURL=distinct.js.map
+      }(_innerSubscribe__WEBPACK_IMPORTED_MODULE_0__["SimpleOuterSubscriber"]); //# sourceMappingURL=distinct.js.map
 
       /***/
 
@@ -99161,25 +99804,25 @@
         return DistinctUntilChangedOperator;
       }();
 
-      var DistinctUntilChangedSubscriber = /*#__PURE__*/function (_Subscriber__WEBPACK_15) {
-        _inherits(DistinctUntilChangedSubscriber, _Subscriber__WEBPACK_15);
+      var DistinctUntilChangedSubscriber = /*#__PURE__*/function (_Subscriber__WEBPACK_19) {
+        _inherits(DistinctUntilChangedSubscriber, _Subscriber__WEBPACK_19);
 
-        var _super173 = _createSuper(DistinctUntilChangedSubscriber);
+        var _super177 = _createSuper(DistinctUntilChangedSubscriber);
 
         function DistinctUntilChangedSubscriber(destination, compare, keySelector) {
-          var _this276;
+          var _this279;
 
           _classCallCheck(this, DistinctUntilChangedSubscriber);
 
-          _this276 = _super173.call(this, destination);
-          _this276.keySelector = keySelector;
-          _this276.hasKey = false;
+          _this279 = _super177.call(this, destination);
+          _this279.keySelector = keySelector;
+          _this279.hasKey = false;
 
           if (typeof compare === 'function') {
-            _this276.compare = compare;
+            _this279.compare = compare;
           }
 
-          return _this276;
+          return _this279;
         }
 
         _createClass2(DistinctUntilChangedSubscriber, [{
@@ -99428,23 +100071,23 @@
         return EveryOperator;
       }();
 
-      var EverySubscriber = /*#__PURE__*/function (_Subscriber__WEBPACK_16) {
-        _inherits(EverySubscriber, _Subscriber__WEBPACK_16);
+      var EverySubscriber = /*#__PURE__*/function (_Subscriber__WEBPACK_20) {
+        _inherits(EverySubscriber, _Subscriber__WEBPACK_20);
 
-        var _super174 = _createSuper(EverySubscriber);
+        var _super178 = _createSuper(EverySubscriber);
 
         function EverySubscriber(destination, predicate, thisArg, source) {
-          var _this277;
+          var _this280;
 
           _classCallCheck(this, EverySubscriber);
 
-          _this277 = _super174.call(this, destination);
-          _this277.predicate = predicate;
-          _this277.thisArg = thisArg;
-          _this277.source = source;
-          _this277.index = 0;
-          _this277.thisArg = thisArg || _assertThisInitialized(_this277);
-          return _this277;
+          _this280 = _super178.call(this, destination);
+          _this280.predicate = predicate;
+          _this280.thisArg = thisArg;
+          _this280.source = source;
+          _this280.index = 0;
+          _this280.thisArg = thisArg || _assertThisInitialized(_this280);
+          return _this280;
         }
 
         _createClass2(EverySubscriber, [{
@@ -99505,15 +100148,9 @@
       /* harmony import */
 
 
-      var _OuterSubscriber__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
-      /*! ../OuterSubscriber */
-      "./node_modules/rxjs/_esm2015/internal/OuterSubscriber.js");
-      /* harmony import */
-
-
-      var _util_subscribeToResult__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
-      /*! ../util/subscribeToResult */
-      "./node_modules/rxjs/_esm2015/internal/util/subscribeToResult.js");
+      var _innerSubscribe__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+      /*! ../innerSubscribe */
+      "./node_modules/rxjs/_esm2015/internal/innerSubscribe.js");
 
       function exhaust() {
         return function (source) {
@@ -99536,20 +100173,20 @@
         return SwitchFirstOperator;
       }();
 
-      var SwitchFirstSubscriber = /*#__PURE__*/function (_OuterSubscriber__WEB12) {
-        _inherits(SwitchFirstSubscriber, _OuterSubscriber__WEB12);
+      var SwitchFirstSubscriber = /*#__PURE__*/function (_innerSubscribe__WEBP8) {
+        _inherits(SwitchFirstSubscriber, _innerSubscribe__WEBP8);
 
-        var _super175 = _createSuper(SwitchFirstSubscriber);
+        var _super179 = _createSuper(SwitchFirstSubscriber);
 
         function SwitchFirstSubscriber(destination) {
-          var _this278;
+          var _this281;
 
           _classCallCheck(this, SwitchFirstSubscriber);
 
-          _this278 = _super175.call(this, destination);
-          _this278.hasCompleted = false;
-          _this278.hasSubscription = false;
-          return _this278;
+          _this281 = _super179.call(this, destination);
+          _this281.hasCompleted = false;
+          _this281.hasSubscription = false;
+          return _this281;
         }
 
         _createClass2(SwitchFirstSubscriber, [{
@@ -99557,7 +100194,7 @@
           value: function _next(value) {
             if (!this.hasSubscription) {
               this.hasSubscription = true;
-              this.add(Object(_util_subscribeToResult__WEBPACK_IMPORTED_MODULE_1__["subscribeToResult"])(this, value));
+              this.add(Object(_innerSubscribe__WEBPACK_IMPORTED_MODULE_0__["innerSubscribe"])(value, new _innerSubscribe__WEBPACK_IMPORTED_MODULE_0__["SimpleInnerSubscriber"](this)));
             }
           }
         }, {
@@ -99571,8 +100208,7 @@
           }
         }, {
           key: "notifyComplete",
-          value: function notifyComplete(innerSub) {
-            this.remove(innerSub);
+          value: function notifyComplete() {
             this.hasSubscription = false;
 
             if (this.hasCompleted) {
@@ -99582,7 +100218,7 @@
         }]);
 
         return SwitchFirstSubscriber;
-      }(_OuterSubscriber__WEBPACK_IMPORTED_MODULE_0__["OuterSubscriber"]); //# sourceMappingURL=exhaust.js.map
+      }(_innerSubscribe__WEBPACK_IMPORTED_MODULE_0__["SimpleOuterSubscriber"]); //# sourceMappingURL=exhaust.js.map
 
       /***/
 
@@ -99610,39 +100246,27 @@
       /* harmony import */
 
 
-      var _OuterSubscriber__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
-      /*! ../OuterSubscriber */
-      "./node_modules/rxjs/_esm2015/internal/OuterSubscriber.js");
-      /* harmony import */
-
-
-      var _InnerSubscriber__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
-      /*! ../InnerSubscriber */
-      "./node_modules/rxjs/_esm2015/internal/InnerSubscriber.js");
-      /* harmony import */
-
-
-      var _util_subscribeToResult__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
-      /*! ../util/subscribeToResult */
-      "./node_modules/rxjs/_esm2015/internal/util/subscribeToResult.js");
-      /* harmony import */
-
-
-      var _map__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+      var _map__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
       /*! ./map */
       "./node_modules/rxjs/_esm2015/internal/operators/map.js");
       /* harmony import */
 
 
-      var _observable_from__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
+      var _observable_from__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
       /*! ../observable/from */
       "./node_modules/rxjs/_esm2015/internal/observable/from.js");
+      /* harmony import */
+
+
+      var _innerSubscribe__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+      /*! ../innerSubscribe */
+      "./node_modules/rxjs/_esm2015/internal/innerSubscribe.js");
 
       function exhaustMap(project, resultSelector) {
         if (resultSelector) {
           return function (source) {
             return source.pipe(exhaustMap(function (a, i) {
-              return Object(_observable_from__WEBPACK_IMPORTED_MODULE_4__["from"])(project(a, i)).pipe(Object(_map__WEBPACK_IMPORTED_MODULE_3__["map"])(function (b, ii) {
+              return Object(_observable_from__WEBPACK_IMPORTED_MODULE_1__["from"])(project(a, i)).pipe(Object(_map__WEBPACK_IMPORTED_MODULE_0__["map"])(function (b, ii) {
                 return resultSelector(a, b, i, ii);
               }));
             }));
@@ -99671,22 +100295,22 @@
         return ExhaustMapOperator;
       }();
 
-      var ExhaustMapSubscriber = /*#__PURE__*/function (_OuterSubscriber__WEB13) {
-        _inherits(ExhaustMapSubscriber, _OuterSubscriber__WEB13);
+      var ExhaustMapSubscriber = /*#__PURE__*/function (_innerSubscribe__WEBP9) {
+        _inherits(ExhaustMapSubscriber, _innerSubscribe__WEBP9);
 
-        var _super176 = _createSuper(ExhaustMapSubscriber);
+        var _super180 = _createSuper(ExhaustMapSubscriber);
 
         function ExhaustMapSubscriber(destination, project) {
-          var _this279;
+          var _this282;
 
           _classCallCheck(this, ExhaustMapSubscriber);
 
-          _this279 = _super176.call(this, destination);
-          _this279.project = project;
-          _this279.hasSubscription = false;
-          _this279.hasCompleted = false;
-          _this279.index = 0;
-          return _this279;
+          _this282 = _super180.call(this, destination);
+          _this282.project = project;
+          _this282.hasSubscription = false;
+          _this282.hasCompleted = false;
+          _this282.index = 0;
+          return _this282;
         }
 
         _createClass2(ExhaustMapSubscriber, [{
@@ -99711,15 +100335,15 @@
 
             this.hasSubscription = true;
 
-            this._innerSub(result, value, index);
+            this._innerSub(result);
           }
         }, {
           key: "_innerSub",
-          value: function _innerSub(result, value, index) {
-            var innerSubscriber = new _InnerSubscriber__WEBPACK_IMPORTED_MODULE_1__["InnerSubscriber"](this, value, index);
+          value: function _innerSub(result) {
+            var innerSubscriber = new _innerSubscribe__WEBPACK_IMPORTED_MODULE_2__["SimpleInnerSubscriber"](this);
             var destination = this.destination;
             destination.add(innerSubscriber);
-            var innerSubscription = Object(_util_subscribeToResult__WEBPACK_IMPORTED_MODULE_2__["subscribeToResult"])(this, result, undefined, undefined, innerSubscriber);
+            var innerSubscription = Object(_innerSubscribe__WEBPACK_IMPORTED_MODULE_2__["innerSubscribe"])(result, innerSubscriber);
 
             if (innerSubscription !== innerSubscriber) {
               destination.add(innerSubscription);
@@ -99738,7 +100362,7 @@
           }
         }, {
           key: "notifyNext",
-          value: function notifyNext(outerValue, innerValue, outerIndex, innerIndex, innerSub) {
+          value: function notifyNext(innerValue) {
             this.destination.next(innerValue);
           }
         }, {
@@ -99748,9 +100372,7 @@
           }
         }, {
           key: "notifyComplete",
-          value: function notifyComplete(innerSub) {
-            var destination = this.destination;
-            destination.remove(innerSub);
+          value: function notifyComplete() {
             this.hasSubscription = false;
 
             if (this.hasCompleted) {
@@ -99760,7 +100382,7 @@
         }]);
 
         return ExhaustMapSubscriber;
-      }(_OuterSubscriber__WEBPACK_IMPORTED_MODULE_0__["OuterSubscriber"]); //# sourceMappingURL=exhaustMap.js.map
+      }(_innerSubscribe__WEBPACK_IMPORTED_MODULE_2__["SimpleOuterSubscriber"]); //# sourceMappingURL=exhaustMap.js.map
 
       /***/
 
@@ -99800,19 +100422,13 @@
       /* harmony import */
 
 
-      var _OuterSubscriber__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
-      /*! ../OuterSubscriber */
-      "./node_modules/rxjs/_esm2015/internal/OuterSubscriber.js");
-      /* harmony import */
-
-
-      var _util_subscribeToResult__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
-      /*! ../util/subscribeToResult */
-      "./node_modules/rxjs/_esm2015/internal/util/subscribeToResult.js");
+      var _innerSubscribe__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+      /*! ../innerSubscribe */
+      "./node_modules/rxjs/_esm2015/internal/innerSubscribe.js");
 
       function expand(project) {
         var concurrent = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : Number.POSITIVE_INFINITY;
-        var scheduler = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : undefined;
+        var scheduler = arguments.length > 2 ? arguments[2] : undefined;
         concurrent = (concurrent || 0) < 1 ? Number.POSITIVE_INFINITY : concurrent;
         return function (source) {
           return source.lift(new ExpandOperator(project, concurrent, scheduler));
@@ -99838,29 +100454,29 @@
         return ExpandOperator;
       }();
 
-      var ExpandSubscriber = /*#__PURE__*/function (_OuterSubscriber__WEB14) {
-        _inherits(ExpandSubscriber, _OuterSubscriber__WEB14);
+      var ExpandSubscriber = /*#__PURE__*/function (_innerSubscribe__WEBP10) {
+        _inherits(ExpandSubscriber, _innerSubscribe__WEBP10);
 
-        var _super177 = _createSuper(ExpandSubscriber);
+        var _super181 = _createSuper(ExpandSubscriber);
 
         function ExpandSubscriber(destination, project, concurrent, scheduler) {
-          var _this280;
+          var _this283;
 
           _classCallCheck(this, ExpandSubscriber);
 
-          _this280 = _super177.call(this, destination);
-          _this280.project = project;
-          _this280.concurrent = concurrent;
-          _this280.scheduler = scheduler;
-          _this280.index = 0;
-          _this280.active = 0;
-          _this280.hasCompleted = false;
+          _this283 = _super181.call(this, destination);
+          _this283.project = project;
+          _this283.concurrent = concurrent;
+          _this283.scheduler = scheduler;
+          _this283.index = 0;
+          _this283.active = 0;
+          _this283.hasCompleted = false;
 
           if (concurrent < Number.POSITIVE_INFINITY) {
-            _this280.buffer = [];
+            _this283.buffer = [];
           }
 
-          return _this280;
+          return _this283;
         }
 
         _createClass2(ExpandSubscriber, [{
@@ -99908,7 +100524,7 @@
           value: function subscribeToProjection(result, value, index) {
             this.active++;
             var destination = this.destination;
-            destination.add(Object(_util_subscribeToResult__WEBPACK_IMPORTED_MODULE_1__["subscribeToResult"])(this, result, value, index));
+            destination.add(Object(_innerSubscribe__WEBPACK_IMPORTED_MODULE_0__["innerSubscribe"])(result, new _innerSubscribe__WEBPACK_IMPORTED_MODULE_0__["SimpleInnerSubscriber"](this)));
           }
         }, {
           key: "_complete",
@@ -99923,15 +100539,13 @@
           }
         }, {
           key: "notifyNext",
-          value: function notifyNext(outerValue, innerValue, outerIndex, innerIndex, innerSub) {
+          value: function notifyNext(innerValue) {
             this._next(innerValue);
           }
         }, {
           key: "notifyComplete",
-          value: function notifyComplete(innerSub) {
+          value: function notifyComplete() {
             var buffer = this.buffer;
-            var destination = this.destination;
-            destination.remove(innerSub);
             this.active--;
 
             if (buffer && buffer.length > 0) {
@@ -99954,7 +100568,7 @@
         }]);
 
         return ExpandSubscriber;
-      }(_OuterSubscriber__WEBPACK_IMPORTED_MODULE_0__["OuterSubscriber"]); //# sourceMappingURL=expand.js.map
+      }(_innerSubscribe__WEBPACK_IMPORTED_MODULE_0__["SimpleOuterSubscriber"]); //# sourceMappingURL=expand.js.map
 
       /***/
 
@@ -100010,21 +100624,21 @@
         return FilterOperator;
       }();
 
-      var FilterSubscriber = /*#__PURE__*/function (_Subscriber__WEBPACK_17) {
-        _inherits(FilterSubscriber, _Subscriber__WEBPACK_17);
+      var FilterSubscriber = /*#__PURE__*/function (_Subscriber__WEBPACK_21) {
+        _inherits(FilterSubscriber, _Subscriber__WEBPACK_21);
 
-        var _super178 = _createSuper(FilterSubscriber);
+        var _super182 = _createSuper(FilterSubscriber);
 
         function FilterSubscriber(destination, predicate, thisArg) {
-          var _this281;
+          var _this284;
 
           _classCallCheck(this, FilterSubscriber);
 
-          _this281 = _super178.call(this, destination);
-          _this281.predicate = predicate;
-          _this281.thisArg = thisArg;
-          _this281.count = 0;
-          return _this281;
+          _this284 = _super182.call(this, destination);
+          _this284.predicate = predicate;
+          _this284.thisArg = thisArg;
+          _this284.count = 0;
+          return _this284;
         }
 
         _createClass2(FilterSubscriber, [{
@@ -100107,21 +100721,21 @@
         return FinallyOperator;
       }();
 
-      var FinallySubscriber = /*#__PURE__*/function (_Subscriber__WEBPACK_18) {
-        _inherits(FinallySubscriber, _Subscriber__WEBPACK_18);
+      var FinallySubscriber = /*#__PURE__*/function (_Subscriber__WEBPACK_22) {
+        _inherits(FinallySubscriber, _Subscriber__WEBPACK_22);
 
-        var _super179 = _createSuper(FinallySubscriber);
+        var _super183 = _createSuper(FinallySubscriber);
 
         function FinallySubscriber(destination, callback) {
-          var _this282;
+          var _this285;
 
           _classCallCheck(this, FinallySubscriber);
 
-          _this282 = _super179.call(this, destination);
+          _this285 = _super183.call(this, destination);
 
-          _this282.add(new _Subscription__WEBPACK_IMPORTED_MODULE_1__["Subscription"](callback));
+          _this285.add(new _Subscription__WEBPACK_IMPORTED_MODULE_1__["Subscription"](callback));
 
-          return _this282;
+          return _this285;
         }
 
         return FinallySubscriber;
@@ -100199,23 +100813,23 @@
         return FindValueOperator;
       }();
 
-      var FindValueSubscriber = /*#__PURE__*/function (_Subscriber__WEBPACK_19) {
-        _inherits(FindValueSubscriber, _Subscriber__WEBPACK_19);
+      var FindValueSubscriber = /*#__PURE__*/function (_Subscriber__WEBPACK_23) {
+        _inherits(FindValueSubscriber, _Subscriber__WEBPACK_23);
 
-        var _super180 = _createSuper(FindValueSubscriber);
+        var _super184 = _createSuper(FindValueSubscriber);
 
         function FindValueSubscriber(destination, predicate, source, yieldIndex, thisArg) {
-          var _this283;
+          var _this286;
 
           _classCallCheck(this, FindValueSubscriber);
 
-          _this283 = _super180.call(this, destination);
-          _this283.predicate = predicate;
-          _this283.source = source;
-          _this283.yieldIndex = yieldIndex;
-          _this283.thisArg = thisArg;
-          _this283.index = 0;
-          return _this283;
+          _this286 = _super184.call(this, destination);
+          _this286.predicate = predicate;
+          _this286.source = source;
+          _this286.yieldIndex = yieldIndex;
+          _this286.thisArg = thisArg;
+          _this286.index = 0;
+          return _this286;
         }
 
         _createClass2(FindValueSubscriber, [{
@@ -100440,25 +101054,25 @@
         return GroupByOperator;
       }();
 
-      var GroupBySubscriber = /*#__PURE__*/function (_Subscriber__WEBPACK_20) {
-        _inherits(GroupBySubscriber, _Subscriber__WEBPACK_20);
+      var GroupBySubscriber = /*#__PURE__*/function (_Subscriber__WEBPACK_24) {
+        _inherits(GroupBySubscriber, _Subscriber__WEBPACK_24);
 
-        var _super181 = _createSuper(GroupBySubscriber);
+        var _super185 = _createSuper(GroupBySubscriber);
 
         function GroupBySubscriber(destination, keySelector, elementSelector, durationSelector, subjectSelector) {
-          var _this284;
+          var _this287;
 
           _classCallCheck(this, GroupBySubscriber);
 
-          _this284 = _super181.call(this, destination);
-          _this284.keySelector = keySelector;
-          _this284.elementSelector = elementSelector;
-          _this284.durationSelector = durationSelector;
-          _this284.subjectSelector = subjectSelector;
-          _this284.groups = null;
-          _this284.attemptedToUnsubscribe = false;
-          _this284.count = 0;
-          return _this284;
+          _this287 = _super185.call(this, destination);
+          _this287.keySelector = keySelector;
+          _this287.elementSelector = elementSelector;
+          _this287.durationSelector = durationSelector;
+          _this287.subjectSelector = subjectSelector;
+          _this287.groups = null;
+          _this287.attemptedToUnsubscribe = false;
+          _this287.count = 0;
+          return _this287;
         }
 
         _createClass2(GroupBySubscriber, [{
@@ -100570,21 +101184,21 @@
         return GroupBySubscriber;
       }(_Subscriber__WEBPACK_IMPORTED_MODULE_0__["Subscriber"]);
 
-      var GroupDurationSubscriber = /*#__PURE__*/function (_Subscriber__WEBPACK_21) {
-        _inherits(GroupDurationSubscriber, _Subscriber__WEBPACK_21);
+      var GroupDurationSubscriber = /*#__PURE__*/function (_Subscriber__WEBPACK_25) {
+        _inherits(GroupDurationSubscriber, _Subscriber__WEBPACK_25);
 
-        var _super182 = _createSuper(GroupDurationSubscriber);
+        var _super186 = _createSuper(GroupDurationSubscriber);
 
         function GroupDurationSubscriber(key, group, parent) {
-          var _this285;
+          var _this288;
 
           _classCallCheck(this, GroupDurationSubscriber);
 
-          _this285 = _super182.call(this, group);
-          _this285.key = key;
-          _this285.group = group;
-          _this285.parent = parent;
-          return _this285;
+          _this288 = _super186.call(this, group);
+          _this288.key = key;
+          _this288.group = group;
+          _this288.parent = parent;
+          return _this288;
         }
 
         _createClass2(GroupDurationSubscriber, [{
@@ -100611,18 +101225,18 @@
       var GroupedObservable = /*#__PURE__*/function (_Observable__WEBPACK_5) {
         _inherits(GroupedObservable, _Observable__WEBPACK_5);
 
-        var _super183 = _createSuper(GroupedObservable);
+        var _super187 = _createSuper(GroupedObservable);
 
         function GroupedObservable(key, groupSubject, refCountSubscription) {
-          var _this286;
+          var _this289;
 
           _classCallCheck(this, GroupedObservable);
 
-          _this286 = _super183.call(this);
-          _this286.key = key;
-          _this286.groupSubject = groupSubject;
-          _this286.refCountSubscription = refCountSubscription;
-          return _this286;
+          _this289 = _super187.call(this);
+          _this289.key = key;
+          _this289.groupSubject = groupSubject;
+          _this289.refCountSubscription = refCountSubscription;
+          return _this289;
         }
 
         _createClass2(GroupedObservable, [{
@@ -100647,17 +101261,17 @@
       var InnerRefCountSubscription = /*#__PURE__*/function (_Subscription__WEBPAC3) {
         _inherits(InnerRefCountSubscription, _Subscription__WEBPAC3);
 
-        var _super184 = _createSuper(InnerRefCountSubscription);
+        var _super188 = _createSuper(InnerRefCountSubscription);
 
         function InnerRefCountSubscription(parent) {
-          var _this287;
+          var _this290;
 
           _classCallCheck(this, InnerRefCountSubscription);
 
-          _this287 = _super184.call(this);
-          _this287.parent = parent;
+          _this290 = _super188.call(this);
+          _this290.parent = parent;
           parent.count++;
-          return _this287;
+          return _this290;
         }
 
         _createClass2(InnerRefCountSubscription, [{
@@ -100731,15 +101345,15 @@
         return IgnoreElementsOperator;
       }();
 
-      var IgnoreElementsSubscriber = /*#__PURE__*/function (_Subscriber__WEBPACK_22) {
-        _inherits(IgnoreElementsSubscriber, _Subscriber__WEBPACK_22);
+      var IgnoreElementsSubscriber = /*#__PURE__*/function (_Subscriber__WEBPACK_26) {
+        _inherits(IgnoreElementsSubscriber, _Subscriber__WEBPACK_26);
 
-        var _super185 = _createSuper(IgnoreElementsSubscriber);
+        var _super189 = _createSuper(IgnoreElementsSubscriber);
 
         function IgnoreElementsSubscriber() {
           _classCallCheck(this, IgnoreElementsSubscriber);
 
-          return _super185.apply(this, arguments);
+          return _super189.apply(this, arguments);
         }
 
         _createClass2(IgnoreElementsSubscriber, [{
@@ -100801,15 +101415,15 @@
         return IsEmptyOperator;
       }();
 
-      var IsEmptySubscriber = /*#__PURE__*/function (_Subscriber__WEBPACK_23) {
-        _inherits(IsEmptySubscriber, _Subscriber__WEBPACK_23);
+      var IsEmptySubscriber = /*#__PURE__*/function (_Subscriber__WEBPACK_27) {
+        _inherits(IsEmptySubscriber, _Subscriber__WEBPACK_27);
 
-        var _super186 = _createSuper(IsEmptySubscriber);
+        var _super190 = _createSuper(IsEmptySubscriber);
 
         function IsEmptySubscriber(destination) {
           _classCallCheck(this, IsEmptySubscriber);
 
-          return _super186.call(this, destination);
+          return _super190.call(this, destination);
         }
 
         _createClass2(IsEmptySubscriber, [{
@@ -100969,21 +101583,21 @@
         return MapOperator;
       }();
 
-      var MapSubscriber = /*#__PURE__*/function (_Subscriber__WEBPACK_24) {
-        _inherits(MapSubscriber, _Subscriber__WEBPACK_24);
+      var MapSubscriber = /*#__PURE__*/function (_Subscriber__WEBPACK_28) {
+        _inherits(MapSubscriber, _Subscriber__WEBPACK_28);
 
-        var _super187 = _createSuper(MapSubscriber);
+        var _super191 = _createSuper(MapSubscriber);
 
         function MapSubscriber(destination, project, thisArg) {
-          var _this288;
+          var _this291;
 
           _classCallCheck(this, MapSubscriber);
 
-          _this288 = _super187.call(this, destination);
-          _this288.project = project;
-          _this288.count = 0;
-          _this288.thisArg = thisArg || _assertThisInitialized(_this288);
-          return _this288;
+          _this291 = _super191.call(this, destination);
+          _this291.project = project;
+          _this291.count = 0;
+          _this291.thisArg = thisArg || _assertThisInitialized(_this291);
+          return _this291;
         }
 
         _createClass2(MapSubscriber, [{
@@ -101058,19 +101672,19 @@
         return MapToOperator;
       }();
 
-      var MapToSubscriber = /*#__PURE__*/function (_Subscriber__WEBPACK_25) {
-        _inherits(MapToSubscriber, _Subscriber__WEBPACK_25);
+      var MapToSubscriber = /*#__PURE__*/function (_Subscriber__WEBPACK_29) {
+        _inherits(MapToSubscriber, _Subscriber__WEBPACK_29);
 
-        var _super188 = _createSuper(MapToSubscriber);
+        var _super192 = _createSuper(MapToSubscriber);
 
         function MapToSubscriber(destination, value) {
-          var _this289;
+          var _this292;
 
           _classCallCheck(this, MapToSubscriber);
 
-          _this289 = _super188.call(this, destination);
-          _this289.value = value;
-          return _this289;
+          _this292 = _super192.call(this, destination);
+          _this292.value = value;
+          return _this292;
         }
 
         _createClass2(MapToSubscriber, [{
@@ -101140,15 +101754,15 @@
         return MaterializeOperator;
       }();
 
-      var MaterializeSubscriber = /*#__PURE__*/function (_Subscriber__WEBPACK_26) {
-        _inherits(MaterializeSubscriber, _Subscriber__WEBPACK_26);
+      var MaterializeSubscriber = /*#__PURE__*/function (_Subscriber__WEBPACK_30) {
+        _inherits(MaterializeSubscriber, _Subscriber__WEBPACK_30);
 
-        var _super189 = _createSuper(MaterializeSubscriber);
+        var _super193 = _createSuper(MaterializeSubscriber);
 
         function MaterializeSubscriber(destination) {
           _classCallCheck(this, MaterializeSubscriber);
 
-          return _super189.call(this, destination);
+          return _super193.call(this, destination);
         }
 
         _createClass2(MaterializeSubscriber, [{
@@ -101339,33 +101953,21 @@
       /* harmony import */
 
 
-      var _util_subscribeToResult__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
-      /*! ../util/subscribeToResult */
-      "./node_modules/rxjs/_esm2015/internal/util/subscribeToResult.js");
-      /* harmony import */
-
-
-      var _OuterSubscriber__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
-      /*! ../OuterSubscriber */
-      "./node_modules/rxjs/_esm2015/internal/OuterSubscriber.js");
-      /* harmony import */
-
-
-      var _InnerSubscriber__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
-      /*! ../InnerSubscriber */
-      "./node_modules/rxjs/_esm2015/internal/InnerSubscriber.js");
-      /* harmony import */
-
-
-      var _map__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+      var _map__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
       /*! ./map */
       "./node_modules/rxjs/_esm2015/internal/operators/map.js");
       /* harmony import */
 
 
-      var _observable_from__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
+      var _observable_from__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
       /*! ../observable/from */
       "./node_modules/rxjs/_esm2015/internal/observable/from.js");
+      /* harmony import */
+
+
+      var _innerSubscribe__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+      /*! ../innerSubscribe */
+      "./node_modules/rxjs/_esm2015/internal/innerSubscribe.js");
 
       function mergeMap(project, resultSelector) {
         var concurrent = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : Number.POSITIVE_INFINITY;
@@ -101373,7 +101975,7 @@
         if (typeof resultSelector === 'function') {
           return function (source) {
             return source.pipe(mergeMap(function (a, i) {
-              return Object(_observable_from__WEBPACK_IMPORTED_MODULE_4__["from"])(project(a, i)).pipe(Object(_map__WEBPACK_IMPORTED_MODULE_3__["map"])(function (b, ii) {
+              return Object(_observable_from__WEBPACK_IMPORTED_MODULE_1__["from"])(project(a, i)).pipe(Object(_map__WEBPACK_IMPORTED_MODULE_0__["map"])(function (b, ii) {
                 return resultSelector(a, b, i, ii);
               }));
             }, concurrent));
@@ -101407,26 +102009,26 @@
         return MergeMapOperator;
       }();
 
-      var MergeMapSubscriber = /*#__PURE__*/function (_OuterSubscriber__WEB15) {
-        _inherits(MergeMapSubscriber, _OuterSubscriber__WEB15);
+      var MergeMapSubscriber = /*#__PURE__*/function (_innerSubscribe__WEBP11) {
+        _inherits(MergeMapSubscriber, _innerSubscribe__WEBP11);
 
-        var _super190 = _createSuper(MergeMapSubscriber);
+        var _super194 = _createSuper(MergeMapSubscriber);
 
         function MergeMapSubscriber(destination, project) {
-          var _this290;
+          var _this293;
 
           var concurrent = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : Number.POSITIVE_INFINITY;
 
           _classCallCheck(this, MergeMapSubscriber);
 
-          _this290 = _super190.call(this, destination);
-          _this290.project = project;
-          _this290.concurrent = concurrent;
-          _this290.hasCompleted = false;
-          _this290.buffer = [];
-          _this290.active = 0;
-          _this290.index = 0;
-          return _this290;
+          _this293 = _super194.call(this, destination);
+          _this293.project = project;
+          _this293.concurrent = concurrent;
+          _this293.hasCompleted = false;
+          _this293.buffer = [];
+          _this293.active = 0;
+          _this293.index = 0;
+          return _this293;
         }
 
         _createClass2(MergeMapSubscriber, [{
@@ -101453,15 +102055,15 @@
 
             this.active++;
 
-            this._innerSub(result, value, index);
+            this._innerSub(result);
           }
         }, {
           key: "_innerSub",
-          value: function _innerSub(ish, value, index) {
-            var innerSubscriber = new _InnerSubscriber__WEBPACK_IMPORTED_MODULE_2__["InnerSubscriber"](this, value, index);
+          value: function _innerSub(ish) {
+            var innerSubscriber = new _innerSubscribe__WEBPACK_IMPORTED_MODULE_2__["SimpleInnerSubscriber"](this);
             var destination = this.destination;
             destination.add(innerSubscriber);
-            var innerSubscription = Object(_util_subscribeToResult__WEBPACK_IMPORTED_MODULE_0__["subscribeToResult"])(this, ish, undefined, undefined, innerSubscriber);
+            var innerSubscription = Object(_innerSubscribe__WEBPACK_IMPORTED_MODULE_2__["innerSubscribe"])(ish, innerSubscriber);
 
             if (innerSubscription !== innerSubscriber) {
               destination.add(innerSubscription);
@@ -101480,14 +102082,13 @@
           }
         }, {
           key: "notifyNext",
-          value: function notifyNext(outerValue, innerValue, outerIndex, innerIndex, innerSub) {
+          value: function notifyNext(innerValue) {
             this.destination.next(innerValue);
           }
         }, {
           key: "notifyComplete",
-          value: function notifyComplete(innerSub) {
+          value: function notifyComplete() {
             var buffer = this.buffer;
-            this.remove(innerSub);
             this.active--;
 
             if (buffer.length > 0) {
@@ -101499,7 +102100,7 @@
         }]);
 
         return MergeMapSubscriber;
-      }(_OuterSubscriber__WEBPACK_IMPORTED_MODULE_1__["OuterSubscriber"]);
+      }(_innerSubscribe__WEBPACK_IMPORTED_MODULE_2__["SimpleOuterSubscriber"]);
 
       var flatMap = mergeMap; //# sourceMappingURL=mergeMap.js.map
 
@@ -101588,21 +102189,9 @@
       /* harmony import */
 
 
-      var _util_subscribeToResult__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
-      /*! ../util/subscribeToResult */
-      "./node_modules/rxjs/_esm2015/internal/util/subscribeToResult.js");
-      /* harmony import */
-
-
-      var _OuterSubscriber__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
-      /*! ../OuterSubscriber */
-      "./node_modules/rxjs/_esm2015/internal/OuterSubscriber.js");
-      /* harmony import */
-
-
-      var _InnerSubscriber__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
-      /*! ../InnerSubscriber */
-      "./node_modules/rxjs/_esm2015/internal/InnerSubscriber.js");
+      var _innerSubscribe__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+      /*! ../innerSubscribe */
+      "./node_modules/rxjs/_esm2015/internal/innerSubscribe.js");
 
       function mergeScan(accumulator, seed) {
         var concurrent = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : Number.POSITIVE_INFINITY;
@@ -101630,26 +102219,26 @@
         return MergeScanOperator;
       }();
 
-      var MergeScanSubscriber = /*#__PURE__*/function (_OuterSubscriber__WEB16) {
-        _inherits(MergeScanSubscriber, _OuterSubscriber__WEB16);
+      var MergeScanSubscriber = /*#__PURE__*/function (_innerSubscribe__WEBP12) {
+        _inherits(MergeScanSubscriber, _innerSubscribe__WEBP12);
 
-        var _super191 = _createSuper(MergeScanSubscriber);
+        var _super195 = _createSuper(MergeScanSubscriber);
 
         function MergeScanSubscriber(destination, accumulator, acc, concurrent) {
-          var _this291;
+          var _this294;
 
           _classCallCheck(this, MergeScanSubscriber);
 
-          _this291 = _super191.call(this, destination);
-          _this291.accumulator = accumulator;
-          _this291.acc = acc;
-          _this291.concurrent = concurrent;
-          _this291.hasValue = false;
-          _this291.hasCompleted = false;
-          _this291.buffer = [];
-          _this291.active = 0;
-          _this291.index = 0;
-          return _this291;
+          _this294 = _super195.call(this, destination);
+          _this294.accumulator = accumulator;
+          _this294.acc = acc;
+          _this294.concurrent = concurrent;
+          _this294.hasValue = false;
+          _this294.hasCompleted = false;
+          _this294.buffer = [];
+          _this294.active = 0;
+          _this294.index = 0;
+          return _this294;
         }
 
         _createClass2(MergeScanSubscriber, [{
@@ -101669,18 +102258,18 @@
 
               this.active++;
 
-              this._innerSub(ish, value, index);
+              this._innerSub(ish);
             } else {
               this.buffer.push(value);
             }
           }
         }, {
           key: "_innerSub",
-          value: function _innerSub(ish, value, index) {
-            var innerSubscriber = new _InnerSubscriber__WEBPACK_IMPORTED_MODULE_2__["InnerSubscriber"](this, value, index);
+          value: function _innerSub(ish) {
+            var innerSubscriber = new _innerSubscribe__WEBPACK_IMPORTED_MODULE_0__["SimpleInnerSubscriber"](this);
             var destination = this.destination;
             destination.add(innerSubscriber);
-            var innerSubscription = Object(_util_subscribeToResult__WEBPACK_IMPORTED_MODULE_0__["subscribeToResult"])(this, ish, undefined, undefined, innerSubscriber);
+            var innerSubscription = Object(_innerSubscribe__WEBPACK_IMPORTED_MODULE_0__["innerSubscribe"])(ish, innerSubscriber);
 
             if (innerSubscription !== innerSubscriber) {
               destination.add(innerSubscription);
@@ -101703,7 +102292,7 @@
           }
         }, {
           key: "notifyNext",
-          value: function notifyNext(outerValue, innerValue, outerIndex, innerIndex, innerSub) {
+          value: function notifyNext(innerValue) {
             var destination = this.destination;
             this.acc = innerValue;
             this.hasValue = true;
@@ -101711,10 +102300,8 @@
           }
         }, {
           key: "notifyComplete",
-          value: function notifyComplete(innerSub) {
+          value: function notifyComplete() {
             var buffer = this.buffer;
-            var destination = this.destination;
-            destination.remove(innerSub);
             this.active--;
 
             if (buffer.length > 0) {
@@ -101730,7 +102317,7 @@
         }]);
 
         return MergeScanSubscriber;
-      }(_OuterSubscriber__WEBPACK_IMPORTED_MODULE_1__["OuterSubscriber"]); //# sourceMappingURL=mergeScan.js.map
+      }(_innerSubscribe__WEBPACK_IMPORTED_MODULE_0__["SimpleOuterSubscriber"]); //# sourceMappingURL=mergeScan.js.map
 
       /***/
 
@@ -101933,22 +102520,22 @@
         return ObserveOnOperator;
       }();
 
-      var ObserveOnSubscriber = /*#__PURE__*/function (_Subscriber__WEBPACK_27) {
-        _inherits(ObserveOnSubscriber, _Subscriber__WEBPACK_27);
+      var ObserveOnSubscriber = /*#__PURE__*/function (_Subscriber__WEBPACK_31) {
+        _inherits(ObserveOnSubscriber, _Subscriber__WEBPACK_31);
 
-        var _super192 = _createSuper(ObserveOnSubscriber);
+        var _super196 = _createSuper(ObserveOnSubscriber);
 
         function ObserveOnSubscriber(destination, scheduler) {
-          var _this292;
+          var _this295;
 
           var delay = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 0;
 
           _classCallCheck(this, ObserveOnSubscriber);
 
-          _this292 = _super192.call(this, destination);
-          _this292.scheduler = scheduler;
-          _this292.delay = delay;
-          return _this292;
+          _this295 = _super196.call(this, destination);
+          _this295.scheduler = scheduler;
+          _this295.delay = delay;
+          return _this295;
         }
 
         _createClass2(ObserveOnSubscriber, [{
@@ -102038,21 +102625,9 @@
       /* harmony import */
 
 
-      var _OuterSubscriber__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
-      /*! ../OuterSubscriber */
-      "./node_modules/rxjs/_esm2015/internal/OuterSubscriber.js");
-      /* harmony import */
-
-
-      var _InnerSubscriber__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
-      /*! ../InnerSubscriber */
-      "./node_modules/rxjs/_esm2015/internal/InnerSubscriber.js");
-      /* harmony import */
-
-
-      var _util_subscribeToResult__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
-      /*! ../util/subscribeToResult */
-      "./node_modules/rxjs/_esm2015/internal/util/subscribeToResult.js");
+      var _innerSubscribe__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+      /*! ../innerSubscribe */
+      "./node_modules/rxjs/_esm2015/internal/innerSubscribe.js");
 
       function onErrorResumeNext() {
         for (var _len38 = arguments.length, nextSources = new Array(_len38), _key35 = 0; _key35 < _len38; _key35++) {
@@ -102073,14 +102648,14 @@
           nextSources[_key36] = arguments[_key36];
         }
 
-        var source = null;
+        var source = undefined;
 
         if (nextSources.length === 1 && Object(_util_isArray__WEBPACK_IMPORTED_MODULE_1__["isArray"])(nextSources[0])) {
           nextSources = nextSources[0];
         }
 
         source = nextSources.shift();
-        return Object(_observable_from__WEBPACK_IMPORTED_MODULE_0__["from"])(source, null).lift(new OnErrorResumeNextOperator(nextSources));
+        return Object(_observable_from__WEBPACK_IMPORTED_MODULE_0__["from"])(source).lift(new OnErrorResumeNextOperator(nextSources));
       }
 
       var OnErrorResumeNextOperator = /*#__PURE__*/function () {
@@ -102100,30 +102675,30 @@
         return OnErrorResumeNextOperator;
       }();
 
-      var OnErrorResumeNextSubscriber = /*#__PURE__*/function (_OuterSubscriber__WEB17) {
-        _inherits(OnErrorResumeNextSubscriber, _OuterSubscriber__WEB17);
+      var OnErrorResumeNextSubscriber = /*#__PURE__*/function (_innerSubscribe__WEBP13) {
+        _inherits(OnErrorResumeNextSubscriber, _innerSubscribe__WEBP13);
 
-        var _super193 = _createSuper(OnErrorResumeNextSubscriber);
+        var _super197 = _createSuper(OnErrorResumeNextSubscriber);
 
         function OnErrorResumeNextSubscriber(destination, nextSources) {
-          var _this293;
+          var _this296;
 
           _classCallCheck(this, OnErrorResumeNextSubscriber);
 
-          _this293 = _super193.call(this, destination);
-          _this293.destination = destination;
-          _this293.nextSources = nextSources;
-          return _this293;
+          _this296 = _super197.call(this, destination);
+          _this296.destination = destination;
+          _this296.nextSources = nextSources;
+          return _this296;
         }
 
         _createClass2(OnErrorResumeNextSubscriber, [{
           key: "notifyError",
-          value: function notifyError(error, innerSub) {
+          value: function notifyError() {
             this.subscribeToNextSource();
           }
         }, {
           key: "notifyComplete",
-          value: function notifyComplete(innerSub) {
+          value: function notifyComplete() {
             this.subscribeToNextSource();
           }
         }, {
@@ -102144,10 +102719,10 @@
             var next = this.nextSources.shift();
 
             if (!!next) {
-              var innerSubscriber = new _InnerSubscriber__WEBPACK_IMPORTED_MODULE_3__["InnerSubscriber"](this, undefined, undefined);
+              var innerSubscriber = new _innerSubscribe__WEBPACK_IMPORTED_MODULE_2__["SimpleInnerSubscriber"](this);
               var destination = this.destination;
               destination.add(innerSubscriber);
-              var innerSubscription = Object(_util_subscribeToResult__WEBPACK_IMPORTED_MODULE_4__["subscribeToResult"])(this, next, undefined, undefined, innerSubscriber);
+              var innerSubscription = Object(_innerSubscribe__WEBPACK_IMPORTED_MODULE_2__["innerSubscribe"])(next, innerSubscriber);
 
               if (innerSubscription !== innerSubscriber) {
                 destination.add(innerSubscription);
@@ -102159,7 +102734,7 @@
         }]);
 
         return OnErrorResumeNextSubscriber;
-      }(_OuterSubscriber__WEBPACK_IMPORTED_MODULE_2__["OuterSubscriber"]); //# sourceMappingURL=onErrorResumeNext.js.map
+      }(_innerSubscribe__WEBPACK_IMPORTED_MODULE_2__["SimpleOuterSubscriber"]); //# sourceMappingURL=onErrorResumeNext.js.map
 
       /***/
 
@@ -102212,19 +102787,19 @@
         return PairwiseOperator;
       }();
 
-      var PairwiseSubscriber = /*#__PURE__*/function (_Subscriber__WEBPACK_28) {
-        _inherits(PairwiseSubscriber, _Subscriber__WEBPACK_28);
+      var PairwiseSubscriber = /*#__PURE__*/function (_Subscriber__WEBPACK_32) {
+        _inherits(PairwiseSubscriber, _Subscriber__WEBPACK_32);
 
-        var _super194 = _createSuper(PairwiseSubscriber);
+        var _super198 = _createSuper(PairwiseSubscriber);
 
         function PairwiseSubscriber(destination) {
-          var _this294;
+          var _this297;
 
           _classCallCheck(this, PairwiseSubscriber);
 
-          _this294 = _super194.call(this, destination);
-          _this294.hasPrev = false;
-          return _this294;
+          _this297 = _super198.call(this, destination);
+          _this297.hasPrev = false;
+          return _this297;
         }
 
         _createClass2(PairwiseSubscriber, [{
@@ -102707,19 +103282,19 @@
         return RefCountOperator;
       }();
 
-      var RefCountSubscriber = /*#__PURE__*/function (_Subscriber__WEBPACK_29) {
-        _inherits(RefCountSubscriber, _Subscriber__WEBPACK_29);
+      var RefCountSubscriber = /*#__PURE__*/function (_Subscriber__WEBPACK_33) {
+        _inherits(RefCountSubscriber, _Subscriber__WEBPACK_33);
 
-        var _super195 = _createSuper(RefCountSubscriber);
+        var _super199 = _createSuper(RefCountSubscriber);
 
         function RefCountSubscriber(destination, connectable) {
-          var _this295;
+          var _this298;
 
           _classCallCheck(this, RefCountSubscriber);
 
-          _this295 = _super195.call(this, destination);
-          _this295.connectable = connectable;
-          return _this295;
+          _this298 = _super199.call(this, destination);
+          _this298.connectable = connectable;
+          return _this298;
         }
 
         _createClass2(RefCountSubscriber, [{
@@ -102827,20 +103402,20 @@
         return RepeatOperator;
       }();
 
-      var RepeatSubscriber = /*#__PURE__*/function (_Subscriber__WEBPACK_30) {
-        _inherits(RepeatSubscriber, _Subscriber__WEBPACK_30);
+      var RepeatSubscriber = /*#__PURE__*/function (_Subscriber__WEBPACK_34) {
+        _inherits(RepeatSubscriber, _Subscriber__WEBPACK_34);
 
-        var _super196 = _createSuper(RepeatSubscriber);
+        var _super200 = _createSuper(RepeatSubscriber);
 
         function RepeatSubscriber(destination, count, source) {
-          var _this296;
+          var _this299;
 
           _classCallCheck(this, RepeatSubscriber);
 
-          _this296 = _super196.call(this, destination);
-          _this296.count = count;
-          _this296.source = source;
-          return _this296;
+          _this299 = _super200.call(this, destination);
+          _this299.count = count;
+          _this299.source = source;
+          return _this299;
         }
 
         _createClass2(RepeatSubscriber, [{
@@ -102896,15 +103471,9 @@
       /* harmony import */
 
 
-      var _OuterSubscriber__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
-      /*! ../OuterSubscriber */
-      "./node_modules/rxjs/_esm2015/internal/OuterSubscriber.js");
-      /* harmony import */
-
-
-      var _util_subscribeToResult__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
-      /*! ../util/subscribeToResult */
-      "./node_modules/rxjs/_esm2015/internal/util/subscribeToResult.js");
+      var _innerSubscribe__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+      /*! ../innerSubscribe */
+      "./node_modules/rxjs/_esm2015/internal/innerSubscribe.js");
 
       function repeatWhen(notifier) {
         return function (source) {
@@ -102929,32 +103498,32 @@
         return RepeatWhenOperator;
       }();
 
-      var RepeatWhenSubscriber = /*#__PURE__*/function (_OuterSubscriber__WEB18) {
-        _inherits(RepeatWhenSubscriber, _OuterSubscriber__WEB18);
+      var RepeatWhenSubscriber = /*#__PURE__*/function (_innerSubscribe__WEBP14) {
+        _inherits(RepeatWhenSubscriber, _innerSubscribe__WEBP14);
 
-        var _super197 = _createSuper(RepeatWhenSubscriber);
+        var _super201 = _createSuper(RepeatWhenSubscriber);
 
         function RepeatWhenSubscriber(destination, notifier, source) {
-          var _this297;
+          var _this300;
 
           _classCallCheck(this, RepeatWhenSubscriber);
 
-          _this297 = _super197.call(this, destination);
-          _this297.notifier = notifier;
-          _this297.source = source;
-          _this297.sourceIsBeingSubscribedTo = true;
-          return _this297;
+          _this300 = _super201.call(this, destination);
+          _this300.notifier = notifier;
+          _this300.source = source;
+          _this300.sourceIsBeingSubscribedTo = true;
+          return _this300;
         }
 
         _createClass2(RepeatWhenSubscriber, [{
           key: "notifyNext",
-          value: function notifyNext(outerValue, innerValue, outerIndex, innerIndex, innerSub) {
+          value: function notifyNext() {
             this.sourceIsBeingSubscribedTo = true;
             this.source.subscribe(this);
           }
         }, {
           key: "notifyComplete",
-          value: function notifyComplete(innerSub) {
+          value: function notifyComplete() {
             if (this.sourceIsBeingSubscribedTo === false) {
               return _get(_getPrototypeOf(RepeatWhenSubscriber.prototype), "complete", this).call(this);
             }
@@ -102975,7 +103544,7 @@
 
               this._unsubscribeAndRecycle();
 
-              this.notifications.next();
+              this.notifications.next(undefined);
             }
           }
         }, {
@@ -102986,15 +103555,15 @@
 
             if (notifications) {
               notifications.unsubscribe();
-              this.notifications = null;
+              this.notifications = undefined;
             }
 
             if (retriesSubscription) {
               retriesSubscription.unsubscribe();
-              this.retriesSubscription = null;
+              this.retriesSubscription = undefined;
             }
 
-            this.retries = null;
+            this.retries = undefined;
           }
         }, {
           key: "_unsubscribeAndRecycle",
@@ -103021,12 +103590,12 @@
             }
 
             this.retries = retries;
-            this.retriesSubscription = Object(_util_subscribeToResult__WEBPACK_IMPORTED_MODULE_2__["subscribeToResult"])(this, retries);
+            this.retriesSubscription = Object(_innerSubscribe__WEBPACK_IMPORTED_MODULE_1__["innerSubscribe"])(retries, new _innerSubscribe__WEBPACK_IMPORTED_MODULE_1__["SimpleInnerSubscriber"](this));
           }
         }]);
 
         return RepeatWhenSubscriber;
-      }(_OuterSubscriber__WEBPACK_IMPORTED_MODULE_1__["OuterSubscriber"]); //# sourceMappingURL=repeatWhen.js.map
+      }(_innerSubscribe__WEBPACK_IMPORTED_MODULE_1__["SimpleOuterSubscriber"]); //# sourceMappingURL=repeatWhen.js.map
 
       /***/
 
@@ -103083,20 +103652,20 @@
         return RetryOperator;
       }();
 
-      var RetrySubscriber = /*#__PURE__*/function (_Subscriber__WEBPACK_31) {
-        _inherits(RetrySubscriber, _Subscriber__WEBPACK_31);
+      var RetrySubscriber = /*#__PURE__*/function (_Subscriber__WEBPACK_35) {
+        _inherits(RetrySubscriber, _Subscriber__WEBPACK_35);
 
-        var _super198 = _createSuper(RetrySubscriber);
+        var _super202 = _createSuper(RetrySubscriber);
 
         function RetrySubscriber(destination, count, source) {
-          var _this298;
+          var _this301;
 
           _classCallCheck(this, RetrySubscriber);
 
-          _this298 = _super198.call(this, destination);
-          _this298.count = count;
-          _this298.source = source;
-          return _this298;
+          _this301 = _super202.call(this, destination);
+          _this301.count = count;
+          _this301.source = source;
+          return _this301;
         }
 
         _createClass2(RetrySubscriber, [{
@@ -103152,15 +103721,9 @@
       /* harmony import */
 
 
-      var _OuterSubscriber__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
-      /*! ../OuterSubscriber */
-      "./node_modules/rxjs/_esm2015/internal/OuterSubscriber.js");
-      /* harmony import */
-
-
-      var _util_subscribeToResult__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
-      /*! ../util/subscribeToResult */
-      "./node_modules/rxjs/_esm2015/internal/util/subscribeToResult.js");
+      var _innerSubscribe__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+      /*! ../innerSubscribe */
+      "./node_modules/rxjs/_esm2015/internal/innerSubscribe.js");
 
       function retryWhen(notifier) {
         return function (source) {
@@ -103186,20 +103749,20 @@
         return RetryWhenOperator;
       }();
 
-      var RetryWhenSubscriber = /*#__PURE__*/function (_OuterSubscriber__WEB19) {
-        _inherits(RetryWhenSubscriber, _OuterSubscriber__WEB19);
+      var RetryWhenSubscriber = /*#__PURE__*/function (_innerSubscribe__WEBP15) {
+        _inherits(RetryWhenSubscriber, _innerSubscribe__WEBP15);
 
-        var _super199 = _createSuper(RetryWhenSubscriber);
+        var _super203 = _createSuper(RetryWhenSubscriber);
 
         function RetryWhenSubscriber(destination, notifier, source) {
-          var _this299;
+          var _this302;
 
           _classCallCheck(this, RetryWhenSubscriber);
 
-          _this299 = _super199.call(this, destination);
-          _this299.notifier = notifier;
-          _this299.source = source;
-          return _this299;
+          _this302 = _super203.call(this, destination);
+          _this302.notifier = notifier;
+          _this302.source = source;
+          return _this302;
         }
 
         _createClass2(RetryWhenSubscriber, [{
@@ -103220,10 +103783,10 @@
                   return _get(_getPrototypeOf(RetryWhenSubscriber.prototype), "error", this).call(this, e);
                 }
 
-                retriesSubscription = Object(_util_subscribeToResult__WEBPACK_IMPORTED_MODULE_2__["subscribeToResult"])(this, retries);
+                retriesSubscription = Object(_innerSubscribe__WEBPACK_IMPORTED_MODULE_1__["innerSubscribe"])(retries, new _innerSubscribe__WEBPACK_IMPORTED_MODULE_1__["SimpleInnerSubscriber"](this));
               } else {
-                this.errors = null;
-                this.retriesSubscription = null;
+                this.errors = undefined;
+                this.retriesSubscription = undefined;
               }
 
               this._unsubscribeAndRecycle();
@@ -103242,19 +103805,19 @@
 
             if (errors) {
               errors.unsubscribe();
-              this.errors = null;
+              this.errors = undefined;
             }
 
             if (retriesSubscription) {
               retriesSubscription.unsubscribe();
-              this.retriesSubscription = null;
+              this.retriesSubscription = undefined;
             }
 
-            this.retries = null;
+            this.retries = undefined;
           }
         }, {
           key: "notifyNext",
-          value: function notifyNext(outerValue, innerValue, outerIndex, innerIndex, innerSub) {
+          value: function notifyNext() {
             var _unsubscribe = this._unsubscribe;
             this._unsubscribe = null;
 
@@ -103266,7 +103829,7 @@
         }]);
 
         return RetryWhenSubscriber;
-      }(_OuterSubscriber__WEBPACK_IMPORTED_MODULE_1__["OuterSubscriber"]); //# sourceMappingURL=retryWhen.js.map
+      }(_innerSubscribe__WEBPACK_IMPORTED_MODULE_1__["SimpleOuterSubscriber"]); //# sourceMappingURL=retryWhen.js.map
 
       /***/
 
@@ -103294,15 +103857,9 @@
       /* harmony import */
 
 
-      var _OuterSubscriber__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
-      /*! ../OuterSubscriber */
-      "./node_modules/rxjs/_esm2015/internal/OuterSubscriber.js");
-      /* harmony import */
-
-
-      var _util_subscribeToResult__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
-      /*! ../util/subscribeToResult */
-      "./node_modules/rxjs/_esm2015/internal/util/subscribeToResult.js");
+      var _innerSubscribe__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+      /*! ../innerSubscribe */
+      "./node_modules/rxjs/_esm2015/internal/innerSubscribe.js");
 
       function sample(notifier) {
         return function (source) {
@@ -103322,7 +103879,7 @@
           value: function call(subscriber, source) {
             var sampleSubscriber = new SampleSubscriber(subscriber);
             var subscription = source.subscribe(sampleSubscriber);
-            subscription.add(Object(_util_subscribeToResult__WEBPACK_IMPORTED_MODULE_1__["subscribeToResult"])(sampleSubscriber, this.notifier));
+            subscription.add(Object(_innerSubscribe__WEBPACK_IMPORTED_MODULE_0__["innerSubscribe"])(this.notifier, new _innerSubscribe__WEBPACK_IMPORTED_MODULE_0__["SimpleInnerSubscriber"](sampleSubscriber)));
             return subscription;
           }
         }]);
@@ -103330,19 +103887,19 @@
         return SampleOperator;
       }();
 
-      var SampleSubscriber = /*#__PURE__*/function (_OuterSubscriber__WEB20) {
-        _inherits(SampleSubscriber, _OuterSubscriber__WEB20);
+      var SampleSubscriber = /*#__PURE__*/function (_innerSubscribe__WEBP16) {
+        _inherits(SampleSubscriber, _innerSubscribe__WEBP16);
 
-        var _super200 = _createSuper(SampleSubscriber);
+        var _super204 = _createSuper(SampleSubscriber);
 
         function SampleSubscriber() {
-          var _this300;
+          var _this303;
 
           _classCallCheck(this, SampleSubscriber);
 
-          _this300 = _super200.apply(this, arguments);
-          _this300.hasValue = false;
-          return _this300;
+          _this303 = _super204.apply(this, arguments);
+          _this303.hasValue = false;
+          return _this303;
         }
 
         _createClass2(SampleSubscriber, [{
@@ -103353,7 +103910,7 @@
           }
         }, {
           key: "notifyNext",
-          value: function notifyNext(outerValue, innerValue, outerIndex, innerIndex, innerSub) {
+          value: function notifyNext() {
             this.emitValue();
           }
         }, {
@@ -103372,7 +103929,7 @@
         }]);
 
         return SampleSubscriber;
-      }(_OuterSubscriber__WEBPACK_IMPORTED_MODULE_0__["OuterSubscriber"]); //# sourceMappingURL=sample.js.map
+      }(_innerSubscribe__WEBPACK_IMPORTED_MODULE_0__["SimpleOuterSubscriber"]); //# sourceMappingURL=sample.js.map
 
       /***/
 
@@ -103435,27 +103992,27 @@
         return SampleTimeOperator;
       }();
 
-      var SampleTimeSubscriber = /*#__PURE__*/function (_Subscriber__WEBPACK_32) {
-        _inherits(SampleTimeSubscriber, _Subscriber__WEBPACK_32);
+      var SampleTimeSubscriber = /*#__PURE__*/function (_Subscriber__WEBPACK_36) {
+        _inherits(SampleTimeSubscriber, _Subscriber__WEBPACK_36);
 
-        var _super201 = _createSuper(SampleTimeSubscriber);
+        var _super205 = _createSuper(SampleTimeSubscriber);
 
         function SampleTimeSubscriber(destination, period, scheduler) {
-          var _this301;
+          var _this304;
 
           _classCallCheck(this, SampleTimeSubscriber);
 
-          _this301 = _super201.call(this, destination);
-          _this301.period = period;
-          _this301.scheduler = scheduler;
-          _this301.hasValue = false;
+          _this304 = _super205.call(this, destination);
+          _this304.period = period;
+          _this304.scheduler = scheduler;
+          _this304.hasValue = false;
 
-          _this301.add(scheduler.schedule(dispatchNotification, period, {
-            subscriber: _assertThisInitialized(_this301),
+          _this304.add(scheduler.schedule(dispatchNotification, period, {
+            subscriber: _assertThisInitialized(_this304),
             period: period
           }));
 
-          return _this301;
+          return _this304;
         }
 
         _createClass2(SampleTimeSubscriber, [{
@@ -103547,22 +104104,22 @@
         return ScanOperator;
       }();
 
-      var ScanSubscriber = /*#__PURE__*/function (_Subscriber__WEBPACK_33) {
-        _inherits(ScanSubscriber, _Subscriber__WEBPACK_33);
+      var ScanSubscriber = /*#__PURE__*/function (_Subscriber__WEBPACK_37) {
+        _inherits(ScanSubscriber, _Subscriber__WEBPACK_37);
 
-        var _super202 = _createSuper(ScanSubscriber);
+        var _super206 = _createSuper(ScanSubscriber);
 
         function ScanSubscriber(destination, accumulator, _seed, hasSeed) {
-          var _this302;
+          var _this305;
 
           _classCallCheck(this, ScanSubscriber);
 
-          _this302 = _super202.call(this, destination);
-          _this302.accumulator = accumulator;
-          _this302._seed = _seed;
-          _this302.hasSeed = hasSeed;
-          _this302.index = 0;
-          return _this302;
+          _this305 = _super206.call(this, destination);
+          _this305.accumulator = accumulator;
+          _this305._seed = _seed;
+          _this305.hasSeed = hasSeed;
+          _this305.index = 0;
+          return _this305;
         }
 
         _createClass2(ScanSubscriber, [{
@@ -103670,26 +104227,26 @@
         return SequenceEqualOperator;
       }();
 
-      var SequenceEqualSubscriber = /*#__PURE__*/function (_Subscriber__WEBPACK_34) {
-        _inherits(SequenceEqualSubscriber, _Subscriber__WEBPACK_34);
+      var SequenceEqualSubscriber = /*#__PURE__*/function (_Subscriber__WEBPACK_38) {
+        _inherits(SequenceEqualSubscriber, _Subscriber__WEBPACK_38);
 
-        var _super203 = _createSuper(SequenceEqualSubscriber);
+        var _super207 = _createSuper(SequenceEqualSubscriber);
 
         function SequenceEqualSubscriber(destination, compareTo, comparator) {
-          var _this303;
+          var _this306;
 
           _classCallCheck(this, SequenceEqualSubscriber);
 
-          _this303 = _super203.call(this, destination);
-          _this303.compareTo = compareTo;
-          _this303.comparator = comparator;
-          _this303._a = [];
-          _this303._b = [];
-          _this303._oneComplete = false;
+          _this306 = _super207.call(this, destination);
+          _this306.compareTo = compareTo;
+          _this306.comparator = comparator;
+          _this306._a = [];
+          _this306._b = [];
+          _this306._oneComplete = false;
 
-          _this303.destination.add(compareTo.subscribe(new SequenceEqualCompareToSubscriber(destination, _assertThisInitialized(_this303))));
+          _this306.destination.add(compareTo.subscribe(new SequenceEqualCompareToSubscriber(destination, _assertThisInitialized(_this306))));
 
-          return _this303;
+          return _this306;
         }
 
         _createClass2(SequenceEqualSubscriber, [{
@@ -103771,19 +104328,19 @@
         return SequenceEqualSubscriber;
       }(_Subscriber__WEBPACK_IMPORTED_MODULE_0__["Subscriber"]);
 
-      var SequenceEqualCompareToSubscriber = /*#__PURE__*/function (_Subscriber__WEBPACK_35) {
-        _inherits(SequenceEqualCompareToSubscriber, _Subscriber__WEBPACK_35);
+      var SequenceEqualCompareToSubscriber = /*#__PURE__*/function (_Subscriber__WEBPACK_39) {
+        _inherits(SequenceEqualCompareToSubscriber, _Subscriber__WEBPACK_39);
 
-        var _super204 = _createSuper(SequenceEqualCompareToSubscriber);
+        var _super208 = _createSuper(SequenceEqualCompareToSubscriber);
 
         function SequenceEqualCompareToSubscriber(destination, parent) {
-          var _this304;
+          var _this307;
 
           _classCallCheck(this, SequenceEqualCompareToSubscriber);
 
-          _this304 = _super204.call(this, destination);
-          _this304.parent = parent;
-          return _this304;
+          _this307 = _super208.call(this, destination);
+          _this307.parent = parent;
+          return _this307;
         }
 
         _createClass2(SequenceEqualCompareToSubscriber, [{
@@ -104020,22 +104577,22 @@
         return SingleOperator;
       }();
 
-      var SingleSubscriber = /*#__PURE__*/function (_Subscriber__WEBPACK_36) {
-        _inherits(SingleSubscriber, _Subscriber__WEBPACK_36);
+      var SingleSubscriber = /*#__PURE__*/function (_Subscriber__WEBPACK_40) {
+        _inherits(SingleSubscriber, _Subscriber__WEBPACK_40);
 
-        var _super205 = _createSuper(SingleSubscriber);
+        var _super209 = _createSuper(SingleSubscriber);
 
         function SingleSubscriber(destination, predicate, source) {
-          var _this305;
+          var _this308;
 
           _classCallCheck(this, SingleSubscriber);
 
-          _this305 = _super205.call(this, destination);
-          _this305.predicate = predicate;
-          _this305.source = source;
-          _this305.seenValue = false;
-          _this305.index = 0;
-          return _this305;
+          _this308 = _super209.call(this, destination);
+          _this308.predicate = predicate;
+          _this308.source = source;
+          _this308.seenValue = false;
+          _this308.index = 0;
+          return _this308;
         }
 
         _createClass2(SingleSubscriber, [{
@@ -104140,20 +104697,20 @@
         return SkipOperator;
       }();
 
-      var SkipSubscriber = /*#__PURE__*/function (_Subscriber__WEBPACK_37) {
-        _inherits(SkipSubscriber, _Subscriber__WEBPACK_37);
+      var SkipSubscriber = /*#__PURE__*/function (_Subscriber__WEBPACK_41) {
+        _inherits(SkipSubscriber, _Subscriber__WEBPACK_41);
 
-        var _super206 = _createSuper(SkipSubscriber);
+        var _super210 = _createSuper(SkipSubscriber);
 
         function SkipSubscriber(destination, total) {
-          var _this306;
+          var _this309;
 
           _classCallCheck(this, SkipSubscriber);
 
-          _this306 = _super206.call(this, destination);
-          _this306.total = total;
-          _this306.count = 0;
-          return _this306;
+          _this309 = _super210.call(this, destination);
+          _this309.total = total;
+          _this309.count = 0;
+          return _this309;
         }
 
         _createClass2(SkipSubscriber, [{
@@ -104235,21 +104792,21 @@
         return SkipLastOperator;
       }();
 
-      var SkipLastSubscriber = /*#__PURE__*/function (_Subscriber__WEBPACK_38) {
-        _inherits(SkipLastSubscriber, _Subscriber__WEBPACK_38);
+      var SkipLastSubscriber = /*#__PURE__*/function (_Subscriber__WEBPACK_42) {
+        _inherits(SkipLastSubscriber, _Subscriber__WEBPACK_42);
 
-        var _super207 = _createSuper(SkipLastSubscriber);
+        var _super211 = _createSuper(SkipLastSubscriber);
 
         function SkipLastSubscriber(destination, _skipCount) {
-          var _this307;
+          var _this310;
 
           _classCallCheck(this, SkipLastSubscriber);
 
-          _this307 = _super207.call(this, destination);
-          _this307._skipCount = _skipCount;
-          _this307._count = 0;
-          _this307._ring = new Array(_skipCount);
-          return _this307;
+          _this310 = _super211.call(this, destination);
+          _this310._skipCount = _skipCount;
+          _this310._count = 0;
+          _this310._ring = new Array(_skipCount);
+          return _this310;
         }
 
         _createClass2(SkipLastSubscriber, [{
@@ -104299,21 +104856,9 @@
       /* harmony import */
 
 
-      var _OuterSubscriber__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
-      /*! ../OuterSubscriber */
-      "./node_modules/rxjs/_esm2015/internal/OuterSubscriber.js");
-      /* harmony import */
-
-
-      var _InnerSubscriber__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
-      /*! ../InnerSubscriber */
-      "./node_modules/rxjs/_esm2015/internal/InnerSubscriber.js");
-      /* harmony import */
-
-
-      var _util_subscribeToResult__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
-      /*! ../util/subscribeToResult */
-      "./node_modules/rxjs/_esm2015/internal/util/subscribeToResult.js");
+      var _innerSubscribe__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+      /*! ../innerSubscribe */
+      "./node_modules/rxjs/_esm2015/internal/innerSubscribe.js");
 
       function skipUntil(notifier) {
         return function (source) {
@@ -104338,32 +104883,32 @@
         return SkipUntilOperator;
       }();
 
-      var SkipUntilSubscriber = /*#__PURE__*/function (_OuterSubscriber__WEB21) {
-        _inherits(SkipUntilSubscriber, _OuterSubscriber__WEB21);
+      var SkipUntilSubscriber = /*#__PURE__*/function (_innerSubscribe__WEBP17) {
+        _inherits(SkipUntilSubscriber, _innerSubscribe__WEBP17);
 
-        var _super208 = _createSuper(SkipUntilSubscriber);
+        var _super212 = _createSuper(SkipUntilSubscriber);
 
         function SkipUntilSubscriber(destination, notifier) {
-          var _this308;
+          var _this311;
 
           _classCallCheck(this, SkipUntilSubscriber);
 
-          _this308 = _super208.call(this, destination);
-          _this308.hasValue = false;
-          var innerSubscriber = new _InnerSubscriber__WEBPACK_IMPORTED_MODULE_1__["InnerSubscriber"](_assertThisInitialized(_this308), undefined, undefined);
+          _this311 = _super212.call(this, destination);
+          _this311.hasValue = false;
+          var innerSubscriber = new _innerSubscribe__WEBPACK_IMPORTED_MODULE_0__["SimpleInnerSubscriber"](_assertThisInitialized(_this311));
 
-          _this308.add(innerSubscriber);
+          _this311.add(innerSubscriber);
 
-          _this308.innerSubscription = innerSubscriber;
-          var innerSubscription = Object(_util_subscribeToResult__WEBPACK_IMPORTED_MODULE_2__["subscribeToResult"])(_assertThisInitialized(_this308), notifier, undefined, undefined, innerSubscriber);
+          _this311.innerSubscription = innerSubscriber;
+          var innerSubscription = Object(_innerSubscribe__WEBPACK_IMPORTED_MODULE_0__["innerSubscribe"])(notifier, innerSubscriber);
 
           if (innerSubscription !== innerSubscriber) {
-            _this308.add(innerSubscription);
+            _this311.add(innerSubscription);
 
-            _this308.innerSubscription = innerSubscription;
+            _this311.innerSubscription = innerSubscription;
           }
 
-          return _this308;
+          return _this311;
         }
 
         _createClass2(SkipUntilSubscriber, [{
@@ -104375,7 +104920,7 @@
           }
         }, {
           key: "notifyNext",
-          value: function notifyNext(outerValue, innerValue, outerIndex, innerIndex, innerSub) {
+          value: function notifyNext() {
             this.hasValue = true;
 
             if (this.innerSubscription) {
@@ -104388,7 +104933,7 @@
         }]);
 
         return SkipUntilSubscriber;
-      }(_OuterSubscriber__WEBPACK_IMPORTED_MODULE_0__["OuterSubscriber"]); //# sourceMappingURL=skipUntil.js.map
+      }(_innerSubscribe__WEBPACK_IMPORTED_MODULE_0__["SimpleOuterSubscriber"]); //# sourceMappingURL=skipUntil.js.map
 
       /***/
 
@@ -104443,21 +104988,21 @@
         return SkipWhileOperator;
       }();
 
-      var SkipWhileSubscriber = /*#__PURE__*/function (_Subscriber__WEBPACK_39) {
-        _inherits(SkipWhileSubscriber, _Subscriber__WEBPACK_39);
+      var SkipWhileSubscriber = /*#__PURE__*/function (_Subscriber__WEBPACK_43) {
+        _inherits(SkipWhileSubscriber, _Subscriber__WEBPACK_43);
 
-        var _super209 = _createSuper(SkipWhileSubscriber);
+        var _super213 = _createSuper(SkipWhileSubscriber);
 
         function SkipWhileSubscriber(destination, predicate) {
-          var _this309;
+          var _this312;
 
           _classCallCheck(this, SkipWhileSubscriber);
 
-          _this309 = _super209.call(this, destination);
-          _this309.predicate = predicate;
-          _this309.skipping = true;
-          _this309.index = 0;
-          return _this309;
+          _this312 = _super213.call(this, destination);
+          _this312.predicate = predicate;
+          _this312.skipping = true;
+          _this312.index = 0;
+          return _this312;
         }
 
         _createClass2(SkipWhileSubscriber, [{
@@ -104664,39 +105209,27 @@
       /* harmony import */
 
 
-      var _OuterSubscriber__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
-      /*! ../OuterSubscriber */
-      "./node_modules/rxjs/_esm2015/internal/OuterSubscriber.js");
-      /* harmony import */
-
-
-      var _InnerSubscriber__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
-      /*! ../InnerSubscriber */
-      "./node_modules/rxjs/_esm2015/internal/InnerSubscriber.js");
-      /* harmony import */
-
-
-      var _util_subscribeToResult__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
-      /*! ../util/subscribeToResult */
-      "./node_modules/rxjs/_esm2015/internal/util/subscribeToResult.js");
-      /* harmony import */
-
-
-      var _map__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+      var _map__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
       /*! ./map */
       "./node_modules/rxjs/_esm2015/internal/operators/map.js");
       /* harmony import */
 
 
-      var _observable_from__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
+      var _observable_from__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
       /*! ../observable/from */
       "./node_modules/rxjs/_esm2015/internal/observable/from.js");
+      /* harmony import */
+
+
+      var _innerSubscribe__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+      /*! ../innerSubscribe */
+      "./node_modules/rxjs/_esm2015/internal/innerSubscribe.js");
 
       function switchMap(project, resultSelector) {
         if (typeof resultSelector === 'function') {
           return function (source) {
             return source.pipe(switchMap(function (a, i) {
-              return Object(_observable_from__WEBPACK_IMPORTED_MODULE_4__["from"])(project(a, i)).pipe(Object(_map__WEBPACK_IMPORTED_MODULE_3__["map"])(function (b, ii) {
+              return Object(_observable_from__WEBPACK_IMPORTED_MODULE_1__["from"])(project(a, i)).pipe(Object(_map__WEBPACK_IMPORTED_MODULE_0__["map"])(function (b, ii) {
                 return resultSelector(a, b, i, ii);
               }));
             }));
@@ -104725,20 +105258,20 @@
         return SwitchMapOperator;
       }();
 
-      var SwitchMapSubscriber = /*#__PURE__*/function (_OuterSubscriber__WEB22) {
-        _inherits(SwitchMapSubscriber, _OuterSubscriber__WEB22);
+      var SwitchMapSubscriber = /*#__PURE__*/function (_innerSubscribe__WEBP18) {
+        _inherits(SwitchMapSubscriber, _innerSubscribe__WEBP18);
 
-        var _super210 = _createSuper(SwitchMapSubscriber);
+        var _super214 = _createSuper(SwitchMapSubscriber);
 
         function SwitchMapSubscriber(destination, project) {
-          var _this310;
+          var _this313;
 
           _classCallCheck(this, SwitchMapSubscriber);
 
-          _this310 = _super210.call(this, destination);
-          _this310.project = project;
-          _this310.index = 0;
-          return _this310;
+          _this313 = _super214.call(this, destination);
+          _this313.project = project;
+          _this313.index = 0;
+          return _this313;
         }
 
         _createClass2(SwitchMapSubscriber, [{
@@ -104754,21 +105287,21 @@
               return;
             }
 
-            this._innerSub(result, value, index);
+            this._innerSub(result);
           }
         }, {
           key: "_innerSub",
-          value: function _innerSub(result, value, index) {
+          value: function _innerSub(result) {
             var innerSubscription = this.innerSubscription;
 
             if (innerSubscription) {
               innerSubscription.unsubscribe();
             }
 
-            var innerSubscriber = new _InnerSubscriber__WEBPACK_IMPORTED_MODULE_1__["InnerSubscriber"](this, value, index);
+            var innerSubscriber = new _innerSubscribe__WEBPACK_IMPORTED_MODULE_2__["SimpleInnerSubscriber"](this);
             var destination = this.destination;
             destination.add(innerSubscriber);
-            this.innerSubscription = Object(_util_subscribeToResult__WEBPACK_IMPORTED_MODULE_2__["subscribeToResult"])(this, result, undefined, undefined, innerSubscriber);
+            this.innerSubscription = Object(_innerSubscribe__WEBPACK_IMPORTED_MODULE_2__["innerSubscribe"])(result, innerSubscriber);
 
             if (this.innerSubscription !== innerSubscriber) {
               destination.add(this.innerSubscription);
@@ -104788,14 +105321,12 @@
         }, {
           key: "_unsubscribe",
           value: function _unsubscribe() {
-            this.innerSubscription = null;
+            this.innerSubscription = undefined;
           }
         }, {
           key: "notifyComplete",
-          value: function notifyComplete(innerSub) {
-            var destination = this.destination;
-            destination.remove(innerSub);
-            this.innerSubscription = null;
+          value: function notifyComplete() {
+            this.innerSubscription = undefined;
 
             if (this.isStopped) {
               _get(_getPrototypeOf(SwitchMapSubscriber.prototype), "_complete", this).call(this);
@@ -104803,13 +105334,13 @@
           }
         }, {
           key: "notifyNext",
-          value: function notifyNext(outerValue, innerValue, outerIndex, innerIndex, innerSub) {
+          value: function notifyNext(innerValue) {
             this.destination.next(innerValue);
           }
         }]);
 
         return SwitchMapSubscriber;
-      }(_OuterSubscriber__WEBPACK_IMPORTED_MODULE_0__["OuterSubscriber"]); //# sourceMappingURL=switchMap.js.map
+      }(_innerSubscribe__WEBPACK_IMPORTED_MODULE_2__["SimpleOuterSubscriber"]); //# sourceMappingURL=switchMap.js.map
 
       /***/
 
@@ -104922,20 +105453,20 @@
         return TakeOperator;
       }();
 
-      var TakeSubscriber = /*#__PURE__*/function (_Subscriber__WEBPACK_40) {
-        _inherits(TakeSubscriber, _Subscriber__WEBPACK_40);
+      var TakeSubscriber = /*#__PURE__*/function (_Subscriber__WEBPACK_44) {
+        _inherits(TakeSubscriber, _Subscriber__WEBPACK_44);
 
-        var _super211 = _createSuper(TakeSubscriber);
+        var _super215 = _createSuper(TakeSubscriber);
 
         function TakeSubscriber(destination, total) {
-          var _this311;
+          var _this314;
 
           _classCallCheck(this, TakeSubscriber);
 
-          _this311 = _super211.call(this, destination);
-          _this311.total = total;
-          _this311.count = 0;
-          return _this311;
+          _this314 = _super215.call(this, destination);
+          _this314.total = total;
+          _this314.count = 0;
+          return _this314;
         }
 
         _createClass2(TakeSubscriber, [{
@@ -105031,21 +105562,21 @@
         return TakeLastOperator;
       }();
 
-      var TakeLastSubscriber = /*#__PURE__*/function (_Subscriber__WEBPACK_41) {
-        _inherits(TakeLastSubscriber, _Subscriber__WEBPACK_41);
+      var TakeLastSubscriber = /*#__PURE__*/function (_Subscriber__WEBPACK_45) {
+        _inherits(TakeLastSubscriber, _Subscriber__WEBPACK_45);
 
-        var _super212 = _createSuper(TakeLastSubscriber);
+        var _super216 = _createSuper(TakeLastSubscriber);
 
         function TakeLastSubscriber(destination, total) {
-          var _this312;
+          var _this315;
 
           _classCallCheck(this, TakeLastSubscriber);
 
-          _this312 = _super212.call(this, destination);
-          _this312.total = total;
-          _this312.ring = new Array();
-          _this312.count = 0;
-          return _this312;
+          _this315 = _super216.call(this, destination);
+          _this315.total = total;
+          _this315.ring = new Array();
+          _this315.count = 0;
+          return _this315;
         }
 
         _createClass2(TakeLastSubscriber, [{
@@ -105111,15 +105642,9 @@
       /* harmony import */
 
 
-      var _OuterSubscriber__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
-      /*! ../OuterSubscriber */
-      "./node_modules/rxjs/_esm2015/internal/OuterSubscriber.js");
-      /* harmony import */
-
-
-      var _util_subscribeToResult__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
-      /*! ../util/subscribeToResult */
-      "./node_modules/rxjs/_esm2015/internal/util/subscribeToResult.js");
+      var _innerSubscribe__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+      /*! ../innerSubscribe */
+      "./node_modules/rxjs/_esm2015/internal/innerSubscribe.js");
 
       function takeUntil(notifier) {
         return function (source) {
@@ -105138,7 +105663,7 @@
           key: "call",
           value: function call(subscriber, source) {
             var takeUntilSubscriber = new TakeUntilSubscriber(subscriber);
-            var notifierSubscription = Object(_util_subscribeToResult__WEBPACK_IMPORTED_MODULE_1__["subscribeToResult"])(takeUntilSubscriber, this.notifier);
+            var notifierSubscription = Object(_innerSubscribe__WEBPACK_IMPORTED_MODULE_0__["innerSubscribe"])(this.notifier, new _innerSubscribe__WEBPACK_IMPORTED_MODULE_0__["SimpleInnerSubscriber"](takeUntilSubscriber));
 
             if (notifierSubscription && !takeUntilSubscriber.seenValue) {
               takeUntilSubscriber.add(notifierSubscription);
@@ -105152,24 +105677,24 @@
         return TakeUntilOperator;
       }();
 
-      var TakeUntilSubscriber = /*#__PURE__*/function (_OuterSubscriber__WEB23) {
-        _inherits(TakeUntilSubscriber, _OuterSubscriber__WEB23);
+      var TakeUntilSubscriber = /*#__PURE__*/function (_innerSubscribe__WEBP19) {
+        _inherits(TakeUntilSubscriber, _innerSubscribe__WEBP19);
 
-        var _super213 = _createSuper(TakeUntilSubscriber);
+        var _super217 = _createSuper(TakeUntilSubscriber);
 
         function TakeUntilSubscriber(destination) {
-          var _this313;
+          var _this316;
 
           _classCallCheck(this, TakeUntilSubscriber);
 
-          _this313 = _super213.call(this, destination);
-          _this313.seenValue = false;
-          return _this313;
+          _this316 = _super217.call(this, destination);
+          _this316.seenValue = false;
+          return _this316;
         }
 
         _createClass2(TakeUntilSubscriber, [{
           key: "notifyNext",
-          value: function notifyNext(outerValue, innerValue, outerIndex, innerIndex, innerSub) {
+          value: function notifyNext() {
             this.seenValue = true;
             this.complete();
           }
@@ -105179,7 +105704,7 @@
         }]);
 
         return TakeUntilSubscriber;
-      }(_OuterSubscriber__WEBPACK_IMPORTED_MODULE_0__["OuterSubscriber"]); //# sourceMappingURL=takeUntil.js.map
+      }(_innerSubscribe__WEBPACK_IMPORTED_MODULE_0__["SimpleOuterSubscriber"]); //# sourceMappingURL=takeUntil.js.map
 
       /***/
 
@@ -105236,21 +105761,21 @@
         return TakeWhileOperator;
       }();
 
-      var TakeWhileSubscriber = /*#__PURE__*/function (_Subscriber__WEBPACK_42) {
-        _inherits(TakeWhileSubscriber, _Subscriber__WEBPACK_42);
+      var TakeWhileSubscriber = /*#__PURE__*/function (_Subscriber__WEBPACK_46) {
+        _inherits(TakeWhileSubscriber, _Subscriber__WEBPACK_46);
 
-        var _super214 = _createSuper(TakeWhileSubscriber);
+        var _super218 = _createSuper(TakeWhileSubscriber);
 
         function TakeWhileSubscriber(destination, predicate, inclusive) {
-          var _this314;
+          var _this317;
 
           _classCallCheck(this, TakeWhileSubscriber);
 
-          _this314 = _super214.call(this, destination);
-          _this314.predicate = predicate;
-          _this314.inclusive = inclusive;
-          _this314.index = 0;
-          return _this314;
+          _this317 = _super218.call(this, destination);
+          _this317.predicate = predicate;
+          _this317.inclusive = inclusive;
+          _this317.index = 0;
+          return _this317;
         }
 
         _createClass2(TakeWhileSubscriber, [{
@@ -105355,34 +105880,34 @@
         return DoOperator;
       }();
 
-      var TapSubscriber = /*#__PURE__*/function (_Subscriber__WEBPACK_43) {
-        _inherits(TapSubscriber, _Subscriber__WEBPACK_43);
+      var TapSubscriber = /*#__PURE__*/function (_Subscriber__WEBPACK_47) {
+        _inherits(TapSubscriber, _Subscriber__WEBPACK_47);
 
-        var _super215 = _createSuper(TapSubscriber);
+        var _super219 = _createSuper(TapSubscriber);
 
         function TapSubscriber(destination, observerOrNext, error, complete) {
-          var _this315;
+          var _this318;
 
           _classCallCheck(this, TapSubscriber);
 
-          _this315 = _super215.call(this, destination);
-          _this315._tapNext = _util_noop__WEBPACK_IMPORTED_MODULE_1__["noop"];
-          _this315._tapError = _util_noop__WEBPACK_IMPORTED_MODULE_1__["noop"];
-          _this315._tapComplete = _util_noop__WEBPACK_IMPORTED_MODULE_1__["noop"];
-          _this315._tapError = error || _util_noop__WEBPACK_IMPORTED_MODULE_1__["noop"];
-          _this315._tapComplete = complete || _util_noop__WEBPACK_IMPORTED_MODULE_1__["noop"];
+          _this318 = _super219.call(this, destination);
+          _this318._tapNext = _util_noop__WEBPACK_IMPORTED_MODULE_1__["noop"];
+          _this318._tapError = _util_noop__WEBPACK_IMPORTED_MODULE_1__["noop"];
+          _this318._tapComplete = _util_noop__WEBPACK_IMPORTED_MODULE_1__["noop"];
+          _this318._tapError = error || _util_noop__WEBPACK_IMPORTED_MODULE_1__["noop"];
+          _this318._tapComplete = complete || _util_noop__WEBPACK_IMPORTED_MODULE_1__["noop"];
 
           if (Object(_util_isFunction__WEBPACK_IMPORTED_MODULE_2__["isFunction"])(observerOrNext)) {
-            _this315._context = _assertThisInitialized(_this315);
-            _this315._tapNext = observerOrNext;
+            _this318._context = _assertThisInitialized(_this318);
+            _this318._tapNext = observerOrNext;
           } else if (observerOrNext) {
-            _this315._context = observerOrNext;
-            _this315._tapNext = observerOrNext.next || _util_noop__WEBPACK_IMPORTED_MODULE_1__["noop"];
-            _this315._tapError = observerOrNext.error || _util_noop__WEBPACK_IMPORTED_MODULE_1__["noop"];
-            _this315._tapComplete = observerOrNext.complete || _util_noop__WEBPACK_IMPORTED_MODULE_1__["noop"];
+            _this318._context = observerOrNext;
+            _this318._tapNext = observerOrNext.next || _util_noop__WEBPACK_IMPORTED_MODULE_1__["noop"];
+            _this318._tapError = observerOrNext.error || _util_noop__WEBPACK_IMPORTED_MODULE_1__["noop"];
+            _this318._tapComplete = observerOrNext.complete || _util_noop__WEBPACK_IMPORTED_MODULE_1__["noop"];
           }
 
-          return _this315;
+          return _this318;
         }
 
         _createClass2(TapSubscriber, [{
@@ -105458,15 +105983,9 @@
       /* harmony import */
 
 
-      var _OuterSubscriber__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
-      /*! ../OuterSubscriber */
-      "./node_modules/rxjs/_esm2015/internal/OuterSubscriber.js");
-      /* harmony import */
-
-
-      var _util_subscribeToResult__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
-      /*! ../util/subscribeToResult */
-      "./node_modules/rxjs/_esm2015/internal/util/subscribeToResult.js");
+      var _innerSubscribe__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+      /*! ../innerSubscribe */
+      "./node_modules/rxjs/_esm2015/internal/innerSubscribe.js");
 
       var defaultThrottleConfig = {
         leading: true,
@@ -105476,7 +105995,7 @@
       function throttle(durationSelector) {
         var config = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : defaultThrottleConfig;
         return function (source) {
-          return source.lift(new ThrottleOperator(durationSelector, config.leading, config.trailing));
+          return source.lift(new ThrottleOperator(durationSelector, !!config.leading, !!config.trailing));
         };
       }
 
@@ -105499,23 +106018,23 @@
         return ThrottleOperator;
       }();
 
-      var ThrottleSubscriber = /*#__PURE__*/function (_OuterSubscriber__WEB24) {
-        _inherits(ThrottleSubscriber, _OuterSubscriber__WEB24);
+      var ThrottleSubscriber = /*#__PURE__*/function (_innerSubscribe__WEBP20) {
+        _inherits(ThrottleSubscriber, _innerSubscribe__WEBP20);
 
-        var _super216 = _createSuper(ThrottleSubscriber);
+        var _super220 = _createSuper(ThrottleSubscriber);
 
         function ThrottleSubscriber(destination, durationSelector, _leading, _trailing) {
-          var _this316;
+          var _this319;
 
           _classCallCheck(this, ThrottleSubscriber);
 
-          _this316 = _super216.call(this, destination);
-          _this316.destination = destination;
-          _this316.durationSelector = durationSelector;
-          _this316._leading = _leading;
-          _this316._trailing = _trailing;
-          _this316._hasValue = false;
-          return _this316;
+          _this319 = _super220.call(this, destination);
+          _this319.destination = destination;
+          _this319.durationSelector = durationSelector;
+          _this319._leading = _leading;
+          _this319._trailing = _trailing;
+          _this319._hasValue = false;
+          return _this319;
         }
 
         _createClass2(ThrottleSubscriber, [{
@@ -105544,7 +106063,7 @@
             }
 
             this._hasValue = false;
-            this._sendValue = null;
+            this._sendValue = undefined;
           }
         }, {
           key: "throttle",
@@ -105552,7 +106071,7 @@
             var duration = this.tryDurationSelector(value);
 
             if (!!duration) {
-              this.add(this._throttled = Object(_util_subscribeToResult__WEBPACK_IMPORTED_MODULE_1__["subscribeToResult"])(this, duration));
+              this.add(this._throttled = Object(_innerSubscribe__WEBPACK_IMPORTED_MODULE_0__["innerSubscribe"])(duration, new _innerSubscribe__WEBPACK_IMPORTED_MODULE_0__["SimpleInnerSubscriber"](this)));
             }
           }
         }, {
@@ -105575,7 +106094,7 @@
               _throttled.unsubscribe();
             }
 
-            this._throttled = null;
+            this._throttled = undefined;
 
             if (_trailing) {
               this.send();
@@ -105583,7 +106102,7 @@
           }
         }, {
           key: "notifyNext",
-          value: function notifyNext(outerValue, innerValue, outerIndex, innerIndex, innerSub) {
+          value: function notifyNext() {
             this.throttlingDone();
           }
         }, {
@@ -105594,7 +106113,7 @@
         }]);
 
         return ThrottleSubscriber;
-      }(_OuterSubscriber__WEBPACK_IMPORTED_MODULE_0__["OuterSubscriber"]); //# sourceMappingURL=throttle.js.map
+      }(_innerSubscribe__WEBPACK_IMPORTED_MODULE_0__["SimpleOuterSubscriber"]); //# sourceMappingURL=throttle.js.map
 
       /***/
 
@@ -105666,24 +106185,24 @@
         return ThrottleTimeOperator;
       }();
 
-      var ThrottleTimeSubscriber = /*#__PURE__*/function (_Subscriber__WEBPACK_44) {
-        _inherits(ThrottleTimeSubscriber, _Subscriber__WEBPACK_44);
+      var ThrottleTimeSubscriber = /*#__PURE__*/function (_Subscriber__WEBPACK_48) {
+        _inherits(ThrottleTimeSubscriber, _Subscriber__WEBPACK_48);
 
-        var _super217 = _createSuper(ThrottleTimeSubscriber);
+        var _super221 = _createSuper(ThrottleTimeSubscriber);
 
         function ThrottleTimeSubscriber(destination, duration, scheduler, leading, trailing) {
-          var _this317;
+          var _this320;
 
           _classCallCheck(this, ThrottleTimeSubscriber);
 
-          _this317 = _super217.call(this, destination);
-          _this317.duration = duration;
-          _this317.scheduler = scheduler;
-          _this317.leading = leading;
-          _this317.trailing = trailing;
-          _this317._hasTrailingValue = false;
-          _this317._trailingValue = null;
-          return _this317;
+          _this320 = _super221.call(this, destination);
+          _this320.duration = duration;
+          _this320.scheduler = scheduler;
+          _this320.leading = leading;
+          _this320.trailing = trailing;
+          _this320._hasTrailingValue = false;
+          _this320._trailingValue = null;
+          return _this320;
         }
 
         _createClass2(ThrottleTimeSubscriber, [{
@@ -105804,20 +106323,20 @@
         return ThrowIfEmptyOperator;
       }();
 
-      var ThrowIfEmptySubscriber = /*#__PURE__*/function (_Subscriber__WEBPACK_45) {
-        _inherits(ThrowIfEmptySubscriber, _Subscriber__WEBPACK_45);
+      var ThrowIfEmptySubscriber = /*#__PURE__*/function (_Subscriber__WEBPACK_49) {
+        _inherits(ThrowIfEmptySubscriber, _Subscriber__WEBPACK_49);
 
-        var _super218 = _createSuper(ThrowIfEmptySubscriber);
+        var _super222 = _createSuper(ThrowIfEmptySubscriber);
 
         function ThrowIfEmptySubscriber(destination, errorFactory) {
-          var _this318;
+          var _this321;
 
           _classCallCheck(this, ThrowIfEmptySubscriber);
 
-          _this318 = _super218.call(this, destination);
-          _this318.errorFactory = errorFactory;
-          _this318.hasValue = false;
-          return _this318;
+          _this321 = _super222.call(this, destination);
+          _this321.errorFactory = errorFactory;
+          _this321.hasValue = false;
+          return _this321;
         }
 
         _createClass2(ThrowIfEmptySubscriber, [{
@@ -106029,15 +106548,9 @@
       /* harmony import */
 
 
-      var _OuterSubscriber__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
-      /*! ../OuterSubscriber */
-      "./node_modules/rxjs/_esm2015/internal/OuterSubscriber.js");
-      /* harmony import */
-
-
-      var _util_subscribeToResult__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
-      /*! ../util/subscribeToResult */
-      "./node_modules/rxjs/_esm2015/internal/util/subscribeToResult.js");
+      var _innerSubscribe__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+      /*! ../innerSubscribe */
+      "./node_modules/rxjs/_esm2015/internal/innerSubscribe.js");
 
       function timeoutWith(due, withObservable) {
         var scheduler = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : _scheduler_async__WEBPACK_IMPORTED_MODULE_0__["async"];
@@ -106068,26 +106581,25 @@
         return TimeoutWithOperator;
       }();
 
-      var TimeoutWithSubscriber = /*#__PURE__*/function (_OuterSubscriber__WEB25) {
-        _inherits(TimeoutWithSubscriber, _OuterSubscriber__WEB25);
+      var TimeoutWithSubscriber = /*#__PURE__*/function (_innerSubscribe__WEBP21) {
+        _inherits(TimeoutWithSubscriber, _innerSubscribe__WEBP21);
 
-        var _super219 = _createSuper(TimeoutWithSubscriber);
+        var _super223 = _createSuper(TimeoutWithSubscriber);
 
         function TimeoutWithSubscriber(destination, absoluteTimeout, waitFor, withObservable, scheduler) {
-          var _this319;
+          var _this322;
 
           _classCallCheck(this, TimeoutWithSubscriber);
 
-          _this319 = _super219.call(this, destination);
-          _this319.absoluteTimeout = absoluteTimeout;
-          _this319.waitFor = waitFor;
-          _this319.withObservable = withObservable;
-          _this319.scheduler = scheduler;
-          _this319.action = null;
+          _this322 = _super223.call(this, destination);
+          _this322.absoluteTimeout = absoluteTimeout;
+          _this322.waitFor = waitFor;
+          _this322.withObservable = withObservable;
+          _this322.scheduler = scheduler;
 
-          _this319.scheduleTimeout();
+          _this322.scheduleTimeout();
 
-          return _this319;
+          return _this322;
         }
 
         _createClass2(TimeoutWithSubscriber, [{
@@ -106113,7 +106625,7 @@
         }, {
           key: "_unsubscribe",
           value: function _unsubscribe() {
-            this.action = null;
+            this.action = undefined;
             this.scheduler = null;
             this.withObservable = null;
           }
@@ -106124,12 +106636,12 @@
 
             subscriber._unsubscribeAndRecycle();
 
-            subscriber.add(Object(_util_subscribeToResult__WEBPACK_IMPORTED_MODULE_3__["subscribeToResult"])(subscriber, withObservable));
+            subscriber.add(Object(_innerSubscribe__WEBPACK_IMPORTED_MODULE_2__["innerSubscribe"])(withObservable, new _innerSubscribe__WEBPACK_IMPORTED_MODULE_2__["SimpleInnerSubscriber"](subscriber)));
           }
         }]);
 
         return TimeoutWithSubscriber;
-      }(_OuterSubscriber__WEBPACK_IMPORTED_MODULE_2__["OuterSubscriber"]); //# sourceMappingURL=timeoutWith.js.map
+      }(_innerSubscribe__WEBPACK_IMPORTED_MODULE_2__["SimpleOuterSubscriber"]); //# sourceMappingURL=timeoutWith.js.map
 
       /***/
 
@@ -106262,15 +106774,9 @@
       /* harmony import */
 
 
-      var _OuterSubscriber__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
-      /*! ../OuterSubscriber */
-      "./node_modules/rxjs/_esm2015/internal/OuterSubscriber.js");
-      /* harmony import */
-
-
-      var _util_subscribeToResult__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
-      /*! ../util/subscribeToResult */
-      "./node_modules/rxjs/_esm2015/internal/util/subscribeToResult.js");
+      var _innerSubscribe__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+      /*! ../innerSubscribe */
+      "./node_modules/rxjs/_esm2015/internal/innerSubscribe.js");
 
       function window(windowBoundaries) {
         return function windowOperatorFunction(source) {
@@ -106292,7 +106798,7 @@
             var sourceSubscription = source.subscribe(windowSubscriber);
 
             if (!sourceSubscription.closed) {
-              windowSubscriber.add(Object(_util_subscribeToResult__WEBPACK_IMPORTED_MODULE_2__["subscribeToResult"])(windowSubscriber, this.windowBoundaries));
+              windowSubscriber.add(Object(_innerSubscribe__WEBPACK_IMPORTED_MODULE_1__["innerSubscribe"])(this.windowBoundaries, new _innerSubscribe__WEBPACK_IMPORTED_MODULE_1__["SimpleInnerSubscriber"](windowSubscriber)));
             }
 
             return sourceSubscription;
@@ -106302,35 +106808,35 @@
         return WindowOperator;
       }();
 
-      var WindowSubscriber = /*#__PURE__*/function (_OuterSubscriber__WEB26) {
-        _inherits(WindowSubscriber, _OuterSubscriber__WEB26);
+      var WindowSubscriber = /*#__PURE__*/function (_innerSubscribe__WEBP22) {
+        _inherits(WindowSubscriber, _innerSubscribe__WEBP22);
 
-        var _super220 = _createSuper(WindowSubscriber);
+        var _super224 = _createSuper(WindowSubscriber);
 
         function WindowSubscriber(destination) {
-          var _this320;
+          var _this323;
 
           _classCallCheck(this, WindowSubscriber);
 
-          _this320 = _super220.call(this, destination);
-          _this320.window = new _Subject__WEBPACK_IMPORTED_MODULE_0__["Subject"]();
-          destination.next(_this320.window);
-          return _this320;
+          _this323 = _super224.call(this, destination);
+          _this323.window = new _Subject__WEBPACK_IMPORTED_MODULE_0__["Subject"]();
+          destination.next(_this323.window);
+          return _this323;
         }
 
         _createClass2(WindowSubscriber, [{
           key: "notifyNext",
-          value: function notifyNext(outerValue, innerValue, outerIndex, innerIndex, innerSub) {
+          value: function notifyNext() {
             this.openWindow();
           }
         }, {
           key: "notifyError",
-          value: function notifyError(error, innerSub) {
+          value: function notifyError(error) {
             this._error(error);
           }
         }, {
           key: "notifyComplete",
-          value: function notifyComplete(innerSub) {
+          value: function notifyComplete() {
             this._complete();
           }
         }, {
@@ -106371,7 +106877,7 @@
         }]);
 
         return WindowSubscriber;
-      }(_OuterSubscriber__WEBPACK_IMPORTED_MODULE_1__["OuterSubscriber"]); //# sourceMappingURL=window.js.map
+      }(_innerSubscribe__WEBPACK_IMPORTED_MODULE_1__["SimpleOuterSubscriber"]); //# sourceMappingURL=window.js.map
 
       /***/
 
@@ -106434,24 +106940,24 @@
         return WindowCountOperator;
       }();
 
-      var WindowCountSubscriber = /*#__PURE__*/function (_Subscriber__WEBPACK_46) {
-        _inherits(WindowCountSubscriber, _Subscriber__WEBPACK_46);
+      var WindowCountSubscriber = /*#__PURE__*/function (_Subscriber__WEBPACK_50) {
+        _inherits(WindowCountSubscriber, _Subscriber__WEBPACK_50);
 
-        var _super221 = _createSuper(WindowCountSubscriber);
+        var _super225 = _createSuper(WindowCountSubscriber);
 
         function WindowCountSubscriber(destination, windowSize, startWindowEvery) {
-          var _this321;
+          var _this324;
 
           _classCallCheck(this, WindowCountSubscriber);
 
-          _this321 = _super221.call(this, destination);
-          _this321.destination = destination;
-          _this321.windowSize = windowSize;
-          _this321.startWindowEvery = startWindowEvery;
-          _this321.windows = [new _Subject__WEBPACK_IMPORTED_MODULE_1__["Subject"]()];
-          _this321.count = 0;
-          destination.next(_this321.windows[0]);
-          return _this321;
+          _this324 = _super225.call(this, destination);
+          _this324.destination = destination;
+          _this324.windowSize = windowSize;
+          _this324.startWindowEvery = startWindowEvery;
+          _this324.windows = [new _Subject__WEBPACK_IMPORTED_MODULE_1__["Subject"]()];
+          _this324.count = 0;
+          destination.next(_this324.windows[0]);
+          return _this324;
         }
 
         _createClass2(WindowCountSubscriber, [{
@@ -106620,16 +107126,16 @@
       var CountedSubject = /*#__PURE__*/function (_Subject__WEBPACK_IMP5) {
         _inherits(CountedSubject, _Subject__WEBPACK_IMP5);
 
-        var _super222 = _createSuper(CountedSubject);
+        var _super226 = _createSuper(CountedSubject);
 
         function CountedSubject() {
-          var _this322;
+          var _this325;
 
           _classCallCheck(this, CountedSubject);
 
-          _this322 = _super222.apply(this, arguments);
-          _this322._numberOfNextedValues = 0;
-          return _this322;
+          _this325 = _super226.apply(this, arguments);
+          _this325._numberOfNextedValues = 0;
+          return _this325;
         }
 
         _createClass2(CountedSubject, [{
@@ -106649,53 +107155,53 @@
         return CountedSubject;
       }(_Subject__WEBPACK_IMPORTED_MODULE_0__["Subject"]);
 
-      var WindowTimeSubscriber = /*#__PURE__*/function (_Subscriber__WEBPACK_47) {
-        _inherits(WindowTimeSubscriber, _Subscriber__WEBPACK_47);
+      var WindowTimeSubscriber = /*#__PURE__*/function (_Subscriber__WEBPACK_51) {
+        _inherits(WindowTimeSubscriber, _Subscriber__WEBPACK_51);
 
-        var _super223 = _createSuper(WindowTimeSubscriber);
+        var _super227 = _createSuper(WindowTimeSubscriber);
 
         function WindowTimeSubscriber(destination, windowTimeSpan, windowCreationInterval, maxWindowSize, scheduler) {
-          var _this323;
+          var _this326;
 
           _classCallCheck(this, WindowTimeSubscriber);
 
-          _this323 = _super223.call(this, destination);
-          _this323.destination = destination;
-          _this323.windowTimeSpan = windowTimeSpan;
-          _this323.windowCreationInterval = windowCreationInterval;
-          _this323.maxWindowSize = maxWindowSize;
-          _this323.scheduler = scheduler;
-          _this323.windows = [];
+          _this326 = _super227.call(this, destination);
+          _this326.destination = destination;
+          _this326.windowTimeSpan = windowTimeSpan;
+          _this326.windowCreationInterval = windowCreationInterval;
+          _this326.maxWindowSize = maxWindowSize;
+          _this326.scheduler = scheduler;
+          _this326.windows = [];
 
-          var window = _this323.openWindow();
+          var window = _this326.openWindow();
 
           if (windowCreationInterval !== null && windowCreationInterval >= 0) {
             var closeState = {
-              subscriber: _assertThisInitialized(_this323),
+              subscriber: _assertThisInitialized(_this326),
               window: window,
               context: null
             };
             var creationState = {
               windowTimeSpan: windowTimeSpan,
               windowCreationInterval: windowCreationInterval,
-              subscriber: _assertThisInitialized(_this323),
+              subscriber: _assertThisInitialized(_this326),
               scheduler: scheduler
             };
 
-            _this323.add(scheduler.schedule(dispatchWindowClose, windowTimeSpan, closeState));
+            _this326.add(scheduler.schedule(dispatchWindowClose, windowTimeSpan, closeState));
 
-            _this323.add(scheduler.schedule(dispatchWindowCreation, windowCreationInterval, creationState));
+            _this326.add(scheduler.schedule(dispatchWindowCreation, windowCreationInterval, creationState));
           } else {
             var timeSpanOnlyState = {
-              subscriber: _assertThisInitialized(_this323),
+              subscriber: _assertThisInitialized(_this326),
               window: window,
               windowTimeSpan: windowTimeSpan
             };
 
-            _this323.add(scheduler.schedule(dispatchWindowTimeSpanOnly, windowTimeSpan, timeSpanOnlyState));
+            _this326.add(scheduler.schedule(dispatchWindowTimeSpanOnly, windowTimeSpan, timeSpanOnlyState));
           }
 
-          return _this323;
+          return _this326;
         }
 
         _createClass2(WindowTimeSubscriber, [{
@@ -106881,24 +107387,24 @@
         return WindowToggleOperator;
       }();
 
-      var WindowToggleSubscriber = /*#__PURE__*/function (_OuterSubscriber__WEB27) {
-        _inherits(WindowToggleSubscriber, _OuterSubscriber__WEB27);
+      var WindowToggleSubscriber = /*#__PURE__*/function (_OuterSubscriber__WEB5) {
+        _inherits(WindowToggleSubscriber, _OuterSubscriber__WEB5);
 
-        var _super224 = _createSuper(WindowToggleSubscriber);
+        var _super228 = _createSuper(WindowToggleSubscriber);
 
         function WindowToggleSubscriber(destination, openings, closingSelector) {
-          var _this324;
+          var _this327;
 
           _classCallCheck(this, WindowToggleSubscriber);
 
-          _this324 = _super224.call(this, destination);
-          _this324.openings = openings;
-          _this324.closingSelector = closingSelector;
-          _this324.contexts = [];
+          _this327 = _super228.call(this, destination);
+          _this327.openings = openings;
+          _this327.closingSelector = closingSelector;
+          _this327.contexts = [];
 
-          _this324.add(_this324.openSubscription = Object(_util_subscribeToResult__WEBPACK_IMPORTED_MODULE_3__["subscribeToResult"])(_assertThisInitialized(_this324), openings, openings));
+          _this327.add(_this327.openSubscription = Object(_util_subscribeToResult__WEBPACK_IMPORTED_MODULE_3__["subscribeToResult"])(_assertThisInitialized(_this327), openings, openings));
 
-          return _this324;
+          return _this327;
         }
 
         _createClass2(WindowToggleSubscriber, [{
@@ -107101,33 +107607,33 @@
         return WindowOperator;
       }();
 
-      var WindowSubscriber = /*#__PURE__*/function (_OuterSubscriber__WEB28) {
-        _inherits(WindowSubscriber, _OuterSubscriber__WEB28);
+      var WindowSubscriber = /*#__PURE__*/function (_OuterSubscriber__WEB6) {
+        _inherits(WindowSubscriber, _OuterSubscriber__WEB6);
 
-        var _super225 = _createSuper(WindowSubscriber);
+        var _super229 = _createSuper(WindowSubscriber);
 
         function WindowSubscriber(destination, closingSelector) {
-          var _this325;
+          var _this328;
 
           _classCallCheck(this, WindowSubscriber);
 
-          _this325 = _super225.call(this, destination);
-          _this325.destination = destination;
-          _this325.closingSelector = closingSelector;
+          _this328 = _super229.call(this, destination);
+          _this328.destination = destination;
+          _this328.closingSelector = closingSelector;
 
-          _this325.openWindow();
+          _this328.openWindow();
 
-          return _this325;
+          return _this328;
         }
 
         _createClass2(WindowSubscriber, [{
           key: "notifyNext",
-          value: function notifyNext(outerValue, innerValue, outerIndex, innerIndex, innerSub) {
+          value: function notifyNext(_outerValue, _innerValue, _outerIndex, _innerIndex, innerSub) {
             this.openWindow(innerSub);
           }
         }, {
           key: "notifyError",
-          value: function notifyError(error, innerSub) {
+          value: function notifyError(error) {
             this._error(error);
           }
         }, {
@@ -107268,39 +107774,39 @@
         return WithLatestFromOperator;
       }();
 
-      var WithLatestFromSubscriber = /*#__PURE__*/function (_OuterSubscriber__WEB29) {
-        _inherits(WithLatestFromSubscriber, _OuterSubscriber__WEB29);
+      var WithLatestFromSubscriber = /*#__PURE__*/function (_OuterSubscriber__WEB7) {
+        _inherits(WithLatestFromSubscriber, _OuterSubscriber__WEB7);
 
-        var _super226 = _createSuper(WithLatestFromSubscriber);
+        var _super230 = _createSuper(WithLatestFromSubscriber);
 
         function WithLatestFromSubscriber(destination, observables, project) {
-          var _this326;
+          var _this329;
 
           _classCallCheck(this, WithLatestFromSubscriber);
 
-          _this326 = _super226.call(this, destination);
-          _this326.observables = observables;
-          _this326.project = project;
-          _this326.toRespond = [];
+          _this329 = _super230.call(this, destination);
+          _this329.observables = observables;
+          _this329.project = project;
+          _this329.toRespond = [];
           var len = observables.length;
-          _this326.values = new Array(len);
+          _this329.values = new Array(len);
 
           for (var i = 0; i < len; i++) {
-            _this326.toRespond.push(i);
+            _this329.toRespond.push(i);
           }
 
           for (var _i29 = 0; _i29 < len; _i29++) {
             var observable = observables[_i29];
 
-            _this326.add(Object(_util_subscribeToResult__WEBPACK_IMPORTED_MODULE_1__["subscribeToResult"])(_assertThisInitialized(_this326), observable, observable, _i29));
+            _this329.add(Object(_util_subscribeToResult__WEBPACK_IMPORTED_MODULE_1__["subscribeToResult"])(_assertThisInitialized(_this329), observable, undefined, _i29));
           }
 
-          return _this326;
+          return _this329;
         }
 
         _createClass2(WithLatestFromSubscriber, [{
           key: "notifyNext",
-          value: function notifyNext(outerValue, innerValue, outerIndex, innerIndex, innerSub) {
+          value: function notifyNext(_outerValue, innerValue, outerIndex) {
             this.values[outerIndex] = innerValue;
             var toRespond = this.toRespond;
 
@@ -107813,12 +108319,12 @@
       var Action = /*#__PURE__*/function (_Subscription__WEBPAC4) {
         _inherits(Action, _Subscription__WEBPAC4);
 
-        var _super227 = _createSuper(Action);
+        var _super231 = _createSuper(Action);
 
         function Action(scheduler, work) {
           _classCallCheck(this, Action);
 
-          return _super227.call(this);
+          return _super231.call(this);
         }
 
         _createClass2(Action, [{
@@ -107865,17 +108371,17 @@
       var AnimationFrameAction = /*#__PURE__*/function (_AsyncAction__WEBPACK) {
         _inherits(AnimationFrameAction, _AsyncAction__WEBPACK);
 
-        var _super228 = _createSuper(AnimationFrameAction);
+        var _super232 = _createSuper(AnimationFrameAction);
 
         function AnimationFrameAction(scheduler, work) {
-          var _this327;
+          var _this330;
 
           _classCallCheck(this, AnimationFrameAction);
 
-          _this327 = _super228.call(this, scheduler, work);
-          _this327.scheduler = scheduler;
-          _this327.work = work;
-          return _this327;
+          _this330 = _super232.call(this, scheduler, work);
+          _this330.scheduler = scheduler;
+          _this330.work = work;
+          return _this330;
         }
 
         _createClass2(AnimationFrameAction, [{
@@ -107946,12 +108452,12 @@
       var AnimationFrameScheduler = /*#__PURE__*/function (_AsyncScheduler__WEBP) {
         _inherits(AnimationFrameScheduler, _AsyncScheduler__WEBP);
 
-        var _super229 = _createSuper(AnimationFrameScheduler);
+        var _super233 = _createSuper(AnimationFrameScheduler);
 
         function AnimationFrameScheduler() {
           _classCallCheck(this, AnimationFrameScheduler);
 
-          return _super229.apply(this, arguments);
+          return _super233.apply(this, arguments);
         }
 
         _createClass2(AnimationFrameScheduler, [{
@@ -108025,17 +108531,17 @@
       var AsapAction = /*#__PURE__*/function (_AsyncAction__WEBPACK2) {
         _inherits(AsapAction, _AsyncAction__WEBPACK2);
 
-        var _super230 = _createSuper(AsapAction);
+        var _super234 = _createSuper(AsapAction);
 
         function AsapAction(scheduler, work) {
-          var _this328;
+          var _this331;
 
           _classCallCheck(this, AsapAction);
 
-          _this328 = _super230.call(this, scheduler, work);
-          _this328.scheduler = scheduler;
-          _this328.work = work;
-          return _this328;
+          _this331 = _super234.call(this, scheduler, work);
+          _this331.scheduler = scheduler;
+          _this331.work = work;
+          return _this331;
         }
 
         _createClass2(AsapAction, [{
@@ -108105,12 +108611,12 @@
       var AsapScheduler = /*#__PURE__*/function (_AsyncScheduler__WEBP2) {
         _inherits(AsapScheduler, _AsyncScheduler__WEBP2);
 
-        var _super231 = _createSuper(AsapScheduler);
+        var _super235 = _createSuper(AsapScheduler);
 
         function AsapScheduler() {
           _classCallCheck(this, AsapScheduler);
 
-          return _super231.apply(this, arguments);
+          return _super235.apply(this, arguments);
         }
 
         _createClass2(AsapScheduler, [{
@@ -108178,18 +108684,18 @@
       var AsyncAction = /*#__PURE__*/function (_Action__WEBPACK_IMPO) {
         _inherits(AsyncAction, _Action__WEBPACK_IMPO);
 
-        var _super232 = _createSuper(AsyncAction);
+        var _super236 = _createSuper(AsyncAction);
 
         function AsyncAction(scheduler, work) {
-          var _this329;
+          var _this332;
 
           _classCallCheck(this, AsyncAction);
 
-          _this329 = _super232.call(this, scheduler, work);
-          _this329.scheduler = scheduler;
-          _this329.work = work;
-          _this329.pending = false;
-          return _this329;
+          _this332 = _super236.call(this, scheduler, work);
+          _this332.scheduler = scheduler;
+          _this332.work = work;
+          _this332.pending = false;
+          return _this332;
         }
 
         _createClass2(AsyncAction, [{
@@ -108327,26 +108833,26 @@
       var AsyncScheduler = /*#__PURE__*/function (_Scheduler__WEBPACK_I) {
         _inherits(AsyncScheduler, _Scheduler__WEBPACK_I);
 
-        var _super233 = _createSuper(AsyncScheduler);
+        var _super237 = _createSuper(AsyncScheduler);
 
         function AsyncScheduler(SchedulerAction) {
-          var _this330;
+          var _this333;
 
           var now = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : _Scheduler__WEBPACK_IMPORTED_MODULE_0__["Scheduler"].now;
 
           _classCallCheck(this, AsyncScheduler);
 
-          _this330 = _super233.call(this, SchedulerAction, function () {
-            if (AsyncScheduler.delegate && AsyncScheduler.delegate !== _assertThisInitialized(_this330)) {
+          _this333 = _super237.call(this, SchedulerAction, function () {
+            if (AsyncScheduler.delegate && AsyncScheduler.delegate !== _assertThisInitialized(_this333)) {
               return AsyncScheduler.delegate.now();
             } else {
               return now();
             }
           });
-          _this330.actions = [];
-          _this330.active = false;
-          _this330.scheduled = undefined;
-          return _this330;
+          _this333.actions = [];
+          _this333.active = false;
+          _this333.scheduled = undefined;
+          return _this333;
         }
 
         _createClass2(AsyncScheduler, [{
@@ -108428,17 +108934,17 @@
       var QueueAction = /*#__PURE__*/function (_AsyncAction__WEBPACK3) {
         _inherits(QueueAction, _AsyncAction__WEBPACK3);
 
-        var _super234 = _createSuper(QueueAction);
+        var _super238 = _createSuper(QueueAction);
 
         function QueueAction(scheduler, work) {
-          var _this331;
+          var _this334;
 
           _classCallCheck(this, QueueAction);
 
-          _this331 = _super234.call(this, scheduler, work);
-          _this331.scheduler = scheduler;
-          _this331.work = work;
-          return _this331;
+          _this334 = _super238.call(this, scheduler, work);
+          _this334.scheduler = scheduler;
+          _this334.work = work;
+          return _this334;
         }
 
         _createClass2(QueueAction, [{
@@ -108509,12 +109015,12 @@
       var QueueScheduler = /*#__PURE__*/function (_AsyncScheduler__WEBP3) {
         _inherits(QueueScheduler, _AsyncScheduler__WEBP3);
 
-        var _super235 = _createSuper(QueueScheduler);
+        var _super239 = _createSuper(QueueScheduler);
 
         function QueueScheduler() {
           _classCallCheck(this, QueueScheduler);
 
-          return _super235.apply(this, arguments);
+          return _super239.apply(this, arguments);
         }
 
         return QueueScheduler;
@@ -108565,23 +109071,23 @@
       var VirtualTimeScheduler = /*#__PURE__*/function (_AsyncScheduler__WEBP4) {
         _inherits(VirtualTimeScheduler, _AsyncScheduler__WEBP4);
 
-        var _super236 = _createSuper(VirtualTimeScheduler);
+        var _super240 = _createSuper(VirtualTimeScheduler);
 
         function VirtualTimeScheduler() {
-          var _this332;
+          var _this335;
 
           var SchedulerAction = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : VirtualAction;
           var maxFrames = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : Number.POSITIVE_INFINITY;
 
           _classCallCheck(this, VirtualTimeScheduler);
 
-          _this332 = _super236.call(this, SchedulerAction, function () {
-            return _this332.frame;
+          _this335 = _super240.call(this, SchedulerAction, function () {
+            return _this335.frame;
           });
-          _this332.maxFrames = maxFrames;
-          _this332.frame = 0;
-          _this332.index = -1;
-          return _this332;
+          _this335.maxFrames = maxFrames;
+          _this335.frame = 0;
+          _this335.index = -1;
+          return _this335;
         }
 
         _createClass2(VirtualTimeScheduler, [{
@@ -108618,22 +109124,22 @@
       var VirtualAction = /*#__PURE__*/function (_AsyncAction__WEBPACK4) {
         _inherits(VirtualAction, _AsyncAction__WEBPACK4);
 
-        var _super237 = _createSuper(VirtualAction);
+        var _super241 = _createSuper(VirtualAction);
 
         function VirtualAction(scheduler, work) {
-          var _this333;
+          var _this336;
 
           var index = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : scheduler.index += 1;
 
           _classCallCheck(this, VirtualAction);
 
-          _this333 = _super237.call(this, scheduler, work);
-          _this333.scheduler = scheduler;
-          _this333.work = work;
-          _this333.index = index;
-          _this333.active = true;
-          _this333.index = scheduler.index = index;
-          return _this333;
+          _this336 = _super241.call(this, scheduler, work);
+          _this336.scheduler = scheduler;
+          _this336.work = work;
+          _this336.index = index;
+          _this336.active = true;
+          _this336.index = scheduler.index = index;
+          return _this336;
         }
 
         _createClass2(VirtualAction, [{
