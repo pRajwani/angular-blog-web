@@ -4,12 +4,12 @@ pipeline {
     stages {
         stage('NPM Install') {
           steps {
-              sh 'npm install'
+              bat 'npm install'
           }
         }
         stage('Build') {
           steps {
-              sh 'ng build' 
+              bat 'ng build' 
           }
         }
         stage('Deploy') {
